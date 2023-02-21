@@ -1,7 +1,7 @@
 export interface Cat{
     "id":number;
     "nombre":String,
-    "srcFoto":[],
+    "srcFoto":String[],
     "edad":String,
     "sexo":String,
     "descripcion":String,
@@ -12,4 +12,5 @@ export interface Cat{
     "desparasitacion":boolean,
     "solicitantes":[]
 }
+
 
