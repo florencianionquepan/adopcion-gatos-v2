@@ -1,35 +1,35 @@
 {   "destacado":[{
   "id":1,
   "nombre":"Nala",
-  "srcFoto":"img/nalad.jpg"
+  "srcFoto":"https://i.postimg.cc/D0s1DXdY/nalad.jpg"
 },
 {
   "id":2,
   "nombre":"Pepe",
-  "srcFoto":"img/peped.jpg"
+  "srcFoto":"https://i.postimg.cc/kgCv0fHN/peped.jpg"
 },
 {
   "id":3,
   "nombre":"Carlos",
-  "srcFoto":"img/carlosd.jpg"
+  "srcFoto":"https://i.postimg.cc/Xq0rrDdQ/carlosd.jpg"
 
 },
 {
   "id":4,
   "nombre":"Felix",
-  "srcFoto":"img/felixd.jpg"
+  "srcFoto":"https://i.postimg.cc/prNFDdbQ/felixd.jpg"
 },
 {
   "id":5,
   "nombre":"Sara",
-  "srcFoto":"img/sarad.jpg"
+  "srcFoto":"https://i.postimg.cc/vBK1GZZF/sarad.jpg"
 }
 ],
   "gato":[
 {
       "id":15,
       "nombre":"Susi",
-      "srcFoto":["img/susi-.jpg","img/susi+.jpg"],
+      "srcFoto":["https://i.postimg.cc/hhWf7Zm2/susi.jpg","https://i.postimg.cc/DyLcptxy/susi.jpg"],
       "edad":"45 dias",
       "sexo":"Hembra",
       "descripcion":"Susi es la menor de 5 hermanos. Tiene 45 dias y ya esta lista para buscar un hogar. No le agradan los niños.",
@@ -43,7 +43,7 @@
   {
       "id":14,
       "nombre":"Atenea",
-      "srcFoto":["img/atenea-.jpg","img/atenea+.jpg"],
+      "srcFoto":["https://i.postimg.cc/gkmwdQY0/atenea.jpg","https://i.postimg.cc/zX7yf7BF/atenea.jpg"],
       "edad":"2 meses",
       "sexo":"Hembra",
       "descripcion":"Atenea fue encontrada en un baldio con sus hermanitos. Todos fueron dados en adopcion, pero ella sigue con nosotros y nuestros perros. Se lleva muy bien con todos y le gusta jugar con ellos.",
@@ -57,7 +57,7 @@
   {
       "id":13,
       "nombre":"Chobi",
-      "srcFoto":["img/chobi-.jpg","img/chobi+.jpg"],
+      "srcFoto":["https://i.postimg.cc/5tTYVt0c/chobi.jpg","https://i.postimg.cc/63Z75N28/chobi.jpg"],
       "edad":"2 meses",
       "sexo":"Macho",
       "descripcion":"Chobi fue encontrado solo en las vias del tren. Tiene 2 meses de edad y le gusta mucho el pescado.",
@@ -71,7 +71,7 @@
   {
       "id":12,
       "nombre":"Reina",
-      "srcFoto":["img/reina-.jpg","img/reina+.jpg"],
+      "srcFoto":["https://i.postimg.cc/8kqHH1B0/reina.jpg","https://i.postimg.cc/k5XF4DqB/reina.jpg"],
       "edad":"5 meses",
       "sexo":"Hembra",
       "descripcion":"Reina tiene 5 meses. Es cariñosa con los niños.",
@@ -85,7 +85,7 @@
   {
       "id":11,
       "nombre":"Thor",
-      "srcFoto":["img/thor-.jpg","img/thor+.jpg"],
+      "srcFoto":["https://i.postimg.cc/k5f6hcr5/thor.jpg","https://i.postimg.cc/cHCgqnZB/thor.jpg"],
       "edad":"45 dias",
       "sexo":"Macho",
       "descripcion":"A Thor no le gustan los ruidos molestos. Se lleva muy bien con la gente mayor",
@@ -99,7 +99,7 @@
   {
       "id":10,
       "nombre":"Miyu",
-      "srcFoto":["img/miyu-.jpg","img/miyu+.jpg"],
+      "srcFoto":["https://i.postimg.cc/HsDwM6TG/miyu.jpg","https://i.postimg.cc/jSvPGKPK/miyu.jpg"],
       "edad":"3 meses",
       "sexo":"Macho",
       "descripcion":"Miyu se lleva muy bien con otros gatos",
@@ -113,7 +113,7 @@
   {
       "id":9,
       "nombre":"Coco",
-      "srcFoto":["img/coco-.jpg","img/coco+.jpg"],
+      "srcFoto":["https://i.postimg.cc/HkW70KKN/coco.jpg","https://i.postimg.cc/GmMTXKnm/coco.jpg"],
       "edad":"2 meses",
       "sexo":"Macho",
       "descripcion":"Coco tiene 2 meses de edad. Le gustan los niños",
@@ -127,7 +127,7 @@
   {
       "id":8,
       "nombre":"Masato",
-      "srcFoto":["img/masato-.jpg","img/masato+.jpg"],
+      "srcFoto":["https://i.postimg.cc/YSsgC3ds/masato.jpg","https://i.postimg.cc/3R0G4v6J/masato.jpg"],
       "edad":"4 meses",
       "sexo":"Macho",
       "descripcion":"Masato es el mayor de 3 hermanos",
@@ -141,7 +141,7 @@
   {
       "id":7,
       "nombre":"Alex",
-      "srcFoto":["img/alex-.jpg","img/alex+.jpg"],
+      "srcFoto":["https://i.postimg.cc/dV0LZCZP/alex.jpg","https://i.postimg.cc/YSG0bwxd/alex.jpg"],
       "edad":"2 meses",
       "sexo":"Macho",
       "descripcion":"Alex fue encontrado escondido en el parque",
@@ -155,7 +155,7 @@
   {
       "id":6,
       "nombre":"Amon",
-      "srcFoto":["img/amon-.jpg","img/amon+.jpg"],
+      "srcFoto":["https://i.postimg.cc/6p1TrQC7/amon.jpg","https://i.postimg.cc/sX5XC9qS/amon.jpg"],
       "edad":"3 meses",
       "sexo":"Macho",
       "descripcion":"Amon tiene 3 meses de edad. Le gusta asustar a los vecinos.",
@@ -169,7 +169,7 @@
   {
       "id":5,
       "nombre":"Sara",
-      "srcFoto":["img/sara-.jpg","img/sara+.jpg","img/sarad.jpg"],
+      "srcFoto":["https://i.postimg.cc/3NDkNQky/sara.jpg","https://i.postimg.cc/kMVsKV8S/sara.jpg","https://i.postimg.cc/vBK1GZZF/sarad.jpg"],
       "edad":"3 años",
       "sexo":"Hembra",
       "descripcion":"Sara es una gata muy tranquila y se lleva muy bien con los perros.",
@@ -183,7 +183,7 @@
   {
       "id":4,
       "nombre":"Felix",
-      "srcFoto":["img/felix-.jpg","img/felix+.jpg","img/felixd.jpg"],
+      "srcFoto":["https://i.postimg.cc/Gtksz1dW/felix.jpg","https://i.postimg.cc/v899G5f0/felix.jpg","https://i.postimg.cc/prNFDdbQ/felixd.jpg"],
       "edad":"2 años",
       "sexo":"Macho",
       "descripcion":"Felix vivia con sus dueños mayores y luego de que fallecieron quedo solo. Le gusta mucho jugar con lana.",
@@ -197,7 +197,7 @@
   {
       "id":3,
       "nombre":"Carlos",
-      "srcFoto":["img/carlos-.jpg","img/carlos+.jpg","img/carlosd.jpg"],
+      "srcFoto":["https://i.postimg.cc/PJzPYzMh/carlos.jpg","https://i.postimg.cc/bYQG7pfM/carlos.jpg","https://i.postimg.cc/Xq0rrDdQ/carlosd.jpg"],
       "edad":"3 años",
       "sexo":"Macho",
       "descripcion":"Carlos es un gato muy cariñospo. No camina bien por eso pasa mucho tiempo adentro.",
@@ -211,7 +211,7 @@
   {
       "id":2,
       "nombre":"Pepe",
-      "srcFoto":["img/pepe-.jpg","img/pepe+.jpg","img/peped.jpg"],
+      "srcFoto":["https://i.postimg.cc/pdGQnxLk/pepe.jpg","https://i.postimg.cc/Qtvp0b5T/pepe.jpg","https://i.postimg.cc/kgCv0fHN/peped.jpg"],
       "edad":"2 años",
       "sexo":"Macho",
       "descripcion":"Pepe fue encontrado abandonado siendo adulto. Es muy cariñoso y se lleva bien con el resto de los gatos.",
@@ -225,7 +225,7 @@
   {
       "id":1,
       "nombre":"Nala",
-      "srcFoto":["img/nala-.jpg","img/nala+.jpg","img/nalad.jpg"],
+      "srcFoto":["https://i.postimg.cc/nhnqRMs0/nala.jpg","https://i.postimg.cc/02Yp07Nz/nala.jpg","https://i.postimg.cc/D0s1DXdY/nalad.jpg"],
       "edad":"6 meses",
       "sexo":"Hembra",
       "descripcion":"Nala fue encontrada recientemente debajo de un auto, es muy caroiñosa y le gusta estar dentro de su casa",
