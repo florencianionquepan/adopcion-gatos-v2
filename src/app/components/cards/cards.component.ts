@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cat } from 'src/app/models/cat';
 
 @Component({
@@ -6,11 +7,21 @@ import { Cat } from 'src/app/models/cat';
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css']
 })
-export class CardsComponent {
+export class CardsComponent{
   @Input() cat:Cat
 
-  constructor(){
+  constructor(private ruta: Router){
     this.cat={id:1,nombre:"","srcFoto":[],"edad":"","sexo":"","descripcion":"","raza":"",
               "color":"","tipoPelo":"","esterilizacion":false,"desparasitacion":false,"solicitantes":[]}
   }
+
+  public detail(cat: Cat){
+    this.ruta.navigate([`/detail/${cat.id}`]);
+  }
+
+  public editCat(cat: Cat){
+    this.ruta.navigate([`/edit/${cat.id}`]);
+  }
+
+
 }
