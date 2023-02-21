@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CatDetailComponent } from './components/cat-detail/cat-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     CardsComponent,
     FooterComponent,
     MainComponent,
-    HomeComponent
+    HomeComponent,
+    CatDetailComponent
   ],
   imports: [
     BrowserModule,
