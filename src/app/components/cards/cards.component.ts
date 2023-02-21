@@ -11,7 +11,7 @@ export class CardsComponent{
   @Input() cat:Cat
 
   constructor(private ruta: Router){
-    this.cat={id:1,nombre:"","srcFoto":[],"edad":"","sexo":"","descripcion":"","raza":"",
+    this.cat={id:0,nombre:"","srcFoto":[],"edad":"","sexo":"","descripcion":"","raza":"",
               "color":"","tipoPelo":"","esterilizacion":false,"desparasitacion":false,"solicitantes":[]}
   }
 
@@ -19,7 +19,7 @@ export class CardsComponent{
     this.ruta.navigate([`/detail/${cat.id}`]);
   }
 
-  public editCat(cat: Cat){
+  public edit(cat: Cat){
     this.ruta.navigate([`/edit/${cat.id}`]);
   }
 
