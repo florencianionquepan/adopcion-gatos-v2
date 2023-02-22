@@ -11,6 +11,8 @@ import { MainComponent } from './components/main/main.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CatDetailComponent } from './components/cat-detail/cat-detail.component';
+import { FormAdoptionComponent } from './components/form-adoption/form-adoption.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,17 @@ import { CatDetailComponent } from './components/cat-detail/cat-detail.component
     FooterComponent,
     MainComponent,
     HomeComponent,
-    CatDetailComponent
+    CatDetailComponent,
+    FormAdoptionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}
