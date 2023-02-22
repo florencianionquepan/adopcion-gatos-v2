@@ -1,3 +1,5 @@
+import { Applicant } from "./applicant";
+
 export interface Cat{
     "id":number;
     "nombre":String,
@@ -10,7 +12,7 @@ export interface Cat{
     "tipoPelo":String,
     "esterilizacion":boolean,
     "desparasitacion":boolean,
-    "solicitantes":[]
+    "solicitantes":Applicant[]
 }
 
 
