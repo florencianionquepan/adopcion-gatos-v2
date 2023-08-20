@@ -1,6 +1,13 @@
 body{
-    background-image:url(https://i.pinimg.com/564x/f4/04/a6/f404a6ff49800efe89c933ebf761a7b9.jpg);
+    background: linear-gradient(135deg, rgb(186, 153, 237) 0%, rgb(242, 215, 186) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    font-family: 'Ubuntu', sans-serif;
 }
+
+.color1 {color: #a478eb;}
+.color2 {color: #f37fd1;}
+.color3 {color: #ffb1ca;}
+.color4 {color: #ffedda;}
+.color5 {color: #ffffec;}
