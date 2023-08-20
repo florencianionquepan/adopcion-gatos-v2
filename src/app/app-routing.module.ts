@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CatDetailComponent } from './public/components/cat-detail/cat-detail.component';
-import { HomeComponent } from './public/components/home/home.component';
+import { HomeComponent } from './public/pages/home/home.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
