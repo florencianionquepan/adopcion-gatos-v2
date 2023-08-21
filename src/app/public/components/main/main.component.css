@@ -1,3 +1,7 @@
-.body{
-    height: 70vh;
+.body {
+  min-height: 70vh;
+}
+
+div .card{
+    min-height: 400px;
 }

@@ -17,7 +17,7 @@ export class MainComponent{
     // Hacer la solicitud y suscribirse al observable
     this.gatoSvc.verGatos().subscribe(response => {
       if (response.Success) {
-        this.cats = response.data; // Asignamos los datos al arreglo de gatos
+        this.cats = response.data.reverse(); // Asignamos los datos al arreglo de gatos
       }
     });
   }
