@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cat } from '../models/cat';
+import { Gato } from '../models/gato';
+import { environment } from '../environments/environment';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -8,13 +9,14 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CatServiceService {
   headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-  public cats:Cat[];
-  public apiGatos="http://localhost:3000/gato";
+  public cats:Gato[];
+  public apiGatos=`${environment.url}/gatos`;
+  
   constructor(private http:HttpClient) {
     this.cats=[];
    }
 
-  public verGatos():Observable<Cat[]>{
+  public verGatos():Observable<any>{
     return this.http.get<any>(this.apiGatos);
   }
 
