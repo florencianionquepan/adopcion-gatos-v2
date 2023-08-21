@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class CatServiceService {
-  headers = new Headers({ 'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
   public cats:Gato[];
   public apiGatos=`${environment.url}/gatos`;
   
