@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cat } from 'src/app/models/cat';
+import { Gato } from 'src/app/models/gato';
 import { CatServiceService } from 'src/app/services/cat-service.service';
 
 @Component({
@@ -8,11 +8,17 @@ import { CatServiceService } from 'src/app/services/cat-service.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent{
-  public cats:Cat[]=[];
+  public cats:Gato[]=[];
 
   constructor(private gatoSvc: CatServiceService){
-    this.gatoSvc.verGatos().subscribe(cats=>{
-      this.cats=cats;
-    })
+  }
+
+  ngOnInit(): void {
+    // Hacer la solicitud y suscribirse al observable
+    this.gatoSvc.verGatos().subscribe(response => {
+      if (response.Success) {
+        this.cats = response.data; // Asignamos los datos al arreglo de gatos
+      }
+    });
   }
 }

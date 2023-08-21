@@ -1,7 +1,19 @@
 <div class="container body">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="row justify-content-between">
     <div class="col" *ngFor="let cat of cats">
-        <app-cards [cat]="cat"></app-cards>
+        <div class="card" style="background-color: #F8E0DB">
+            <img class="img-fluid mx-auto mt-2 rounded" width="70%" [src]="(cat.fotos)[0]">
+            <div class="card-body">
+              <h3>{{cat.nombre}}</h3>
+              <p class="card-text">{{cat.descripcion}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                </div>
+                <small class="text-muted"></small>
+              </div>
+            </div>
+          </div>
     </div>
     </div>
 </div>
