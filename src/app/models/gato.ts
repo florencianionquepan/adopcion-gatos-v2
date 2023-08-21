@@ -1,18 +1,16 @@
 import { Applicant } from "./applicant";
 
-export interface Cat{
+export interface Gato{
     "id":number;
     "nombre":String,
-    "srcFoto":String[],
+    "fotos":String[],
     "edad":String,
     "sexo":String,
     "descripcion":String,
-    "raza":String,
     "color":String,
     "tipoPelo":String,
-    "esterilizacion":boolean,
-    "desparasitacion":boolean,
-    "solicitantes":Applicant[]
+    "solicitudes":String[],
+    "adoptado":boolean,
 }
 
 
