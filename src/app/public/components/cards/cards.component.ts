@@ -18,7 +18,7 @@ export class CardsComponent {
   ngOnInit(): void {
     // Hacer la solicitud y suscribirse al observable
     this.gatoSvc.verGatos().subscribe(response => {
-      if (response.Success) {
+      if (response.success) {
         this.cats = response.data.reverse(); // Asignamos los datos al arreglo de gatos
       }
     });
