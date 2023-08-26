@@ -1,5 +1,3 @@
-import { Applicant } from "./applicant";
-
 export interface Gato{
     "id":number;
     "nombre":String,
