@@ -1,26 +1,28 @@
 
 <div class="container-md w-25 mt-5">
     <div class="m-3">
-      <form novalidate>
+      <form [formGroup]="loginForm" (ngSubmit)="validateUser()">
         <div class="p-5 text-center">
           <h3>Sign in!</h3>
         </div>
         <div class="form-floating">
-          <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com"
-          >
+          <input type="email" formControlName="email" class="form-control" id="email">
           <label for="email">Email</label>
+          <span class="text-danger" *ngIf="isValidField('email')">
+            {{getFieldError('email')}}</span>
         </div>
-        
         
         <div class="form-floating mt-3">
-          <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password"
-          >
+          <input type="password" formControlName="password" class="form-control" id="password">
           <label for="password">Password</label>
+          <span class="text-danger" *ngIf="isValidField('password')">
+            {{getFieldError('password')}}</span>
         </div>
         
-        <button class="w-100 btn btn-lg btn-outline-dark mt-4" type="submit">LogIn</button>
+        <button class="w-100 btn btn-lg btn-outline-dark mt-4" type="submit">Login</button>
       </form>
   </div>
    
 </div>
+
 
