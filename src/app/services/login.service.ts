@@ -11,7 +11,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   validateLoginDetails(user:User){
-    window.sessionStorage.setItem("userDetails",JSON.stringify(user));
-    return this.http.get(`${environment.url}/user`,{observe:'response',withCredentials:true})
+    window.sessionStorage.setItem("userdetails",JSON.stringify(user));
+    return this.http.get(`${environment.url}/auth`,{observe:'response',withCredentials:true})
   }
 }
