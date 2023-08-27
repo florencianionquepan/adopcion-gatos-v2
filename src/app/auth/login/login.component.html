@@ -1,7 +1,7 @@
 
 <div class="container-md w-25 mt-5">
     <div class="m-3">
-      <form [formGroup]="loginForm" (ngSubmit)="validateUser()">
+      <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && validateUser()">
         <div class="p-5 text-center">
           <h3>Sign in!</h3>
         </div>

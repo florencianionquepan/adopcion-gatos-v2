@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 import { getCookie } from 'typescript-cookie';
@@ -20,9 +22,7 @@ export class LoginComponent {
 
   constructor(private router:Router, 
     private loginService:LoginService,
-    private fb:FormBuilder){
-    
-  }
+    private fb:FormBuilder) {}
 
   isValidField(field:string):boolean | null{
     return this.loginForm.controls[field].errors &&
@@ -32,7 +32,7 @@ export class LoginComponent {
   getFieldError(field:string):string | null{
     if(!this.loginForm.controls[field]) return null;
     const errors=this.loginForm.controls[field].errors || {};
-    console.log(errors);
+    //console.log(errors);
     for (const key in errors) {
       switch(key){
         case 'required': return `El campo ${field} es requerido`;
@@ -43,17 +43,32 @@ export class LoginComponent {
   }
 
   validateUser(){
-    this.loginService.validateLoginDetails(this.user).subscribe(
+    if(this.loginForm.valid){
+      const emailF=this.loginForm.value.email;
+      const passwordF=this.loginForm.value.password;
+      this.user.email=emailF;
+      this.user.password=passwordF;
+    }
+
+    this.loginService.validateLoginDetails(this.user)
+    .subscribe(
       responseData=>{
         if(responseData.headers){
           window.sessionStorage.setItem("Authorization",responseData.headers.get("Authorization")!);
         }
-        this.user=<any> responseData.body;
+        console.log(responseData);
+        let body=<any> responseData.body;
+        this.user=body.data;
         this.user.authStatus="AUTH";
         window.sessionStorage.setItem('userdetails',JSON.stringify(this.user));
         let xsrf= getCookie('XSRF-TOKEN')!;
         window.sessionStorage.setItem("XSRF-TOKEN",xsrf);
         this.router.navigate(['/']);
+      },
+      (error:HttpErrorResponse)=>{
+        if(error.status==401){
+          console.log("credenciales incorrectas");
+        }
       }
     )
   }
