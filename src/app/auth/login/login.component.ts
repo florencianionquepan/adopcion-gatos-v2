@@ -1,10 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
+import Swal from 'sweetalert2';
 import { getCookie } from 'typescript-cookie';
 
 @Component({
@@ -42,7 +42,7 @@ export class LoginComponent {
     return null;
   }
 
-  validateUser(){
+  validateUser():void{
     if(this.loginForm.valid){
       const emailF=this.loginForm.value.email;
       const passwordF=this.loginForm.value.password;
@@ -51,13 +51,13 @@ export class LoginComponent {
     }
 
     this.loginService.validateLoginDetails(this.user)
-    .subscribe(
-      responseData=>{
-        if(responseData.headers){
-          window.sessionStorage.setItem("Authorization",responseData.headers.get("Authorization")!);
+    .subscribe({
+      next:(response:HttpResponse<any>)=>{
+        if(response.headers){
+          window.sessionStorage.setItem("Authorization",response.headers.get("Authorization")!);
         }
-        console.log(responseData);
-        let body=<any> responseData.body;
+        console.log(response);
+        let body=<any> response.body;
         this.user=body.data;
         this.user.authStatus="AUTH";
         window.sessionStorage.setItem('userdetails',JSON.stringify(this.user));
@@ -65,12 +65,10 @@ export class LoginComponent {
         window.sessionStorage.setItem("XSRF-TOKEN",xsrf);
         this.router.navigate(['/']);
       },
-      (error:HttpErrorResponse)=>{
-        if(error.status==401){
-          console.log("credenciales incorrectas");
-        }
+      error:(e)=>{
+        Swal.fire({'title':e});
       }
-    )
+    })
   }
 
 }
