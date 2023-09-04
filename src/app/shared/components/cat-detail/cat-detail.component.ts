@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Gato } from 'src/app/models/gato';
 import { CatServiceService } from 'src/app/services/cat-service.service';
 
