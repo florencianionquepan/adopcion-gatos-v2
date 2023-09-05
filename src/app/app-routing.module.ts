@@ -6,8 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { CatDetailComponent } from './shared/components/cat-detail/cat-detail.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent
-  },
+  {path:'', component:HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'cats/:id', component: CatDetailComponent },
   {path:'backoffice',
