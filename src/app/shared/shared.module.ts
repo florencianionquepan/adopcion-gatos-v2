@@ -6,6 +6,7 @@ import { MainComponent } from './components/main/main.component';
 import { CatDetailComponent } from './components/cat-detail/cat-detail.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { HomeComponent } from './pages/home/home.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,11 +20,13 @@ import { HomeComponent } from './pages/home/home.component';
     CatDetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ]
 })
 export class SharedModule { }
