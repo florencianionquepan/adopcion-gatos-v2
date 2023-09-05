@@ -10,10 +10,29 @@
         </a>
 
         <ul class="nav nav-pills py-2" id="menu">
-            <li class="nav-item px-1"><button class="btn btn-secondary" role="button">NOTICIAS</button></li>
-            <li class="nav-item px-1"><a class="btn btn-secondary" role="button" routerLink="/about">NOSOTROS</a></li>
-            <li class="nav-item px-1"><a class="btn btn-secondary" role="button">UNETE</a></li>
-            <li class="nav-item px-1"><a class="btn btn-secondary" role="button" routerLink="/login">LOGIN</a></li>
+            <li class="nav-item px-1">
+                <a class="btn btn-secondary" role="button"
+                routerLink="backoffice/perfil">
+                    MI PERFIL
+                </a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="btn btn-secondary" role="button">
+                    NOTICIAS
+                </a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="btn btn-secondary" role="button" 
+                routerLink="" routerLinkActive="active" 
+                [routerLinkActiveOptions]="{exact:true}">HOME</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="btn btn-secondary" role="button">UNETE</a>
+            </li>
+            <li class="nav-item px-1">
+                <a class="btn btn-secondary" role="button" 
+                routerLink="/login" routerLinkActive="active">LOGIN</a>
+            </li>
         </ul>
     </header>
 </div>
