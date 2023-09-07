@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ProfileComponent } from "./pages/profile/profile.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 const routes: Routes=[{
     path:'perfil',
@@ -9,7 +10,8 @@ const routes: Routes=[{
 
 @NgModule({
     imports:[
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        ReactiveFormsModule
     ],
     exports:[
         RouterModule
