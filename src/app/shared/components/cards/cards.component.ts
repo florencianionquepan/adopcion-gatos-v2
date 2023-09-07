@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Gato } from 'src/app/models/gato';
 import { CatServiceService } from 'src/app/services/cat-service.service';
 
@@ -10,9 +11,8 @@ import { CatServiceService } from 'src/app/services/cat-service.service';
 export class CardsComponent {
   public cats:Gato[]=[];
 
-  constructor(private gatoSvc:CatServiceService){
-/*     this.cat={id:0,nombre:"","fotos":[],"edad":"","sexo":"","descripcion":"",
-              "color":"","tipoPelo":"","adoptado":false,"solicitudes":[]} */
+  constructor(private gatoSvc:CatServiceService, private router:Router){
+
   }
 
   ngOnInit(): void {
@@ -23,11 +23,12 @@ export class CardsComponent {
       }
     });
   }
-/* 
-  public detail(cat: Gato){
-    this.ruta.navigate([`/detail/${cat.id}`]);
+
+  public verGato(cat: Gato){
+    this.router.navigate([`/gatos/${cat.id}`]);
   }
 
+  /* 
   public edit(cat: Gato){
     this.ruta.navigate([`/edit/${cat.id}`]);
   } */
