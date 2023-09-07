@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from './../services/login.service';
 import Swal from 'sweetalert2';
 import { getCookie } from 'typescript-cookie';
 
@@ -24,30 +24,16 @@ export class LoginComponent {
     private loginService:LoginService,
     private fb:FormBuilder) {}
 
-  isValidField(field:string):boolean | null{
-    return this.loginForm.controls[field].errors &&
-      this.loginForm.controls[field].touched;
-  }
-
-  getFieldError(field:string):string | null{
-    if(!this.loginForm.controls[field]) return null;
-    const errors=this.loginForm.controls[field].errors || {};
-    //console.log(errors);
-    for (const key in errors) {
-      switch(key){
-        case 'required': return `El campo ${field} es requerido`;
-        case 'minlength': return `Minimo ${errors['minlength']['requiredLength']} caracteres`
-      }
-    }
-    return null;
-  }
-
   validateUser():void{
+    
     if(this.loginForm.valid){
       const emailF=this.loginForm.value.email;
       const passwordF=this.loginForm.value.password;
       this.user.email=emailF;
       this.user.password=passwordF;
+    }else{
+      this.loginForm.markAllAsTouched();
+      return;
     }
 
     this.loginService.validateLoginDetails(this.user)
