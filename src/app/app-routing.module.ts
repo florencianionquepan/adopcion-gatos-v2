@@ -8,7 +8,7 @@ import { CatDetailComponent } from './shared/components/cat-detail/cat-detail.co
 const routes: Routes = [
   {path:'', component:HomeComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'cats/:id', component: CatDetailComponent },
+  { path: 'gatos/:id', component: CatDetailComponent },
   {path:'backoffice',
     loadChildren: ()=>import('./backoffice/backoffice.module').then(m=>m.BackofficeModule)
   },
