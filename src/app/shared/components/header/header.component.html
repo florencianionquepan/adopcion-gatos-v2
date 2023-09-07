@@ -1,38 +1,55 @@
 <div class="container-fluid" style="background-color:rgb(245, 205, 255)">
-    <header class="d-flex flex-wrap justify-content-center mb-4 p-2">
-        <a name="arriba" role="button" aria-current="page" id="ir-inicio" onclick="irInicio()"
-            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none nav-link active">
-            <img src="../../../assets/img/logo.png" width="40">
-
-            <span class="nav-link p-1">
-                <h4 class="mb-0 mt-2">rescats</h4>
-            </span>
-        </a>
-
-        <ul class="nav nav-pills py-2" id="menu">
-            <li class="nav-item px-1">
-                <a class="btn btn-secondary" role="button"
-                routerLink="backoffice/perfil">
-                    MI PERFIL
-                </a>
-            </li>
-            <li class="nav-item px-1">
-                <a class="btn btn-secondary" role="button">
-                    NOTICIAS
-                </a>
-            </li>
-            <li class="nav-item px-1">
-                <a class="btn btn-secondary" role="button" 
+    <header class="p-3 bg-pink">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none"
+            [routerLink]="user.authStatus!='AUTH' ? [''] : ['/dashboard']">
+                <img src="../../../assets/img/logo.png" width="40" class="mb-2">
+                <span class="nav-link p-1">
+                    <h4 class="mb-0 cute me-3">Rescats</h4>
+                </span>
+            </a>
+    
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li>
+                <a class="nav-link px-2 cute" 
                 routerLink="" routerLinkActive="active" 
-                [routerLinkActiveOptions]="{exact:true}">HOME</a>
-            </li>
-            <li class="nav-item px-1">
-                <a class="btn btn-secondary" role="button">UNETE</a>
-            </li>
-            <li class="nav-item px-1">
-                <a class="btn btn-secondary" role="button" 
-                routerLink="/login" routerLinkActive="active">LOGIN</a>
-            </li>
-        </ul>
-    </header>
+                [routerLinkActiveOptions]="{exact:true}">Home</a>
+              </li>
+              <li><a class="nav-link px-2 cute">Acerca de</a></li>
+              <li><a class="nav-link px-2 cute">Unete</a></li>
+              <li><a class="nav-link px-2 cute">Noticias</a></li>
+            </ul>
+    
+<!--             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+              <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+            </form> -->
+    
+            <div class="text-end">
+                <ul class="nav nav-pills py-2" id="menu">
+                    <li class="nav-item px-1">
+                        <a class="btn btn-secondary" role="button"
+                        routerLink="backoffice/perfil"
+                        *ngIf="user.authStatus=='AUTH'">
+                            MI PERFIL
+                        </a>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a class="btn btn-secondary" role="button" 
+                        routerLink="/login" routerLinkActive="active"
+                        *ngIf="user.authStatus!='AUTH'">LOGIN</a>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a class="btn btn-secondary" role="button" 
+                        (click)="logout()"
+                        *ngIf="user.authStatus=='AUTH'">LOGOUT</a>
+                    </li>
+                    <li class="nav-item px-1">
+                        <a class="btn btn-secondary" role="button" 
+                        routerLinkActive="active"
+                        *ngIf="user.authStatus!='AUTH'">SIGN IN</a>
+                    </li>
+                </ul>
+            </div>
+          </div>
+      </header>
 </div>
