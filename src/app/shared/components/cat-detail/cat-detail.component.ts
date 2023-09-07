@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Gato } from 'src/app/models/gato';
+import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { CatServiceService } from 'src/app/services/cat-service.service';
 
 @Component({
@@ -9,18 +9,18 @@ import { CatServiceService } from 'src/app/services/cat-service.service';
   styleUrls: ['./cat-detail.component.css']
 })
 export class CatDetailComponent {
-  public cat:Gato;
+  gato=new GatoDetalle();
 
   constructor(private ruta: ActivatedRoute, private catSvc: CatServiceService){
-    this.cat={id:0,nombre:"","fotos":[],"edad":"","sexo":"","descripcion":"",
-    "color":"","tipoPelo":"","adoptado":false,"solicitudes":[]}
     this.getCat();
   }
 
+  //agregar manejo errores
   getCat():void{
     const id= this.ruta.snapshot.params['id'];
-    this.catSvc.getCat(id).subscribe(kitty=>{
-      this.cat=kitty;
+    this.catSvc.getGatoById(id).subscribe(resp=>{
+      //console.log(resp);
+      this.gato=resp.data;
     })
   }
   
