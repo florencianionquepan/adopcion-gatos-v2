@@ -1,10 +1,8 @@
 <app-header></app-header>
-<div class="container-md w-25">
-    <div class="m-3">
-      <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && validateUser()">
-        <div class="p-5 text-center">
-          <h3>Sign in!</h3>
-        </div>
+<div class="container-md w-25 my-5">
+    <div class="my-5 color1 py-5 px-4 border rounded">
+      <form [formGroup]="loginForm"
+      (ngSubmit)="loginForm.valid && validateUser()">
         <div class="form-floating">
           <input type="email" formControlName="email" class="form-control" id="email">
           <label for="email">Email</label>
@@ -19,9 +17,9 @@
             {{getFieldError('password')}}</span>
         </div>
         
-        <button class="w-100 btn btn-lg btn-outline-dark mt-4" type="submit">Login</button>
+        <button class="w-100 btn btn-lg btn-outline-secondary mt-4" type="submit">Login</button>
       </form>
-  </div>
+    </div>
    
 </div>
 <app-footer></app-footer>
