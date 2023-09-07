@@ -1,13 +1,13 @@
-<div class="row justify-content-between align-items-center">
+<div class="row justify-content-between align-items-center mt-4">
   <div class="col-10 col-md-4 col-lg-3" *ngFor="let cat of cats">
     <div class="card my-2" style="background-color: #f8e0db">
       <div class="text-center">
         <img
           class="img-fluid mx-auto mt-2 rounded"
-          width="70%"
+          width="80%"
           [src]="cat.fotos[0]"/>
       </div>
-      <div class="card-body d-flex flex-column justify-content-center">
+      <div class="card-body d-flex flex-column justify-content-center py-0">
         <h3>{{ cat.nombre }}</h3>
         <p class="card-text mb-1">{{ cat.descripcion }}</p>
         <p class="lead fs-6 fw-light" *ngIf="cat.solicitudes.length>0">{{cat.solicitudes.length}} personas interesadas</p>
