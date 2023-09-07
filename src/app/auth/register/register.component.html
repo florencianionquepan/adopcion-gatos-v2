@@ -1,1 +1,108 @@
-<p>register works!</p>
+<app-header></app-header>
+<div class="container-lg w-50 my-5 color1 py-5 px-4 border rounded">
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid">
+        <div *ngIf="vistaActual==1">
+            <div class="row align-items-start g-2">
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="text" formControlName="nombre" class="form-control" id="nombre">
+                        <label for="nombre">Nombre</label>
+                        <app-error-validation [field]="'nombre'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="text" formControlName="apellido" class="form-control" id="apellido">
+                        <label for="apellido">Apellido</label>
+                        <app-error-validation [field]="'apellido'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-start g-2 my-2">
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="date" formControlName="fechaNacimiento" class="form-control" id="fechaNacimiento">
+                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <app-error-validation [field]="'fechaNacimiento'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="text" formControlName="dni" class="form-control" id="dni">
+                        <label for="dni">DNI</label>
+                        <app-error-validation [field]="'dni'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-start g-2 my-2">
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="text" formControlName="provincia" class="form-control" id="provincia">
+                        <label for="provincia">Provincia</label>
+                        <app-error-validation [field]="'provincia'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="text" formControlName="localidad" class="form-control" id="localidad">
+                        <label for="localidad">Localidad</label>
+                        <app-error-validation [field]="'localidad'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-start g-2 my-2">
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="text" formControlName="direccion" class="form-control" id="direccion">
+                        <label for="direccion">Direccion</label>
+                        <app-error-validation [field]="'direccion'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="form-floating">
+                        <input type="text" formControlName="telefono" class="form-control" id="telefono">
+                        <label for="telefono">Telefono</label>
+                        <app-error-validation [field]="'telefono'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 g-2 my-2 mx-auto">
+                <button class="w-100 btn btn-lg btn-outline-secondary mt-4" type="button" (click)="continuar()">Continuar</button>
+            </div>
+        </div>
+        
+        <div *ngIf="vistaActual==2">
+            <div class="row align-items-start g-2 px-md-5 justify-content-center">
+                <div class="form-group col-10 col-md-8">
+                    <div class="form-floating">
+                        <input type="text" formControlName="email" class="form-control" id="email">
+                        <label for="email">Email</label>
+                        <app-error-validation [field]="'email'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+                <div class="form-group col-10 col-md-8">
+                    <div class="form-floating">
+                        <input type="text" formControlName="password" class="form-control" id="password">
+                        <label for="password">Contraseña</label>
+                        <app-error-validation [field]="'password'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+                <div class="form-group col-10 col-md-8">
+                    <div class="form-floating">
+                        <input type="text" formControlName="password2" class="form-control" id="password2">
+                        <label for="password2">Confirme contraseña</label>
+                        <app-error-validation [field]="'password2'" [form]="registerForm"></app-error-validation>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 my-4 text-center">
+                    <button class="btn btn-lg btn-outline-secondary mx-2" type="button" (click)="anteriorVista()">Volver</button>
+                    <button class="btn btn-lg btn-outline-secondary mx-2" type="submit">Registrarme</button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+<app-footer></app-footer>
