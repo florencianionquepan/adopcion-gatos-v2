@@ -7,6 +7,8 @@ import { CatDetailComponent } from './components/cat-detail/cat-detail.component
 import { CardsComponent } from './components/cards/cards.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { ErrorValidationComponent } from './components/error-validation/error-validation.component';
 
 
 
@@ -17,7 +19,9 @@ import { RouterModule } from '@angular/router';
     MainComponent,
     CardsComponent,
     HomeComponent,
-    CatDetailComponent
+    CatDetailComponent,
+    CarouselComponent,
+    ErrorValidationComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +30,8 @@ import { RouterModule } from '@angular/router';
   exports:[
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorValidationComponent
   ]
 })
 export class SharedModule { }
