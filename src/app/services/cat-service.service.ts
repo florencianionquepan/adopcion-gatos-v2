@@ -19,7 +19,7 @@ export class CatServiceService {
     return this.http.get<any>(this.apiGatos);
   }
 
-  public getCat(id:number): Observable<any>{
+  public getGatoById(id:number): Observable<any>{
     return this.http.get<any>(`${this.apiGatos}/${id}`);
   }
 
