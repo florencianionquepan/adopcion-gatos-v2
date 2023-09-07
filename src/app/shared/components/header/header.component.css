@@ -1,4 +1,7 @@
 .cute{
-    background-color: #a478eb !important;
-    color: black !important;
+    color: #26094B !important;
+}
+
+.active{
+    text-decoration: underline;
 }
