@@ -1,8 +1,8 @@
 export class FichaVeterinaria{
     public id: number;
-    public ultimaDesparatisacion:Date;
-    public ultimaTripleFelina:Date;
-    public ultimaAntiRabica:Date;
+    public ultimaDesparatisacion: Date | null;
+    public ultimaTripleFelina: Date | null;
+    public ultimaAntiRabica: Date | null;
     public comentarios:string;
 
     constructor(
@@ -13,9 +13,9 @@ export class FichaVeterinaria{
         comentarios?: string
     ) {
         this.id = id || 0;
-        this.ultimaDesparatisacion = ultimaDesparatisacion || new Date();
-        this.ultimaTripleFelina = ultimaTripleFelina || new Date();
-        this.ultimaAntiRabica = ultimaAntiRabica || new Date();
+        this.ultimaDesparatisacion = ultimaDesparatisacion || null;
+        this.ultimaTripleFelina = ultimaTripleFelina || null;
+        this.ultimaAntiRabica = ultimaAntiRabica || null;
         this.comentarios = comentarios || '';
     }
 }

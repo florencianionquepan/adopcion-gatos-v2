@@ -10,9 +10,9 @@ export class GatoDetalle{
     "descripcion":string;
     "color":string;
     "tipoPelo":string;
-    "padrino":Padrino;
+    "padrino":Padrino | null;
     "adoptado":Date | null;
-    "fichaVeterinaria":FichaVeterinaria;
+    "fichaVeterinaria":FichaVeterinaria | null;
     "montoMensual":number;
     "solicitudes":string[];
 
@@ -25,9 +25,9 @@ export class GatoDetalle{
         descripcion?: string,
         color?: string,
         tipoPelo?: string,
-        padrino: Padrino =new Padrino(),
+        padrino?: Padrino | null,
         adoptado?: Date | null,
-        fichaVeterinaria: FichaVeterinaria =new FichaVeterinaria (),
+        fichaVeterinaria?: FichaVeterinaria | null,
         montoMensual?: number,
         solicitudes?: string[]
     ) {
@@ -39,9 +39,9 @@ export class GatoDetalle{
         this.descripcion = descripcion || '';
         this.color = color || '';
         this.tipoPelo = tipoPelo || '';
-        this.padrino = padrino;
+        this.padrino = padrino || null;
         this.adoptado = adoptado || null;
-        this.fichaVeterinaria = fichaVeterinaria;
+        this.fichaVeterinaria = fichaVeterinaria || null;
         this.montoMensual = montoMensual || 0;
         this.solicitudes = solicitudes || [];
     }
