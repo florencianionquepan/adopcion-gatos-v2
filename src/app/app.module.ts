@@ -10,12 +10,14 @@ import { RegisterComponent } from './auth/register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthGuard } from './routeguards/auth.guard';
+import { ValidationComponent } from './auth/validation/validation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ValidationComponent
   ],
   imports: [
     BrowserModule,
