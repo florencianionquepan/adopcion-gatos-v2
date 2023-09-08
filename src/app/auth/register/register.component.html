@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container-lg w-50 my-5 color1 py-5 px-4 border rounded">
-    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid">
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()">
         <div *ngIf="vistaActual==1">
             <div class="row align-items-start g-2">
                 <div class="form-group col-12 col-md-6">
@@ -21,9 +21,9 @@
             <div class="row align-items-start g-2 my-2">
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="date" formControlName="fechaNacimiento" class="form-control" id="fechaNacimiento">
-                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                        <app-error-validation [field]="'fechaNacimiento'" [form]="registerForm"></app-error-validation>
+                        <input type="date" formControlName="fechaDeNacimiento" class="form-control" id="fechaDeNacimiento">
+                        <label for="fechaDeNacimiento">Fecha de Nacimiento</label>
+                        <app-error-validation [field]="'fechaDeNacimiento'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-12 col-md-6">
@@ -82,16 +82,16 @@
                 </div>
                 <div class="form-group col-10 col-md-8">
                     <div class="form-floating">
-                        <input type="text" formControlName="password" class="form-control" id="password">
-                        <label for="password">Contraseña</label>
-                        <app-error-validation [field]="'password'" [form]="registerForm"></app-error-validation>
+                        <input type="password" formControlName="contraseña" class="form-control" id="contraseña">
+                        <label for="contraseña">Contraseña</label>
+                        <app-error-validation [field]="'contraseña'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-10 col-md-8">
                     <div class="form-floating">
-                        <input type="text" formControlName="password2" class="form-control" id="password2">
-                        <label for="password2">Confirme contraseña</label>
-                        <app-error-validation [field]="'password2'" [form]="registerForm"></app-error-validation>
+                        <input type="password" formControlName="contraseñaConfirmada" class="form-control" id="contraseñaConfirmada">
+                        <label for="contraseñaConfirmada">Confirme contraseña</label>
+                        <app-error-validation [field]="'contraseñaConfirmada'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="col-12 col-md-8 my-4 text-center">
