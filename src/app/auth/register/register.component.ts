@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { RegisterService } from '../services/register.service';
+import { HttpResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { Registro, Usuario } from 'src/app/models/Registro';
 
 @Component({
   selector: 'app-register',
@@ -12,15 +16,15 @@ export class RegisterComponent {
   public registerForm:FormGroup=this.fb.group({
     nombre:['',[Validators.required]],
     apellido:['',[Validators.required]],
-    fechaNacimiento:['',[Validators.required,this.fechaNacimientoValidator()]],
+    fechaDeNacimiento:['',[Validators.required,this.fechaNacimientoValidator()]],
     dni:['',[Validators.required]],
     provincia:['',[Validators.required]],
     localidad:['',[Validators.required]],
     direccion:['',[Validators.required]],
     telefono:['',[Validators.required]],
     email:['',[Validators.required,Validators.email]],
-    password:['',[Validators.required]],
-    password2:['',[Validators.required]],
+    contraseña:['',[Validators.required]],
+    contraseñaConfirmada:['',[Validators.required]],
   });
 
   fechaNacimientoValidator(): ValidatorFn {
@@ -35,7 +39,7 @@ export class RegisterComponent {
     };
   }
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private service:RegisterService) {
   }
 
   continuar():void{
@@ -44,6 +48,51 @@ export class RegisterComponent {
 
   anteriorVista():void{
     this.vistaActual=1;
+  }
+
+  register():void{
+
+    const {
+      nombre,
+      apellido,
+      fechaDeNacimiento,
+      dni,
+      provincia,
+      localidad,
+      direccion,
+      telefono,
+      email,
+      contraseña,
+      contraseñaConfirmada
+    } = this.registerForm.value;
+
+    const usuario = new Usuario(email, contraseña, contraseñaConfirmada);
+    const registro=new Registro(dni,nombre,apellido,telefono,fechaDeNacimiento,direccion,
+                                localidad+","+provincia,usuario);
+    
+    this.service.register(registro)
+    .subscribe({
+      next:(response)=>{
+        console.log(response);
+        if(response.success){
+          Swal.fire({
+            title:"Registro exitoso",
+            text:`Se ha registrado correctamente`,
+            icon:'success'
+          });
+          }
+        }
+      ,error:(e)=>{
+        let errorDetail='';
+        if(e.detalle){
+          errorDetail = Object.keys(e.detalle).map((key) => {
+            return `${key}: ${e.detalle[key]}`;
+          }).join('\n')
+        };
+        Swal.fire({'title':e.mensaje,
+                  'text':errorDetail});
+      }
+    })
   }
 
 }
