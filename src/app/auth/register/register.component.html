@@ -1,6 +1,7 @@
 <app-header></app-header>
-<div class="container-lg w-50 my-5 color1 py-5 px-4 border rounded">
-    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()">
+<div class="container-lg w-50 my-5 color1 py-3 px-4 border rounded">
+    <h5 class="py-3 text-center colorw">Crea una cuenta en Rescats</h5>
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" class="py-2">
         <div *ngIf="vistaActual==1">
             <div class="row align-items-start g-2">
                 <div class="form-group col-12 col-md-6">
@@ -66,8 +67,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-4 g-2 my-2 mx-auto">
+            <div class="col-12 col-md-4 g-2 my-2 mx-auto mb-4">
                 <button class="w-100 btn btn-lg btn-outline-secondary mt-4" type="button" (click)="continuar()">Continuar</button>
+            </div>
+            <div class="text-center mt-5">
+                <p>
+                    ¿Necesitas validar tu email? Haz click <a role="button" class="colorw" (click)="modalLink()">aquí</a>
+                    para volver a enviar el link.
+                </p>
             </div>
         </div>
         
@@ -105,4 +112,5 @@
     </form>
 
 </div>
+<app-spinner></app-spinner>
 <app-footer></app-footer>
