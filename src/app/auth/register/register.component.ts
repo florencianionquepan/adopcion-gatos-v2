@@ -73,7 +73,7 @@ export class RegisterComponent {
     this.service.register(registro)
     .subscribe({
       next:(response)=>{
-        console.log(response);
+        //console.log(response);
         if(response.success){
           Swal.fire({
             title:"Registro exitoso",
@@ -92,6 +92,39 @@ export class RegisterComponent {
         Swal.fire({'title':e.mensaje,
                   'text':errorDetail});
       }
+    })
+  }
+
+
+  modalLink():void{
+    Swal.fire({
+      title: 'Ingresa el email a validar',
+      input: 'email',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      showLoaderOnConfirm: true,
+      preConfirm: (email) => {
+        return this.service.sendValidation(email)
+        .subscribe({
+          next:(response)=>{
+            if(response.success){
+              Swal.fire({
+                title:"Link enviado correctamente!",
+                text:response.data,
+                icon:'success'
+              });
+            }
+          }
+          ,error:(e)=>{
+            Swal.fire({'title':e.mensaje,
+            'icon':'error'});
+          }
+        })
+      },
+      allowOutsideClick: () => !Swal.isLoading()
     })
   }
 
