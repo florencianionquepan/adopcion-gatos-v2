@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RouterModule } from '@angular/router';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ErrorValidationComponent } from './components/error-validation/error-validation.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
@@ -21,7 +22,8 @@ import { ErrorValidationComponent } from './components/error-validation/error-va
     HomeComponent,
     CatDetailComponent,
     CarouselComponent,
-    ErrorValidationComponent
+    ErrorValidationComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { ErrorValidationComponent } from './components/error-validation/error-va
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ErrorValidationComponent
+    ErrorValidationComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }
