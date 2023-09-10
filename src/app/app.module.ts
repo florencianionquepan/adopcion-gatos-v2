@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthGuard } from './routeguards/auth.guard';
 import { ValidationComponent } from './auth/validation/validation.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,12 @@ import { ValidationComponent } from './auth/validation/validation.component';
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
       multi : true
-    },AuthGuard
+    },AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: LoadingInterceptor, 
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
