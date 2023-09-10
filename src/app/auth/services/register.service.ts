@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { Registro } from 'src/app/models/Registro';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,16 @@ export class RegisterService {
 
   validate(id:number, token:string):Observable<any>{
     return this.http.get(`${environment.url}/usuarios/${id}/validacion/${token}`)
+    .pipe(
+      catchError(err=>{
+        console.log(err);
+        return throwError(()=>err.error)
+      })
+    )
+  }
+
+  sendValidation(email:string):Observable<any>{
+    return this.http.get(`${environment.url}/usuarios/${email}/validacion`)
     .pipe(
       catchError(err=>{
         console.log(err);
