@@ -52,7 +52,22 @@ export class LoginComponent {
         this.router.navigate(['/']);
       },
       error:(e)=>{
-        Swal.fire({'title':e});
+        if(e.error!=null){
+          Swal.fire({
+            'title':e.error.message,
+            'icon':'error',
+            timer:1500,
+            didClose:()=>{
+              if (e.error.key == 'invalido') {
+                this.router.navigate(['/register']);
+              } else if (e.error.key == 'bloqueado') {
+                this.router.navigate(['/']);
+              }
+            }
+            });
+        }else{
+          Swal.fire({'title':'Credenciales invalidas','icon':'error'});
+        }
       }
     })
   }
