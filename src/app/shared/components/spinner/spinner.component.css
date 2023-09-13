@@ -2,8 +2,8 @@
 .loading {
   position: fixed;
   z-index: 999;
-  height: 2em;
-  width: 2em;
+  height: 5em;
+  width: 5em;
   overflow: visible;
   margin: auto;
   top: 0;
@@ -37,7 +37,7 @@
 .loading:not(:required):after {
   content: '';
   display: block;
-  font-size: 10px;
+  font-size: 25px;
   width: 1em;
   height: 1em;
   margin-top: -0.5em;
