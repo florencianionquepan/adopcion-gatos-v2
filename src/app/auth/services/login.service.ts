@@ -17,7 +17,7 @@ export class LoginService {
     .pipe(
       catchError(err=>{
         console.log(err);
-        return throwError(()=>'Credenciales incorrectas')
+        return throwError(()=>err);
       })
     )
   }
