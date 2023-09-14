@@ -7,7 +7,7 @@
           width="80%"
           [src]="cat.fotos[0]"/>
       </div>
-      <div class="card-body d-flex flex-column justify-content-center py-0">
+      <div class="card-body d-flex flex-column justify-content-center py-2">
         <h3>{{ cat.nombre }}</h3>
         <p class="card-text mb-1">{{ cat.descripcion }}</p>
         <p class="lead fs-6 fw-light" *ngIf="cat.solicitudes.length>0">{{cat.solicitudes.length}} personas interesadas</p>

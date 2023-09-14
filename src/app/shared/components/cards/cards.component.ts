@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Gato } from 'src/app/models/gato';
-import { CatServiceService } from 'src/app/services/cat-service.service';
+import { GatosService } from 'src/app/services/gatos.service';
 
 @Component({
   selector: 'app-cards',
@@ -11,7 +11,7 @@ import { CatServiceService } from 'src/app/services/cat-service.service';
 export class CardsComponent {
   public cats:Gato[]=[];
 
-  constructor(private gatoSvc:CatServiceService, private router:Router){
+  constructor(private gatoSvc:GatosService, private router:Router){
 
   }
 
