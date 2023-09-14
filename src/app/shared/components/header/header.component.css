@@ -5,3 +5,7 @@
 .active{
     text-decoration: underline;
 }
+
+.dropdown-toggle.show .dropdown-menu {
+    display: block;
+}
