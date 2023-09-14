@@ -3,16 +3,30 @@ export class User{
   public email: string;
   public password: string;
   public passwordC:string;
-  public role : string;
+  public roles : Rol[];
+  public nombre:string;
+  public localidad:string;
   public authStatus : string;
 
   constructor(id?: number, email?: string, password?: string,
-                passwordC?: string,role?: string,authStatus?:string){
+                passwordC?: string,roles?: Rol[],authStatus?:string,nombre?:string,localidad?:string){
       this.id = id || 0;
       this.email = email || '';
       this.password = password || '';
       this.passwordC = passwordC || '';
-      this.role = role || '';
+      this.roles = roles || [];
       this.authStatus = authStatus || '';
+      this.nombre= nombre || '';
+      this.localidad=localidad || '';
     }
+}
+
+export class Rol{
+  public id:number;
+  public nombre:string;
+
+  constructor(id?:number,nombre?:string){
+    this.id=id || 0;
+    this.nombre=nombre || '';
+  }
 }
