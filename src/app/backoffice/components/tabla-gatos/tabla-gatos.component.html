@@ -1,0 +1,28 @@
+<table class="table table-sm">
+    <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Ubicacion</th>
+          <th scope="col">Adoptado</th>
+          <th scope="col">Transito</th>
+          <th scope="col">Monto Mensual</th>
+          <th scope="col">Padrino</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let gato of gatos">
+          <th scope="row">1</th>
+          <td>{{gato.nombre}}</td>
+          <td>{{gato.sexo}}</td>
+          <td>{{gato.edad}}</td>
+          <td>{{gato.edad}}</td>
+          <td>{{gato.adoptado}}</td>
+          <td>{{gato.transito?.dni}}</td>
+          <td>{{gato.montoMensual}}</td>
+          <td>{{gato.padrino?.dni}}</td>
+        </tr>
+        
+      </tbody>
+  </table>
