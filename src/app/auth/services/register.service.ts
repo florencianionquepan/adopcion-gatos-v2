@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import { Registro } from 'src/app/models/Registro';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -41,7 +41,7 @@ export class RegisterService {
     return this.http.get(`${environment.url}/usuarios/${email}/validacion`)
     .pipe(
       catchError(err=>{
-        console.log(err);
+        //console.log(err);
         return throwError(()=>err.error)
       })
     )

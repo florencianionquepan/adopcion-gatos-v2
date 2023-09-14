@@ -104,6 +104,7 @@ export class RegisterComponent {
         autocapitalize: 'off'
       },
       showCancelButton: true,
+      cancelButtonText:'Cancelar',
       confirmButtonText: 'Enviar',
       showLoaderOnConfirm: true,
       preConfirm: (email) => {
@@ -124,7 +125,6 @@ export class RegisterComponent {
           }
         })
       },
-      allowOutsideClick: () => !Swal.isLoading()
     })
   }
 
