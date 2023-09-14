@@ -6,12 +6,16 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { MisgatosComponent } from './pages/misgatos/misgatos.component';
+import { TablaGatosComponent } from './components/tabla-gatos/tabla-gatos.component';
 
 
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    MisgatosComponent,
+    TablaGatosComponent
   ],
   imports: [
     CommonModule,

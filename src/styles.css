@@ -14,10 +14,15 @@ body{
 .color2 {background-color: #f37fd1;}
 .color3 {background-color: #ffb1ca;}
 .color4 {background-color: #ffedda;}
-.color5 {background-color: #ffffec;}
+.color5 {background-color: #F8E0DB}
 
 .colorw{
     color:#260951 !important;
+}
+
+.btncute{
+    border: 1px solid #260951 !important;
+    color: #260951 !important;
 }
 
 @font-face {
