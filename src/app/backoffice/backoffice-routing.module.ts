@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MisgatosComponent } from "./pages/misgatos/misgatos.component";
+import { GatosByVoluntarioComponent } from "./pages/gatos-by-voluntario/gatos-by-voluntario.component";
 
 const routes: Routes=[{
     path:'perfil',
@@ -10,7 +10,7 @@ const routes: Routes=[{
 },
 {
     path:'misgatos',
-    component:MisgatosComponent
+    component:GatosByVoluntarioComponent
 }]
 
 @NgModule({
