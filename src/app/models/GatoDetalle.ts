@@ -1,5 +1,6 @@
 import { FichaVeterinaria } from "./FichaVeterinaria";
 import { Padrino } from "./Padrino";
+import { Transito } from "./Transito";
 
 export class GatoDetalle{
     "id":number;
@@ -11,6 +12,7 @@ export class GatoDetalle{
     "color":string;
     "tipoPelo":string;
     "padrino":Padrino | null;
+    "transito":Transito | null;
     "adoptado":Date | null;
     "fichaVeterinaria":FichaVeterinaria | null;
     "montoMensual":number;
@@ -27,6 +29,7 @@ export class GatoDetalle{
         tipoPelo?: string,
         padrino?: Padrino | null,
         adoptado?: Date | null,
+        transito?:Transito | null,
         fichaVeterinaria?: FichaVeterinaria | null,
         montoMensual?: number,
         solicitudes?: string[]
@@ -41,6 +44,7 @@ export class GatoDetalle{
         this.tipoPelo = tipoPelo || '';
         this.padrino = padrino || null;
         this.adoptado = adoptado || null;
+        this.transito = transito || null;
         this.fichaVeterinaria = fichaVeterinaria || null;
         this.montoMensual = montoMensual || 0;
         this.solicitudes = solicitudes || [];
