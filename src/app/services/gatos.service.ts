@@ -23,5 +23,9 @@ export class GatosService {
     return this.http.get<any>(`${this.apiGatos}/${id}`);
   }
 
+  public gatosByVoluntario(email:string):Observable<any>{
+    return this.http.get<any>(`${this.apiGatos}/voluntarios/${email}`);
+  }
+
 
 }
