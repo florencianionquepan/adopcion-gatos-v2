@@ -1,0 +1,59 @@
+<div class="color4 p-5 border rounded my-3">
+    <form [formGroup]="gatoForm" (ngSubmit)="gatoForm.valid && nuevoGato()">
+        <div class="row align-items-start">
+            <div class="form-group col-12 col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="nombre" class="form-control" id="nombre">
+                    <label for="nombre">Nombre</label>
+                   
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="edad" class="form-control" id="edad">
+                    <label for="edad">Edad</label>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-start my-2">
+            <div class="form-group col-12 col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="sexo" class="form-control" id="sexo">
+                    <label for="sexo">Sexo</label>
+                 
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="descripcion" class="form-control" id="descripcion">
+                    <label for="descripcion">Descripcion</label>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-start g-2 my-2">
+            <div class="form-group col-12 col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="color" class="form-control" id="color">
+                    <label for="color">Color</label>
+                   
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="form-floating">
+                    <input type="text" formControlName="tipoPelo" class="form-control" id="tipoPelo">
+                    <label for="tipoPelo">Tipo de Pelo</label>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-start g-2">
+            <div class="form-group col-12 col-md-10">
+                
+            </div>
+            
+        </div>
+    </form>
+</div>
+
