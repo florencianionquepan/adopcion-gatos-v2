@@ -5,6 +5,8 @@ import { BackofficeRoutingModule } from './backoffice-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { TablaGatosComponent } from './components/tabla-gatos/tabla-gatos.component';
 import { GatosByVoluntarioComponent } from './pages/gatos-by-voluntario/gatos-by-voluntario.component';
+import { NuevoGatoComponent } from './components/nuevo-gato/nuevo-gato.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,12 +14,14 @@ import { GatosByVoluntarioComponent } from './pages/gatos-by-voluntario/gatos-by
   declarations: [
     ProfileComponent,
     TablaGatosComponent,
-    GatosByVoluntarioComponent
+    GatosByVoluntarioComponent,
+    NuevoGatoComponent
   ],
   imports: [
     CommonModule,
     BackofficeRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class BackofficeModule { }
