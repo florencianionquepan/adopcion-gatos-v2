@@ -67,7 +67,7 @@ export class HeaderComponent {
         this.list.push(...roleToLinks[role]);
       }
     });
-    console.log(this.list);
+    //console.log(this.list);
   }
 
 }

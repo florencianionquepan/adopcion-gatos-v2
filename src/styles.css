@@ -6,11 +6,17 @@ body{
     font-family: 'Ubuntu', sans-serif;
 }
 
+html{
+    height: 100%;
+}
+
 *{
     font-family: 'Ubuntu',sans-serif;
 }
 
-.color1 {background-color: #F5CDFF;}
+/* Para fondo del menu y de tabla de gatos */
+.color1 {background-color: #F5CDFF; }
+
 .color2 {background-color: #f37fd1;}
 .color3 {background-color: #ffb1ca;}
 .color4 {background-color: #ffedda;}
