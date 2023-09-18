@@ -27,8 +27,8 @@ export class GatosByVoluntarioComponent {
     this.gatoSer.gatosByVoluntario(this.user.email)
     .subscribe({
       next:(response)=>{
-        console.log(response.data);
-        //this.gatos=response.data;
+        //console.log(response.data);
+        this.gatos=response.data;
       },
       error:(e)=>{
         console.error("Error al obtener los datos", e);
