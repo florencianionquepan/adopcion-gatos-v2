@@ -1,5 +1,6 @@
-<div class="color4 p-5 border rounded my-3">
-    <form [formGroup]="gatoForm" (ngSubmit)="gatoForm.valid && nuevoGato()">
+<div class="color4 p-5 border rounded my-3 w-75 mx-auto">
+    <form [formGroup]="gatoForm" (ngSubmit)="gatoForm.valid && nuevoGato()" 
+    enctype="multipart/form-data">
         <div class="row align-items-start">
             <div class="form-group col-12 col-md-6">
                 <div class="form-floating">
@@ -12,11 +13,10 @@
                 <div class="form-floating">
                     <input type="text" formControlName="edad" class="form-control" id="edad">
                     <label for="edad">Edad</label>
-                   
                 </div>
             </div>
         </div>
-        <div class="row align-items-start my-2">
+        <div class="row align-items-start my-3">
             <div class="form-group col-12 col-md-6">
                 <div class="form-floating">
                     <input type="text" formControlName="sexo" class="form-control" id="sexo">
@@ -28,31 +28,41 @@
                 <div class="form-floating">
                     <input type="text" formControlName="descripcion" class="form-control" id="descripcion">
                     <label for="descripcion">Descripcion</label>
-                    
                 </div>
             </div>
         </div>
-        <div class="row align-items-start g-2 my-2">
+        <div class="row align-items-start mb-3">
             <div class="form-group col-12 col-md-6">
                 <div class="form-floating">
                     <input type="text" formControlName="color" class="form-control" id="color">
                     <label for="color">Color</label>
-                   
                 </div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="form-floating">
                     <input type="text" formControlName="tipoPelo" class="form-control" id="tipoPelo">
                     <label for="tipoPelo">Tipo de Pelo</label>
-                    
                 </div>
             </div>
         </div>
-        <div class="row align-items-start g-2">
-            <div class="form-group col-12 col-md-10">
-                
+        <div class="row align-items-center mb-4">
+            <div class="">
+                    <label for="fotos" class="form-label ps-2">Imagenes de gatito</label>
+                    <input class="form-control py-3" type="file"
+                    (change)="onFileChange($event)"
+                    accept="image/png, image/jpeg, image/gif"
+                    multiple>
             </div>
-            
+            <div *ngIf="urls.length > 0">
+                <h5>Vista previa</h5>
+                <div *ngFor="let url as urls">
+                    <img class="image-thumbnail" style="max-width: 100px;" 
+                    [src]="url">
+                </div>
+            </div>
+        </div>
+        <div class="text-center mb-2">
+            <button class="btn btn-secondary btn-lg">GUARDAR</button>
         </div>
     </form>
 </div>
