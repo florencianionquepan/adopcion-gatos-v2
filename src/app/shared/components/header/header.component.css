@@ -9,3 +9,7 @@
 .dropdown-toggle.show .dropdown-menu {
     display: block;
 }
+
+.dropdown-item:active, .dropdown-item.active {
+    background-color:#F8F9FA !important;
+}
