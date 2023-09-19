@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { User } from 'src/app/models/user';
 import { GatosService } from 'src/app/services/gatos.service';
@@ -11,6 +11,7 @@ import { GatosService } from 'src/app/services/gatos.service';
 export class GatosByVoluntarioComponent {
   user=new User();
   public gatos:GatoDetalle[]=[];
+  mostrarForm:boolean=false;
 
   constructor(private gatoSer:GatosService){
 
@@ -21,6 +22,10 @@ export class GatosByVoluntarioComponent {
       this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
     }
     this.getGatos();
+  }
+
+  cargarGato():void{
+    this.mostrarForm=true;
   }
 
   public getGatos():void{
