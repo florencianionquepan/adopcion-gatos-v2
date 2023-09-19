@@ -35,17 +35,18 @@ export class NuevoGatoComponent {
   }
 
   public gatoForm:FormGroup=this.fb.group({
-    nombre:['',[Validators.required]],
-    edad:['',[Validators.required]],
-    sexo:['',[Validators.required]],
+    nombre:['',[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+    edad:['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$')]],
+    sexo:['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
     descripcion:['',[Validators.required]],
-    color:['',[Validators.required]],
-    tipoPelo:['',[Validators.required]],
-    montoMensual:['',[Validators.required]]
+    color:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$')]],
+    tipoPelo:['',[Validators.required,,Validators.pattern('^[A-Za-z ]+$')]],
+    montoMensual:['',[Validators.min(0)]],
+    fotos:['',[Validators.required]]
   });
 
   onFileChange(event:any):void{
-    this.fotos=event.target.files;  
+    this.fotos=event.target.files;
     Array.from(this.fotos).forEach((file:File)=>{
       const fr= new FileReader();
       fr.onload=(evento:any)=>{
@@ -53,8 +54,15 @@ export class NuevoGatoComponent {
         this.urls.push(dataUrl);
       };
       fr.readAsDataURL(file);
-    })
-    console.log(this.inputFiles.nativeElement);
+    });
+    //console.log(this.inputFiles.nativeElement);
+  }
+
+  onInputChange():void{
+    //console.log(this.gatoForm.controls['inputFile']);
+    const inputFile=this.gatoForm.controls['fotos'];
+    inputFile.setValue(this.urls.length>0?this.urls[0]:'')
+    inputFile.markAsTouched();
   }
 
   delete(i:number):void{
@@ -64,11 +72,13 @@ export class NuevoGatoComponent {
       const newFotos: File[]  = Array.from(this.fotos).filter((_, index) => index !== i);
       this.fotos = newFotos;
       //console.log(this.fotos);
+      this.onInputChange();
     }
   }
 
   nuevoGato():void{
     const gato:GatoDetalle=this.gatoForm.value;
+    gato.fotos=[];
     const voluntario=new Voluntario();
     voluntario.email=this.user.email;
     gato.voluntario=voluntario;
@@ -77,8 +87,11 @@ export class NuevoGatoComponent {
       next:(response)=>{
         const nuevo:GatoDetalle=response.data;
         Swal.fire({
-          text:"La gatita "+nuevo.nombre+" se cargo con exito!",
-          icon:'success'
+          title:nuevo.nombre+" fue cargada/o con exito!",
+          icon:'success',
+          html:'Puedes cargar su ficha ahora:'+
+          '<a> Ir a ficha </a>'+
+          'o cargarla luego desde el boton editar'
         })
       },
       error:(e)=>{

@@ -1,89 +1,100 @@
 <div *ngIf="this.mostrarForm" class="color4 px-5 py-4 border rounded mt-3 w-75 mx-auto mb-5">
-    <form [formGroup]="gatoForm" (ngSubmit)="gatoForm.valid && nuevoGato()" 
-    enctype="multipart/form-data">
+    <form [formGroup]="gatoForm" (ngSubmit)="gatoForm.valid && nuevoGato()" enctype="multipart/form-data">
         <div class="row align-items-start">
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="nombre" class="form-control" id="nombre">
-                    <label for="nombre">Nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                    [ngClass]="{'is-invalid':gatoForm.get('nombre')?.errors && gatoForm.get('nombre')?.touched}">
+                    <label for="nombre">Nombre *</label>
+                    <app-error-validation [field]="'nombre'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="edad" class="form-control" id="edad">
-                    <label for="edad">Edad</label>
+                    <input type="text" formControlName="edad" class="form-control" id="edad"
+                    [ngClass]="{'is-invalid':gatoForm.get('edad')?.errors && gatoForm.get('edad')?.touched}">
+                    <label for="edad">Edad *</label>
+                    <app-error-validation [field]="'edad'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
         </div>
         <div class="row align-items-start">
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="sexo" class="form-control" id="sexo">
-                    <label for="sexo">Sexo</label>
-                 
+                    <input type="text" formControlName="sexo" class="form-control" id="sexo"
+                    [ngClass]="{'is-invalid':gatoForm.get('sexo')?.errors && gatoForm.get('sexo')?.touched}">
+                    <label for="sexo">Sexo *</label>
+                    <app-error-validation [field]="'sexo'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="descripcion" class="form-control" id="descripcion">
-                    <label for="descripcion">Descripcion</label>
+                    <input type="number" formControlName="montoMensual" class="form-control" id="montoMensual"
+                    [ngClass]="{'is-invalid':gatoForm.get('montoMensual')?.errors && gatoForm.get('montoMensual')?.touched}">
+                    <label for="montoMensual">Cuota Mensual Apadrinamiento</label>
+                    <app-error-validation [field]="'montoMensual'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
         </div>
         <div class="row align-items-start">
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="color" class="form-control" id="color">
-                    <label for="color">Color</label>
+                    <input type="text" formControlName="color" class="form-control" id="color"
+                    [ngClass]="{'is-invalid':gatoForm.get('color')?.errors && gatoForm.get('color')?.touched}">
+                    <label for="color">Color *</label>
+                    <app-error-validation [field]="'color'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="tipoPelo" class="form-control" id="tipoPelo">
-                    <label for="tipoPelo">Tipo de Pelo</label>
+                    <input type="text" formControlName="tipoPelo" class="form-control" id="tipoPelo"
+                    [ngClass]="{'is-invalid':gatoForm.get('tipoPelo')?.errors && gatoForm.get('tipoPelo')?.touched}">
+                    <label for="tipoPelo">Tipo de Pelo *</label>
+                    <app-error-validation [field]="'tipoPelo'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
         </div>
-        <div class="row align-items-center">
+        <div class="row">
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="montoMensual" 
-                    class="form-control" id="montoMensual">
-                    <label for="montoMensual">Monto Mensual</label>
+                    <textarea type="text" formControlName="descripcion" class="form-control" id="descripcion"
+                        style="height: 150px"
+                        [ngClass]="{'is-invalid':gatoForm.get('descripcion')?.errors && gatoForm.get('descripcion')?.touched}">
+                    </textarea>
+                    <label for="descripcion">Descripcion *</label>
+                    <app-error-validation [field]="'descripcion'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
             <div class="form-group col-12 col-md-6 my-1">
-                <div class="form-control m-0 d-flex align-items-center" id="custominput">
-                        <label class="btn btn-secondary py-2" 
+                <div class="form-control d-flex align-items-center" id="custominput"
+                [ngClass]="{'is-invalid':gatoForm.get('fotos')?.errors && gatoForm.get('fotos')?.touched}">
+                        <label class="btn btn-secondary" (click)="onInputChange()"
                         for="inputFile" role="button">Seleccionar
                         <i class="bi bi-images"></i>
                         </label>
                     <span class="ps-2" style="color:#6E7174">{{this.urls.length}} archivos</span>
                     <input class="form-control py-3 d-none" type="file" #inputFiles
-                    (change)="onFileChange($event)" id="inputFile"
+                    (change)="onFileChange($event)" id="inputFile" formControlName="fotos"
                     accept="image/png, image/jpeg, image/gif"
                     multiple>
                 </div>
-            </div>
-            <div *ngIf="urls.length > 0" class="col-12 my-2 text-center">
-                <h6>Vista previa de imagenes</h6>
-                <div *ngFor="let url of urls;  let i = index" class="d-inline-block text-center px-2 ">
-                    <img class="image-thumbnail border border-secondary rounded" style="max-width: 100px;" 
-                    [src]="url">
-                    <div class="pt-2">
-                        <button class="btn btn-danger btn-sm" (click)="delete(i)">
+                <app-error-validation [field]="'fotos'" [form]="gatoForm"></app-error-validation>
+                <div *ngIf="urls.length > 0" class="col-12 text-center mt-1">
+                    <div *ngFor="let url of urls;  let i = index" class="d-inline-block text-center px-2 ">
+                        <img class="image-thumbnail border border-secondary rounded" style="max-width: 80px;" 
+                        [src]="url">
+                        <button class="btn btn-danger btn-sm ms-1" (click)="delete(i)">
                             <i class="bi bi-trash3"></i>
                         </button>
                     </div>
                 </div>
-                
             </div>
+            
         </div>
         <div class="text-center mt-3">
-            <button class="btn btn-warning mx-2" type="button" 
+            <button class="btn btn-light mx-2" type="button" 
             (click)="cancelar()">Cancelar</button>
             <button class="btn btn-secondary mx-2">Guardar</button>
         </div>
     </form>
 </div>
-
