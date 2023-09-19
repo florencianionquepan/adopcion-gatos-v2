@@ -5,7 +5,7 @@
         (click)="cargarGato()" *ngIf="!this.mostrarForm">
             Cargar nuevo gatito 
         </button></div>
-    <app-nuevo-gato [(mostrarForm)]="mostrarForm"></app-nuevo-gato>
+    <app-form-gato [(mostrarForm)]="mostrarForm"></app-form-gato>
     <app-tabla-gatos [gatos]="gatos"></app-tabla-gatos>
 </div>
 <app-footer></app-footer>

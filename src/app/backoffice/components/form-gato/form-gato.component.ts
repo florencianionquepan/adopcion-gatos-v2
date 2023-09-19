@@ -8,11 +8,11 @@ import { GatosService } from 'src/app/services/gatos.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-nuevo-gato',
-  templateUrl: './nuevo-gato.component.html',
-  styleUrls: ['./nuevo-gato.component.css']
+  selector: 'app-form-gato',
+  templateUrl: './form-gato.component.html',
+  styleUrls: ['./form-gato.component.css']
 })
-export class NuevoGatoComponent {
+export class FormGatoComponent {
   @Input() mostrarForm:boolean=false;
   @Output() mostrarFormChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
