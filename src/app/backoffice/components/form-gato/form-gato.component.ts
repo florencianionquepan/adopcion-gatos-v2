@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class FormGatoComponent {
   @Input() mostrarForm:boolean=false;
   @Output() mostrarFormChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() gato:GatoDetalle=new GatoDetalle();
 
   public fotos:File[]=[];
   @ViewChild('inputFiles', { static: false }) inputFiles!: ElementRef;
@@ -31,11 +32,18 @@ export class FormGatoComponent {
   ngOnInit(){
     if(sessionStorage.getItem('userdetails')){
       this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-      }
+    }
+    this.cargarGato();
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['gato'] && !changes['gato'].firstChange){
+      this.saveForm();
+    }
   }
 
   public gatoForm:FormGroup=this.fb.group({
-    nombre:['',[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+    nombre:[this.gato.nombre,[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
     edad:['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$')]],
     sexo:['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
     descripcion:['',[Validators.required]],
@@ -44,6 +52,19 @@ export class FormGatoComponent {
     montoMensual:['',[Validators.min(0)]],
     fotos:['',[Validators.required]]
   });
+
+  private saveForm():void{
+    this.gatoForm.patchValue({
+      nombre: this.gato.nombre,
+      edad: this.gato.edad,
+      sexo: this.gato.sexo,
+      descripcion: this.gato.descripcion,
+      color: this.gato.color,
+      tipoPelo: this.gato.tipoPelo,
+      montoMensual: this.gato.montoMensual,
+      fotos: this.gato.fotos
+    })
+  }
 
   onFileChange(event:any):void{
     this.fotos=event.target.files;
@@ -103,5 +124,11 @@ export class FormGatoComponent {
   cancelar():void{
     this.mostrarForm=false;
     this.mostrarFormChange.emit(this.mostrarForm);
+  }
+
+  cargarGato():void{
+    if(this.gato){
+      console.log(this.gato);
+    }
   }
 }
