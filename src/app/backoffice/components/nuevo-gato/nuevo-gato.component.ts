@@ -1,8 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
+import { Voluntario } from 'src/app/models/Voluntario';
+import { User } from 'src/app/models/user';
 import { GatosService } from 'src/app/services/gatos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo-gato',
@@ -10,14 +13,25 @@ import { GatosService } from 'src/app/services/gatos.service';
   styleUrls: ['./nuevo-gato.component.css']
 })
 export class NuevoGatoComponent {
+  @Input() mostrarForm:boolean=false;
+  @Output() mostrarFormChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   public fotos:File[]=[];
-  //@ViewChild('fotosInputFiles',{static:false}) urls!: ElementRef;
+  @ViewChild('inputFiles', { static: false }) inputFiles!: ElementRef;
   public urls:string[]=[];
-  public fotoMin:File | undefined;
+  public url:File | undefined;
+
+  user=new User();
 
   constructor(private fb:FormBuilder, 
     private service:GatosService, 
     private router: Router) {
+  }
+
+  ngOnInit(){
+    if(sessionStorage.getItem('userdetails')){
+      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
+      }
   }
 
   public gatoForm:FormGroup=this.fb.group({
@@ -26,30 +40,46 @@ export class NuevoGatoComponent {
     sexo:['',[Validators.required]],
     descripcion:['',[Validators.required]],
     color:['',[Validators.required]],
-    tipoPelo:['',[Validators.required]]
+    tipoPelo:['',[Validators.required]],
+    montoMensual:['',[Validators.required]]
   });
 
   onFileChange(event:any):void{
-    this.fotos=event.target.files;
-    console.log(this.fotos);
-    /*     
-    Array.from(selectedFotos).forEach((file:File)=>{
+    this.fotos=event.target.files;  
+    Array.from(this.fotos).forEach((file:File)=>{
       const fr= new FileReader();
       fr.onload=(evento:any)=>{
         const dataUrl=evento.target.result;
         this.urls.push(dataUrl);
       };
       fr.readAsDataURL(file);
-    }) */
+    })
+    console.log(this.inputFiles.nativeElement);
+  }
+
+  delete(i:number):void{
+    if (i >= 0 && i< this.urls.length) {
+      this.urls.splice(i, 1); 
+      // Crear un nuevo array sin el elemento eliminado en this.fotos
+      const newFotos: File[]  = Array.from(this.fotos).filter((_, index) => index !== i);
+      this.fotos = newFotos;
+      //console.log(this.fotos);
+    }
   }
 
   nuevoGato():void{
     const gato:GatoDetalle=this.gatoForm.value;
-    console.log(this.fotos);
+    const voluntario=new Voluntario();
+    voluntario.email=this.user.email;
+    gato.voluntario=voluntario;
     this.service.nuevoGato(gato,this.fotos)
     .subscribe({
       next:(response)=>{
-        console.log(response.data);
+        const nuevo:GatoDetalle=response.data;
+        Swal.fire({
+          text:"La gatita "+nuevo.nombre+" se cargo con exito!",
+          icon:'success'
+        })
       },
       error:(e)=>{
         console.error("Error al cargar el gatito", e);
@@ -57,4 +87,8 @@ export class NuevoGatoComponent {
     })
   }
 
+  cancelar():void{
+    this.mostrarForm=false;
+    this.mostrarFormChange.emit(this.mostrarForm);
+  }
 }
