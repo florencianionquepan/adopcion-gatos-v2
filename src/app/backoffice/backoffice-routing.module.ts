@@ -14,7 +14,7 @@ const routes: Routes=[{
     component:GatosByVoluntarioComponent
 },
 {
-    path:'misgatos/{id}',
+    path:'misgatos/:id',
     component:GatosEdicionComponent
 }]
 
