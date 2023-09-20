@@ -43,7 +43,7 @@ export class FormGatoComponent {
   }
 
   public gatoForm:FormGroup=this.fb.group({
-    nombre:[this.gato.nombre,[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+    nombre:['',[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
     edad:['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$')]],
     sexo:['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
     descripcion:['',[Validators.required]],

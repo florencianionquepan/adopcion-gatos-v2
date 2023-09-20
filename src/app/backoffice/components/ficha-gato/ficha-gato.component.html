@@ -1,1 +1,48 @@
-<p>ficha-gato works!</p>
+<div class="color4 px-5 py-4 border rounded mt-3 w-75 mx-auto mb-5">
+    <h3 class="text-center">Cargar Ficha Veterinaria</h3>
+    <form [formGroup]="fichaForm" (ngSubmit)="fichaForm.valid && asociarFicha()" enctype="multipart/form-data">
+        <div class="row align-items-start">
+            <div class="form-group col-12 col-md-4 my-1">
+                <div class="form-floating">
+                    <input type="date" formControlName="ultimaDesparasitacion" class="form-control" id="ultimaDesparasitacion"
+                    [ngClass]="{'is-invalid':fichaForm.get('ultimaDesparasitacion')?.errors && fichaForm.get('ultimaDesparasitacion')?.touched}">
+                    <label for="ultimaDesparasitacion">Ultima Desparasitacion</label>
+                    <app-error-validation [field]="'ultimaDesparasitacion'" [form]="fichaForm"></app-error-validation>
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-4 my-1">
+                <div class="form-floating">
+                    <input type="date" formControlName="ultimaTripleFelina" class="form-control" id="ultimaTripleFelina"
+                    [ngClass]="{'is-invalid':fichaForm.get('ultimaTripleFelina')?.errors && fichaForm.get('ultimaTripleFelina')?.touched}">
+                    <label for="ultimaTripleFelina">Ultima Triple Felina</label>
+                    <app-error-validation [field]="'ultimaTripleFelina'" [form]="fichaForm"></app-error-validation>
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-4 my-1">
+                <div class="form-floating">
+                    <input type="date" formControlName="ultimaAntirrabica" class="form-control" id="ultimaAntirrabica"
+                    [ngClass]="{'is-invalid':fichaForm.get('ultimaAntirrabica')?.errors && fichaForm.get('ultimaAntirrabica')?.touched}">
+                    <label for="ultimaAntirrabica">Ultima Antirrabica</label>
+                    <app-error-validation [field]="'ultimaAntirrabica'" [form]="fichaForm"></app-error-validation>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-start">
+            <div class="form-group col-12 col-md-6 my-1">
+                <div class="form-floating">
+                    <textarea type="date" formControlName="comentarios" class="form-control" id="comentarios"
+                    style="min-height: 120px;"
+                    [ngClass]="{'is-invalid':fichaForm.get('comentarios')?.errors && fichaForm.get('comentarios')?.touched}">
+                    </textarea>
+                    <label for="comentarios">Ultima Antirrabica</label>
+                    <app-error-validation [field]="'comentarios'" [form]="fichaForm"></app-error-validation>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="text-center">
+        <button class="btn btn-secondary">
+            Cargar
+        </button>
+    </div>
+</div>
