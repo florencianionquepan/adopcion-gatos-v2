@@ -1,5 +1,5 @@
 <div class="color4 px-5 py-4 border rounded mt-3 w-75 mx-auto mb-5">
-    <h3 class="text-center">Cargar Ficha Veterinaria</h3>
+    <h3 class="text-center mb-3">Cargar Ficha Veterinaria</h3>
     <form [formGroup]="fichaForm" (ngSubmit)="fichaForm.valid && asociarFicha()" enctype="multipart/form-data">
         <div class="row align-items-start">
             <div class="form-group col-12 col-md-4 my-1">
@@ -34,15 +34,18 @@
                     style="min-height: 120px;"
                     [ngClass]="{'is-invalid':fichaForm.get('comentarios')?.errors && fichaForm.get('comentarios')?.touched}">
                     </textarea>
-                    <label for="comentarios">Ultima Antirrabica</label>
+                    <label for="comentarios">Comentarios</label>
                     <app-error-validation [field]="'comentarios'" [form]="fichaForm"></app-error-validation>
                 </div>
             </div>
         </div>
+        <div class="text-center mt-4">
+            <a class="btn btn-light">
+                Cancelar
+            </a>
+            <button class="btn btn-secondary">
+                Enviar
+            </button>
+        </div>
     </form>
-    <div class="text-center">
-        <button class="btn btn-secondary">
-            Cargar
-        </button>
-    </div>
 </div>

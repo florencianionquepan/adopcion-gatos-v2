@@ -1,22 +1,24 @@
 <table class="table table-sm bg-transparent rounded" id="cute">
   <thead>
     <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Sexo</th>
-      <th scope="col">Edad</th>
-      <th scope="col">Ubicacion</th>
-      <th scope="col">Adoptado</th>
-      <th scope="col">Transito</th>
-      <th scope="col">Monto Mensual</th>
-      <th scope="col">Padrino</th>
-      <th scope="col">Solicitudes</th>
-      <th scope="col">Accion</th>
+      <th scope="col-1">Nombre</th>
+      <th scope="col-1">Sexo</th>
+      <th scope="col-1">Edad</th>
+      <th scope="col-2">Ubicacion</th>
+      <th scope="col-1">Adoptado</th>
+      <th scope="col-1">Transito</th>
+      <th scope="col-1">Monto Mensual</th>
+      <th scope="col-1">Padrino</th>
+      <th scope="col-2">Solicitudes</th>
+      <th scope="col-1">Ficha Vete</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let gato of gatos">
-      <td>
-        {{ gato.nombre }}
+      <td>        <a role="button"
+        routerLinkActive="active" routerLink="{{gato.id}}">{{ gato.nombre }}
+        <i class="bi bi-pencil-square"></i> 
+        </a>
       </td>
       <td>
         {{ gato.sexo }}
@@ -43,9 +45,9 @@
         </button>
       </td>
       <td>
-        <a role="button" class="btn btn-secondary btn-sm"
-        routerLinkActive="active" routerLink="{{gato.id}}">
-          Editar
+        <a role="button" class="btn btn-secondary btn-sm mx-1"
+        routerLinkActive="active" routerLink="{{gato.id}}/ficha"h>
+        <i class="bi bi-clipboard2-heart"></i>
         </a>
       </td>
     </tr>
