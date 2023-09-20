@@ -4,6 +4,7 @@ import { Gato } from '../models/gato';
 import { environment } from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import { GatoDetalle } from '../models/GatoDetalle';
+import { FichaVeterinaria } from '../models/FichaVeterinaria';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class GatosService {
     return this.http.get<any>(`${this.apiGatos}/voluntarios/${email}`);
   }
 
-  //falta enviar por dto el email del voluntario!(this.user)
+  
   public nuevoGato(gato:GatoDetalle, fotos: File[]):Observable<any>{
     const formData=new FormData();
     formData.append('dto',JSON.stringify(gato));
@@ -37,6 +38,16 @@ export class GatosService {
       formData.append('multipartFiles',file);
     }
     return this.http.post<any>(this.apiGatos, formData)
+    .pipe(
+      catchError(err=>{
+        console.log(err);
+        return throwError(()=>err.error)
+      })
+    )
+  }
+
+  public asignarFicha(id:number,ficha:FichaVeterinaria):Observable<any>{
+    return this.http.put<any>(`${this.apiGatos}/${id}/ficha`,ficha)
     .pipe(
       catchError(err=>{
         console.log(err);
