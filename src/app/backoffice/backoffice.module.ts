@@ -9,6 +9,7 @@ import { FormGatoComponent } from './components/form-gato/form-gato.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GatosEdicionComponent } from './pages/gatos-edicion/gatos-edicion.component';
 import { FichaGatoComponent } from './components/ficha-gato/ficha-gato.component';
+import { FichaPageComponent } from './pages/ficha-page/ficha-page.component';
 
 
 
@@ -19,7 +20,8 @@ import { FichaGatoComponent } from './components/ficha-gato/ficha-gato.component
     GatosByVoluntarioComponent,
     FormGatoComponent,
     GatosEdicionComponent,
-    FichaGatoComponent
+    FichaGatoComponent,
+    FichaPageComponent
   ],
   imports: [
     CommonModule,
