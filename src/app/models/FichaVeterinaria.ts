@@ -1,21 +1,24 @@
 export class FichaVeterinaria{
     public id: number;
-    public ultimaDesparatisacion: Date | null;
+    public ultimaDesparasitacion: Date | null;
     public ultimaTripleFelina: Date | null;
-    public ultimaAntiRabica: Date | null;
+    public ultimaAntirrabica: Date | null;
     public comentarios:string;
+    public pdf:string;
 
     constructor(
         id?: number,
-        ultimaDesparatisacion?: Date,
+        ultimaDesparasitacion?: Date,
         ultimaTripleFelina?: Date,
-        ultimaAntiRabica?: Date,
-        comentarios?: string
+        ultimaAntirrabica?: Date,
+        comentarios?: string,
+        pdf?:string
     ) {
         this.id = id || 0;
-        this.ultimaDesparatisacion = ultimaDesparatisacion || null;
+        this.ultimaDesparasitacion = ultimaDesparasitacion || null;
         this.ultimaTripleFelina = ultimaTripleFelina || null;
-        this.ultimaAntiRabica = ultimaAntiRabica || null;
+        this.ultimaAntirrabica = ultimaAntirrabica || null;
         this.comentarios = comentarios || '';
+        this.pdf = pdf || '';
     }
 }
