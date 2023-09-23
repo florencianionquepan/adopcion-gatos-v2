@@ -46,6 +46,14 @@ export class GatosService {
     )
   }
 
+  public getFicha(id:number):Observable<any>{
+    return this.http.get<any>(`${this.apiGatos}/${id}/ficha`)
+    .pipe(catchError(err=>{
+      console.log(err);
+      return throwError(()=>err.error)
+    }))
+  }
+
   public asignarFicha(id:number,pdf:File | undefined,ficha:FichaVeterinaria):Observable<any>{
     const fichaData=new FormData();
     ficha.id=0;
