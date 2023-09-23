@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { LoginService } from './../services/login.service';
-import Swal from 'sweetalert2';
 import { getCookie } from 'typescript-cookie';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
