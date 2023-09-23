@@ -46,8 +46,14 @@ export class GatosService {
     )
   }
 
-  public asignarFicha(id:number,ficha:FichaVeterinaria):Observable<any>{
-    return this.http.put<any>(`${this.apiGatos}/${id}/ficha`,ficha)
+  public asignarFicha(id:number,pdf:File | undefined,ficha:FichaVeterinaria):Observable<any>{
+    const fichaData=new FormData();
+    ficha.id=0;
+    ficha.pdf='';
+    fichaData.append('ficha',JSON.stringify(ficha));
+    console.log(pdf);
+    pdf?fichaData.append('file',pdf):'';
+    return this.http.put<any>(`${this.apiGatos}/${id}/ficha`,fichaData)
     .pipe(
       catchError(err=>{
         console.log(err);

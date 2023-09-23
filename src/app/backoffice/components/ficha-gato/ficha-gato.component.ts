@@ -5,6 +5,7 @@ import { FichaVeterinaria } from 'src/app/models/FichaVeterinaria';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { GatosService } from 'src/app/services/gatos.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
+import { atLeastOneFieldRequired } from '../../validators/validators';
 
 @Component({
   selector: 'app-ficha-gato',
@@ -13,6 +14,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 })
 export class FichaGatoComponent {
   ficha:FichaVeterinaria=new FichaVeterinaria();
+  pdf:File|undefined;
 
   constructor(private fb:FormBuilder,
     private service:GatosService, 
@@ -25,8 +27,9 @@ export class FichaGatoComponent {
     ultimaDesparasitacion:['',[this.fechaPasada()]],
     ultimaTripleFelina:['',[this.fechaPasada()]],
     ultimaAntirrabica:['',[this.fechaPasada()]],
-    comentarios:['']
-  });
+    comentarios:[''],
+    pdf:['']
+  },{validators:[atLeastOneFieldRequired]});
 
   fechaPasada(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -45,10 +48,19 @@ export class FichaGatoComponent {
     };
   }
 
+  onFileChange(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      const pdfFile: File = fileList[0];
+      this.pdf = pdfFile; 
+    }
+  }
+
 
   asociarFicha():void{
     const id= this.ruta.snapshot.params['id'];
-    this.service.asignarFicha(id,this.ficha).subscribe({
+    const ficha:FichaVeterinaria=this.fichaForm.value;
+    this.service.asignarFicha(id,this.pdf,ficha).subscribe({
       next:(response)=>{
         const gato:GatoDetalle=response.data;
         this.sweetalert('success',
