@@ -17,7 +17,7 @@ export class FormGatoComponent {
   @Output() mostrarFormChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() gato:GatoDetalle=new GatoDetalle();
 
-  public fotos:File[]=[];
+  public files:File[]=[];
   @ViewChild('inputFiles', { static: false }) inputFiles!: ElementRef;
   public urls:string[]=[];
   public url:File | undefined;
@@ -34,7 +34,6 @@ export class FormGatoComponent {
       this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
     }
     this.cargarGato();
-    console.log("form-gato component");
   }
 
   ngOnChanges(changes:SimpleChanges){
@@ -51,7 +50,7 @@ export class FormGatoComponent {
     color:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$')]],
     tipoPelo:['',[Validators.required,,Validators.pattern('^[A-Za-z ]+$')]],
     montoMensual:['',[Validators.min(0)]],
-    fotos:['',[Validators.required]]
+    files:['',Validators.required]
   });
 
   private saveForm():void{
@@ -65,11 +64,13 @@ export class FormGatoComponent {
       montoMensual: this.gato.montoMensual,
       fotos: this.gato.fotos
     })
+    this.urls=this.gato.fotos;
+    //console.log(this.gato.fotos);
   }
 
   onFileChange(event:any):void{
-    this.fotos=event.target.files;
-    Array.from(this.fotos).forEach((file:File)=>{
+    this.files=event.target.files;
+    Array.from(this.files).forEach((file:File)=>{
       const fr= new FileReader();
       fr.onload=(evento:any)=>{
         const dataUrl=evento.target.result;
@@ -82,7 +83,7 @@ export class FormGatoComponent {
 
   onInputChange():void{
     //console.log(this.gatoForm.controls['inputFile']);
-    const inputFile=this.gatoForm.controls['fotos'];
+    const inputFile=this.gatoForm.controls['files'];
     inputFile.setValue(this.urls.length>0?this.urls[0]:'')
     inputFile.markAsTouched();
   }
@@ -91,20 +92,19 @@ export class FormGatoComponent {
     if (i >= 0 && i< this.urls.length) {
       this.urls.splice(i, 1); 
       // Crear un nuevo array sin el elemento eliminado en this.fotos
-      const newFotos: File[]  = Array.from(this.fotos).filter((_, index) => index !== i);
-      this.fotos = newFotos;
-      //console.log(this.fotos);
+      const newFotos: File[]  = Array.from(this.files).filter((_, index) => index !== i);
+      this.files = newFotos;
+      //console.log(this.files);
       this.onInputChange();
     }
   }
 
   nuevoGato():void{
     const gato:GatoDetalle=this.gatoForm.value;
-    gato.fotos=[];
     const voluntario=new Voluntario();
     voluntario.email=this.user.email;
     gato.voluntario=voluntario;
-    this.service.nuevoGato(gato,this.fotos)
+    this.service.nuevoGato(gato,this.files)
     .subscribe({
       next:(response)=>{
         const nuevo:GatoDetalle=response.data;

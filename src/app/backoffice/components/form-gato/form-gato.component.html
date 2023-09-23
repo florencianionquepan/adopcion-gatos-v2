@@ -67,18 +67,18 @@
             </div>
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-control d-flex align-items-center" id="custominput"
-                [ngClass]="{'is-invalid':gatoForm.get('fotos')?.errors && gatoForm.get('fotos')?.touched}">
+                [ngClass]="{'is-invalid':gatoForm.get('files')?.errors && gatoForm.get('files')?.touched}">
                         <label class="btn btn-secondary" (click)="onInputChange()"
                         for="inputFile" role="button">Seleccionar
                         <i class="bi bi-images"></i>
                         </label>
                     <span class="ps-2" style="color:#6E7174">{{this.urls.length}} archivos</span>
                     <input class="form-control py-3 d-none" type="file" #inputFiles
-                    (change)="onFileChange($event)" id="inputFile" formControlName="fotos"
+                    (change)="onFileChange($event)" id="inputFile" formControlName="files"
                     accept="image/png, image/jpeg, image/gif"
                     multiple>
                 </div>
-                <app-error-validation [field]="'fotos'" [form]="gatoForm"></app-error-validation>
+                <app-error-validation [field]="'files'" [form]="gatoForm"></app-error-validation>
                 <div *ngIf="urls.length > 0" class="col-12 text-center mt-1">
                     <div *ngFor="let url of urls;  let i = index" class="d-inline-block text-center px-2 ">
                         <img class="image-thumbnail border border-secondary rounded" style="max-width: 80px;" 
