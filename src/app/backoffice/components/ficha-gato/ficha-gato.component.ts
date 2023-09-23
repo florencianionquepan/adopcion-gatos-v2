@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaVeterinaria } from 'src/app/models/FichaVeterinaria';
@@ -13,7 +13,7 @@ import { atLeastOneFieldRequired } from '../../validators/validators';
   styleUrls: ['./ficha-gato.component.css']
 })
 export class FichaGatoComponent {
-  ficha:FichaVeterinaria=new FichaVeterinaria();
+  @Input() ficha:FichaVeterinaria=new FichaVeterinaria();
   pdf:File|undefined;
 
   constructor(private fb:FormBuilder,

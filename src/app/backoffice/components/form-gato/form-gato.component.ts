@@ -33,7 +33,6 @@ export class FormGatoComponent {
     if(sessionStorage.getItem('userdetails')){
       this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
     }
-    this.cargarGato();
   }
 
   ngOnChanges(changes:SimpleChanges){
@@ -127,9 +126,4 @@ export class FormGatoComponent {
     this.mostrarFormChange.emit(this.mostrarForm);
   }
 
-  cargarGato():void{
-    if(this.gato){
-      //console.log(this.gato);
-    }
-  }
 }

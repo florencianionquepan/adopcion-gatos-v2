@@ -12,7 +12,7 @@ export class GatosEdicionComponent {
   gato:GatoDetalle=new GatoDetalle();
 
   constructor(private service:GatosService, 
-    private ruta: ActivatedRoute,){
+    private ruta: ActivatedRoute){
       this.getCat();
   }
 
