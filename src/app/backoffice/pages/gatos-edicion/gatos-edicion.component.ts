@@ -20,7 +20,7 @@ export class GatosEdicionComponent {
   getCat():void{
     const id= this.ruta.snapshot.params['id'];
     this.service.getGatoById(id).subscribe(resp=>{
-      console.log(resp);
+      //console.log(resp);
       this.gato=resp.data;
     })
   }

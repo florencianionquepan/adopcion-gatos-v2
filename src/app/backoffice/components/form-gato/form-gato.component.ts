@@ -67,7 +67,7 @@ export class FormGatoComponent {
       montoMensual: this.gato.montoMensual,
       fotos: this.gato.fotos
     })
-    this.urls = this.gato.fotos !== null ? this.gato.fotos : [];
+    this.urlsEdit = this.gato.fotos !== null ? this.gato.fotos : [];
   }
 
   onFileChange(event:any):void{
@@ -84,14 +84,17 @@ export class FormGatoComponent {
   }
 
   onInputChange():void{
+    const inputFile=this.gatoForm.controls['files'];
     if(this.metodo=='post' || this.metodo=='put' && this.urlsEdit.length==0){
-      const inputFile=this.gatoForm.controls['files'];
       //console.log(this.urls);
       if(this.urls.length==0){
         inputFile.setErrors({ required: true });
         inputFile.markAsTouched();
       }
       //inputFile.setValue(this.urls.length>0?this.urls[0]:'');
+    }
+    if(this.metodo=='put' && this.urlsEdit.length>0){
+      inputFile.setErrors(null);
     }
   }
 
@@ -162,7 +165,7 @@ export class FormGatoComponent {
     this.mostrarForm=false;
     this.mostrarFormChange.emit(this.mostrarForm);
     if(this.metodo=='put'){
-      this.router.navigate(['../../']);
+      this.router.navigateByUrl('/backoffice/misgatos');
     }
   }
 
