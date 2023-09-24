@@ -50,7 +50,7 @@ export class LoginComponent {
         window.sessionStorage.setItem('userdetails',JSON.stringify(this.user));
         let xsrf= getCookie('XSRF-TOKEN')!;
         window.sessionStorage.setItem("XSRF-TOKEN",xsrf);
-        this.router.navigate(['/']);
+        this.loginSuccess(this.user);
       },
       error:(e)=>{
         if(e.error!=null){
@@ -71,6 +71,15 @@ export class LoginComponent {
         }
       }
     })
+  }
+
+  loginSuccess(user:User):void{
+    Swal.fire({
+      title:`Bienvenido ${user.nombre}!`,
+      text: 'Seras redirigido al home del sitio',
+      timer:2000,
+    })
+    this.router.navigate(['/']);
   }
 
 }
