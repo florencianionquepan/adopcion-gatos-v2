@@ -31,13 +31,19 @@ export class GatosService {
 
   
   public nuevoGato(gato:GatoDetalle, fotos: File[]):Observable<any>{
-    const formData=new FormData();
-    formData.append('dto',JSON.stringify(gato));
-    for(const k in fotos){
-      const file=fotos[k];
-      formData.append('multipartFiles',file);
-    }
+    const formData=this.armarForm(gato,fotos);
     return this.http.post<any>(this.apiGatos, formData)
+    .pipe(
+      catchError(err=>{
+        console.log(err);
+        return throwError(()=>err.error)
+      })
+    )
+  }
+
+  public edicionGato(gato:GatoDetalle, fotos:File[], id:number):Observable<any>{
+    const formData=this.armarForm(gato,fotos);
+    return this.http.put<any>(`${this.apiGatos}/${id}`, formData)
     .pipe(
       catchError(err=>{
         console.log(err);
@@ -56,8 +62,7 @@ export class GatosService {
 
   public asignarFicha(id:number,pdf:File | undefined,ficha:FichaVeterinaria):Observable<any>{
     const fichaData=new FormData();
-    ficha.id=0;
-    ficha.pdf='';
+    pdf?ficha.pdf='':'';
     fichaData.append('ficha',JSON.stringify(ficha));
     //console.log(pdf);
     pdf?fichaData.append('pdf',pdf):'';
@@ -68,6 +73,16 @@ export class GatosService {
         return throwError(()=>err.error)
       })
     )
+  }
+
+  private armarForm(gato:GatoDetalle,fotos:File[]):FormData{
+    const formData=new FormData();
+    formData.append('dto',JSON.stringify(gato));
+    for(const k in fotos){
+      const file=fotos[k];
+      formData.append('multipartFiles',file);
+    }
+    return formData;
   }
 
 }

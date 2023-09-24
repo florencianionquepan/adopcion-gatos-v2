@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { Voluntario } from 'src/app/models/Voluntario';
 import { User } from 'src/app/models/user';
@@ -28,7 +28,8 @@ export class FormGatoComponent {
 
   constructor(private fb:FormBuilder, 
     private service:GatosService, 
-    private router: Router) {
+    private router: Router,
+    private ruta: ActivatedRoute) {
   }
 
   ngOnInit(){
@@ -46,7 +47,7 @@ export class FormGatoComponent {
 
   public gatoForm:FormGroup=this.fb.group({
     nombre:['',[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-    edad:['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$')]],
+    edad:['',[Validators.required,Validators.pattern('^[A-Za-zñÑ0-9 ]+$')]],
     sexo:['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
     descripcion:['',[Validators.required]],
     color:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$')]],
@@ -66,7 +67,7 @@ export class FormGatoComponent {
       montoMensual: this.gato.montoMensual,
       fotos: this.gato.fotos
     })
-    this.urlsEdit=this.gato.fotos;
+    this.urls = this.gato.fotos !== null ? this.gato.fotos : [];
   }
 
   onFileChange(event:any):void{
@@ -85,8 +86,12 @@ export class FormGatoComponent {
   onInputChange():void{
     if(this.metodo=='post' || this.metodo=='put' && this.urlsEdit.length==0){
       const inputFile=this.gatoForm.controls['files'];
-      inputFile.setValue(this.urls.length>0?this.urls[0]:'');
-      inputFile.markAsTouched();
+      //console.log(this.urls);
+      if(this.urls.length==0){
+        inputFile.setErrors({ required: true });
+        inputFile.markAsTouched();
+      }
+      //inputFile.setValue(this.urls.length>0?this.urls[0]:'');
     }
   }
 
@@ -99,6 +104,7 @@ export class FormGatoComponent {
         this.files = newFotos;
         this.onInputChange();
       }
+      //this.files se actualiza ok!
       //console.log(this.files);
     }
   }
@@ -120,6 +126,7 @@ export class FormGatoComponent {
     if(this.metodo=='post'){
       this.crearGato(gato);
     }else if(this.metodo=='put'){
+      gato.fotos=this.urlsEdit;
       this.editarGato(gato);
     }
   }
@@ -138,7 +145,8 @@ export class FormGatoComponent {
   }
 
   editarGato(gato:GatoDetalle):void{
-    this.service.edicionGato(gato,this.files,gato.id)
+    const id= this.ruta.snapshot.params['id'];
+    this.service.edicionGato(gato,this.files,id)
     .subscribe({
       next:(response)=>{
         const actu:GatoDetalle=response.data;
@@ -163,9 +171,11 @@ export class FormGatoComponent {
       title: `${gato.nombre} fue cargada/o con éxito!`,
       icon: 'success',
       html: `Puedes cargar su ficha ahora:
-             <a routerLink="${gato.id}/ficha">Ir a ficha</a>
+             <a href="#" id="irAFicha" style="color: blue; 
+             text-decoration: underline;">Ir a ficha</a>
              o cargarla luego desde el botón editar`
     })
+    this.router.navigateByUrl('/backoffice/misgatos');
   }
 
 }
