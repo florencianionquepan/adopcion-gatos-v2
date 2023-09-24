@@ -16,10 +16,12 @@ export class FormGatoComponent {
   @Input() mostrarForm:boolean=false;
   @Output() mostrarFormChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() gato:GatoDetalle=new GatoDetalle();
+  public metodo:string='post';
 
-  public files:File[]=[];
+  public files:File[]=[]; //los archivos seleccionados
   @ViewChild('inputFiles', { static: false }) inputFiles!: ElementRef;
-  public urls:string[]=[];
+  public urls:string[]=[]; //las urls de las imagenes en post
+  public urlsEdit:string[]=[]; //las urls de las imagenes en put
   public url:File | undefined;
 
   user=new User();
@@ -37,6 +39,7 @@ export class FormGatoComponent {
 
   ngOnChanges(changes:SimpleChanges){
     if(changes['gato'] && !changes['gato'].firstChange){
+      this.metodo='put';
       this.saveForm();
     }
   }
@@ -63,8 +66,7 @@ export class FormGatoComponent {
       montoMensual: this.gato.montoMensual,
       fotos: this.gato.fotos
     })
-    this.urls=this.gato.fotos;
-    //console.log(this.gato.fotos);
+    this.urlsEdit=this.gato.fotos;
   }
 
   onFileChange(event:any):void{
@@ -81,10 +83,11 @@ export class FormGatoComponent {
   }
 
   onInputChange():void{
-    //console.log(this.gatoForm.controls['inputFile']);
-    const inputFile=this.gatoForm.controls['files'];
-    inputFile.setValue(this.urls.length>0?this.urls[0]:'')
-    inputFile.markAsTouched();
+    if(this.metodo=='post' || this.metodo=='put' && this.urlsEdit.length==0){
+      const inputFile=this.gatoForm.controls['files'];
+      inputFile.setValue(this.urls.length>0?this.urls[0]:'');
+      inputFile.markAsTouched();
+    }
   }
 
   delete(i:number):void{
@@ -92,28 +95,41 @@ export class FormGatoComponent {
       this.urls.splice(i, 1); 
       // Crear un nuevo array sin el elemento eliminado en this.fotos
       const newFotos: File[]  = Array.from(this.files).filter((_, index) => index !== i);
-      this.files = newFotos;
+      if(this.metodo=='post'){
+        this.files = newFotos;
+        this.onInputChange();
+      }
       //console.log(this.files);
-      this.onInputChange();
     }
   }
 
-  nuevoGato():void{
+  deleteEditFotos(i:number):void{
+    if(i>=0 && i<this.urlsEdit.length){
+      this.urlsEdit.splice(i,1);
+      this.onInputChange();
+    }
+    this.gato.fotos=this.urlsEdit;
+    //console.log(this.urlsEdit);
+  }
+
+  enviarGato():void{
     const gato:GatoDetalle=this.gatoForm.value;
     const voluntario=new Voluntario();
     voluntario.email=this.user.email;
     gato.voluntario=voluntario;
+    if(this.metodo=='post'){
+      this.crearGato(gato);
+    }else if(this.metodo=='put'){
+      this.editarGato(gato);
+    }
+  }
+
+  crearGato(gato:GatoDetalle):void{
     this.service.nuevoGato(gato,this.files)
     .subscribe({
       next:(response)=>{
         const nuevo:GatoDetalle=response.data;
-        Swal.fire({
-          title:nuevo.nombre+" fue cargada/o con exito!",
-          icon:'success',
-          html:'Puedes cargar su ficha ahora:'+
-          '<a> Ir a ficha </a>'+
-          'o cargarla luego desde el boton editar'
-        })
+        this.success(nuevo);
       },
       error:(e)=>{
         console.error("Error al cargar el gatito", e);
@@ -121,9 +137,35 @@ export class FormGatoComponent {
     })
   }
 
+  editarGato(gato:GatoDetalle):void{
+    this.service.edicionGato(gato,this.files,gato.id)
+    .subscribe({
+      next:(response)=>{
+        const actu:GatoDetalle=response.data;
+        this.success(actu);
+    },
+    error:(e)=>{
+      console.error("Error al cargar el gatito", e);
+    }
+  })
+  }
+
   cancelar():void{
     this.mostrarForm=false;
     this.mostrarFormChange.emit(this.mostrarForm);
+    if(this.metodo=='put'){
+      this.router.navigate(['../../']);
+    }
+  }
+
+  success(gato:GatoDetalle):void{
+    Swal.fire({
+      title: `${gato.nombre} fue cargada/o con éxito!`,
+      icon: 'success',
+      html: `Puedes cargar su ficha ahora:
+             <a routerLink="${gato.id}/ficha">Ir a ficha</a>
+             o cargarla luego desde el botón editar`
+    })
   }
 
 }
