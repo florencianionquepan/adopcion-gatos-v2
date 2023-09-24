@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaVeterinaria } from 'src/app/models/FichaVeterinaria';
@@ -66,7 +66,7 @@ export class FichaGatoComponent {
         this.sweetalert('success',
         'Genial!',
         `La ficha de ${gato.nombre} se cargo con exito!`,
-        1500
+        2000
         )
         this.router.navigate(['/backoffice/misgatos']);
       },
@@ -86,4 +86,26 @@ export class FichaGatoComponent {
       timer:timer
     });
   }
+
+  //cuando existe ficha
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['ficha'] && !changes['ficha'].firstChange){
+      this.saveFicha();
+    }
+  }
+
+  private saveFicha():void{
+    this.fichaForm.patchValue({
+      ultimaDesparasitacion:this.ficha.ultimaDesparasitacion,
+      ultimaTripleFelina:this.ficha.ultimaTripleFelina,
+      ultimaAntirrabica:this.ficha.ultimaAntirrabica,
+      comentarios:this.ficha.comentarios,
+      //pdf:this.ficha.pdf
+    })
+  }
+
+  descargarPdf():void{
+    
+  }
+
 }
