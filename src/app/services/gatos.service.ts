@@ -59,8 +59,8 @@ export class GatosService {
     ficha.id=0;
     ficha.pdf='';
     fichaData.append('ficha',JSON.stringify(ficha));
-    console.log(pdf);
-    pdf?fichaData.append('file',pdf):'';
+    //console.log(pdf);
+    pdf?fichaData.append('pdf',pdf):'';
     return this.http.put<any>(`${this.apiGatos}/${id}/ficha`,fichaData)
     .pipe(
       catchError(err=>{
