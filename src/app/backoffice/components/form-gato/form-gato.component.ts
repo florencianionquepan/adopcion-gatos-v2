@@ -68,6 +68,10 @@ export class FormGatoComponent {
       fotos: this.gato.fotos
     })
     this.urlsEdit = this.gato.fotos !== null ? this.gato.fotos : [];
+    const inputFile=this.gatoForm.controls['files'];
+    if(this.metodo=='put' && this.urlsEdit.length>0){
+      inputFile.setErrors(null);
+    }
   }
 
   onFileChange(event:any):void{
@@ -173,12 +177,19 @@ export class FormGatoComponent {
     Swal.fire({
       title: `${gato.nombre} fue cargada/o con éxito!`,
       icon: 'success',
-      html: `Puedes cargar su ficha ahora:
-             <a href="#" id="irAFicha" style="color: blue; 
-             text-decoration: underline;">Ir a ficha</a>
-             o cargarla luego desde el botón editar`
+      html: `Puedes cargar su ficha ahora
+             o cargarla luego desde el botón editar`,
+      showDenyButton:true,
+      denyButtonText:'Volver',
+      denyButtonColor:'#aaa',
+      confirmButtonText:'Ir a ficha'
+    }).then((res)=>{
+      if(res.isConfirmed){
+        this.router.navigateByUrl(`/backoffice/misgatos/${gato.id}/ficha`);
+      }else if (res.isDenied) {
+        this.router.navigateByUrl('/backoffice/misgatos');
+      }
     })
-    this.router.navigateByUrl('/backoffice/misgatos');
   }
 
 }
