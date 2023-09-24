@@ -4,6 +4,7 @@ import { RegisterService } from '../services/register.service';
 import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Registro, Usuario } from 'src/app/models/Registro';
+import { passwordMatchValidator } from 'src/app/backoffice/validators/validators';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +26,8 @@ export class RegisterComponent {
     email:['',[Validators.required,Validators.email]],
     contraseña:['',[Validators.required]],
     contraseñaConfirmada:['',[Validators.required]],
+  },{
+    validators:[passwordMatchValidator]
   });
 
   fechaNacimientoValidator(): ValidatorFn {

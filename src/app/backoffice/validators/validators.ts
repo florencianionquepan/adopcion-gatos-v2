@@ -8,3 +8,12 @@ export const atLeastOneFieldRequired: ValidatorFn = (control: AbstractControl) =
     }
     return null;
 };
+
+export const passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
+    if (control instanceof FormGroup) {
+      const password = control.get('contraseña')?.value;
+      const confirmPassword = control.get('contraseñaConfirmada')?.value;
+      return password === confirmPassword ? null : { passwordMismatch: true };
+    }
+    return null;
+};
