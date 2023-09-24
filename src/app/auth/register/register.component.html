@@ -6,15 +6,17 @@
             <div class="row align-items-start g-2">
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="text" formControlName="nombre" class="form-control" id="nombre">
-                        <label for="nombre">Nombre</label>
+                        <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                        [ngClass]="{'is-invalid':registerForm.get('nombre')?.errors && registerForm.get('nombre')?.touched}">
+                        <label for="nombre">Nombre *</label>
                         <app-error-validation [field]="'nombre'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="text" formControlName="apellido" class="form-control" id="apellido">
-                        <label for="apellido">Apellido</label>
+                        <input type="text" formControlName="apellido" class="form-control" id="apellido"
+                        [ngClass]="{'is-invalid':registerForm.get('apellido')?.errors && registerForm.get('apellido')?.touched}">
+                        <label for="apellido">Apellido *</label>
                         <app-error-validation [field]="'apellido'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
@@ -22,15 +24,17 @@
             <div class="row align-items-start g-2 my-2">
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="date" formControlName="fechaDeNacimiento" class="form-control" id="fechaDeNacimiento">
-                        <label for="fechaDeNacimiento">Fecha de Nacimiento</label>
+                        <input type="date" formControlName="fechaDeNacimiento" class="form-control" id="fechaDeNacimiento"
+                        [ngClass]="{'is-invalid':registerForm.get('fechaDeNacimiento')?.errors && registerForm.get('fechaDeNacimiento')?.touched}">
+                        <label for="fechaDeNacimiento">Fecha de Nacimiento *</label>
                         <app-error-validation [field]="'fechaDeNacimiento'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="text" formControlName="dni" class="form-control" id="dni">
-                        <label for="dni">DNI</label>
+                        <input type="text" formControlName="dni" class="form-control" id="dni"
+                        [ngClass]="{'is-invalid':registerForm.get('dni')?.errors && registerForm.get('dni')?.touched}">
+                        <label for="dni">DNI *</label>
                         <app-error-validation [field]="'dni'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
@@ -38,15 +42,17 @@
             <div class="row align-items-start g-2 my-2">
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="text" formControlName="provincia" class="form-control" id="provincia">
-                        <label for="provincia">Provincia</label>
+                        <input type="text" formControlName="provincia" class="form-control" id="provincia"
+                        [ngClass]="{'is-invalid':registerForm.get('provincia')?.errors && registerForm.get('provincia')?.touched}">
+                        <label for="provincia">Provincia *</label>
                         <app-error-validation [field]="'provincia'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="text" formControlName="localidad" class="form-control" id="localidad">
-                        <label for="localidad">Localidad</label>
+                        <input type="text" formControlName="localidad" class="form-control" id="localidad"
+                        [ngClass]="{'is-invalid':registerForm.get('localidad')?.errors && registerForm.get('localidad')?.touched}">
+                        <label for="localidad">Localidad *</label>
                         <app-error-validation [field]="'localidad'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
@@ -54,15 +60,17 @@
             <div class="row align-items-start g-2 my-2">
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="text" formControlName="direccion" class="form-control" id="direccion">
-                        <label for="direccion">Direccion</label>
+                        <input type="text" formControlName="direccion" class="form-control" id="direccion"
+                        [ngClass]="{'is-invalid':registerForm.get('direccion')?.errors && registerForm.get('direccion')?.touched}">
+                        <label for="direccion">Direccion *</label>
                         <app-error-validation [field]="'direccion'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-12 col-md-6">
                     <div class="form-floating">
-                        <input type="text" formControlName="telefono" class="form-control" id="telefono">
-                        <label for="telefono">Telefono</label>
+                        <input type="text" formControlName="telefono" class="form-control" id="telefono"
+                        [ngClass]="{'is-invalid':registerForm.get('telefono')?.errors && registerForm.get('telefono')?.touched}">
+                        <label for="telefono">Telefono *</label>
                         <app-error-validation [field]="'telefono'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
@@ -70,7 +78,7 @@
             <div class="col-12 col-md-4 g-2 my-2 mx-auto mb-4">
                 <button class="w-100 btn btn-lg btn-outline-secondary mt-4" type="button" (click)="continuar()">Continuar</button>
             </div>
-            <div class="text-center mt-5">
+            <div class="text-center mt-3">
                 <p>
                     ¿Necesitas validar tu email? Haz click <a role="button" class="colorw" (click)="modalLink()">aquí</a>
                     para volver a enviar el link.
@@ -82,22 +90,25 @@
             <div class="row align-items-start g-2 px-md-5 justify-content-center">
                 <div class="form-group col-10 col-md-8">
                     <div class="form-floating">
-                        <input type="text" formControlName="email" class="form-control" id="email">
-                        <label for="email">Email</label>
+                        <input type="text" formControlName="email" class="form-control" id="email"
+                        [ngClass]="{'is-invalid':registerForm.get('email')?.errors && registerForm.get('email')?.touched}">
+                        <label for="email">Email *</label>
                         <app-error-validation [field]="'email'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-10 col-md-8">
                     <div class="form-floating">
-                        <input type="password" formControlName="contraseña" class="form-control" id="contraseña">
-                        <label for="contraseña">Contraseña</label>
+                        <input type="password" formControlName="contraseña" class="form-control" id="contraseña"
+                        [ngClass]="{'is-invalid':registerForm.get('password')?.errors && registerForm.get('password')?.touched}">
+                        <label for="contraseña">Contraseña *</label>
                         <app-error-validation [field]="'contraseña'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>
                 <div class="form-group col-10 col-md-8">
                     <div class="form-floating">
-                        <input type="password" formControlName="contraseñaConfirmada" class="form-control" id="contraseñaConfirmada">
-                        <label for="contraseñaConfirmada">Confirme contraseña</label>
+                        <input type="password" formControlName="contraseñaConfirmada" class="form-control" id="contraseñaConfirmada"
+                        [ngClass]="{'is-invalid':registerForm.get('contraseñaConfirmada')?.errors && registerForm.get('contraseñaConfirmada')?.touched}">
+                        <label for="contraseñaConfirmada">Confirme contraseña *</label>
                         <app-error-validation [field]="'contraseñaConfirmada'" [form]="registerForm"></app-error-validation>
                     </div>
                 </div>

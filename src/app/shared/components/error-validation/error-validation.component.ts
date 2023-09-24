@@ -18,7 +18,7 @@ export class ErrorValidationComponent {
   getFieldError(field:string,form:FormGroup):string | null{
     if(!form.controls[field]) return null;
     const errors=form.controls[field].errors || {};
-    //console.log(errors);
+    console.log(errors);
     for (const key in errors) {
       switch(key){
         case 'required': return `El campo ${field} es requerido`;
@@ -27,12 +27,15 @@ export class ErrorValidationComponent {
         case 'min': return `El valor debe ser mayor a ${errors['min']['min']}`;
         case 'fechaPasada': return "La fecha debe ser valida";
         case 'pattern':
-          if(errors['pattern']['requiredPattern']=='^[A-Za-z]+$'){
+          const requiredPattern = errors['pattern']['requiredPattern'];
+          if(requiredPattern=='^[A-Za-z]+$'){
             return "El campo solo admite letras";
-          }else if('^[A-Za-z ]+$'){
+          }else if(requiredPattern=='^[A-Za-z ]+$'){
             return "El campo solo admite letras y espacios";
-          }else if('^[A-Za-z0-9 ]+$'){
+          }else if(requiredPattern=='^[A-Za-z0-9 ]+$'){
             return "El campo admite numeros, letras y espacios";
+          }else if(requiredPattern=='^[0-9]{8}$'){
+            return 'El campo debe contener 8 numeros'
           };
       }
     }

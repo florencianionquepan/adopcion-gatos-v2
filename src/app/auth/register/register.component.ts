@@ -17,7 +17,7 @@ export class RegisterComponent {
     nombre:['',[Validators.required]],
     apellido:['',[Validators.required]],
     fechaDeNacimiento:['',[Validators.required,this.fechaNacimientoValidator()]],
-    dni:['',[Validators.required]],
+    dni:['',[Validators.required,Validators.pattern('^[0-9]{8}$')]],
     provincia:['',[Validators.required]],
     localidad:['',[Validators.required]],
     direccion:['',[Validators.required]],
@@ -43,6 +43,21 @@ export class RegisterComponent {
   }
 
   continuar():void{
+    const camposSeccion1=['nombre', 'apellido', 'fechaDeNacimiento',
+    'dni','provincia','localidad','direccion','telefono'];
+    if(this.vistaActual==1){
+      for(const campo of camposSeccion1){
+        this.registerForm.get(campo)?.markAsTouched();
+      }
+      const algunCampoInvalido = camposSeccion1.some((campo) => {
+        const control = this.registerForm.get(campo);
+        return control?.invalid;
+      });
+      if (algunCampoInvalido) {
+        Swal.fire({title:'Por favor, complete los campos.'});
+        return; 
+      }
+    }
     this.vistaActual=2;
   }
 
