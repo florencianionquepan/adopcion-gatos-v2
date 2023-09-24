@@ -6,6 +6,7 @@ import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { GatosService } from 'src/app/services/gatos.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { atLeastOneFieldRequired } from '../../validators/validators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-ficha-gato',
@@ -95,17 +96,20 @@ export class FichaGatoComponent {
   }
 
   private saveFicha():void{
-    this.fichaForm.patchValue({
-      ultimaDesparasitacion:this.ficha.ultimaDesparasitacion,
-      ultimaTripleFelina:this.ficha.ultimaTripleFelina,
-      ultimaAntirrabica:this.ficha.ultimaAntirrabica,
-      comentarios:this.ficha.comentarios,
-      //pdf:this.ficha.pdf
-    })
+    if(this.ficha){
+      this.fichaForm.patchValue({
+        ultimaDesparasitacion:this.ficha.ultimaDesparasitacion,
+        ultimaTripleFelina:this.ficha.ultimaTripleFelina,
+        ultimaAntirrabica:this.ficha.ultimaAntirrabica,
+        comentarios:this.ficha.comentarios,
+        //pdf:this.ficha.pdf
+      })
+    }
   }
 
   descargarPdf():void{
-    
+    let apiStorage=`${environment.url}/ficha`;
+    window.open(`${apiStorage}/file/${this.ficha.pdf}`,'_blank');
   }
 
 }
