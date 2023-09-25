@@ -5,6 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Registro, Usuario } from 'src/app/models/Registro';
 import { passwordMatchValidator } from 'src/app/backoffice/validators/validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -42,7 +43,9 @@ export class RegisterComponent {
     };
   }
 
-  constructor(private fb:FormBuilder, private service:RegisterService) {
+  constructor(private fb:FormBuilder, 
+    private service:RegisterService,
+    private router:Router) {
   }
 
   continuar():void{
@@ -95,10 +98,14 @@ export class RegisterComponent {
         if(response.success){
           Swal.fire({
             title:"Registro exitoso",
-            text:`Se ha registrado correctamente`,
-            icon:'success'
+            text:`Debe validar su email para iniciar sesion`,
+            icon:'success',
+            timer:1500
           });
           }
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 1500);
         }
       ,error:(e)=>{
         let errorDetail='';

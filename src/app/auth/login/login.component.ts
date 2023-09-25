@@ -77,7 +77,7 @@ export class LoginComponent {
     Swal.fire({
       title:`Bienvenido ${user.nombre}!`,
       text: 'Seras redirigido al home del sitio',
-      timer:2000,
+      timer:1200,
     })
     this.router.navigate(['/']);
   }

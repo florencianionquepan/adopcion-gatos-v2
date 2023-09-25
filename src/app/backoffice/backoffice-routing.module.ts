@@ -9,23 +9,19 @@ import { AuthGuardGuard } from "./guards/auth-guard.guard";
 
 const routes: Routes=[{
     path:'perfil',
-    component:ProfileComponent,
-    canActivate: [AuthGuardGuard]
+    component:ProfileComponent
 },
 {
     path:'misgatos',
-    component:GatosByVoluntarioComponent,
-    canActivate: [AuthGuardGuard]
+    component:GatosByVoluntarioComponent
 },
 {
     path:'misgatos/:id',
-    component:GatosEdicionComponent,
-    canActivate: [AuthGuardGuard]
+    component:GatosEdicionComponent
 },
 {
     path:'misgatos/:id/ficha',
-    component:FichaPageComponent,
-    canActivate: [AuthGuardGuard]
+    component:FichaPageComponent
 }]
 
 @NgModule({

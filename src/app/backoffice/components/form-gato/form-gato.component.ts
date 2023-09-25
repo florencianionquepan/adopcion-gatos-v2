@@ -90,7 +90,8 @@ export class FormGatoComponent {
   onInputChange():void{
     const inputFile=this.gatoForm.controls['files'];
     if(this.metodo=='post' || this.metodo=='put' && this.urlsEdit.length==0){
-      //console.log(this.urls);
+      console.log(this.urls);
+      console.log(this.files);
       if(this.urls.length==0){
         inputFile.setErrors({ required: true });
         inputFile.markAsTouched();
@@ -139,6 +140,7 @@ export class FormGatoComponent {
   }
 
   crearGato(gato:GatoDetalle):void{
+    console.log(this.files);
     this.service.nuevoGato(gato,this.files)
     .subscribe({
       next:(response)=>{

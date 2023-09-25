@@ -42,7 +42,7 @@
                 <div class="mb-3 px-3" *ngIf="!this.ficha?.pdf">
                     <label for="pdf" class="form-label">Puede adjuntar un documento en formato pdf:</label>
                     <input class="form-control" type="file" id="pdf" formControlName="pdf"
-                    (change)="onFileChange($event)">
+                    accept="application/pdf" (change)="onFileChange($event)">
                   </div>
                   <div class="mb-3 px-3" *ngIf="this.ficha?.pdf">
                     <button class="btn btn-outline-secondary mx-2" type="button" (click)="descargarPdf()">
