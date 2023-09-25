@@ -18,7 +18,7 @@ export class ErrorValidationComponent {
   getFieldError(field:string,form:FormGroup):string | null{
     if(!form.controls[field]) return null;
     const errors=form.controls[field].errors || {};
-    console.log(errors);
+    //console.log(errors);
     for (const key in errors) {
       switch(key){
         case 'required': return `El campo ${field} es requerido`;

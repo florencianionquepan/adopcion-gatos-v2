@@ -5,22 +5,27 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { GatosByVoluntarioComponent } from "./pages/gatos-by-voluntario/gatos-by-voluntario.component";
 import { GatosEdicionComponent } from "./pages/gatos-edicion/gatos-edicion.component";
 import { FichaPageComponent } from "./pages/ficha-page/ficha-page.component";
+import { AuthGuardGuard } from "./guards/auth-guard.guard";
 
 const routes: Routes=[{
     path:'perfil',
-    component:ProfileComponent
+    component:ProfileComponent,
+    canActivate: [AuthGuardGuard]
 },
 {
     path:'misgatos',
-    component:GatosByVoluntarioComponent
+    component:GatosByVoluntarioComponent,
+    canActivate: [AuthGuardGuard]
 },
 {
     path:'misgatos/:id',
-    component:GatosEdicionComponent
+    component:GatosEdicionComponent,
+    canActivate: [AuthGuardGuard]
 },
 {
     path:'misgatos/:id/ficha',
-    component:FichaPageComponent
+    component:FichaPageComponent,
+    canActivate: [AuthGuardGuard]
 }]
 
 @NgModule({

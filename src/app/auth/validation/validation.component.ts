@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import Swal from 'sweetalert2';
 
@@ -12,7 +12,9 @@ export class ValidationComponent {
   public id:number;
   public token:string;
 
-  constructor(private router:ActivatedRoute,private service: RegisterService){
+  constructor(private router:ActivatedRoute,
+    private service: RegisterService, 
+    private routerRed: Router){
     this.id=this.router.snapshot.params['id'];
     this.token=this.router.snapshot.params['token'];
   }
@@ -26,8 +28,12 @@ export class ValidationComponent {
           Swal.fire({
             title:"OK",
             text:response.data,
-            icon:'success'
+            icon:'success',
+            timer:2000,
           });
+            setTimeout(() => {
+              this.routerRed.navigate(['/login']);
+            }, 2000); 
           }
         }
         ,error:(e)=>{

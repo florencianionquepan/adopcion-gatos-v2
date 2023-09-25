@@ -26,7 +26,7 @@ export class GatosService {
   }
 
   public gatosByVoluntario(email:string):Observable<any>{
-    return this.http.get<any>(`${this.apiGatos}/voluntarios/${email}`);
+    return this.http.get<any>(`${this.apiGatos}/voluntarios/${email}`,{withCredentials:true});
   }
 
   

@@ -23,7 +23,7 @@ export class HeaderComponent {
     }
   }
 
-  logout(){
+  logout():void{
     sessionStorage.clear();
     window.location.reload();
   }
