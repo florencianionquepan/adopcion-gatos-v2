@@ -1,15 +1,15 @@
 <div class="row justify-content-start align-items-start mt-4">
   <div class="col-10 col-md-4 col-lg-3 my-2" *ngFor="let cat of cats">
     <div class="card my-auto" style="background-color: #f8e0db;">
-      <div class="text-center align-items-center my-auto" style="min-height: 200px;">
+      <div class="text-center d-flex align-items-center my-auto" style="min-height: 200px;">
         <img
-          class="img-fluid mx-auto mt-2 rounded"
+          class="img-fluid mx-auto my-2 rounded"
           width="80%"
           [src]="cat.fotos[0]" *ngIf="cat.fotos"/>
           <img [src]="'assets/img/figura.png'" *ngIf="!cat.fotos" 
           class="img-fluid mx-auto mt-2 rounded">
       </div>
-      <div class="card-body justify-content-center py-2">
+      <div class="card-body justify-content-center py-2 align-items-center">
         <h3>{{ cat.nombre }}</h3>
         <p class="card-text mb-1">{{ cat.descripcion }}</p>
         <p class="lead fs-6 fw-light" *ngIf="cat.solicitudes.length>0">{{cat.solicitudes.length}} personas interesadas</p>

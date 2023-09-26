@@ -53,7 +53,7 @@ export class FormGatoComponent {
     color:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$')]],
     tipoPelo:['',[Validators.required,,Validators.pattern('^[A-Za-z ]+$')]],
     montoMensual:['',[Validators.min(0)]],
-    files:['',Validators.required]
+    files:['',]
   });
 
   private saveForm():void{
@@ -90,10 +90,10 @@ export class FormGatoComponent {
   onInputChange():void{
     const inputFile=this.gatoForm.controls['files'];
     if(this.metodo=='post' || this.metodo=='put' && this.urlsEdit.length==0){
-      console.log(this.urls);
-      console.log(this.files);
+      //console.log(this.urls);
+      //console.log(this.files);
       if(this.urls.length==0){
-        inputFile.setErrors({ required: true });
+        //inputFile.setErrors({ required: true });
         inputFile.markAsTouched();
       }
       //inputFile.setValue(this.urls.length>0?this.urls[0]:'');
@@ -149,6 +149,7 @@ export class FormGatoComponent {
       },
       error:(e)=>{
         console.error("Error al cargar el gatito", e);
+        this.error(e);
       }
     })
   }
@@ -163,6 +164,7 @@ export class FormGatoComponent {
     },
     error:(e)=>{
       console.error("Error al cargar el gatito", e);
+      this.error(e);
     }
   })
   }
@@ -191,6 +193,14 @@ export class FormGatoComponent {
       }else if (res.isDenied) {
         this.router.navigateByUrl('/backoffice/misgatos');
       }
+    })
+  }
+
+  error(e:any):void{
+    Swal.fire({
+      icon:'error',
+      title:'Error al cargar el gato',
+      text:e.data
     })
   }
 
