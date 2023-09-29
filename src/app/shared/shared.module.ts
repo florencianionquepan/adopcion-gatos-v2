@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ErrorValidationComponent } from './components/error-validation/error-validation.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 
@@ -23,7 +24,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     CatDetailComponent,
     CarouselComponent,
     ErrorValidationComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
