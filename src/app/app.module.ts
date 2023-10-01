@@ -12,6 +12,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AuthGuard } from './routeguards/auth.guard';
 import { ValidationComponent } from './auth/validation/validation.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { LOCALE_ID } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
       provide: HTTP_INTERCEPTORS, 
       useClass: LoadingInterceptor, 
       multi: true
-    }
+    },
+    { provide: LOCALE_ID, useValue: 'es' }
   ],
   bootstrap: [AppComponent]
 })

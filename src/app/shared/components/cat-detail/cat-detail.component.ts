@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { GatosService } from 'src/app/services/gatos.service';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../auth/services/auth.service';
 import { User } from 'src/app/models/user';
 import Swal from 'sweetalert2';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs);
 
 @Component({
   selector: 'app-cat-detail',
@@ -47,7 +50,8 @@ export class CatDetailComponent {
       title: 'Estas seguro de enviar tu solicitud de adopcion?',
       icon: 'info',
       cancelButtonText:'Cancelar',
-      confirmButtonText: 'Enviar Solicitud'
+      confirmButtonText: 'Enviar Solicitud',
+      showCancelButton:true,
     }).then((result) => {
       if (result.isConfirmed) {
         this.enviarSolicitud(this.gato,this.user);
