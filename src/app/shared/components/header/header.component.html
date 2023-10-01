@@ -50,7 +50,7 @@
                         routerLink="/register" routerLinkActive="active"
                         *ngIf="user.authStatus!='AUTH'">Sign in</a>
                     </li>
-                    <li class="nav-item px-1">
+                    <li class="nav-item px-1" *ngIf="user.authStatus=='AUTH'">
                         <app-notification></app-notification>
                     </li>
                 </ul>
