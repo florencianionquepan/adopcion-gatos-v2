@@ -1,30 +1,49 @@
 <app-header></app-header>
 <div id="detalles" class="container-fluid">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-8 order-2 order-md-1 col-md-4 col-lg-3 pt-3">
-          <h1 class="titulo1 text-center">{{gato.nombre}}</h1>
-          <div class="rounded color3 p-2">
+    <div class="row justify-content-center my-5">
+        <div class="col-8 order-2 order-md-1 col-md-4 col-lg-4 pt-3">
+          <h1 class="titulo1 text-center mb-0 border-bottom border-secondary">{{gato.nombre}}</h1>
+          <div class="rounded p-2">
             <h5>Edad: {{gato.edad}} </h5>
             <h5>Sexo: {{gato.sexo}}</h5>
             <h5>Color: {{gato.color}} </h5>
             <h5>Tipo de pelo: {{gato.tipoPelo}}</h5>
-            <div *ngIf="!gato.padrino && gato.montoMensual">
-              <h5>Apadrinamiento: {{gato.montoMensual}}</h5>
-              <button type="button" class="btn btn-secondary"
-              (click)="apadrinar(gato)"> APADRINAR </button>
+            <div *ngIf="!gato.padrino && gato.montoMensual" 
+            class="d-flex flex-row align-items-center">
+              <h5> Apadrinamiento:
+                <button type="button" class="btn btn-secondary btn-sm mx-2 mb-2"
+                (click)="apadrinar(gato)"> 
+                <i class="bi bi-box2-heart"> </i> <span> </span>
+                <i class="bi bi-currency-dollar"></i>{{gato.montoMensual}}
+                </button>
+              </h5>
+              
             </div>
-            <div *ngIf="gato.ficha">
-              <h4>Ficha Veterinaria</h4>
-              <h5>Antirrabica: {{gato.ficha.ultimaAntirrabica}} </h5>
-              <h5>ultima Desparasitacion: {{gato.ficha.ultimaDesparasitacion}}</h5>
-              <h5>Ultima triple felina: {{gato.ficha.ultimaTripleFelina}} </h5>
+            <div *ngIf="gato.ficha" class="my-2">
+              <h4 class="border-bottom border-secondary">Ficha Veterinaria</h4>
+              <h5>Antirrabica: 
+                <ng-container *ngIf="gato.ficha.ultimaAntirrabica; else noPosee">
+                  {{gato.ficha.ultimaAntirrabica | date:'longDate':'d MMMM, y'}} 
+                </ng-container>
+              </h5>
+              <h5>Desparasitacion:
+                <ng-container *ngIf="gato.ficha.ultimaDesparasitacion; else noPosee">
+                  {{gato.ficha.ultimaDesparasitacion | date:'d MMMM, y'}}
+                </ng-container>
+              </h5>
+              <h5>Triple felina: 
+                <ng-container *ngIf="gato.ficha.ultimaTripleFelina; else noPosee">
+                  {{gato.ficha.ultimaTripleFelina | date:'longDate':'d MMMM, y'}} 
+                </ng-container>
+              </h5>
+              <ng-template #noPosee>-</ng-template>
             </div>
           </div>
           <div class="row align-items-center justify-content-center">
-            <div class="col-2 pt-3 text-center">
+            <div class="col pt-3 text-center">
                 <button type="button" class="btn btn-secondary" id="adoptar"
                 (click)="adoptar(gato)">
-                  ADOPTAR
+                   Adoptar <i class="bi bi-suit-heart-fill"></i>
                 </button>
             </div>
         </div>
