@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 import Swal from 'sweetalert2';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { AdopcionService } from 'src/app/services/adopcion.service';
 registerLocaleData(localeEs);
 
 @Component({
@@ -20,7 +21,8 @@ export class CatDetailComponent {
 
   constructor(private ruta: ActivatedRoute,
             private catSvc: GatosService,
-            private authSvc:AuthService){
+            private authSvc:AuthService,
+            private adopcionSvc:AdopcionService){
     this.getCat();
   }
 
@@ -37,10 +39,14 @@ export class CatDetailComponent {
     })
   }
 
-  adoptar(gato:GatoDetalle):void{
+  adoptar():void{
+    if(sessionStorage.getItem('userdetails')){
+      this.user=JSON.parse(sessionStorage.getItem('userdetails')!);
+    }
     if(this.user.authStatus){
       this.alertAdopcion();
     }else{
+      this.authSvc.setUrlActual();
       this.alertLogin();
     }
   }
@@ -60,7 +66,25 @@ export class CatDetailComponent {
   }
 
   enviarSolicitud(gato:GatoDetalle, user:User):void{
-
+    this.adopcionSvc.enviarSolicitud(gato.id,this.user.email)
+    .subscribe({
+      next:(response)=>{
+        console.log(response);
+        if(response.status==201){
+          Swal.fire({
+            title:'Solicitud enviada con exito!',
+            icon:'success'
+          })
+        }
+      }
+      ,error:(e)=>{
+        console.log(e);
+        Swal.fire({
+          title:e.mensaje,
+          icon:'error'
+        })
+      }
+    })
   }
 
   apadrinar(gato:GatoDetalle):void{

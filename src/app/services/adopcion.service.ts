@@ -20,7 +20,7 @@ export class AdopcionService {
     const solicitante=new Persona();
     solicitante.email=email;
     const nueva=new Solicitud(0,[],gato,solicitante);
-    return this.http.post(this.apiSolicitud,nueva,{withCredentials:true})
+    return this.http.post(this.apiSolicitud,nueva,{observe:'response',withCredentials:true})
     .pipe(
       catchError(err=>{
         console.log(err);
