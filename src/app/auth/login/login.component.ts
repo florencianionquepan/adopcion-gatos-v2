@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { LoginService } from './../services/login.service';
 import { getCookie } from 'typescript-cookie';
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent {
 
   constructor(private router:Router, 
     private loginService:LoginService,
-    private fb:FormBuilder) {}
+    private fb:FormBuilder,
+    private authSvc:AuthService) {}
 
   validateUser():void{
     
@@ -74,12 +76,12 @@ export class LoginComponent {
   }
 
   loginSuccess(user:User):void{
+    const urlPrevia=this.authSvc.getUrlPrevia();
     Swal.fire({
       title:`Bienvenido ${user.nombre}!`,
-      text: 'Seras redirigido al home del sitio',
       timer:1200,
     })
-    this.router.navigate(['/']);
+    this.router.navigate([urlPrevia]);
   }
 
 }
