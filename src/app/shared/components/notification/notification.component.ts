@@ -11,14 +11,8 @@ declare var bootstrap: any;
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent {
-  @ViewChild('toastTrigger') toastTrigger!: ElementRef;
-  @ViewChild('toastLiveExample') toastLiveExample!: ElementRef;
   notificaciones:Notificacion[]=[];
-
-  showToast() {
-    const toast = new bootstrap.Toast(this.toastLiveExample.nativeElement);
-    toast.show();
-  }
+  notificacionesNoLeidas:Notificacion[]=[];
 
   constructor(private router:Router, private service:NotificacionService){
     this.router.events.pipe(
@@ -29,6 +23,7 @@ export class NotificationComponent {
       this.service.listarTodas().subscribe({
         next:(response)=>{
           this.notificaciones=response.data;
+          this.filtrarNoLeidas();
           //console.log(this.notificaciones);
         }
         ,error:(e)=>{
@@ -37,6 +32,12 @@ export class NotificationComponent {
       })
     }
    }) 
+  }
+
+  filtrarNoLeidas():void{
+    this.notificacionesNoLeidas = this.notificaciones.filter(
+      (notificacion) => !notificacion.leida
+    );
   }
 
 }

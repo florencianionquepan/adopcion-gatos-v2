@@ -1,21 +1,21 @@
-<button type="button" class="btn btn-outline-light btncute position-relative" id="liveToastBtn"
-#toastTrigger (click)="showToast()">
+<button type="button" class="btn btn-outline-light btncute position-relative"
+data-bs-toggle="dropdown" aria-expanded="false">
     <i class="bi bi-bell-fill"></i>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-        +99 </span>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"
+    *ngIf="this.notificacionesNoLeidas.length>0">
+        {{this.notificacionesNoLeidas.length}} </span>
 </button>
 
-<div class="toast-container position-fixed top-0 end-0 p-3 mt-5">
-  <div id="liveToast" #toastLiveExample
-  class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      
-      <strong class="me-auto">Bootstrap</strong>
-      <small>11 mins ago</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body">
-      Hello, world! This is a toast message.
-    </div>
-  </div>
-</div>
+<ul class="dropdown-menu bg-warning-subtle text-emphasis-warning" *ngIf="this.notificaciones.length>0">
+  <li *ngFor="let notificacion of notificaciones" class="border-bottom py-2">
+    <a class="dropdown-item">
+      <div class="border-bottom border-secondary">
+        <strong class="me-auto">{{notificacion.fechaCreacion | date:'dd/MM/YY'}}</strong>
+      </div>
+    <span>{{notificacion.descripcion}}</span>
+  </a>
+  </li>
+</ul>
+<ul class="dropdown-menu p-3 bg-warning-subtle text-emphasis-warning" *ngIf="this.notificaciones.length==0">
+    No tienes notificaciones.
+</ul>
