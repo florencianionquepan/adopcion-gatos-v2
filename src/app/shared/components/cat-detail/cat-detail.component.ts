@@ -69,7 +69,7 @@ export class CatDetailComponent {
     this.adopcionSvc.enviarSolicitud(gato.id,this.user.email)
     .subscribe({
       next:(response)=>{
-        console.log(response);
+        //console.log(response);
         if(response.status==201){
           Swal.fire({
             title:'Solicitud enviada con exito!',

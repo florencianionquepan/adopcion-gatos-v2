@@ -23,7 +23,7 @@ export class AdopcionService {
     return this.http.post(this.apiSolicitud,nueva,{observe:'response',withCredentials:true})
     .pipe(
       catchError(err=>{
-        console.log(err);
+        //console.log(err);
         return throwError(()=>err.error)
       })
     )

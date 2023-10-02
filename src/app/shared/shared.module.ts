@@ -12,8 +12,6 @@ import { ErrorValidationComponent } from './components/error-validation/error-va
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotificationComponent } from './components/notification/notification.component';
 
-
-
 @NgModule({
   declarations: [
     HeaderComponent,
