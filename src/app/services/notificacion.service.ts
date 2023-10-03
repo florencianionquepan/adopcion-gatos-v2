@@ -1,29 +1,50 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, filter, map, switchMap, take, tap, throwError } from 'rxjs';
 import { User } from '../models/user';
+import { Notificacion } from '../models/Notificacion';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificacionService {
   public apiNotificaciones=`${environment.url}/notificaciones`;
-  public user:User=new User;
+  private notificacionesSubject = new BehaviorSubject<Notificacion[]>([]);
+  notificaciones$: Observable<Notificacion[]> = this.notificacionesSubject.asObservable();
 
-  constructor(private http:HttpClient) {
-    if(sessionStorage.getItem('userdetails')){
-      this.user=JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+  constructor(private http:HttpClient, private router:Router) {
   }
 
-  public listarTodas():Observable<any>{
-    return this.http.get(`${this.apiNotificaciones}/persona/${this.user.email}`)
-    .pipe(
-      catchError(err=>{
-        console.log(err);
-        return throwError(()=>err.error)
+  public actualizarNotificaciones(email:string):Observable<Notificacion[]> {
+    return this.router.events.pipe(
+      filter((e) => e instanceof NavigationEnd),
+      take(1),
+      switchMap(() => {
+        return this.obtenerNotificaciones(email);
+      }),
+      tap((notificaciones) => {
+        this.notificacionesSubject.next(notificaciones);
       })
-    )
+    );
   }
+
+  obtenerNotificaciones(email: string): Observable<Notificacion[]> {
+  return this.http.get(`${this.apiNotificaciones}/persona/${email}`).pipe(
+    map((response:any) => {
+      //console.log(response);
+      if (response.success) {
+        return response.data; 
+      } else {
+        throw new Error('Error al obtener las notificaciones');
+      }
+    }),
+    catchError((error) => {
+      console.error('Error en la solicitud:', error);
+      throw error;
+    })
+  );
+}
+
 }
