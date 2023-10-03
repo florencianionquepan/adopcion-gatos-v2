@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, take } from 'rxjs';
+import { Notificacion } from 'src/app/models/Notificacion';
 import { User } from 'src/app/models/user';
+import { NotificacionService } from 'src/app/services/notificacion.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +13,22 @@ import { User } from 'src/app/models/user';
 
 export class HeaderComponent {
   user=new User();
-  public list: any[]=[]
+  public list: any[]=[];
+  notificaciones: Notificacion[]=[];
+  notificacionesNoLeidas:Notificacion[]=[];
 
-  constructor(private router : Router) { 
-
+  constructor(private router : Router,
+     private service:NotificacionService,
+     private crd:ChangeDetectorRef) { 
+      if(sessionStorage.getItem('userdetails')){
+        this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
+        let email=this.user.email;
+        this.service.actualizarNotificaciones(email).subscribe((notificaciones) => {
+          this.notificaciones = notificaciones;
+          this.filtrarNoLeidas();
+          this.crd.detectChanges();
+        });
+      }
   }
 
   ngOnInit() {
@@ -21,6 +36,12 @@ export class HeaderComponent {
       this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
       this.crearLinks();
     }
+  }
+
+  filtrarNoLeidas():void{
+    this.notificacionesNoLeidas = this.notificaciones.filter(
+      (notificacion) => !notificacion.leida
+    );
   }
 
   logout():void{
