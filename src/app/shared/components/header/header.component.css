@@ -13,3 +13,10 @@
 .dropdown-item:active, .dropdown-item.active {
     background-color:#F8F9FA !important;
 }
+
+.noLeida{
+  background-color:#e2cbf0!important;
+  color: black;
+  animation-name: fade-in;
+  transition: background-color 0.4s ease-in-out; 
+}

@@ -45,6 +45,23 @@ export class NotificacionService {
       throw error;
     })
   );
-}
+  }
 
+  //aca mando solo las no leidas, para que se seteen como leidas
+  public setearNotiLeidas(notificaciones:Notificacion[]):Observable<Notificacion[]>{
+    return this.http.put(`${this.apiNotificaciones}/leidas`,notificaciones).pipe(
+      map((response:any) => {
+        //console.log(response);
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error('Error al obtener las notificaciones');
+        }
+      }),
+      catchError((error) => {
+        console.error('Error en la solicitud:', error);
+        throw error;
+      })
+    )
+  }
 }
