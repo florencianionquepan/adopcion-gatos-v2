@@ -12,8 +12,9 @@ import { FichaGatoComponent } from './components/ficha-gato/ficha-gato.component
 import { FichaPageComponent } from './pages/ficha-page/ficha-page.component';
 import { MissolicitudesPageComponent } from './pages/missolicitudes-page/missolicitudes-page.component';
 import { MissolicitudesComponent } from './components/missolicitudes/missolicitudes.component';
-
-
+import { NotificacionService } from '../services/notificacion.service';
+import { RouterModule } from '@angular/router';
+import { AsignacionTransitoPageComponent } from './pages/asignacion-transito-page/asignacion-transito-page.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,18 @@ import { MissolicitudesComponent } from './components/missolicitudes/missolicitu
     FichaGatoComponent,
     FichaPageComponent,
     MissolicitudesPageComponent,
-    MissolicitudesComponent
+    MissolicitudesComponent,
+    AsignacionTransitoPageComponent
   ],
   imports: [
     CommonModule,
     BackofficeRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
+  ],
+  providers:[
+    NotificacionService
   ]
 })
 export class BackofficeModule { }
