@@ -15,6 +15,8 @@ import { MissolicitudesComponent } from './components/missolicitudes/missolicitu
 import { NotificacionService } from '../services/notificacion.service';
 import { RouterModule } from '@angular/router';
 import { AsignacionTransitoPageComponent } from './pages/asignacion-transito-page/asignacion-transito-page.component';
+import { TablaTransitosComponent } from './components/tabla-transitos/tabla-transitos.component';
+import { AgePipe } from '../pipes/age.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AsignacionTransitoPageComponent } from './pages/asignacion-transito-pag
     FichaPageComponent,
     MissolicitudesPageComponent,
     MissolicitudesComponent,
-    AsignacionTransitoPageComponent
+    AsignacionTransitoPageComponent,
+    TablaTransitosComponent,
+    AgePipe
   ],
   imports: [
     CommonModule,

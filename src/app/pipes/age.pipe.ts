@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-Pipe({name: 'age'})
+@Pipe({name: 'age'})
 
 export class AgePipe implements PipeTransform{
     transform(fechaNacimiento:Date) :number{
