@@ -1,0 +1,46 @@
+<table class="table table-sm bg-transparent rounded" id="cute">
+    <thead>
+      <tr>
+        <th scope="col-1">Nombre</th>
+        <th scope="col-1">Apellido</th>
+        <th scope="col-1" class="d-none d-md-table-cell">Direccion</th>
+        <th scope="col-1" class="d-none d-md-table-cell">Localidad</th>
+        <th scope="col-2" class="d-none d-lg-table-cell">Edad</th>
+        <th scope="col-1">Telefono</th>
+        <th scope="col-1" class="d-none d-lg-table-cell">Email</th>
+        <th scope="col-1">Total gatos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transito of transitos">
+        <td>        
+          <a role="button" class="colorw"
+          routerLinkActive="active" routerLink="{{transito.id}}">{{ transito.nombre }}
+          </a>
+        </td>
+        <td>
+          {{ transito.apellido }}
+        </td>
+        <td class="d-none d-md-table-cell">
+          {{ transito.direccion }}
+        </td>
+        <td class="d-none d-md-table-cell">
+          {{ transito.localidad }}
+        </td>
+        <td class="d-none d-lg-table-cell">
+            {{ transito.fechaNacimiento | age }} años
+        </td>
+        <td>
+            {{ transito.telefono }}
+        </td>
+        <td class="d-none d-lg-table-cell">
+          {{ transito.email }}
+        </td>
+        <td>
+          {{ transito.listaGatos.length }}
+        </td>
+        <button class="btn btn-secondary btn-sm">Buscar</button>
+      </tr>
+    </tbody>
+  </table>
+  
