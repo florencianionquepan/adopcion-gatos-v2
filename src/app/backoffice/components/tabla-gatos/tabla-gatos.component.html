@@ -2,12 +2,12 @@
   <thead>
     <tr>
       <th scope="col-1">Nombre</th>
-      <th scope="col-1">Sexo</th>
-      <th scope="col-1">Edad</th>
-      <th scope="col-2">Ubicacion</th>
+      <th scope="col-1" class="d-none d-lg-table-cell">Sexo</th>
+      <th scope="col-1" class="d-none d-md-table-cell">Edad</th>
+      <th scope="col-2" class="d-none d-lg-table-cell">Ubicacion</th>
       <th scope="col-1">Adoptado</th>
       <th scope="col-1">Transito</th>
-      <th scope="col-1">Monto Mensual</th>
+      <th scope="col-1" class="d-none d-lg-table-cell">Monto Mensual</th>
       <th scope="col-1">Padrino</th>
       <th scope="col-2">Solicitudes</th>
       <th scope="col-1">Ficha Vete</th>
@@ -15,31 +15,34 @@
   </thead>
   <tbody>
     <tr *ngFor="let gato of gatos">
-      <td>        <a role="button"
+      <td>        
+        <a role="button" class="colorw"
         routerLinkActive="active" routerLink="{{gato.id}}">{{ gato.nombre }}
         <i class="bi bi-pencil-square"></i> 
         </a>
       </td>
-      <td>
+      <td class="d-none d-lg-table-cell">
         {{ gato.sexo }}
       </td>
-      <td>
+      <td class="d-none d-md-table-cell">
         {{ gato.edad }}
       </td>
-      <td>
+      <td class="d-none d-lg-table-cell">
         {{ gato.transito?.direccion || gato.voluntario?.localidad }}
       </td>
       <td>{{ gato.adoptado || "No" }}</td>
       <td>{{ gato.transito?.dni || "" }}
-        <button class="btn btn-secondary btn-sm">Buscar</button>
+        <button class="btn btn-secondary btn-sm" routerLink="{{gato.id}}/transito">
+          Buscar
+        </button>
       </td>
-      <td>
+      <td class="d-none d-lg-table-cell">
         {{ gato.montoMensual }}
       </td>
       <td>
         {{ gato.padrino?.dni || "No posee" }}
       </td>
-      <td>{{ gato.solicitudes.length==0? 'No posee' : gato.solicitudes.length }}
+      <td>{{ gato.solicitudes.length==0? 'No posee' : '' }}
         <button *ngIf="gato.solicitudes.length>0" class="btn btn-secondary btn-sm">
           Ver {{gato.solicitudes.length}}
         </button>
