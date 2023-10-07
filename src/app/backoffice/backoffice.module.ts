@@ -17,6 +17,8 @@ import { RouterModule } from '@angular/router';
 import { AsignacionTransitoPageComponent } from './pages/asignacion-transito-page/asignacion-transito-page.component';
 import { TablaTransitosComponent } from './components/tabla-transitos/tabla-transitos.component';
 import { AgePipe } from '../pipes/age.pipe';
+import { SolicitudesByGatoComponent } from './pages/solicitudes-by-gato/solicitudes-by-gato.component';
+import { TablaSolicitudesAdopcionComponent } from './components/tabla-solicitudes-adopcion/tabla-solicitudes-adopcion.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AgePipe } from '../pipes/age.pipe';
     MissolicitudesComponent,
     AsignacionTransitoPageComponent,
     TablaTransitosComponent,
-    AgePipe
+    AgePipe,
+    SolicitudesByGatoComponent,
+    TablaSolicitudesAdopcionComponent
   ],
   imports: [
     CommonModule,

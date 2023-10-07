@@ -44,7 +44,8 @@
         {{ gato.padrino?.dni || "No posee" }}
       </td>
       <td>{{ gato.solicitudes.length==0? 'No posee' : '' }}
-        <button *ngIf="gato.solicitudes.length>0" class="btn btn-secondary btn-sm">
+        <button *ngIf="gato.solicitudes.length>0" class="btn btn-secondary btn-sm"
+          routerLink="{{gato.id}}/solicitudes" [state]="{nombre: gato.nombre}">
           Ver {{gato.solicitudes.length}}
         </button>
       </td>

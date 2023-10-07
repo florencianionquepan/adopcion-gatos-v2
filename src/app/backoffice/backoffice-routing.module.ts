@@ -7,6 +7,7 @@ import { GatosEdicionComponent } from "./pages/gatos-edicion/gatos-edicion.compo
 import { FichaPageComponent } from "./pages/ficha-page/ficha-page.component";
 import { MissolicitudesPageComponent } from "./pages/missolicitudes-page/missolicitudes-page.component";
 import { AsignacionTransitoPageComponent } from "./pages/asignacion-transito-page/asignacion-transito-page.component";
+import { SolicitudesByGatoComponent } from "./pages/solicitudes-by-gato/solicitudes-by-gato.component";
 
 const routes: Routes=[{
     path:'perfil',
@@ -27,6 +28,10 @@ const routes: Routes=[{
 {
     path:'misgatos/:id/transito',
     component:AsignacionTransitoPageComponent
+},
+{
+    path:'misgatos/:id/solicitudes',
+    component:SolicitudesByGatoComponent
 },
 {
     path:'missolicitudes',
