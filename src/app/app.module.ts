@@ -9,7 +9,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AuthGuard } from './routeguards/auth.guard';
 import { ValidationComponent } from './auth/validation/validation.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { LOCALE_ID } from '@angular/core';
@@ -37,7 +36,7 @@ import { LOCALE_ID } from '@angular/core';
       provide : HTTP_INTERCEPTORS,
       useClass : AuthInterceptor,
       multi : true
-    },AuthGuard,
+    },
     {
       provide: HTTP_INTERCEPTORS, 
       useClass: LoadingInterceptor, 
