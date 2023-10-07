@@ -1,1 +1,66 @@
-<p>tabla-solicitudes-adopcion works!</p>
+<table class="table table-sm bg-transparent rounded" id="cute">
+  <thead>
+    <tr>
+      <th scope="col-1">Fecha de envío</th>
+      <th scope="col-1">Estado</th>
+      <th scope="col-1">Nombre</th>
+      <th scope="col-1">Apellido</th>
+      <th scope="col-1" class="d-none d-md-table-cell">DNI</th>
+      <th scope="col-1" class="d-none d-md-table-cell">Direccion</th>
+      <th scope="col-1" class="d-none d-md-table-cell">Localidad</th>
+      <th scope="col-1" class="d-none d-lg-table-cell">Edad</th>
+      <th scope="col-1">Telefono</th>
+      <th scope="col-1" class="d-none d-lg-table-cell">Email</th>
+      <th scope="col-1">Es voluntario?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let solicitud of solicitudes">
+      <td>
+        {{ solicitud.estados[0].fecha }}
+      </td>
+      <td>
+        {{ solicitud.estados[solicitud.estados.length - 1].estado }}
+      </td>
+      <td>
+        <a
+          role="button"
+          class="colorw"
+          routerLinkActive="active"
+          routerLink="{{ solicitud.solicitante.id }}">
+          {{ solicitud.solicitante.nombre }}
+        </a>
+      </td>
+      <td>
+        {{ solicitud.solicitante.apellido }}
+      </td>
+      <td class="d-none d-md-table-cell">
+        {{ solicitud.solicitante.dni }}
+      </td>
+      <td class="d-none d-md-table-cell">
+        {{ solicitud.solicitante.dire }}
+      </td>
+      <td>
+        {{ solicitud.solicitante.localidad }}
+      </td>
+      <td class="d-none d-lg-table-cell">
+        {{ solicitud.solicitante.fechaNac | age }} años
+      </td>
+      <td class="d-none d-lg-table-cell">
+        {{ solicitud.solicitante.tel }}
+      </td>
+      <td>
+        {{ solicitud.solicitante.email }}
+      </td>
+      <td>
+        No
+      </td>
+      <button class="btn btn-secondary" (click)="aceptar()">
+        Aceptar
+      </button>
+      <button class="btn btn-secondary" (click)="rechazar()">
+        Rechazar
+      </button>
+    </tr>
+  </tbody>
+</table>
