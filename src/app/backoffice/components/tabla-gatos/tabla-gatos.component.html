@@ -31,10 +31,10 @@
         {{ gato.transito?.localidad || gato.voluntario?.localidad }}
       </td>
       <td>{{ gato.adoptado || "No" }}</td>
-      <td>{{ gato.transito?.dni || "" }}
+      <td>
         <button class="btn btn-secondary btn-sm" routerLink="{{gato.id}}/transito"
-        [state]="{ nombre: gato.nombre}">
-          Buscar
+        [state]="{ nombre: gato.nombre, transito:gato.transito}">
+        {{ gato.transito? gato.transito.nombre + '-Ver' : 'Buscar' }}
         </button>
       </td>
       <td class="d-none d-lg-table-cell">

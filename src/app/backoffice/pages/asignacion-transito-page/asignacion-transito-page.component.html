@@ -1,6 +1,7 @@
+<app-header></app-header>
 <div class="container-md">
-    <div class="row mt-5 border-bottom border-secondary justify-content-between">
-        <div class="col-11">
+    <div class="row mt-5 border-bottom border-secondary">
+        <div class="col-9 col-md-11">
             <h1 class="titulo1 mb-0">
                 {{nombreGatito}} 
             </h1>
@@ -14,7 +15,8 @@
             <div class="input-group input-group">
                 <span class="input-group-text" id="inputGroup-sizing-default">Transito</span>
                 <input type="text" class="form-control" aria-label="Sizing example input" 
-                aria-describedby="inputGroup-sizing-default" disabled value="No posee">
+                aria-describedby="inputGroup-sizing-default" disabled
+                [value]="transitoActual ? transitoActual.nombre+' '+transitoActual.apellido : 'No posee'">
             </div>
         </div>
         <form class="col-10 col-lg-auto mb-3 mb-lg-0" role="search">
@@ -22,9 +24,10 @@
             aria-label="Search">
         </form>
     </div>
-    <div class="row my-3 border-bottom border-secondary justify-content-between">
+    <div class="row my-3 border-bottom border-secondary justify-content-between px-2">
         Transitos existentes en Rescats
     </div>
     <app-tabla-transitos (asignarTransitoEvent)="asignarTransito($event)">
     </app-tabla-transitos>
 </div>
+<app-footer></app-footer>
