@@ -28,7 +28,7 @@
         {{ gato.edad }}
       </td>
       <td class="d-none d-lg-table-cell">
-        {{ gato.transito?.direccion || gato.voluntario?.localidad }}
+        {{ gato.transito?.localidad || gato.voluntario?.localidad }}
       </td>
       <td>{{ gato.adoptado || "No" }}</td>
       <td>{{ gato.transito?.dni || "" }}

@@ -22,16 +22,16 @@
           {{ transito.apellido }}
         </td>
         <td class="d-none d-md-table-cell">
-          {{ transito.direccion }}
+          {{ transito.dire }}
         </td>
         <td class="d-none d-md-table-cell">
           {{ transito.localidad }}
         </td>
         <td class="d-none d-lg-table-cell">
-            {{ transito.fechaNacimiento | age }} años
+            {{ transito.fechaNac| age }} años
         </td>
         <td>
-            {{ transito.telefono }}
+            {{ transito.tel }}
         </td>
         <td class="d-none d-lg-table-cell">
           {{ transito.email }}
@@ -39,7 +39,7 @@
         <td>
           {{ transito.gatos.length }}
         </td>
-        <button class="btn btn-secondary btn-sm">Buscar</button>
+        <button class="btn btn-secondary btn-sm">Asignar</button>
       </tr>
     </tbody>
   </table>

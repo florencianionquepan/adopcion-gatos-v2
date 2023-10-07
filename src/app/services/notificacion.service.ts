@@ -35,7 +35,7 @@ export class NotificacionService {
     map((response:any) => {
       //console.log(response);
       if (response.success) {
-        return response.data; 
+        return response.data.reverse(); 
       } else {
         throw new Error('Error al obtener las notificaciones');
       }
@@ -51,7 +51,7 @@ export class NotificacionService {
   public setearNotiLeidas(notificaciones:Notificacion[]):Observable<Notificacion[]>{
     return this.http.put(`${this.apiNotificaciones}/leidas`,notificaciones).pipe(
       map((response:any) => {
-        //console.log(response);
+        console.log(response);
         if (response.success) {
           return response.data; 
         } else {

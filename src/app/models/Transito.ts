@@ -6,23 +6,23 @@ export class Transito{
     public nombre:string;
     public apellido:string;
     public email:string;
-    public fechaNacimiento:Date;
-    public telefono:string;
-    public direccion:string;
+    public fechaNac:Date;
+    public tel:string;
+    public dire:string;
     public localidad:string;
     public gatos:Gato[];
 
     constructor(id?:number,dni?:string,nombre?:string,apellido?:string,
-        email?:string,fechaNacimiento?:Date,
-        telefono?:string,direccion?:string,localidad?:string, gatos?:Gato[]){
+        email?:string,fechaNac?:Date,
+        tel?:string,dire?:string,localidad?:string, gatos?:Gato[]){
             this.id = id || 0;
             this.dni = dni || '';
             this.nombre = nombre || '';
             this.apellido = apellido || '';
             this.email = email || '';
-            this.fechaNacimiento = fechaNacimiento || new Date() ;
-            this.telefono = telefono || '';
-            this.direccion = direccion || '';
+            this.fechaNac = fechaNac || new Date() ;
+            this.tel = tel || '';
+            this.dire = dire || '';
             this.localidad = localidad || '';
             this.gatos = gatos || [];
     }

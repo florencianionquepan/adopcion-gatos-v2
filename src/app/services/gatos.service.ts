@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Gato } from '../models/gato';
 import { environment } from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { GatoDetalle } from '../models/GatoDetalle';
 import { FichaVeterinaria } from '../models/FichaVeterinaria';
 
@@ -10,11 +9,9 @@ import { FichaVeterinaria } from '../models/FichaVeterinaria';
   providedIn: 'root'
 })
 export class GatosService {
-  public cats:Gato[];
   public apiGatos=`${environment.url}/gatos`;
   
   constructor(private http:HttpClient) {
-    this.cats=[];
    }
 
   public verGatos():Observable<any>{

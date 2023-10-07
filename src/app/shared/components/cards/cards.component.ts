@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Gato } from 'src/app/models/gato';
 import { GatosService } from 'src/app/services/gatos.service';

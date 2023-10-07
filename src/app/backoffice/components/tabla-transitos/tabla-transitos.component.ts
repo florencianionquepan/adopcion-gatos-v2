@@ -15,6 +15,7 @@ transitos: Transito[]=[];
     this.service.verTransitos()
     .subscribe({
       next:(response)=>{
+        //console.log(response.data);
         this.transitos=response.data;
       },
       error:(e)=>{
