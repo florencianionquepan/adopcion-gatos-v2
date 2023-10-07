@@ -32,7 +32,8 @@
       </td>
       <td>{{ gato.adoptado || "No" }}</td>
       <td>{{ gato.transito?.dni || "" }}
-        <button class="btn btn-secondary btn-sm" routerLink="{{gato.id}}/transito">
+        <button class="btn btn-secondary btn-sm" routerLink="{{gato.id}}/transito"
+        [state]="{ nombre: gato.nombre}">
           Buscar
         </button>
       </td>
