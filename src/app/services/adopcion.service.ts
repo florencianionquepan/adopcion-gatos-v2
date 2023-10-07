@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Solicitud } from '../models/Solicitud';
 import { Persona } from '../models/Persona';
@@ -25,6 +25,23 @@ export class AdopcionService {
       catchError(err=>{
         //console.log(err);
         return throwError(()=>err.error)
+      })
+    )
+  }
+
+  public listarByGato(id:number):Observable<any>{
+    return this.http.get(`${this.apiSolicitud}/gato/${id}`).pipe(
+      map((response:any) => {
+        console.log(response);
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error) => {
+        console.error('Error en la solicitud:', error);
+        throw error;
       })
     )
   }
