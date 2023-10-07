@@ -25,5 +25,6 @@
     <div class="row my-3 border-bottom border-secondary justify-content-between">
         Transitos existentes en Rescats
     </div>
-    <app-tabla-transitos></app-tabla-transitos>
+    <app-tabla-transitos (asignarTransitoEvent)="asignarTransito($event)">
+    </app-tabla-transitos>
 </div>

@@ -23,8 +23,10 @@ export class AsignacionTransitoPageComponent {
 
   }
 
-  asignarTransito(nombreTransito:string,nombreGatito:string):void{
-    this.alertaAsignacion(nombreTransito,nombreGatito);
+  asignarTransito(transitoData: { id: number, nombre: string }):void{
+    const { id, nombre } = transitoData;
+    //console.log(id, nombre);
+    this.alertaAsignacion(nombre,this.nombreGatito);
   }
 
   alertaAsignacion(transito:string,gatito:string){
