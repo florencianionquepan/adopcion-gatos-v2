@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { GatoDetalle } from '../models/GatoDetalle';
 import { FichaVeterinaria } from '../models/FichaVeterinaria';
+import { Padrino } from '../models/Padrino';
+import { Transito } from '../models/Transito';
 
 @Injectable({
   providedIn: 'root'
@@ -80,6 +82,16 @@ export class GatosService {
       formData.append('multipartFiles',file);
     }
     return formData;
+  }
+
+  public asignarTransito(transito:Transito, idGato:number):Observable<any>{
+    return this.http.put<any>(`${this.apiGatos}/${idGato}/transito`, transito)
+    .pipe(
+      catchError(err=>{
+        console.log(err);
+        return throwError(()=>err.error)
+      })
+    )
   }
 
 }
