@@ -32,7 +32,7 @@ export class AdopcionService {
   public listarByGato(id:number):Observable<any>{
     return this.http.get(`${this.apiSolicitud}/gato/${id}`).pipe(
       map((response:any) => {
-        console.log(response);
+        //console.log(response);
         if (response.success) {
           return response.data; 
         } else {
