@@ -45,7 +45,7 @@ export class LoginComponent {
         if(response.headers){
           window.sessionStorage.setItem("Authorization",response.headers.get("Authorization")!);
         }
-        console.log(response);
+        //console.log(response);
         let body=<any> response.body;
         this.user=body.data;
         this.user.authStatus="AUTH";
