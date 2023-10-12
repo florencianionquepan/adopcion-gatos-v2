@@ -3,7 +3,7 @@
     <tr>
       <th scope="col-1">Fecha de envío</th>
       <th scope="col-1">Estado</th>
-      <th scope="col-1">Nombre</th>
+      <th scope="col-1">Solicitante</th>
       <th scope="col-1" class="d-none d-lg-table-cell">Adopto en Rescats?</th>
       <th scope="col-1">Es voluntario?</th>
       <th scope="col-1">Acciones</th>
@@ -12,7 +12,7 @@
   <tbody>
     <tr *ngFor="let solicitud of solicitudes">
       <td>
-        {{ solicitud.estados[0].fecha }}
+        {{ solicitud.estados[0].fecha | date:'dd/MM/YYYY'}}
       </td>
       <td>
         {{ solicitud.estados[solicitud.estados.length - 1].estado }}
@@ -30,11 +30,11 @@
       <td>
         No
       </td>
-      <button class="btn btn-secondary btn-lg mx-1" (click)="aceptar()">
-        Aceptar <i class="bi bi-person-heart"></i>
+      <button class="btn btn-secondary mx-1" (click)="aceptar(solicitud.id)">
+        <span><small>Aceptar </small></span> <i class="bi bi-check-circle"></i>
       </button>
-      <button class="btn btn-secondary btn-lg mx-1" (click)="rechazar()">
-        Rechazar <i class="bi bi-person-fill-x"></i>
+      <button class="btn btn-secondary mx-1" (click)="rechazar(solicitud.id)">
+        <span><small>Rechazar </small></span> <i class="bi bi-x-circle"></i>
       </button>
     </tr>
   </tbody>
