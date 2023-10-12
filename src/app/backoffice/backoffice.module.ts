@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { TablaGatosComponent } from './components/tabla-gatos/tabla-gatos.component';
@@ -19,10 +18,10 @@ import { TablaTransitosComponent } from './components/tabla-transitos/tabla-tran
 import { AgePipe } from '../pipes/age.pipe';
 import { SolicitudesByGatoComponent } from './pages/solicitudes-by-gato/solicitudes-by-gato.component';
 import { TablaSolicitudesAdopcionComponent } from './components/tabla-solicitudes-adopcion/tabla-solicitudes-adopcion.component';
+import { MiPerfilPageComponent } from './pages/mi-perfil-page/mi-perfil-page.component';
 
 @NgModule({
   declarations: [
-    ProfileComponent,
     TablaGatosComponent,
     GatosByVoluntarioComponent,
     FormGatoComponent,
@@ -35,7 +34,8 @@ import { TablaSolicitudesAdopcionComponent } from './components/tabla-solicitude
     TablaTransitosComponent,
     AgePipe,
     SolicitudesByGatoComponent,
-    TablaSolicitudesAdopcionComponent
+    TablaSolicitudesAdopcionComponent,
+    MiPerfilPageComponent
   ],
   imports: [
     CommonModule,
