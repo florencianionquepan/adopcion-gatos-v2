@@ -7,10 +7,11 @@ import {
   HttpHeaders,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, finalize, tap } from 'rxjs';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -41,18 +42,31 @@ export class AuthInterceptor implements HttpInterceptor {
       const xhr = req.clone({
         headers: httpHeaders
       });
-      return next.handle(xhr).pipe(tap(
-        (err: any) => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status !== 401) {
-              return;
+      return next.handle(xhr).pipe(
+        tap({
+          error:(e) => {
+            //console.log(error);
+            if (e instanceof HttpErrorResponse) {
+              if (e.status !== 401) {
+                return;
+              }
+              this.alertError(e);
+              sessionStorage.clear();
+              this.router.navigate(['/login']);
             }
-            this.router.navigate(['/']);
           }
         }));
     }else{
       return next.handle(req);
     }
+  }
+
+  alertError(error:any):void{
+    Swal.fire({
+      icon:'error',
+      title:'Error '+error.status+': '+error.error.message,
+      text:'Vuelve a iniciar sesión'
+    });
   }
     
 }
