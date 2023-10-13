@@ -3,35 +3,19 @@
     <tr>
       <th scope="col-1">Nombre</th>
       <th scope="col-1">Apellido</th>
-      <th scope="col-1" class="d-none d-md-table-cell">Direccion</th>
-      <th scope="col-1" class="d-none d-md-table-cell">Localidad</th>
-      <th scope="col-2" class="d-none d-lg-table-cell">Edad</th>
       <th scope="col-1">Telefono</th>
       <th scope="col-1" class="d-none d-lg-table-cell">Email</th>
-      <th scope="col-1">Total gatos</th>
+      <th scope="col-1">Gatos en transito</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let transito of transitos  | filter: filterTransitos">
       <td>
-        <a
-          role="button"
-          class="colorw"
-          routerLinkActive="active"
-          routerLink="{{ transito.id }}">
-          {{ transito.nombre }}
-        </a>
+        <app-detalle-persona [persona]="transito"></app-detalle-persona>
       </td>
       <td>
         {{ transito.apellido }}
       </td>
-      <td class="d-none d-md-table-cell">
-        {{ transito.dire }}
-      </td>
-      <td class="d-none d-md-table-cell">
-        {{ transito.localidad }}
-      </td>
-      <td class="d-none d-lg-table-cell">{{ transito.fechaNac | age }} años</td>
       <td>
         {{ transito.tel }}
       </td>
