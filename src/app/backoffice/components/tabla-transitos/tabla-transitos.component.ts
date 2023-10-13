@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Transito } from 'src/app/models/Transito';
 import { TransitoService } from 'src/app/services/transito.service';
 import Swal from 'sweetalert2';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 export class TablaTransitosComponent {
 transitos: Transito[]=[];
 @Output() asignarTransitoEvent = new EventEmitter<{ id: number, nombre: string }>();
+@Input() filterTransitos='';
 
   constructor(private service:TransitoService){
     this.service.verTransitos()

@@ -88,7 +88,7 @@ export class GatosService {
     return this.http.put<any>(`${this.apiGatos}/${idGato}/transito`, transito)
     .pipe(
       catchError(err=>{
-        console.log(err);
+        //console.log(err);
         return throwError(()=>err.error)
       })
     )

@@ -13,6 +13,7 @@ export class AsignacionTransitoPageComponent {
   public idGato:number;
   public nombreGatito:string='';
   public transitoActual:Transito=new Transito();
+  filtroTransitos: string = '';
 
   constructor(private actiRoute:ActivatedRoute,
     private gatoservice:GatosService){
@@ -55,7 +56,12 @@ export class AsignacionTransitoPageComponent {
             )
           },
           error:(e)=>{
-            console.error("Error al obtener los datos", e);
+            //console.error("Error al obtener los datos", e);
+            Swal.fire({
+              icon:'error',
+              title:'Error '+e.estado,
+              text:e.mensaje
+            })
           }
         })
       }

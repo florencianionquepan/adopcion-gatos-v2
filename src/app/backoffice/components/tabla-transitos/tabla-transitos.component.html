@@ -12,14 +12,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let transito of transitos">
+    <tr *ngFor="let transito of transitos  | filter: filterTransitos">
       <td>
         <a
           role="button"
           class="colorw"
           routerLinkActive="active"
-          routerLink="{{ transito.id }}"
-          >{{ transito.nombre }}
+          routerLink="{{ transito.id }}">
+          {{ transito.nombre }}
         </a>
       </td>
       <td>

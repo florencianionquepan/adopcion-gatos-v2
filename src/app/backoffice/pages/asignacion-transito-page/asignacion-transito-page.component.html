@@ -21,13 +21,13 @@
         </div>
         <form class="col-10 col-lg-auto mb-3 mb-lg-0" role="search">
             <input type="search" class="form-control" placeholder="Buscar transito..." 
-            aria-label="Search">
+            aria-label="Search" [(ngModel)]="filtroTransitos" name="transito">
         </form>
     </div>
     <div class="row my-3 border-bottom border-secondary justify-content-between px-2">
         Transitos existentes en Rescats
     </div>
-    <app-tabla-transitos (asignarTransitoEvent)="asignarTransito($event)">
+    <app-tabla-transitos (asignarTransitoEvent)="asignarTransito($event)" [filterTransitos]="filtroTransitos">
     </app-tabla-transitos>
 </div>
 <app-footer></app-footer>

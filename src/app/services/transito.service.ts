@@ -16,7 +16,7 @@ export class TransitoService {
     .pipe(
       catchError(err=>{
         console.log(err);
-        return throwError(()=>err.error)
+        return throwError(()=>err.error);
       })
     )
   }
