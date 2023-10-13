@@ -1,7 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { EstadoNombre } from 'src/app/models/Estado';
-import { Persona } from 'src/app/models/Persona';
+import { Component, Input } from '@angular/core';
 import { Solicitud } from 'src/app/models/Solicitud';
 import { AgePipe } from 'src/app/pipes/age.pipe';
 import { AdopcionService } from 'src/app/services/adopcion.service';
@@ -22,30 +19,7 @@ const estados={
 export class TablaSolicitudesAdopcionComponent {
   @Input() solicitudes: Solicitud[] = [];
   
-
-  constructor(private service:AdopcionService,
-            private actiRoute:ActivatedRoute,
-            private agePipe:AgePipe){
-  }
-
-  verDetalles(persona:Persona):void{
-    const edad = this.agePipe.transform(persona.fechaNac);
-    const detallesHTML = `
-      <div style="text-align:start;">
-        <p><strong>Apellido:</strong> ${persona.apellido}</p>
-        <p><strong>DNI:</strong> ${persona.dni}</p>
-        <p><strong>Direccion:</strong> ${persona.dire}</p>
-        <p><strong>Localidad:</strong> ${persona.localidad}</p>
-        <p><strong>Email:</strong> ${persona.email}</p>
-        <p><strong>Teléfono:</strong> ${persona.tel}</p>
-        <p><strong>Edad:</strong> ${edad}</p>
-      </div>
-    `;
-    Swal.fire({
-      title: 'Detalles de '+persona.nombre,
-      html: detallesHTML,
-      confirmButtonText: 'Cerrar'
-    })
+  constructor(private service:AdopcionService){
   }
 
   aceptar(id:number){

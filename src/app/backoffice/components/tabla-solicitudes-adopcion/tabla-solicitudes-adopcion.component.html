@@ -18,11 +18,7 @@
         {{ solicitud.estados[solicitud.estados.length - 1].estado }}
       </td>
       <td>
-        <a role="button"
-          class="colorw"
-          (click)="verDetalles(solicitud.solicitante)">
-          {{ solicitud.solicitante.nombre }}
-        </a>
+        <app-detalle-persona [persona]="solicitud.solicitante"></app-detalle-persona>
       </td>
       <td class="d-none d-lg-table-cell">
         No
