@@ -12,7 +12,7 @@
             class="d-flex flex-row align-items-center">
               <h5> Apadrinamiento:
                 <button type="button" class="btn btn-secondary btn-sm mx-2 mb-2"
-                (click)="apadrinar(gato)"> 
+                (click)="apadrinar(gato)" [ngClass]="{'disabled': gato.adoptado}"> 
                 <i class="bi bi-box2-heart"> </i> <span> </span>
                 <i class="bi bi-currency-dollar"></i>{{gato.montoMensual}}
                 </button>
@@ -42,7 +42,7 @@
           <div class="row align-items-center justify-content-center">
             <div class="col pt-3 text-center">
                 <button type="button" class="btn btn-secondary" id="adoptar"
-                (click)="adoptar()">
+                (click)="adoptar()" [ngClass]="{'disabled': gato.adoptado}">
                    Adoptar <i class="bi bi-suit-heart-fill"></i>
                 </button>
             </div>

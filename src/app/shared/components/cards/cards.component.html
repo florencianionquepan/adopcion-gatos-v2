@@ -1,7 +1,11 @@
 <div class="row justify-content-start align-items-start mt-4">
   <div class="col-10 col-md-4 col-lg-3 my-2" *ngFor="let cat of cats">
     <div class="card my-auto" style="background-color: #f8e0db;">
-      <div class="text-center d-flex align-items-center my-auto" style="min-height: 200px;">
+      <div class="text-center d-flex align-items-center my-auto" 
+      style="min-height: 200px;">
+      <div class="adopted-text d-flex align-items-center" *ngIf="cat.adoptado">
+          <span class="ml-2">Adoptado!</span> <i class="bi bi-house-heart-fill"></i>
+      </div>
         <img
           class="img-fluid mx-auto my-2 rounded"
           width="80%"

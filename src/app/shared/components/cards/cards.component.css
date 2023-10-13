@@ -1,4 +1,16 @@
-.card{
-    border: 1px solid #E8D5FF;
-    min-height: 400px;
+.card {
+  border: 1px solid #e8d5ff;
+  min-height: 400px;
+}
+
+.adopted-text {
+    position: absolute;
+    top: 10px; /* Ajusta la distancia desde la parte superior según tus preferencias */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(96, 105, 223, 0.9); /* Fondo naranja con opacidad */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
 }
