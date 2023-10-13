@@ -20,6 +20,7 @@ import { SolicitudesByGatoComponent } from './pages/solicitudes-by-gato/solicitu
 import { TablaSolicitudesAdopcionComponent } from './components/tabla-solicitudes-adopcion/tabla-solicitudes-adopcion.component';
 import { MiPerfilPageComponent } from './pages/mi-perfil-page/mi-perfil-page.component';
 import { FilterPipe } from '../pipes/filter.pipe';
+import { DetallePersonaComponent } from './components/detalle-persona/detalle-persona.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FilterPipe } from '../pipes/filter.pipe';
     SolicitudesByGatoComponent,
     TablaSolicitudesAdopcionComponent,
     MiPerfilPageComponent,
-    FilterPipe
+    FilterPipe,
+    DetallePersonaComponent
   ],
   imports: [
     CommonModule,
