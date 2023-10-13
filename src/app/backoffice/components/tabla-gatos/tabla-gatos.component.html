@@ -30,27 +30,34 @@
       <td class="d-none d-lg-table-cell">
         {{ gato.transito?.localidad || gato.voluntario?.localidad }}
       </td>
-      <td>{{ gato.adoptado || "No" }}</td>
-      <td>
-        <button class="btn btn-secondary btn-sm" routerLink="{{gato.id}}/transito"
+      <td>{{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'No' }}</td>
+      <td *ngIf="!gato.adoptado">
+        <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
         [state]="{ nombre: gato.nombre, transito:gato.transito}">
-        {{ gato.transito? gato.transito.nombre + '-Ver' : 'Buscar' }}
+        {{ gato.transito? gato.transito.nombre  : 'Buscar'}}
+        <i class="bi bi-search-heart"></i>
         </button>
       </td>
+      <td *ngIf="gato.adoptado">
+        <span *ngIf="gato.transito">
+          <app-detalle-persona [persona]="gato.transito"></app-detalle-persona>
+        </span>
+        <span *ngIf="!gato.transito"> No tenia </span>
+      </td>
       <td class="d-none d-lg-table-cell">
-        {{ gato.montoMensual }}
+        $ARS {{ gato.montoMensual }}
       </td>
       <td>
         {{ gato.padrino?.dni || "No posee" }}
       </td>
       <td>{{ gato.solicitudes.length==0? 'No posee' : '' }}
-        <button *ngIf="gato.solicitudes.length>0" class="btn btn-secondary btn-sm"
+        <button *ngIf="gato.solicitudes.length>0" class="btn btn-outline-dark btn-sm"
           routerLink="{{gato.id}}/solicitudes" [state]="{nombre: gato.nombre}">
-          Ver {{gato.solicitudes.length}}
+          Ver {{gato.solicitudes.length}} 
         </button>
       </td>
       <td>
-        <a role="button" class="btn btn-secondary btn-sm mx-1"
+        <a role="button" class="btn btn-outline-dark btn-sm mx-1"
         routerLinkActive="active" routerLink="{{gato.id}}/ficha">
         <i class="bi bi-clipboard2-heart"></i>
         </a>
