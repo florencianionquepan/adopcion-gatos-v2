@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TablaGatosComponent } from './components/tabla-gatos/tabla-gatos.component';
 import { GatosByVoluntarioComponent } from './pages/gatos-by-voluntario/gatos-by-voluntario.component';
 import { FormGatoComponent } from './components/form-gato/form-gato.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GatosEdicionComponent } from './pages/gatos-edicion/gatos-edicion.component';
 import { FichaGatoComponent } from './components/ficha-gato/ficha-gato.component';
 import { FichaPageComponent } from './pages/ficha-page/ficha-page.component';
@@ -19,6 +19,7 @@ import { AgePipe } from '../pipes/age.pipe';
 import { SolicitudesByGatoComponent } from './pages/solicitudes-by-gato/solicitudes-by-gato.component';
 import { TablaSolicitudesAdopcionComponent } from './components/tabla-solicitudes-adopcion/tabla-solicitudes-adopcion.component';
 import { MiPerfilPageComponent } from './pages/mi-perfil-page/mi-perfil-page.component';
+import { FilterPipe } from '../pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -35,14 +36,16 @@ import { MiPerfilPageComponent } from './pages/mi-perfil-page/mi-perfil-page.com
     AgePipe,
     SolicitudesByGatoComponent,
     TablaSolicitudesAdopcionComponent,
-    MiPerfilPageComponent
+    MiPerfilPageComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     BackofficeRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   providers:[
     NotificacionService
