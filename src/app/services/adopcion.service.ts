@@ -45,4 +45,23 @@ export class AdopcionService {
       })
     )
   }
+
+  public actualizarSolicitud(id:number,estado:string,motivo:string):Observable<any>{
+    const soli=new Solicitud();
+    soli.motivo=motivo;
+    return this.http.put(`${this.apiSolicitud}/${id}/estados/${estado}`,soli).pipe(
+      map((response:any) => {
+        //console.log(response);
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error) => {
+        console.error('Error en la solicitud:', error);
+        throw error;
+      })
+    )
+  }
 }
