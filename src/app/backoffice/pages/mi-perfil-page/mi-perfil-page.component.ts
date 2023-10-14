@@ -4,6 +4,7 @@ import { fechaNacimientoValidator, passwordMatchValidator } from '../../validato
 import { User } from 'src/app/models/user';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Persona } from 'src/app/models/Persona';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mi-perfil-page',
@@ -57,7 +58,16 @@ export class MiPerfilPageComponent {
   }
 
   actualizar(){
-    console.log(this.perfilForm);
+    const {nombre,apellido,fechaDeNacimiento,dni,localidad,
+      provincia,telefono,direccion}=this.perfilForm.value;
+    let localidadTotal=`${localidad},${provincia}`;
+    let personaModi=new Persona(this.persona.id,dni,nombre,apellido,
+      telefono,this.user.email,fechaDeNacimiento,direccion,localidadTotal);
+    this.service.actualizarDatos(personaModi, this.persona.id).subscribe(
+      data=>{
+        Swal.fire({icon:'success',title:'Datos actualizados!'});
+      }
+    )
   }
 
 }
