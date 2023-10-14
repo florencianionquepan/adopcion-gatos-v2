@@ -1,14 +1,14 @@
 export interface Gato{
     "id":number;
-    "nombre":String,
-    "fotos":String[],
-    "edad":String,
-    "sexo":String,
-    "descripcion":String,
-    "color":String,
-    "tipoPelo":String,
-    "solicitudes":String[],
-    "adoptado":boolean,
+    "nombre":string,
+    "fotos":string[],
+    "edad":string,
+    "sexo":string,
+    "descripcion":string,
+    "color":string,
+    "tipoPelo":string,
+    "solicitudes":string[],
+    "adoptado":Date,
 }
 
 
