@@ -3,6 +3,7 @@ import { Observable, Subject, catchError, from, map, of, switchMap, takeUntil } 
 import { Solicitud } from 'src/app/models/Solicitud';
 import { AgePipe } from 'src/app/pipes/age.pipe';
 import { AdopcionService } from 'src/app/services/adopcion.service';
+import { PersonaService } from 'src/app/services/persona.service';
 import Swal from 'sweetalert2';
 
 const estados={
@@ -21,7 +22,7 @@ export class TablaSolicitudesAdopcionComponent {
   @Input() solicitudes: Solicitud[] = [];
   datosCargados:boolean=false;
   
-  constructor(private service:AdopcionService){
+  constructor(private service:AdopcionService, private persoService:PersonaService){
   }
 
   aceptar(id:number){
@@ -112,6 +113,22 @@ export class TablaSolicitudesAdopcionComponent {
   }
   
   esVoluntario(dni:string){
-    
+    this.persoService.listaVoluntariados(dni).subscribe(
+      data=>{
+        this.verVoluntariados(data);
+      }
+    )
+  }
+
+  verVoluntariados(lista:string[]){
+    if(lista.length==0){
+      Swal.fire("No es parte de Rescats");
+    }else{
+      const texto=lista.map(nombre => `&#x2764; ${nombre}`).join('<br>');
+      Swal.fire({
+        title:'Voluntariados que realiza...',
+        html:texto
+      })
+    }
   }
 }
