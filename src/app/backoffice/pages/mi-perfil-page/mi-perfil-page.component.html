@@ -84,7 +84,8 @@
                     </div>
                 </div>
                 <div class="col-4 g-2 my-2 mx-auto mb-4">
-                    <button class="w-100 btn btn-lg btn-outline-secondary mt-4">Guardar</button>
+                    <button class="w-100 btn btn-lg btn-outline-secondary mt-4"
+                    [disabled]="!perfilForm.valid">Guardar</button>
                 </div>
             </div>
         </div>
