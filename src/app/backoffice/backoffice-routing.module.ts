@@ -7,6 +7,7 @@ import { FichaPageComponent } from "./pages/ficha-page/ficha-page.component";
 import { MissolicitudesPageComponent } from "./pages/missolicitudes-page/missolicitudes-page.component";
 import { AsignacionTransitoPageComponent } from "./pages/asignacion-transito-page/asignacion-transito-page.component";
 import { SolicitudesByGatoComponent } from "./pages/solicitudes-by-gato/solicitudes-by-gato.component";
+import { MiPerfilPageComponent } from "./pages/mi-perfil-page/mi-perfil-page.component";
 
 const routes: Routes=[
 {
@@ -32,6 +33,10 @@ const routes: Routes=[
 {
     path:'missolicitudes',
     component:MissolicitudesPageComponent
+},
+{
+    path:'perfil',
+    component:MiPerfilPageComponent
 }]
 
 @NgModule({
