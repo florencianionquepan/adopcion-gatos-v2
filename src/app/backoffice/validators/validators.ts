@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidatorFn } from "@angular/forms";
+import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export const atLeastOneFieldRequired: ValidatorFn = (control: AbstractControl) => {
     if (control instanceof FormGroup) {
@@ -28,4 +28,16 @@ export const fechaNacimientoValidator: ValidatorFn = (control: AbstractControl) 
       }
       return null; 
     };
+}
+
+export function provinciaValidator(provincias: { id: number, nombre: string }[]): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const selectedProvincia = control.value;
+    const foundProvincia = provincias.find(prov => prov.nombre === selectedProvincia);
+    if (foundProvincia) {
+      return null; // Valor válido
+    } else {
+      return { invalidProvincia: true }; // Valor no válido
+    }
+  };
 }
