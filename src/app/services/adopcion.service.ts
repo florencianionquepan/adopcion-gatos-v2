@@ -64,4 +64,19 @@ export class AdopcionService {
       })
     )
   }
+
+  public listarSoliAceptadas(dni:string):Observable<any>{
+    return this.http.get(`${this.apiSolicitud}/aceptadas/solicitante/${dni}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
 }
