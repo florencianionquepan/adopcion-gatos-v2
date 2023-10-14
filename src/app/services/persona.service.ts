@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Persona } from '../models/Persona';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,7 @@ export class PersonaService {
         }
       }),
       catchError((error: any) => {
+        Swal.fire({icon:'error',title:`Error ${error.error.estado}`,text:error.error.mensaje})
         throw error;
       })
     )
