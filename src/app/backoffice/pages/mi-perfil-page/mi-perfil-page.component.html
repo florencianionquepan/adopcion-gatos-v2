@@ -1,1 +1,93 @@
-<p>mi-perfil-page works!</p>
+<app-header></app-header>
+<div class="container-sm">
+    <div class="row m-5 border-bottom border-secondary">
+        <div class="col-9 col-md-11">
+            <h1 class="titulo1 mb-0">
+                Mi perfil
+            </h1>
+        </div>
+    </div>
+
+    <form [formGroup]="perfilForm" (ngSubmit)="perfilForm.valid && actualizar()" class="py-2 mx-auto">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-10 col-lg-8 p-3 color1 border rounded">
+                <div class="row align-items-start justify-content-center g-2">
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                            [ngClass]="{'is-invalid':perfilForm.get('nombre')?.errors && perfilForm.get('nombre')?.touched}">
+                            <label for="nombre">Nombre *</label>
+                            <app-error-validation [field]="'nombre'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="text" formControlName="apellido" class="form-control" id="apellido"
+                            [ngClass]="{'is-invalid':perfilForm.get('apellido')?.errors && perfilForm.get('apellido')?.touched}">
+                            <label for="apellido">Apellido *</label>
+                            <app-error-validation [field]="'apellido'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-start justify-content-center g-2 my-2">
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="date" formControlName="fechaDeNacimiento" class="form-control" id="fechaDeNacimiento"
+                            [ngClass]="{'is-invalid':perfilForm.get('fechaDeNacimiento')?.errors && perfilForm.get('fechaDeNacimiento')?.touched}">
+                            <label for="fechaDeNacimiento">Fecha de Nacimiento *</label>
+                            <app-error-validation [field]="'fechaDeNacimiento'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="text" formControlName="dni" class="form-control" id="dni"
+                            [ngClass]="{'is-invalid':perfilForm.get('dni')?.errors && perfilForm.get('dni')?.touched}">
+                            <label for="dni">DNI *</label>
+                            <app-error-validation [field]="'dni'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-start justify-content-center g-2 my-2">
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="text" formControlName="provincia" class="form-control" id="provincia"
+                            [ngClass]="{'is-invalid':perfilForm.get('provincia')?.errors && perfilForm.get('provincia')?.touched}">
+                            <label for="provincia">Provincia *</label>
+                            <app-error-validation [field]="'provincia'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="text" formControlName="localidad" class="form-control" id="localidad"
+                            [ngClass]="{'is-invalid':perfilForm.get('localidad')?.errors && perfilForm.get('localidad')?.touched}">
+                            <label for="localidad">Localidad *</label>
+                            <app-error-validation [field]="'localidad'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-start justify-content-center g-2 my-2">
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="text" formControlName="direccion" class="form-control" id="direccion"
+                            [ngClass]="{'is-invalid':perfilForm.get('direccion')?.errors && perfilForm.get('direccion')?.touched}">
+                            <label for="direccion">Direccion *</label>
+                            <app-error-validation [field]="'direccion'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                    <div class="form-group col-8 col-md-6">
+                        <div class="form-floating">
+                            <input type="text" formControlName="telefono" class="form-control" id="telefono"
+                            [ngClass]="{'is-invalid':perfilForm.get('telefono')?.errors && perfilForm.get('telefono')?.touched}">
+                            <label for="telefono">Telefono *</label>
+                            <app-error-validation [field]="'telefono'" [form]="perfilForm"></app-error-validation>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 g-2 my-2 mx-auto mb-4">
+                    <button class="w-100 btn btn-lg btn-outline-secondary mt-4">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>
