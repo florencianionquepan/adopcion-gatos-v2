@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
-import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Registro, Usuario } from 'src/app/models/Registro';
-import { passwordMatchValidator } from 'src/app/backoffice/validators/validators';
+import { fechaNacimientoValidator, passwordMatchValidator } from 'src/app/backoffice/validators/validators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +17,7 @@ export class RegisterComponent {
   public registerForm:FormGroup=this.fb.group({
     nombre:['',[Validators.required]],
     apellido:['',[Validators.required]],
-    fechaDeNacimiento:['',[Validators.required,this.fechaNacimientoValidator()]],
+    fechaDeNacimiento:['',[Validators.required,fechaNacimientoValidator]],
     dni:['',[Validators.required,Validators.pattern('^[0-9]{8}$')]],
     provincia:['',[Validators.required]],
     localidad:['',[Validators.required]],
@@ -30,18 +29,6 @@ export class RegisterComponent {
   },{
     validators:[passwordMatchValidator]
   });
-
-  fechaNacimientoValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const fechaNacimiento = new Date(control.value);
-      const hoy = new Date();
-      const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-      if (edad < 18) {
-        return { edadMenorDe18: true }; 
-      }
-      return null; 
-    };
-  }
 
   constructor(private fb:FormBuilder, 
     private service:RegisterService,

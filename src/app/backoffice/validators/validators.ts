@@ -17,3 +17,15 @@ export const passwordMatchValidator: ValidatorFn = (control: AbstractControl) =>
     }
     return null;
 };
+
+export const fechaNacimientoValidator: ValidatorFn = (control: AbstractControl) => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const fechaNacimiento = new Date(control.value);
+      const hoy = new Date();
+      const edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+      if (edad < 18) {
+        return { edadMenorDe18: true }; 
+      }
+      return null; 
+    };
+}
