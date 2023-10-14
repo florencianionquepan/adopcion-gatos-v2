@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable, Subject, catchError, from, map, of, switchMap, takeUntil } from 'rxjs';
 import { Solicitud } from 'src/app/models/Solicitud';
 import { AgePipe } from 'src/app/pipes/age.pipe';
 import { AdopcionService } from 'src/app/services/adopcion.service';
@@ -18,6 +19,7 @@ const estados={
 
 export class TablaSolicitudesAdopcionComponent {
   @Input() solicitudes: Solicitud[] = [];
+  datosCargados:boolean=false;
   
   constructor(private service:AdopcionService){
   }
@@ -83,5 +85,33 @@ export class TablaSolicitudesAdopcionComponent {
       showConfirmButton: false,
       timer: 1500
     })
+  }
+
+  adoptoAntes(dni: string) {
+    this.service.listarSoliAceptadas(dni).subscribe(
+      data=>{
+        this.mensajeData(data);
+      }
+    )
+  }
+
+  mensajeData(lista:Solicitud[]):void{
+    const nombresGatos:string[]=[];
+    if(lista.length==0){
+      Swal.fire("El usuario no adoptó nunca");
+    }else{
+      lista.forEach((sol)=>{
+        nombresGatos.push(sol.gato.nombre);
+      })
+      const nombresGatosH = nombresGatos.map(nombre => `&#x2764; ${nombre}`).join('<br>');
+      Swal.fire({
+        title:'Algunos gatitos...',
+        html:nombresGatosH
+      })
+    }
+  }
+  
+  esVoluntario(dni:string){
+    
   }
 }

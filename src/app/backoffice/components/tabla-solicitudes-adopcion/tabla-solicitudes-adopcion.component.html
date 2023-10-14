@@ -1,17 +1,17 @@
 <table class="table table-sm bg-transparent rounded" id="cute">
   <thead>
     <tr>
-      <th scope="col-1">Fecha de envío</th>
-      <th scope="col-1">Estado</th>
-      <th scope="col-1">Solicitante</th>
-      <th scope="col-1" class="d-none d-lg-table-cell">Adopto en Rescats?</th>
-      <th scope="col-1">Es voluntario?</th>
-      <th scope="col-1">Acciones</th>
+      <th scope="col-auto" class="d-none d-lg-table-cell">Fecha de envío</th>
+      <th scope="col-auto">Estado</th>
+      <th scope="col-auto">Solicitante</th>
+      <th scope="col-auto" class="d-none d-md-table-cell">Adopto en Rescats?</th>
+      <th scope="col-auto" class="d-none d-md-table-cell">Es voluntario?</th>
+      <th scope="col-auto">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let solicitud of solicitudes">
-      <td>
+      <td class="d-none d-lg-table-cell">
         {{ solicitud.estados[0].fecha | date:'dd/MM/YYYY'}}
       </td>
       <td>
@@ -20,11 +20,15 @@
       <td>
         <app-detalle-persona [persona]="solicitud.solicitante"></app-detalle-persona>
       </td>
-      <td class="d-none d-lg-table-cell">
-        No
+      <td class="d-none d-md-table-cell">
+          <button class="btn btn-outline-dark btn-sm" (click)="adoptoAntes(solicitud.solicitante.dni)">
+            Chequear <i class="bi bi-eye"></i>
+          </button>
       </td>
-      <td>
-        No
+      <td class="d-none d-md-table-cell">
+        <button class="btn btn-outline-dark btn-sm" (click)="esVoluntario(solicitud.solicitante.dni)">
+          Revisar <i class="bi bi-zoom-in"></i>
+        </button>
       </td>
       <td *ngIf="solicitud.estados[solicitud.estados.length - 1].estado?.toString() === 'PENDIENTE'; else fila">
         <button class="btn btn-secondary mx-1" (click)="aceptar(solicitud.id)">
