@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { EMPTY, Observable, catchError, expand, map, of, reduce, take, throwError } from 'rxjs';
 import { apiGeoRef } from 'src/environments/environment';
 
 @Injectable({
@@ -27,13 +27,38 @@ export class GeorefService {
   }
 
   public obtenerLocalidadesByProvinciaId(id:number):Observable<any>{
-    return 	this.http.get(`${this.apiGeoRef}/localidades?provincia=${id}`).pipe(
-      map((response: any) => {
-        const localidades = response.localidades.map((localidad: any) => {
-          return localidad.localidad_censal.nombre;
-        });
-        return localidades;
-      })
-    )
+    return this.obtenerTodasLasLocalidades(id,3);
   }
+
+  private obtenerTodasLasLocalidades(id: number, maxPages:number, page = 0): Observable<any> {
+    const pageSize = 10; // Cantidad de localidades por página
+    return this.obtenerLocalidadesPorPagina(id, page, pageSize).pipe(
+      expand((localidadesEnPagina) => {
+        if (localidadesEnPagina.length < pageSize) {
+          return EMPTY; // Detiene la expansión si no hay más páginas
+        }
+        return this.obtenerLocalidadesPorPagina(id, page + 1, pageSize);
+      }),
+      take(maxPages),
+      reduce((allLocalidades: string[], localidadesEnPagina: string[]) => allLocalidades.concat(localidadesEnPagina), [])
+    );
+  }
+
+  private obtenerLocalidadesPorPagina(id: number, page: number, pageSize: number): Observable<string[]> {
+    const params = new HttpParams()
+      .set('provincia', id.toString())
+      .set('inicio', (page * pageSize).toString());
+  
+    return this.http.get(`${this.apiGeoRef}/localidades`, { params }).pipe(
+      map((response: any) => {
+        //console.log(response);
+        return response.localidades.map((localidad: any) => localidad.localidad_censal.nombre);
+      }),
+      catchError(error => {
+        console.error(error);
+        return throwError(()=>error)
+      })
+    );
+  }
+  
 }
