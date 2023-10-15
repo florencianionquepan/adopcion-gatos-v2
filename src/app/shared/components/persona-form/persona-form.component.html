@@ -1,0 +1,87 @@
+<form [formGroup]="personaForm" class="py-2 mx-auto">
+<div class="row align-items-center justify-content-center">
+  <div class="col-10 col-lg-8 p-3 color1 border rounded">
+      <div class="row align-items-start justify-content-center g-2">
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                  [ngClass]="{'is-invalid':personaForm.get('nombre')?.errors && personaForm.get('nombre')?.touched}">
+                  <label for="nombre">Nombre *</label>
+                  <app-error-validation [field]="'nombre'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input type="text" formControlName="apellido" class="form-control" id="apellido"
+                  [ngClass]="{'is-invalid':personaForm.get('apellido')?.errors && personaForm.get('apellido')?.touched}">
+                  <label for="apellido">Apellido *</label>
+                  <app-error-validation [field]="'apellido'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+      </div>
+      <div class="row align-items-start justify-content-center g-2 my-2">
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input type="date" formControlName="fechaDeNacimiento" class="form-control" id="fechaDeNacimiento"
+                  [ngClass]="{'is-invalid':personaForm.get('fechaDeNacimiento')?.errors && personaForm.get('fechaDeNacimiento')?.touched}">
+                  <label for="fechaDeNacimiento">Fecha de Nacimiento *</label>
+                  <app-error-validation [field]="'fechaDeNacimiento'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input type="text" formControlName="dni" class="form-control" id="dni"
+                  [ngClass]="{'is-invalid':personaForm.get('dni')?.errors && personaForm.get('dni')?.touched}">
+                  <label for="dni">DNI *</label>
+                  <app-error-validation [field]="'dni'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+      </div>
+      <div class="row align-items-start justify-content-center g-2 my-2">
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input formControlName="provincia" class="form-control" id="provincia" list="provincias"
+                  (change)="onProvinciaChange()"
+                  [ngClass]="{'is-invalid':personaForm.get('provincia')?.errors && personaForm.get('provincia')?.touched}">
+                  <label for="provincia">Provincia *</label>
+                  <datalist id="provincias">
+                    <option *ngFor="let provincia of provincias" 
+                    [value]="provincia.nombre" [id]="provincia.id">{{ provincia.nombre }}</option>
+                  </datalist>
+                  <app-error-validation [field]="'provincia'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input formControlName="localidad" class="form-control" id="localidad" list="localidades"
+                  [ngClass]="{'is-invalid':personaForm.get('localidad')?.errors && personaForm.get('localidad')?.touched}">
+                  <label for="localidad">Localidad *</label>
+                  <datalist id="localidades">
+                    <option *ngFor="let localidad of localidades" 
+                    [value]="localidad" >{{ localidad }}</option>
+                  </datalist>
+                  <app-error-validation [field]="'localidad'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+      </div>
+      <div class="row align-items-start justify-content-center g-2 my-2">
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input type="text" formControlName="direccion" class="form-control" id="direccion"
+                  [ngClass]="{'is-invalid':personaForm.get('direccion')?.errors && personaForm.get('direccion')?.touched}">
+                  <label for="direccion">Direccion *</label>
+                  <app-error-validation [field]="'direccion'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+          <div class="form-group col-8 col-md-6">
+              <div class="form-floating">
+                  <input type="text" formControlName="telefono" class="form-control" id="telefono"
+                  [ngClass]="{'is-invalid':personaForm.get('telefono')?.errors && personaForm.get('telefono')?.touched}">
+                  <label for="telefono">Telefono *</label>
+                  <app-error-validation [field]="'telefono'" [form]="personaForm"></app-error-validation>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</form>
