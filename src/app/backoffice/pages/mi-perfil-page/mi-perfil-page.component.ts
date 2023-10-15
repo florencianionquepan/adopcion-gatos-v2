@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { fechaNacimientoValidator, passwordMatchValidator } from '../../validators/validators';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Persona } from 'src/app/models/Persona';
@@ -27,47 +26,53 @@ export class MiPerfilPageComponent {
         //console.log(data);
         this.persona=data;
         this.saveForm();
-        console.log(this.perfilForm);
       }
     )
   }
 
-  public perfilForm:FormGroup=this.fb.group({
-    nombre:['',[Validators.required]],
-    apellido:['',[Validators.required]],
-    fechaDeNacimiento:['',[Validators.required,fechaNacimientoValidator]],
-    dni:['',[Validators.required,Validators.pattern('^[0-9]{8}$')]],
-    provincia:['',[Validators.required]],
-    localidad:['',[Validators.required]],
-    direccion:['',[Validators.required]],
-    telefono:['',[Validators.required]],
-  });
-
-  private saveForm():void{
-    let localidad=this.persona.localidad.split(',');
-    this.perfilForm.patchValue({
+  public perfilForm =new FormGroup({
+    personaData: new FormControl({
       nombre: this.persona.nombre,
       apellido: this.persona.apellido,
       fechaDeNacimiento: this.persona.fechaNac,
       dni: this.persona.dni,
-      localidad: localidad[0],
-      provincia: localidad[1],
+      localidad: this.persona.localidad.split(',')[0],
+      provincia: this.persona.localidad.split(',')[1],
       telefono: this.persona.tel,
       direccion: this.persona.dire,
     })
+  });
+
+  private saveForm():void{
+    let localidad=this.persona.localidad.split(',');
+     this.perfilForm.patchValue({
+      personaData:({
+        nombre: this.persona.nombre,
+        apellido: this.persona.apellido,
+        fechaDeNacimiento: this.persona.fechaNac,
+        dni: this.persona.dni,
+        localidad: localidad[0],
+        provincia: localidad[1],
+        telefono: this.persona.tel,
+        direccion: this.persona.dire,
+      })
+    }) 
   }
 
   actualizar(){
-    const {nombre,apellido,fechaDeNacimiento,dni,localidad,
-      provincia,telefono,direccion}=this.perfilForm.value;
-    let localidadTotal=`${localidad},${provincia}`;
-    let personaModi=new Persona(this.persona.id,dni,nombre,apellido,
-      telefono,this.user.email,fechaDeNacimiento,direccion,localidadTotal);
-    this.service.actualizarDatos(personaModi, this.persona.id).subscribe(
-      data=>{
-        Swal.fire({icon:'success',title:'Datos actualizados!'});
-      }
-    )
-  }
+    const personaData = this.perfilForm.get('personaData')?.value;
+    if(personaData){
+      const {nombre,apellido,fechaDeNacimiento,dni,localidad,
+        provincia,telefono,direccion}=personaData;
+      let localidadTotal=`${localidad},${provincia}`;
+      let personaModi=new Persona(this.persona.id,dni,nombre,apellido,
+        telefono,this.user.email,fechaDeNacimiento,direccion,localidadTotal);
+      this.service.actualizarDatos(personaModi, this.persona.id).subscribe(
+        data=>{
+          Swal.fire({icon:'success',title:'Datos actualizados!'});
+        }
+      )
+    }
+  } 
 
 }
