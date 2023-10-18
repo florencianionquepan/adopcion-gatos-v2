@@ -28,14 +28,14 @@ export const fechaNacimientoValidator: ValidatorFn = (control: AbstractControl):
   return null; 
 }
 
-export function provinciaValidator(provincias: { id: number, nombre: string }[]): ValidatorFn {
+
+export const matchValues = (valuesToCheck: any[]): ValidatorFn => {
   return (control: AbstractControl): ValidationErrors | null => {
-    const selectedProvincia = control.value;
-    const foundProvincia = provincias.find(prov => prov.nombre === selectedProvincia);
-    if (foundProvincia) {
-      return null; // Valor válido
-    } else {
-      return { invalidProvincia: true }; // Valor no válido
+    if(control.touched){
+      const controlValue = control.value;
+      let res = valuesToCheck.findIndex(el => el.nombre == controlValue);
+      return res !== -1 ? null : { invalidValue: true };
     }
+    return null;
   };
-}
+};
