@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, catchError, expand, map, of, reduce, take, throwError } from 'rxjs';
+import { Observable, catchError, forkJoin, map } from 'rxjs';
 import { apiGeoRef } from 'src/environments/environment';
 
 @Injectable({
@@ -27,39 +27,48 @@ export class GeorefService {
     )
   }
 
-  public obtenerLocalidadesByProvinciaId(id:number):Observable<any>{
-    return this.obtenerTodasLasLocalidades(id,3);
+  public obtenerLocalidadesByProvinciaId(id: number): Observable<any> {
+    return this.obtenerTodasLasLocalidades(id, 5);
   }
-
-  private obtenerTodasLasLocalidades(id: number, maxPages:number, page = 0): Observable<any> {
-    const pageSize = 10; // Cantidad de localidades por página
-    return this.obtenerLocalidadesPorPagina(id, page, pageSize).pipe(
-      expand((localidadesEnPagina) => {
-        if (localidadesEnPagina.length < pageSize) {
-          return EMPTY; // Detiene la expansión si no hay más páginas
-        }
-        return this.obtenerLocalidadesPorPagina(id, page + 1, pageSize);
-      }),
-      take(maxPages),
-      reduce((allLocalidades: string[], localidadesEnPagina: string[]) => allLocalidades.concat(localidadesEnPagina), [])
-    );
-  }
-
-  private obtenerLocalidadesPorPagina(id: number, page: number, pageSize: number): Observable<string[]> {
-    const params = new HttpParams()
-      .set('provincia', id.toString())
-      .set('inicio', (page * pageSize).toString());
   
-    return this.http.get(`${this.apiGeoRef}/localidades`, { params }).pipe(
-      map((response: any) => {
-        //console.log(response);
-        return response.localidades.map((localidad: any) => localidad.localidad_censal.nombre);
-      }),
-      catchError(error => {
-        console.error(error);
-        return throwError(()=>error)
+  private obtenerTodasLasLocalidades(id: number, maxPages: number): Observable<any[]> {
+    const pageSize = 10; // Cantidad de localidades por página
+  
+    const observables = [];
+    for (let page = 0; page < maxPages; page++) {
+      const params = new HttpParams()
+        .set('provincia', id.toString())
+        .set('inicio', (page * pageSize).toString());
+  
+      const observable = this.http.get(`${this.apiGeoRef}/localidades`, { params }).pipe(
+        map((response: any) => {
+          const localidadesUnicas: { id: number, nombre: string }[] = [];
+          const localidadesSet = new Set();
+  
+          response.localidades.forEach((localidad: any) => {
+            const nombreLocalidad = localidad.localidad_censal.nombre;
+            if (!localidadesSet.has(nombreLocalidad)) {
+              localidadesSet.add(nombreLocalidad);
+              localidadesUnicas.push({ id: localidad.id, nombre: nombreLocalidad });
+            }
+          });
+  
+          return localidadesUnicas;
+        }),
+        catchError(error => {
+          console.error(error);
+          return [];
+        })
+      );
+  
+      observables.push(observable);
+    }
+  
+    return forkJoin(observables).pipe(
+      map(responses => {
+        // Combinar y aplanar las respuestas en un solo array
+        return responses.reduce((acc, localidades) => acc.concat(localidades), []);
       })
     );
   }
-  
 }
