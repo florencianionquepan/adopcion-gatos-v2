@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Component, forwardRef } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormBuilder, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
 import { GeorefService } from '../../services/georef.service';
 import { fechaNacimientoValidator, matchValues } from 'src/app/backoffice/validators/validators';
 import { Persona } from 'src/app/models/Persona';
@@ -13,6 +13,11 @@ import { debounceTime } from 'rxjs';
     provide: NG_VALUE_ACCESSOR,
     useExisting: PersonaFormComponent,
     multi:true
+  },
+  {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(() => PersonaFormComponent),
+    multi: true
   }]
 })
 export class PersonaFormComponent implements ControlValueAccessor{
@@ -34,14 +39,9 @@ export class PersonaFormComponent implements ControlValueAccessor{
 
   constructor(private geoser:GeorefService, private fb:FormBuilder){
       this.personaForm.valueChanges.pipe(debounceTime(100)).subscribe(()=>{
-        if(this.personaForm.dirty){
-          this.onChanged(this.personaForm.value);
-          this.onTouch(this.personaForm.value);
-        }
+        this.onChanged(this.personaForm.value);
+        this.onTouch(this.personaForm.value);
       });
-      if(this.personaForm.get('localidad')!.value==''){
-        this.personaForm.get('localidad')!.disabled;
-      }
   }
 
   writeValue(obj: Persona): void {
@@ -108,4 +108,8 @@ export class PersonaFormComponent implements ControlValueAccessor{
       }
     )
   }
+
+  validate(_control: AbstractControl): ValidationErrors | null {
+		return this.personaForm.valid ? null : { invalidRatingName: true };
+	}
 }

@@ -45,12 +45,12 @@ export class RegisterComponent {
   continuar():void{
     const personaData=this.registerForm.get('personaData');
     console.log(personaData);
-    this.personaFormComponent.marcarCamposComoTouched();
-    if(this.vistaActual==1 && personaData?.invalid){
-        Swal.fire({title:'Por favor, complete los campos.'});
-        return; 
+    if(personaData?.invalid){
+      this.personaFormComponent.marcarCamposComoTouched();
+      Swal.fire({ title: 'Por favor, complete los campos.' });
+      return;
     }
-    //this.vistaActual=2;
+    this.vistaActual=2;
   }
 
   anteriorVista():void{
