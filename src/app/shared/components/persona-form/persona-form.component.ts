@@ -22,7 +22,7 @@ import { debounceTime } from 'rxjs';
 })
 export class PersonaFormComponent implements ControlValueAccessor{
   provincias:{id:number, nombre:string}[]=[];
-  localidades:[]=[];
+  localidades:{id:number, nombre:string}[]=[];
   personaForm=this.fb.group({
     nombre:['',[Validators.required]],
     apellido:['',[Validators.required]],
@@ -31,7 +31,7 @@ export class PersonaFormComponent implements ControlValueAccessor{
     provincia:['',[Validators.required]],
     localidad:['',[Validators.required]],
     direccion:['',[Validators.required]],
-    telefono:['',[Validators.required]],
+    telefono:['',[Validators.required,Validators.pattern('^[0-9]+$'), Validators.minLength(9)]],
   })
 
 	private onChanged: Function = (persona:Persona) => {};

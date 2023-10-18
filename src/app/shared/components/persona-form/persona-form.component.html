@@ -58,7 +58,7 @@
                   <label for="localidad">Localidad *</label>
                   <datalist id="localidades">
                     <option *ngFor="let localidad of localidades" 
-                    [value]="localidad" >{{ localidad }}</option>
+                    [value]="localidad.nombre" [id]="localidad.id">{{ localidad.nombre }}</option>
                   </datalist>
                   <app-error-validation [field]="'localidad'" [form]="personaForm"></app-error-validation>
               </div>
