@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { GeorefService } from '../../services/georef.service';
-import { fechaNacimientoValidator } from 'src/app/backoffice/validators/validators';
+import { fechaNacimientoValidator, provinciaValidator } from 'src/app/backoffice/validators/validators';
 import { Persona } from 'src/app/models/Persona';
 import { debounceTime } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class PersonaFormComponent implements ControlValueAccessor{
     apellido:['',[Validators.required]],
     fechaDeNacimiento:['',[Validators.required,fechaNacimientoValidator]],
     dni:['',[Validators.required,Validators.pattern('^[0-9]{8}$')]],
-    provincia:['',[Validators.required]],
+    provincia:['',[Validators.required, provinciaValidator(this.provincias)]],
     localidad:['',[Validators.required]],
     direccion:['',[Validators.required]],
     telefono:['',[Validators.required]],
@@ -32,16 +32,20 @@ export class PersonaFormComponent implements ControlValueAccessor{
 	private onChanged: Function = (persona:Persona) => {};
 	private onTouch: Function = (persona:Persona) => {};
 
-  constructor(private fb:FormBuilder, 
-    private geoser:GeorefService){
+  constructor(private geoser:GeorefService, private fb:FormBuilder){
       this.personaForm.valueChanges.pipe(debounceTime(100)).subscribe(()=>{
-        this.onChanged(this.personaForm.value);
-        this.onTouch(this.personaForm.value);
+        if(this.personaForm.dirty){
+          this.onChanged(this.personaForm.value);
+          this.onTouch(this.personaForm.value);
+        }
       });
+      if(this.personaForm.get('localidad')!.value==''){
+        this.personaForm.get('localidad')!.disabled;
+      }
   }
 
   writeValue(obj: Persona): void {
-    //console.log("write value:"+obj.nombre);
+    //console.log("write value:"+obj);
     this.personaForm.patchValue(obj);
   }
 
@@ -52,8 +56,13 @@ export class PersonaFormComponent implements ControlValueAccessor{
   registerOnTouched(fn: any): void {
     this.onTouch=fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
 
+  }
+
+  marcarCamposComoTouched() {
+    this.personaForm.markAllAsTouched();
   }
 
   
@@ -98,5 +107,4 @@ export class PersonaFormComponent implements ControlValueAccessor{
       }
     )
   }
-
 }
