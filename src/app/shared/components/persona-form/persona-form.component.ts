@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { GeorefService } from '../../services/georef.service';
-import { fechaNacimientoValidator, provinciaValidator } from 'src/app/backoffice/validators/validators';
+import { fechaNacimientoValidator, matchValues } from 'src/app/backoffice/validators/validators';
 import { Persona } from 'src/app/models/Persona';
 import { debounceTime } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class PersonaFormComponent implements ControlValueAccessor{
     apellido:['',[Validators.required]],
     fechaDeNacimiento:['',[Validators.required,fechaNacimientoValidator]],
     dni:['',[Validators.required,Validators.pattern('^[0-9]{8}$')]],
-    provincia:['',[Validators.required, provinciaValidator(this.provincias)]],
+    provincia:['',[Validators.required]],
     localidad:['',[Validators.required]],
     direccion:['',[Validators.required]],
     telefono:['',[Validators.required]],
@@ -87,6 +87,7 @@ export class PersonaFormComponent implements ControlValueAccessor{
     this.geoser.obtenerProvincias().subscribe(
       (prov:any[])=>{
         this.provincias=prov;
+        this.personaForm.get('provincia')?.setValidators([Validators.required, matchValues(this.provincias)]);
       }
     )
   }
