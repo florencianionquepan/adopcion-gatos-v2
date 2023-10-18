@@ -20,6 +20,7 @@ export class GeorefService {
               nombre: provincia.nombre
             };
           });
+          //console.log(provincias);
           return provincias;
         }
       )
