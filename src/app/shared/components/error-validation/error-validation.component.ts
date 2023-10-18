@@ -18,7 +18,7 @@ export class ErrorValidationComponent {
   getFieldError(field:string,form:FormGroup):string | null{
     if(!form.controls[field]) return null;
     const errors=form.controls[field].errors || {};
-    //console.log(errors);
+    console.log(errors);
     for (const key in errors) {
       switch(key){
         case 'required': return `El campo ${field} es requerido`;
@@ -26,6 +26,7 @@ export class ErrorValidationComponent {
         case 'edadMenorDe18': return 'Debes ser mayor de 18 años.';
         case 'min': return `El valor debe ser mayor a ${errors['min']['min']}`;
         case 'fechaPasada': return "La fecha debe ser valida";
+        case 'invalidProvincia': return "Selecciona una provincia de la lista";
         case 'pattern':
           const requiredPattern = errors['pattern']['requiredPattern'];
           if(requiredPattern=='^[A-Za-z]+$'){
