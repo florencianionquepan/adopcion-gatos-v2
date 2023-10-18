@@ -8,12 +8,13 @@
         </div>
     </div>
 
-    <form [formGroup]="perfilForm" (ngSubmit)="perfilForm.valid && actualizar()" class="py-2 mx-auto">
+    <form [formGroup]="perfilForm" (ngSubmit)="perfilForm.valid && actualizar()" 
+    class="py-2 mx-auto color1 border rounded">
         <app-persona-form formControlName="personaData"></app-persona-form>
-                <div class="col-4 g-2 my-2 mx-auto mb-4">
-                    <button class="w-100 btn btn-lg btn-outline-secondary mt-4"
-                    [disabled]="!perfilForm.valid">Guardar</button>
-                </div>
+        <div class="col-4 g-2 my-2 mx-auto mb-4 text-center">
+            <button class="btn btn-lg btn-outline-secondary mt-4"
+            [disabled]="!perfilForm.valid">Guardar</button>
+        </div>   
     </form>
 </div>
 <app-footer></app-footer>

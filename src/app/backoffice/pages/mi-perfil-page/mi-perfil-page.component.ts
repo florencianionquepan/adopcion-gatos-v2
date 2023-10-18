@@ -60,6 +60,7 @@ export class MiPerfilPageComponent {
   }
 
   actualizar(){
+    //validacion por si no hay datos sin tocarlo
     const personaData = this.perfilForm.get('personaData')?.value;
     if(personaData){
       const {nombre,apellido,fechaDeNacimiento,dni,localidad,
