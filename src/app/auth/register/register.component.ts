@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
 import Swal from 'sweetalert2';
 import { Registro, Usuario } from 'src/app/models/Registro';
-import { fechaNacimientoValidator, passwordMatchValidator } from 'src/app/backoffice/validators/validators';
+import { passwordMatchValidator } from 'src/app/backoffice/validators/validators';
 import { Router } from '@angular/router';
+import { PersonaFormComponent } from 'src/app/shared/components/persona-form/persona-form.component';
 
 @Component({
   selector: 'app-register',
@@ -13,45 +14,43 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   vistaActual:number=1;
+  @ViewChild(PersonaFormComponent) personaFormComponent!: PersonaFormComponent;
 
-  public registerForm:FormGroup=this.fb.group({
-    nombre:['',[Validators.required]],
-    apellido:['',[Validators.required]],
-    fechaDeNacimiento:['',[Validators.required,fechaNacimientoValidator]],
-    dni:['',[Validators.required,Validators.pattern('^[0-9]{8}$')]],
-    provincia:['',[Validators.required]],
-    localidad:['',[Validators.required]],
-    direccion:['',[Validators.required]],
-    telefono:['',[Validators.required]],
-    email:['',[Validators.required,Validators.email]],
-    contraseña:['',[Validators.required]],
-    contraseñaConfirmada:['',[Validators.required]],
-  },{
-    validators:[passwordMatchValidator]
-  });
+  registerForm=new FormGroup({
+    personaData: new FormControl({
+      nombre:'',
+      apellido:'',
+      fechaDeNacimiento:new Date(),
+      dni:'',
+      provincia:'',
+      localidad:'',
+      direccion:'',
+      telefono:'',
+    }),
+    email:new FormControl('',[Validators.required,Validators.email]),
+    contraseña:new FormControl('',Validators.required),
+    contraseñaConfirmada:new FormControl('',Validators.required)
+  },
+  {validators:[passwordMatchValidator]}
+  );
 
-  constructor(private fb:FormBuilder, 
-    private service:RegisterService,
+  constructor(private service:RegisterService,
     private router:Router) {
   }
 
+  ngOnInit(){
+
+  }
+
   continuar():void{
-    const camposSeccion1=['nombre', 'apellido', 'fechaDeNacimiento',
-    'dni','provincia','localidad','direccion','telefono'];
-    if(this.vistaActual==1){
-      for(const campo of camposSeccion1){
-        this.registerForm.get(campo)?.markAsTouched();
-      }
-      const algunCampoInvalido = camposSeccion1.some((campo) => {
-        const control = this.registerForm.get(campo);
-        return control?.invalid;
-      });
-      if (algunCampoInvalido) {
+    const personaData=this.registerForm.get('personaData');
+    console.log(personaData);
+    this.personaFormComponent.marcarCamposComoTouched();
+    if(this.vistaActual==1 && personaData?.invalid){
         Swal.fire({title:'Por favor, complete los campos.'});
         return; 
-      }
     }
-    this.vistaActual=2;
+    //this.vistaActual=2;
   }
 
   anteriorVista():void{
@@ -59,27 +58,26 @@ export class RegisterComponent {
   }
 
   register():void{
-
-    const {
-      nombre,
-      apellido,
-      fechaDeNacimiento,
-      dni,
-      provincia,
-      localidad,
-      direccion,
-      telefono,
-      email,
-      contraseña,
-      contraseñaConfirmada
-    } = this.registerForm.value;
-
-    const usuario = new Usuario(email, contraseña, contraseñaConfirmada);
-    const registro=new Registro(dni,nombre,apellido,telefono,fechaDeNacimiento,direccion,
-                                localidad+","+provincia,usuario);
-    
-    this.service.register(registro)
-    .subscribe({
+    const formData=this.registerForm.value;
+    if(formData && formData.personaData){
+      const {
+          nombre,
+          apellido,
+          fechaDeNacimiento,
+          dni,
+          provincia,
+          localidad,
+          direccion,
+          telefono,
+      } = formData.personaData;
+      const email = formData.email;
+      const contraseña = formData.contraseña;
+      const contraseñaConfirmada = formData.contraseñaConfirmada;
+      const usuario = new Usuario(email!, contraseña!, contraseñaConfirmada!);
+      const registro=new Registro(dni,nombre,apellido,telefono,fechaDeNacimiento,direccion,
+                                  localidad+","+provincia,usuario);
+    console.log(registro);
+    this.service.register(registro).subscribe({
       next:(response)=>{
         //console.log(response);
         if(response.success){
@@ -105,39 +103,7 @@ export class RegisterComponent {
                   'text':errorDetail});
       }
     })
-  }
-
-
-  modalLink():void{
-    Swal.fire({
-      title: 'Ingresa el email a validar',
-      input: 'email',
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
-      showCancelButton: true,
-      cancelButtonText:'Cancelar',
-      confirmButtonText: 'Enviar',
-      showLoaderOnConfirm: true,
-      preConfirm: (email) => {
-        return this.service.sendValidation(email)
-        .subscribe({
-          next:(response)=>{
-            if(response.success){
-              Swal.fire({
-                title:"Link enviado correctamente!",
-                text:response.data,
-                icon:'success'
-              });
-            }
-          }
-          ,error:(e)=>{
-            Swal.fire({'title':e.mensaje,
-            'icon':'error'});
-          }
-        })
-      },
-    })
+    }
   }
 
 }
