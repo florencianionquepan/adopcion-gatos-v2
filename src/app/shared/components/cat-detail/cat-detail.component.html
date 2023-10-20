@@ -6,7 +6,7 @@
           <div class="rounded p-2">
             <h5>Edad: {{gato.edad}} </h5>
             <h5>Sexo: {{gato.sexo}}</h5>
-            <h5>Color: {{gato.color}} </h5>
+            <h5 class="d-flex align-items-center">Color: <input type="color" value="{{gato.color}}" disabled class="ms-1"></h5>
             <h5>Tipo de pelo: {{gato.tipoPelo}}</h5>
             <div *ngIf="!gato.padrino && gato.montoMensual" 
             class="d-flex flex-row align-items-center">

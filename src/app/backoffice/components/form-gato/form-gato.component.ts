@@ -47,19 +47,24 @@ export class FormGatoComponent {
 
   public gatoForm:FormGroup=this.fb.group({
     nombre:['',[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
-    edad:['',[Validators.required,Validators.pattern('^[A-Za-zñÑ0-9 ]+$')]],
+    edadnumero:['',Validators.required],
+    edadtexto:['Meses',Validators.required],
     sexo:['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
     descripcion:['',[Validators.required]],
-    color:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$')]],
-    tipoPelo:['',[Validators.required,,Validators.pattern('^[A-Za-z ]+$')]],
+    color:['',[Validators.required]],
+    tipoPelo:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$')]],
     montoMensual:['',[Validators.min(0)]],
     files:['',]
   });
 
   private saveForm():void{
+    //console.log(this.gato);
+    let edadnumero=this.gato.edad.split(' ')[0];
+    let edadtexto=this.gato.edad.split(' ')[1];
     this.gatoForm.patchValue({
       nombre: this.gato.nombre,
-      edad: this.gato.edad,
+      edadnumero: edadnumero,
+      edadtexto:edadtexto,
       sexo: this.gato.sexo,
       descripcion: this.gato.descripcion,
       color: this.gato.color,
@@ -127,12 +132,14 @@ export class FormGatoComponent {
   }
 
   enviarGato():void{
+    let edad=this.gatoForm.value.edadnumero+" "+this.gatoForm.value.edadtexto;
     const gato:GatoDetalle=this.gatoForm.value;
+    gato.edad=edad;
     const voluntario=new Voluntario();
     voluntario.email=this.user.email;
     gato.voluntario=voluntario;
     if(this.metodo=='post'){
-      this.crearGato(gato);
+      //this.crearGato(gato);
     }else if(this.metodo=='put'){
       gato.fotos=this.urlsEdit;
       this.editarGato(gato);

@@ -10,19 +10,28 @@
                 </div>
             </div>
             <div class="form-group col-12 col-md-6 my-1">
-                <div class="form-floating">
-                    <input type="text" formControlName="edad" class="form-control" id="edad"
-                    [ngClass]="{'is-invalid':gatoForm.get('edad')?.errors && gatoForm.get('edad')?.touched}">
-                    <label for="edad">Edad *</label>
-                    <app-error-validation [field]="'edad'" [form]="gatoForm"></app-error-validation>
+                <div class="input-group form-floating">
+                    <input type="number" formControlName="edadnumero" class="form-control" id="edadnumero"
+                    [ngClass]="{'is-invalid':gatoForm.get('edadnumero')?.errors && gatoForm.get('edadnumero')?.touched}">
+                    <label for="edadnumero">Edad*</label>
+                    <select class="form-select" formControlName="edadtexto" id="edadtexto"
+                    [ngClass]="{'is-invalid':gatoForm.get('edadtexto')?.errors && gatoForm.get('edadtexto')?.touched}">
+                        <option value="meses" selected>Meses</option>
+                        <option value="años">Años</option>
+                    </select>
                 </div>
+                <app-error-validation [field]="'edadnumero'" [form]="gatoForm"></app-error-validation>
+                <app-error-validation [field]="'edadtexto'" [form]="gatoForm"></app-error-validation>
             </div>
         </div>
         <div class="row align-items-start">
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="sexo" class="form-control" id="sexo"
+                    <select class="form-select" formControlName="sexo" class="form-select" id="sexo"
                     [ngClass]="{'is-invalid':gatoForm.get('sexo')?.errors && gatoForm.get('sexo')?.touched}">
+                        <option value="Macho">Macho</option>
+                        <option value="Hembra">Hembra</option>
+                    </select>
                     <label for="sexo">Sexo *</label>
                     <app-error-validation [field]="'sexo'" [form]="gatoForm"></app-error-validation>
                 </div>
@@ -39,16 +48,19 @@
         <div class="row align-items-start">
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="color" class="form-control" id="color"
+                    <input type="color" formControlName="color" class="form-select" id="color"
                     [ngClass]="{'is-invalid':gatoForm.get('color')?.errors && gatoForm.get('color')?.touched}">
-                    <label for="color">Color *</label>
+                    <label for="color" id="lbl-color">Color *</label>
                     <app-error-validation [field]="'color'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
             <div class="form-group col-12 col-md-6 my-1">
                 <div class="form-floating">
-                    <input type="text" formControlName="tipoPelo" class="form-control" id="tipoPelo"
+                    <select type="text" formControlName="tipoPelo" class="form-select" id="tipoPelo"
                     [ngClass]="{'is-invalid':gatoForm.get('tipoPelo')?.errors && gatoForm.get('tipoPelo')?.touched}">
+                        <option value="Corto">Corto</option>
+                        <option value="Largo">Largo</option>
+                    </select>
                     <label for="tipoPelo">Tipo de Pelo *</label>
                     <app-error-validation [field]="'tipoPelo'" [form]="gatoForm"></app-error-validation>
                 </div>
@@ -103,8 +115,8 @@
         <div class="text-center mt-3">
             <button class="btn btn-light mx-2" type="button" 
             (click)="cancelar()">Cancelar</button>
-            <button class="btn btn-secondary mx-2" 
-            [disabled]="!gatoForm.valid">Guardar
+            <button class="btn btn-secondary mx-2" (click)="enviarGato()"
+            >Guardar
             </button>
         </div>
     </form>

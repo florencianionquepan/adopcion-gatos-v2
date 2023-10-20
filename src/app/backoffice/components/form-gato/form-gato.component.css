@@ -1,7 +1,11 @@
-input, #custominput, textarea{
+input, #custominput, textarea, select{
     border: 1px solid rgb(180, 176, 176);
 }
 
 #custominput.is-invalid{
     border: 1px solid #dc3545
+}
+
+#lbl-color{
+    margin-top: -3px;
 }

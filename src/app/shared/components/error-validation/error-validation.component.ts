@@ -37,6 +37,8 @@ export class ErrorValidationComponent {
             return "El campo admite numeros, letras y espacios";
           }else if(requiredPattern=='^[0-9]{8}$'){
             return 'El campo debe contener 8 numeros'
+          }else if(requiredPattern=='^[0-9]+$'){
+            return 'El campo acepta solo numeros'
           };
       }
     }
