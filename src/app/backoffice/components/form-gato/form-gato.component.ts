@@ -196,7 +196,8 @@ export class FormGatoComponent {
       confirmButtonText:'Ir a ficha'
     }).then((res)=>{
       if(res.isConfirmed){
-        this.router.navigateByUrl(`/backoffice/misgatos/${gato.id}/ficha`);
+        const estado={nombre:gato.nombre}
+        this.router.navigateByUrl(`/backoffice/misgatos/${gato.id}/ficha`,{state:estado});
       }else if (res.isDenied) {
         this.router.navigateByUrl('/backoffice/misgatos');
       }

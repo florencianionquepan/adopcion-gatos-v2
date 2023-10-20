@@ -131,4 +131,8 @@ export class TablaSolicitudesAdopcionComponent {
       })
     }
   }
+
+  verMotivo(motivo:string){
+    Swal.fire({text:motivo});
+  }
 }

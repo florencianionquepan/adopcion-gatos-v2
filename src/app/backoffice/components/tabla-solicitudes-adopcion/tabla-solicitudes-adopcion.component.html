@@ -3,6 +3,7 @@
     <tr>
       <th scope="col-auto" class="d-none d-lg-table-cell">Fecha de envío</th>
       <th scope="col-auto">Estado</th>
+      <th scope="col-auto">Motivo</th>
       <th scope="col-auto">Solicitante</th>
       <th scope="col-auto" class="d-none d-md-table-cell">Adopto en Rescats?</th>
       <th scope="col-auto" class="d-none d-md-table-cell">Es voluntario?</th>
@@ -16,6 +17,10 @@
       </td>
       <td>
         {{ solicitud.estados[solicitud.estados.length - 1].estado }}
+      </td>
+      <td>
+        <button class="btn btn-outline-dark btn-sm" *ngIf="solicitud.estados[solicitud.estados.length - 1].motivo"
+        (click)="verMotivo(solicitud.estados[solicitud.estados.length - 1].motivo!)">VER</button>
       </td>
       <td>
         <app-detalle-persona [persona]="solicitud.solicitante"></app-detalle-persona>

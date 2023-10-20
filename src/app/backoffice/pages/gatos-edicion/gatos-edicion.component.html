@@ -1,3 +1,13 @@
 <app-header></app-header>
+<div class="row m-5 border-bottom border-secondary">
+    <div class="col-9 col-md-11">
+        <h1 class="titulo1 mb-0">
+            Edicion de {{gato.nombre}} 
+        </h1>
+    </div>
+    <div class="col-1">
+        <button class="btn btn-outline-secondary" routerLink="../">Volver</button>
+    </div>
+</div>
 <app-form-gato [mostrarForm]="true" [gato]="gato"></app-form-gato>
 <app-footer></app-footer>

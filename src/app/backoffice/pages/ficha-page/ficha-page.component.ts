@@ -10,12 +10,17 @@ import { GatosService } from 'src/app/services/gatos.service';
 })
 export class FichaPageComponent {
   ficha:FichaVeterinaria=new FichaVeterinaria();
+  nombreGatito:string='';
 
   constructor(private service:GatosService, 
     private ruta: ActivatedRoute){
   }
 
   ngOnInit():void{
+    const state = history.state;
+    if (state && state.nombre) {
+      this.nombreGatito = state.nombre;
+    }
     this.getFicha();
   }
 
