@@ -1,0 +1,18 @@
+<table class="table table-sm bg-transparent rounded" id="cute">
+    <thead>
+        <tr>
+            <th scope="col-auto">Fecha</th>
+            <th scope="col-auto">Estado</th>
+            <th scope="col-auto">Motivo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let estado of estados">
+            <td class="pt-2">{{estado.fecha}}</td>
+            <td class="pt-2">{{estado.estado}}</td>
+            <td><a class="btn btn-outline-dark btn-sm" *ngIf="estado.motivo"
+                (click)="verMotivo(estado.motivo!)">VER</a>
+            </td>
+        </tr>
+    </tbody>    
+   </table>
