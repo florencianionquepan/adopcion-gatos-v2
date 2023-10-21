@@ -2,11 +2,11 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FichaVeterinaria } from 'src/app/models/FichaVeterinaria';
-import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { GatosService } from 'src/app/services/gatos.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { atLeastOneFieldRequired } from '../../validators/validators';
 import { environment } from 'src/environments/environment';
+import { GatoDetalle } from 'src/app/models/GatoDetalle';
 
 @Component({
   selector: 'app-ficha-gato',
@@ -25,15 +25,18 @@ export class FichaGatoComponent {
   }
 
   public fichaForm:FormGroup=this.fb.group({
-    ultimaDesparasitacion:['',[this.fechaPasada()]],
-    ultimaTripleFelina:['',[this.fechaPasada()]],
-    ultimaAntirrabica:['',[this.fechaPasada()]],
+    ultimaDesparasitacion:[null,[this.fechaPasada()]],
+    ultimaTripleFelina:[null,[this.fechaPasada()]],
+    ultimaAntirrabica:[null,[this.fechaPasada()]],
     comentarios:[''],
     pdf:['']
   },{validators:[atLeastOneFieldRequired]});
 
   fechaPasada(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
+      if(control.value==null){
+        return null;
+      }
       const fechaIngresada = new Date(control.value);
       const fechaActual = new Date();
       const fechaLimite = new Date();
@@ -61,6 +64,10 @@ export class FichaGatoComponent {
   asociarFicha():void{
     const id= this.ruta.snapshot.params['id'];
     const ficha:FichaVeterinaria=this.fichaForm.value;
+    ficha.id=this.ficha.id;
+    //en edicion, mantener este valor:
+    ficha.pdf=this.ficha.pdf;
+    //console.log(ficha);
     this.service.asignarFicha(id,this.pdf,ficha).subscribe({
       next:(response)=>{
         const gato:GatoDetalle=response.data;
@@ -75,7 +82,7 @@ export class FichaGatoComponent {
         //console.error("Error al enviar la ficha", e);
         this.sweetalert('error','Algo ocurrio',e.mensaje,undefined);
       }
-    })
+    })  
   }
 
   sweetalert(icon:string,title?:string,text?:string,timer?:number):void{
@@ -105,6 +112,12 @@ export class FichaGatoComponent {
         //pdf:this.ficha.pdf
       })
     }
+  }
+
+  eliminarPdf():void{
+    this.pdf=undefined;
+    this.ficha.pdf='';
+    this.fichaForm.get('pdf')?.setValue(null);
   }
 
   descargarPdf():void{

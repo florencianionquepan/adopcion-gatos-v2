@@ -42,17 +42,17 @@
                     <label for="pdf" class="form-label">Puede adjuntar un documento en formato pdf:</label>
                     <input class="form-control" type="file" id="pdf" formControlName="pdf"
                     accept="application/pdf" (change)="onFileChange($event)">
-                  </div>
-                  <div class="mb-3 px-3" *ngIf="this.ficha?.pdf">
+                </div>
+                <div class="mb-3 px-3" *ngIf="this.ficha?.pdf">
                     <button class="btn btn-outline-secondary mx-2" type="button" (click)="descargarPdf()">
                         <i class="bi bi-file-earmark-arrow-down"></i>
                         {{this.ficha.pdf.split('_')[1]}}
                     </button>
-                    <button class="btn btn-outline-danger mx-2" [disabled]="true">
+                    <button class="btn btn-outline-danger mx-2" (click)="eliminarPdf()">
                         <i class="bi bi-trash"></i>
                         Eliminar
                     </button>
-                  </div>
+                </div>
             </div>
         </div>
         <div class="text-center mt-4 mx-2">

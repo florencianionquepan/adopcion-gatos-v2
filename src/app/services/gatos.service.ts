@@ -61,7 +61,6 @@ export class GatosService {
 
   public asignarFicha(id:number,pdf:File | undefined,ficha:FichaVeterinaria):Observable<any>{
     const fichaData=new FormData();
-    pdf?ficha.pdf='':'';
     fichaData.append('ficha',JSON.stringify(ficha));
     //console.log(pdf);
     pdf?fichaData.append('pdf',pdf):'';
