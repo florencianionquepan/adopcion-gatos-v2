@@ -1,35 +1,38 @@
 <app-header></app-header>
-<div class="container-md w-25 my-5 text-center">
-  <img src="./../../../assets/img/login.png" height="50px" class="mx-auto">
-    <div class="my-0 color1 py-3 px-4 border rounded">
-      <h3 class="text-center mb-4"></h3>
-      <form [formGroup]="loginForm"
-      (ngSubmit)="validateUser()">
-        <div class="form-floating">
-          <input type="email" formControlName="email" class="form-control" id="email"
-          [ngClass]="{'is-invalid':loginForm.get('email')?.errors && loginForm.get('email')?.touched}"
-          autocomplete="current-email">
-          <label for="email">Email</label>
-          <app-error-validation [field]="'email'" [form]="loginForm"></app-error-validation>
+<div class="container-md my-5 text-center">
+  <div class="row justify-content-center">
+    <div class="col-10 col-sm-7 col-md-6 col-lg-5 col-xl-4">
+      <img src="./../../../assets/img/login.png" height="50px" class="mx-auto">
+      <div class="my-0 color1 py-3 px-4 border rounded">
+        <h3 class="text-center mb-4"></h3>
+        <form [formGroup]="loginForm" (ngSubmit)="validateUser()">
+          <div class="form-floating">
+            <input type="email" formControlName="email" class="form-control" id="email"
+            [ngClass]="{'is-invalid':loginForm.get('email')?.errors && loginForm.get('email')?.touched}"
+            autocomplete="current-email">
+            <label for="email">Email</label>
+            <app-error-validation [field]="'email'" [form]="loginForm"></app-error-validation>
+          </div>
+          
+          <div class="form-floating mt-3">
+            <input type="password" formControlName="password" class="form-control" id="password"
+            [ngClass]="{'is-invalid':loginForm.get('password')?.errors && loginForm.get('password')?.touched}"
+            autocomplete="current-password">
+            <label for="password">Password</label>
+            <app-error-validation [field]="'password'" [form]="loginForm"></app-error-validation>
+          </div>
+          
+          <button class="w-100 btn btn-lg btn-outline-dark mt-4" 
+          type="submit" [disabled]="loginForm.invalid">Login</button>
+        </form>
+        <div class="mt-3 text-center">
+          ¿No posees cuenta? 
+          <a routerLink="/register" class="colorw"> Registrarte </a>
         </div>
-        
-        <div class="form-floating mt-3">
-          <input type="password" formControlName="password" class="form-control" id="password"
-          [ngClass]="{'is-invalid':loginForm.get('password')?.errors && loginForm.get('password')?.touched}"
-          autocomplete="current-password">
-          <label for="password">Password</label>
-          <app-error-validation [field]="'password'" [form]="loginForm"></app-error-validation>
-        </div>
-        
-        <button class="w-100 btn btn-lg btn-outline-dark mt-4" 
-        type="submit" [disabled]="loginForm.invalid">Login</button>
-      </form>
-      <div class="mt-3 text-center">
-        ¿No posees cuenta? 
-        <a routerLink="/register" class="colorw"> Registrarte </a>
+        <app-link-email-validation></app-link-email-validation>
       </div>
-      <app-link-email-validation></app-link-email-validation>
     </div>
+  </div>
    
 </div>
 <app-footer></app-footer>
