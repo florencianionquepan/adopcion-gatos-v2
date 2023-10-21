@@ -1,0 +1,5 @@
+#cute {
+    --bs-table-bg: #F8E0DB !important;
+    background-color: var(--bs-table-bg) !important;
+}
+

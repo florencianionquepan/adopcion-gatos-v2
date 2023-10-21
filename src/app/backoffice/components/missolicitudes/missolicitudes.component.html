@@ -1,1 +1,43 @@
-<p>missolicitudes works!</p>
+<!--SOLICITUDES DE ADOPCION-->
+<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="solicitudes.length>0; else sinDatos">
+    <thead>
+      <tr>
+        <th scope="col-auto">Gatito</th>
+        <th scope="col-auto">Ubicacion</th>
+        <th scope="col-auto">Estados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let solicitud of solicitudes">
+        <td>
+          {{solicitud.gato.nombre}}
+        </td>
+        <td>
+          <span *ngIf="solicitud.gato.transito">{{solicitud.gato.transito.localidad}}</span>
+          <span *ngIf="!solicitud.gato.transito">{{solicitud.gato.voluntario?.localidad}}</span>
+        </td>
+        <td>
+           <table class="table table-sm bg-transparent rounded" id="cute">
+            <thead>
+                <tr>
+                    <th scope="col-auto">Fecha</th>
+                    <th scope="col-auto">Estado</th>
+                    <th scope="col-auto">Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let estado of solicitud.estados">
+                    <td>{{estado.fecha}}</td>
+                    <td>{{estado.estado}}</td>
+                    <td>{{estado.motivo}}</td>
+                </tr>
+            </tbody>    
+           </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #sinDatos>
+    No existen datos para mostrar
+  </ng-template>
