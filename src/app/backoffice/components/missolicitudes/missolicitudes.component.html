@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th scope="col-auto">Gatito</th>
-        <th scope="col-auto">Ubicacion</th>
+        <th scope="col-auto" class="d-none d-md-table-cell">Ubicacion</th>
         <th scope="col-auto">Estados</th>
       </tr>
     </thead>
@@ -12,27 +12,12 @@
         <td>
           {{solicitud.gato.nombre}}
         </td>
-        <td>
+        <td class="d-none d-md-table-cell">
           <span *ngIf="solicitud.gato.transito">{{solicitud.gato.transito.localidad}}</span>
           <span *ngIf="!solicitud.gato.transito">{{solicitud.gato.voluntario?.localidad}}</span>
         </td>
         <td>
-           <table class="table table-sm bg-transparent rounded" id="cute">
-            <thead>
-                <tr>
-                    <th scope="col-auto">Fecha</th>
-                    <th scope="col-auto">Estado</th>
-                    <th scope="col-auto">Motivo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let estado of solicitud.estados">
-                    <td>{{estado.fecha}}</td>
-                    <td>{{estado.estado}}</td>
-                    <td>{{estado.motivo}}</td>
-                </tr>
-            </tbody>    
-           </table>
+           <app-tabla-estados [estados]="solicitud.estados"></app-tabla-estados>
         </td>
       </tr>
     </tbody>
