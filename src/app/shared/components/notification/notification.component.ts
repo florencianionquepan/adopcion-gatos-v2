@@ -1,9 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, take } from 'rxjs';
 import { Notificacion } from 'src/app/models/Notificacion';
+import { User } from 'src/app/models/user';
 import { NotificacionService } from 'src/app/services/notificacion.service';
-declare var bootstrap: any; 
 
 @Component({
   selector: 'app-notification',
@@ -11,33 +11,16 @@ declare var bootstrap: any;
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent {
-  notificaciones:Notificacion[]=[];
-  notificacionesNoLeidas:Notificacion[]=[];
+  user=new User();
+  @Input() notificaciones: Notificacion[]=[];
+  @Input() notificacionesNoLeidas:Notificacion[]=[];
+  @Input() contadorNoLeidas!:number;
+  @ViewChild('botonNoti') botonNoti!: ElementRef;
 
-  constructor(private router:Router, private service:NotificacionService){
-    this.router.events.pipe(
-      filter((e) => e instanceof NavigationEnd),
-      take(1) // Toma solo el primer evento NavigationEnd
-    ).subscribe(e=>{
-    if(e instanceof NavigationEnd){
-      this.service.listarTodas().subscribe({
-        next:(response)=>{
-          this.notificaciones=response.data;
-          this.filtrarNoLeidas();
-          //console.log(this.notificaciones);
-        }
-        ,error:(e)=>{
-          console.log(e);
-        }
-      })
-    }
-   }) 
-  }
-
-  filtrarNoLeidas():void{
-    this.notificacionesNoLeidas = this.notificaciones.filter(
-      (notificacion) => !notificacion.leida
-    );
+  constructor(private router:Router, 
+    private service:NotificacionService, 
+    private crd:ChangeDetectorRef,
+    private renderer:Renderer2){
   }
 
 }

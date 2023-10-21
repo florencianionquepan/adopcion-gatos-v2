@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter, take } from 'rxjs';
+import { ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Notificacion } from 'src/app/models/Notificacion';
 import { User } from 'src/app/models/user';
 import { NotificacionService } from 'src/app/services/notificacion.service';
+import { NotificationComponent } from '../notification/notification.component';
 
 @Component({
   selector: 'app-header',
@@ -16,19 +16,23 @@ export class HeaderComponent {
   public list: any[]=[];
   notificaciones: Notificacion[]=[];
   notificacionesNoLeidas:Notificacion[]=[];
+  contadorNoLeidas!:number;
+  @ViewChild('childRef', { static: false }) notiComp!: NotificationComponent;
 
   constructor(private router : Router,
      private service:NotificacionService,
-     private crd:ChangeDetectorRef) { 
-      if(sessionStorage.getItem('userdetails')){
+     private crd:ChangeDetectorRef,
+     private renderer:Renderer2) { 
+       if(sessionStorage.getItem('userdetails')){
         this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
         let email=this.user.email;
         this.service.actualizarNotificaciones(email).subscribe((notificaciones) => {
           this.notificaciones = notificaciones;
           this.filtrarNoLeidas();
+          this.contadorNoLeidas=this.notificacionesNoLeidas.length;
           this.crd.detectChanges();
         });
-      }
+      } 
   }
 
   ngOnInit() {
@@ -36,6 +40,34 @@ export class HeaderComponent {
       this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
       this.crearLinks();
     }
+  }
+
+  //esto debe ir en componente notificaciones
+  ngAfterViewInit():void{
+    if(sessionStorage.getItem('userdetails')){
+    //esto te dara undefined pq hasta que recibe la rta es undefined!!console.log(this.contadorNoLeidas);
+    if(this.contadorNoLeidas!=0){
+      this.renderer.listen(this.notiComp.botonNoti.nativeElement,'click',()=>{
+        this.service.setearNotiLeidas(this.notificacionesNoLeidas).subscribe({
+          next:(noti)=>{
+            //console.log(noti);
+          }
+        }
+        )
+        setTimeout(() => {
+          this.marcarComoLeidas();
+        }, 1000);
+      })
+    }
+    }
+  }
+
+  marcarComoLeidas():void{
+    this.notificacionesNoLeidas.forEach((notificacion) => {
+      notificacion.leida = true;
+    });
+    this.contadorNoLeidas=0;
+    this.crd.detectChanges();
   }
 
   filtrarNoLeidas():void{
