@@ -79,4 +79,19 @@ export class AdopcionService {
       })
     )
   }
+
+  public listarSoliBySolicitante(email:string):Observable<any>{
+    return this.http.get(`${this.apiSolicitud}/solicitante/${email}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
 }
