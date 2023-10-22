@@ -21,6 +21,10 @@ import { TablaSolicitudesAdopcionComponent } from './components/tabla-solicitude
 import { MiPerfilPageComponent } from './pages/mi-perfil-page/mi-perfil-page.component';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { DetallePersonaComponent } from './components/detalle-persona/detalle-persona.component';
+import { TituloPageComponent } from './components/titulo-page/titulo-page.component';
+import { TablaEstadosComponent } from './components/tabla-estados/tabla-estados.component';
+import { GatosByTransitoComponent } from './components/gatos-by-transito/gatos-by-transito.component';
+import { TransitoPageComponent } from './pages/transito-page/transito-page.component';
 
 @NgModule({
   declarations: [
@@ -39,15 +43,19 @@ import { DetallePersonaComponent } from './components/detalle-persona/detalle-pe
     TablaSolicitudesAdopcionComponent,
     MiPerfilPageComponent,
     FilterPipe,
-    DetallePersonaComponent
+    DetallePersonaComponent,
+    TituloPageComponent,
+    TablaEstadosComponent,
+    GatosByTransitoComponent,
+    TransitoPageComponent
   ],
   imports: [
     CommonModule,
     BackofficeRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    RouterModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers:[
     NotificacionService

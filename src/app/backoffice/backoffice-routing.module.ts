@@ -8,6 +8,7 @@ import { MissolicitudesPageComponent } from "./pages/missolicitudes-page/missoli
 import { AsignacionTransitoPageComponent } from "./pages/asignacion-transito-page/asignacion-transito-page.component";
 import { SolicitudesByGatoComponent } from "./pages/solicitudes-by-gato/solicitudes-by-gato.component";
 import { MiPerfilPageComponent } from "./pages/mi-perfil-page/mi-perfil-page.component";
+import { TransitoPageComponent } from "./pages/transito-page/transito-page.component";
 
 const routes: Routes=[
 {
@@ -37,6 +38,10 @@ const routes: Routes=[
 {
     path:'perfil',
     component:MiPerfilPageComponent
+},
+{
+    path:'gatosentransito',
+    component:TransitoPageComponent
 }]
 
 @NgModule({
