@@ -112,6 +112,14 @@ export class HeaderComponent {
         }
       ]
     };
+
+    if(this.user.esTransito){
+      roleToLinks['ROLE_USER'].push({
+        text: 'Gatos en transito',
+        link: 'backoffice/gatosentransito',
+        render: true,
+      })
+    }
   
     const userRoles = this.user.roles.map(rol => rol.nombre);
   
