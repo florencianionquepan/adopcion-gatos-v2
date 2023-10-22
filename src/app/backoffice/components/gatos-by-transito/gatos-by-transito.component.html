@@ -2,10 +2,9 @@
   <thead>
     <tr>
       <th scope="col-1">Nombre</th>
-      <th scope="col-1" class="d-none d-lg-table-cell">Sexo</th>
-      <th scope="col-1" class="d-none d-md-table-cell">Edad</th>
-      <th scope="col-1">Solicitudes</th>
-      <th scope="col-1" class="d-none d-lg-table-cell">Monto Mensual</th>
+      <th scope="col-1" class="d-none d-md-table-cell">Solicitudes</th>
+      <th scope="col-1" class="d-none d-md-table-cell">Adoptado</th>
+      <th scope="col-1" class="d-none d-md-table-cell">Monto Mensual</th>
       <th scope="col-1">Padrino</th>
       <th scope="col-1">Ficha Vete</th>
     </tr>
@@ -13,42 +12,29 @@
   <tbody>
     <tr *ngFor="let gato of gatos">
       <td>
-        <a
-          role="button" class="colorw"
-          routerLinkActive="active">{{ gato.nombre }}
+        <a role="button" class="colorw"
+          routerLinkActive="active"
+          [routerLink]="['/gatos', gato.id]"
+          target="_blank">
+          {{ gato.nombre }}
         </a>
       </td>
-      <td class="d-none d-lg-table-cell">
-        {{ gato.sexo }}
-      </td>
       <td class="d-none d-md-table-cell">
-        {{ gato.edad }}
-      </td>
-      <td class="d-none d-lg-table-cell">
         {{ gato.solicitudes.length }}
       </td>
-      <td class="d-none d-lg-table-cell">$ {{ gato.montoMensual }}</td>
+      <td class="d-none d-md-table-cell">
+        {{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'A mi cargo' }}
+      </td>
+      <td class="d-none d-md-table-cell">$ {{ gato.montoMensual }}</td>
       <td>
         {{ gato.padrino?.dni || "No posee" }}
-      </td>
-      <td>
-        {{ gato.solicitudes.length == 0 ? "No posee" : "" }}
-        <button
-          *ngIf="gato.solicitudes.length > 0"
-          class="btn btn-outline-dark btn-sm"
-          routerLink="{{ gato.id }}/solicitudes"
-          [state]="{ nombre: gato.nombre }">
-          Ver {{ gato.solicitudes.length }}
-        </button>
       </td>
       <td>
         <a
           role="button"
           class="btn btn-outline-dark btn-sm mx-1"
-          routerLinkActive="active"
-          routerLink="{{ gato.id }}/ficha"
-          [state]="{ nombre: gato.nombre }">
-          <i class="bi bi-clipboard2-heart"></i>
+          (click)="verFicha(gato.ficha!)" *ngIf="gato.ficha?.pdf">
+          Descargar pdf <i class="bi bi-clipboard2-heart"></i>
         </a>
       </td>
     </tr>
