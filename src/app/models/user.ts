@@ -7,9 +7,11 @@ export class User{
   public nombre:string;
   public localidad:string;
   public authStatus : string;
+  public esTransito:boolean;
 
   constructor(id?: number, email?: string, password?: string,
-                passwordC?: string,roles?: Rol[],authStatus?:string,nombre?:string,localidad?:string){
+                passwordC?: string,roles?: Rol[],authStatus?:string,
+                nombre?:string,localidad?:string, esTransito?:boolean){
       this.id = id || 0;
       this.email = email || '';
       this.password = password || '';
@@ -18,6 +20,7 @@ export class User{
       this.authStatus = authStatus || '';
       this.nombre= nombre || '';
       this.localidad=localidad || '';
+      this.esTransito=esTransito || false;
     }
 }
 
