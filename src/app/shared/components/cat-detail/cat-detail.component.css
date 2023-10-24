@@ -1,3 +1,16 @@
 span{
     float: right;
 }
+
+.adopted-text {
+    position: absolute;
+    top: 160px; /* Ajusta la distancia desde la parte superior según tus preferencias */
+    left: 890px;
+    transform: translateX(-50%);
+    background-color: rgba(96, 105, 223, 0.9); /* Fondo naranja con opacidad */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    z-index: 100;
+}

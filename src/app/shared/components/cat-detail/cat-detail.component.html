@@ -2,7 +2,9 @@
 <div id="detalles" class="container-fluid">
     <div class="row justify-content-center my-5">
         <div class="col-8 order-2 order-md-1 col-md-4 col-lg-4 pt-3">
-          <h1 class="titulo1 text-center mb-0 border-bottom border-secondary">{{gato.nombre}}</h1>
+          <h1 class="titulo1 text-center mb-0 border-bottom border-secondary">
+            {{gato.nombre}}
+          </h1>
           <div class="rounded p-2">
             <h5>Edad: {{gato.edad}} </h5>
             <h5>Sexo: {{gato.sexo}}</h5>
@@ -50,6 +52,9 @@
 
         </div>
         <div class="col-10 order-1 order-md-2 col-md-6 col-lg-6 pt-3 pl-5">
+          <div class="adopted-text d-flex align-items-center" *ngIf="gato.adoptado">
+            <span class="ml-2">Adoptado!</span> <i class="bi bi-house-heart-fill"></i>
+          </div>
             <app-carousel [fotos]="gato.fotos"></app-carousel>
     </div>
     </div>
