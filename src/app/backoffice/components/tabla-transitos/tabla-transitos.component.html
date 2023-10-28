@@ -23,7 +23,7 @@
         {{ transito.email }}
       </td>
       <td>
-        {{ transito.gatos.length }}
+        {{ gatosSinAdoptar(transito.gatos) }}
       </td>
       <button class="btn btn-secondary btn-sm" 
       (click)="asignarTransito(transito.id, transito.nombre)">Asignar</button>

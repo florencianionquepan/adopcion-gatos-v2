@@ -10,11 +10,21 @@
     <tbody>
       <tr *ngFor="let solicitud of solicitudes">
         <td>
-          {{solicitud.gato.nombre}}
+          <a role="button" class="colorw"
+          routerLinkActive="active"
+          [routerLink]="['/gatos', solicitud.gato.id]"
+          target="_blank">
+          {{ solicitud.gato.nombre }}
+        </a>
         </td>
         <td class="d-none d-md-table-cell">
-          <span *ngIf="solicitud.gato.transito">{{solicitud.gato.transito.localidad}}</span>
-          <span *ngIf="!solicitud.gato.transito">{{solicitud.gato.voluntario?.localidad}}</span>
+          <span *ngIf="!solicitud.gato.adoptado">
+            <span *ngIf="solicitud.gato.transito">{{solicitud.gato.transito.localidad}}</span>
+            <span *ngIf="!solicitud.gato.transito">{{solicitud.gato.voluntario?.localidad}}</span>
+          </span>
+          <span *ngIf="solicitud.gato.adoptado">
+            Con adoptante <i class="bi bi-suit-heart"></i>
+          </span>
         </td>
         <td>
            <app-tabla-estados [estados]="solicitud.estados"></app-tabla-estados>

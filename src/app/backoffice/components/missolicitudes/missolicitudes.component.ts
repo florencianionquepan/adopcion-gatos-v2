@@ -21,7 +21,7 @@ export class MissolicitudesComponent {
   ngOnInit(){
     this.service.listarSoliBySolicitante(this.user.email).subscribe(
       (data)=>{
-        console.log(data);
+        //console.log(data);
         this.solicitudes=data;
       }
     )

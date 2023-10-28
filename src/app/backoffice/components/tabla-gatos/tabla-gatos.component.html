@@ -28,7 +28,12 @@
         {{ gato.edad }}
       </td>
       <td class="d-none d-lg-table-cell">
-        {{ gato.transito?.localidad || gato.voluntario?.localidad }}
+        <span *ngIf="!gato.adoptado">
+          {{ gato.transito?.localidad || gato.voluntario?.localidad }}
+        </span>
+        <span *ngIf="gato.adoptado">
+          Con adoptante <i class="bi bi-suit-heart"></i>
+        </span>
       </td>
       <td>{{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'No' }}</td>
       <td *ngIf="!gato.adoptado">

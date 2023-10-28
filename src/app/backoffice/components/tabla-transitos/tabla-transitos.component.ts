@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { Transito } from 'src/app/models/Transito';
+import { Gato } from 'src/app/models/gato';
 import { TransitoService } from 'src/app/services/transito.service';
 import Swal from 'sweetalert2';
 
@@ -26,6 +28,10 @@ transitos: Transito[]=[];
       }
     }
     )
+  }
+
+  gatosSinAdoptar(gatos:Gato[]){
+    return gatos.filter((gato) => gato.adoptado==null).length;
   }
 
   asignarTransito(id: number, nombre: string) {
