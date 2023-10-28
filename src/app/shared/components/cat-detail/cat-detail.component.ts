@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { AdopcionService } from 'src/app/services/adopcion.service';
+import { PadrinoService } from 'src/app/services/padrino.service';
 registerLocaleData(localeEs);
 
 @Component({
@@ -22,7 +23,8 @@ export class CatDetailComponent {
   constructor(private ruta: ActivatedRoute,
             private catSvc: GatosService,
             private authSvc:AuthService,
-            private adopcionSvc:AdopcionService){
+            private adopcionSvc:AdopcionService,
+            private padrinoSvc:PadrinoService){
     this.getCat();
   }
 
@@ -87,8 +89,35 @@ export class CatDetailComponent {
     })
   }
 
-  apadrinar(gato:GatoDetalle):void{
+  apadrinar():void{
+    if(sessionStorage.getItem('userdetails')){
+      this.user=JSON.parse(sessionStorage.getItem('userdetails')!);
+    }
+    if(this.user.authStatus){
+      this.alertApadrinar();
+    }else{
+      this.authSvc.setUrlActual();
+      this.alertLogin();
+    }
+  }
 
+  alertApadrinar():void{
+    Swal.fire({
+      title: `Estas seguro de apadrinar a ${this.gato.nombre}?`,
+      text:'Seras redirigido a un sitio externo para realizar el pago',
+      icon: 'info',
+      cancelButtonText:'Cancelar',
+      confirmButtonText: 'Pagar cuota',
+      showCancelButton:true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.padrinoSvc.pagarCuota(this.user.email,this.gato).subscribe(
+          data=>{
+            console.log(data);
+          }
+        )
+      }
+    })
   }
 
   alertLogin():void{
