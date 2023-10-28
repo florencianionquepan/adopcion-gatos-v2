@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { User } from 'src/app/models/user';
 import { GatosService } from 'src/app/services/gatos.service';
@@ -40,6 +40,5 @@ export class GatosByVoluntarioComponent {
       }
     })
   }
-
 
 }

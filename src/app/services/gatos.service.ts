@@ -4,7 +4,6 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { GatoDetalle } from '../models/GatoDetalle';
 import { FichaVeterinaria } from '../models/FichaVeterinaria';
-import { Padrino } from '../models/Padrino';
 import { Transito } from '../models/Transito';
 
 @Injectable({

@@ -1,8 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable, catchError, filter, map, switchMap, take, tap, throwError } from 'rxjs';
-import { User } from '../models/user';
+import { BehaviorSubject, Observable, catchError, filter, map, switchMap, take, tap } from 'rxjs';
 import { Notificacion } from '../models/Notificacion';
 import { NavigationEnd, Router } from '@angular/router';
 

@@ -64,9 +64,11 @@ export class FichaGatoComponent {
   asociarFicha():void{
     const id= this.ruta.snapshot.params['id'];
     const ficha:FichaVeterinaria=this.fichaForm.value;
-    ficha.id=this.ficha.id;
-    //en edicion, mantener este valor:
-    ficha.pdf=this.ficha.pdf;
+    if(this.ficha){
+      //en edicion, mantener este valor:
+      ficha.id=this.ficha.id;
+      ficha.pdf=this.ficha.pdf;
+    }
     //console.log(ficha);
     this.service.asignarFicha(id,this.pdf,ficha).subscribe({
       next:(response)=>{

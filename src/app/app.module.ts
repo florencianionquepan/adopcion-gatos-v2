@@ -12,13 +12,15 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ValidationComponent } from './auth/validation/validation.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { LOCALE_ID } from '@angular/core';
+import { LinkEmailValidationComponent } from './auth/link-email-validation/link-email-validation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ValidationComponent
+    ValidationComponent,
+    LinkEmailValidationComponent
   ],
   imports: [
     BrowserModule,
