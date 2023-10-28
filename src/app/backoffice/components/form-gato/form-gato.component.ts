@@ -48,10 +48,10 @@ export class FormGatoComponent {
   public gatoForm:FormGroup=this.fb.group({
     nombre:['',[Validators.required, Validators.pattern('^[A-Za-z]+$')]],
     edadnumero:['',Validators.required],
-    edadtexto:['Meses',Validators.required],
+    edadtexto:['meses',Validators.required],
     sexo:['',[Validators.required,Validators.pattern('^[A-Za-z]+$')]],
     descripcion:['',[Validators.required]],
-    color:['',[Validators.required]],
+    color:['#000000',[Validators.required]],
     tipoPelo:['',[Validators.required,Validators.pattern('^[A-Za-z ]+$')]],
     montoMensual:['',[Validators.min(0)]],
     files:['',]
@@ -139,7 +139,7 @@ export class FormGatoComponent {
     voluntario.email=this.user.email;
     gato.voluntario=voluntario;
     if(this.metodo=='post'){
-      //this.crearGato(gato);
+      this.crearGato(gato);
     }else if(this.metodo=='put'){
       gato.fotos=this.urlsEdit;
       this.editarGato(gato);
@@ -147,7 +147,7 @@ export class FormGatoComponent {
   }
 
   crearGato(gato:GatoDetalle):void{
-    console.log(this.files);
+    //console.log(this.files);
     this.service.nuevoGato(gato,this.files)
     .subscribe({
       next:(response)=>{
@@ -200,6 +200,7 @@ export class FormGatoComponent {
         this.router.navigateByUrl(`/backoffice/misgatos/${gato.id}/ficha`,{state:estado});
       }else if (res.isDenied) {
         this.router.navigateByUrl('/backoffice/misgatos');
+        this.mostrarForm=false;
       }
     })
   }
