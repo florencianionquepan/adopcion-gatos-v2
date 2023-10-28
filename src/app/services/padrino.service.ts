@@ -21,10 +21,11 @@ export class PadrinoService {
     cuota.padrino=padrino;
     cuota.gato=gato;
     cuota.monto=gato.montoMensual;
-    return this.http.post(`${this.apiCuotas}`,cuota).pipe(
+    return this.http.post(`${this.apiCuotas}/preferencia`,cuota).pipe(
       map((response:any) => {
         if (response.success) {
-          return response.data; 
+          console.log(response.data);
+          window.open(response.data,'_blank');
         } else {
           throw new Error(response);
         }
