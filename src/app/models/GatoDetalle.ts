@@ -1,5 +1,6 @@
 import { FichaVeterinaria } from "./FichaVeterinaria";
 import { Padrino } from "./Padrino";
+import { Solicitud } from "./Solicitud";
 import { Transito } from "./Transito";
 import { Voluntario } from "./Voluntario";
 
@@ -18,7 +19,7 @@ export class GatoDetalle{
     "adoptado":Date | null;
     "ficha":FichaVeterinaria | null;
     "montoMensual":number;
-    "solicitudes":string[];
+    "solicitudes":Solicitud[];
 
     constructor(
         id?: number,
@@ -35,7 +36,7 @@ export class GatoDetalle{
         voluntario?:Voluntario | null,
         ficha?: FichaVeterinaria | null,
         montoMensual?: number,
-        solicitudes?: string[]
+        solicitudes?: Solicitud[]
     ) {
         this.id = id || 0;
         this.nombre = nombre || '';
