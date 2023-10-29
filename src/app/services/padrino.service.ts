@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Cuota } from '../models/Cuota';
 import { GatoDetalle } from '../models/GatoDetalle';
 import { Padrino } from '../models/Padrino';
-import { Observable, catchError, map } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { Observable, catchError, map } from 'rxjs';
 export class PadrinoService {
   public apiCuotas=`${environment.url}/cuotas`;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {}
 
   pagarCuota(email:string,gato:GatoDetalle):Observable<any>{
     let cuota=new Cuota();
@@ -21,10 +21,10 @@ export class PadrinoService {
     cuota.padrino=padrino;
     cuota.gato=gato;
     cuota.monto=gato.montoMensual;
-    return this.http.post(`${this.apiCuotas}/preferencia`,cuota).pipe(
+    return this.http.post(`${this.apiCuotas}`,cuota).pipe(
       map((response:any) => {
         if (response.success) {
-          console.log(response.data);
+          //console.log(response.data);
           window.open(response.data,'_blank');
         } else {
           throw new Error(response);
