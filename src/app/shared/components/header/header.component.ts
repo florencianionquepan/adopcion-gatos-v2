@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Notificacion } from 'src/app/models/Notificacion';
 import { User } from 'src/app/models/user';
 import { NotificacionService } from 'src/app/services/notificacion.service';
@@ -19,8 +18,7 @@ export class HeaderComponent {
   contadorNoLeidas!:number;
   @ViewChild('childRef', { static: false }) notiComp!: NotificationComponent;
 
-  constructor(private router : Router,
-     private service:NotificacionService,
+  constructor(private service:NotificacionService,
      private crd:ChangeDetectorRef,
      private renderer:Renderer2) { 
        if(sessionStorage.getItem('userdetails')){
@@ -78,6 +76,7 @@ export class HeaderComponent {
 
   logout():void{
     sessionStorage.clear();
+    localStorage.clear();
     window.location.reload();
   }
 
@@ -117,6 +116,14 @@ export class HeaderComponent {
       roleToLinks['ROLE_USER'].push({
         text: 'Gatos en transito',
         link: 'backoffice/gatosentransito',
+        render: true,
+      })
+    }
+
+    if(this.user.esPadrino){
+      roleToLinks['ROLE_USER'].push({
+        text: 'Gatos que apadrino',
+        link: 'backoffice/gatosapadrinados',
         render: true,
       })
     }
