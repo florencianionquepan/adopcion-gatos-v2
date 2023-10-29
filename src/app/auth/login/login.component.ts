@@ -61,9 +61,7 @@ export class LoginComponent {
             'icon':'error',
             timer:1500,
             didClose:()=>{
-              if (e.error.key == 'invalido') {
-                this.router.navigate(['/register']);
-              } else if (e.error.key == 'bloqueado') {
+              if (e.error.key == 'bloqueado') {
                 this.router.navigate(['/']);
               }
             }
