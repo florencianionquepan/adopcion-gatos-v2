@@ -1,4 +1,4 @@
-<table class="table table-sm bg-transparent rounded" id="cute">
+<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="gatos.length>0; else sinDatos">
   <thead>
     <tr>
       <th scope="col-1">Nombre</th>
@@ -35,7 +35,7 @@
           Con adoptante <i class="bi bi-suit-heart"></i>
         </span>
       </td>
-      <td>{{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'No' }}</td>
+      <td>{{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'Aun no' }}</td>
       <td *ngIf="!gato.adoptado">
         <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
         [state]="{ nombre: gato.nombre, transito:gato.transito}">
@@ -70,3 +70,6 @@
     </tr>
   </tbody>
 </table>
+<ng-template #sinDatos>
+  No existen datos para mostrar
+</ng-template>
