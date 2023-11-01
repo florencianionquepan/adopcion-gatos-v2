@@ -11,6 +11,7 @@ import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 })
 export class PadrinoService {
   public apiCuotas=`${environment.url}/cuotas`;
+  public apiPadrinos=`${environment.url}/padrinos`;
 
   constructor(private http:HttpClient) {}
 
@@ -27,6 +28,7 @@ export class PadrinoService {
         if (response.success) {
           //console.log(response.data);
           window.open(response.data,'_blank');
+          return response.data;
         } else {
           throw new Error(response);
         }
@@ -39,6 +41,38 @@ export class PadrinoService {
 
   getCuotasByEmail(email:string):Observable<any>{
     return this.http.get(`${this.apiCuotas}/padrino/${email}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          return response.data;
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
+
+  pagarCuotaPendiente(preferencia_id:string):Observable<any>{
+    return this.http.get(`${this.apiCuotas}/preferencia/${preferencia_id}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          window.open(response.data,'_blank');
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
+
+  renunciarApadrinamiento(gato:GatoDetalle,email:string):Observable<any>{
+    return this.http.put(`${this.apiPadrinos}/${email}`,gato).pipe(
       map((response:any) => {
         if (response.success) {
           //console.log(response.data);
