@@ -122,8 +122,8 @@ export class HeaderComponent {
 
     if(this.user.esPadrino){
       roleToLinks['ROLE_USER'].push({
-        text: 'Gatos que apadrino',
-        link: 'backoffice/gatosapadrinados',
+        text: 'Mis Cuotas',
+        link: 'backoffice/miscuotas',
         render: true,
       })
     }
