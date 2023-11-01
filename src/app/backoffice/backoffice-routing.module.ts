@@ -10,6 +10,7 @@ import { SolicitudesByGatoComponent } from "./pages/solicitudes-by-gato/solicitu
 import { MiPerfilPageComponent } from "./pages/mi-perfil-page/mi-perfil-page.component";
 import { TransitoPageComponent } from "./pages/transito-page/transito-page.component";
 import { CuotaSuccessComponent } from "./pages/cuota-success/cuota-success.component";
+import { CuotasPageComponent } from "./pages/cuotas-page/cuotas-page.component";
 
 const routes: Routes=[
 {
@@ -47,6 +48,10 @@ const routes: Routes=[
 {
     path:'cuotas/success',
     component:CuotaSuccessComponent
+},
+{
+    path:'miscuotas',
+    component:CuotasPageComponent
 }]
 
 @NgModule({
