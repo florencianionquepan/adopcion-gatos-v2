@@ -25,6 +25,9 @@ import { TituloPageComponent } from './components/titulo-page/titulo-page.compon
 import { TablaEstadosComponent } from './components/tabla-estados/tabla-estados.component';
 import { GatosByTransitoComponent } from './components/gatos-by-transito/gatos-by-transito.component';
 import { TransitoPageComponent } from './pages/transito-page/transito-page.component';
+import { CuotaSuccessComponent } from './pages/cuota-success/cuota-success.component';
+import { CuotasPageComponent } from './pages/cuotas-page/cuotas-page.component';
+import { TablaCuotasComponent } from './components/tabla-cuotas/tabla-cuotas.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { TransitoPageComponent } from './pages/transito-page/transito-page.compo
     TituloPageComponent,
     TablaEstadosComponent,
     GatosByTransitoComponent,
-    TransitoPageComponent
+    TransitoPageComponent,
+    CuotaSuccessComponent,
+    CuotasPageComponent,
+    TablaCuotasComponent
   ],
   imports: [
     CommonModule,
