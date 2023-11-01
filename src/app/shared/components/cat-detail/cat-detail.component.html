@@ -14,7 +14,7 @@
             class="d-flex flex-row align-items-center">
               <h5> Apadrinamiento:
                 <button type="button" class="btn btn-secondary btn-sm mx-2 mb-2"
-                (click)="apadrinar()" [ngClass]="{'disabled': gato.adoptado}"> 
+                (click)="apadrinar()" [ngClass]="{'disabled': gato.adoptado || gato.padrino}"> 
                 <i class="bi bi-box2-heart"> </i> <span> </span>
                 <i class="bi bi-currency-dollar"></i>{{gato.montoMensual}}
                 </button>
