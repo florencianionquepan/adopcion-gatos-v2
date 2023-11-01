@@ -6,10 +6,10 @@ export class Cuota{
     public fechaCreacion?: Date;
     public fechaPago?: Date;
     public montoMensual?:number;
-    public preferencia_id?:string;
+    public preferencia_id!:string;
     public estadoPago?:EstadoPago;
     public padrino?:Padrino;
-    public gato?:GatoDetalle;
+    public gato!:GatoDetalle;
   
     constructor(id?: number,fechaCreacion?: Date,fechaPago?: Date,
       monto?:number,preferencia_id?:string,estadoPago?:EstadoPago,
