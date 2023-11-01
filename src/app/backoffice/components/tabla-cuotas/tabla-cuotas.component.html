@@ -1,0 +1,57 @@
+<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="cuotas.length>0; else sinDatos">
+    <thead>
+      <tr>
+        <th scope="col-1">Gato</th>
+        <th scope="col-1" class="d-none d-lg-table-cell">Monto</th>
+        <th scope="col-1" class="d-none d-md-table-cell">Fecha Creación</th>
+        <th scope="col-2" class="d-none d-lg-table-cell">Fecha Pago</th>
+        <th scope="col-1">Estado</th>
+        <th scope="col-1">Acción</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cuota of cuotas">
+        <td>        
+          <a role="button" class="colorw"
+          routerLinkActive="active" routerLink="{{cuota.gato?.id}}">{{ cuota.gato?.nombre }}
+          <i class="bi bi-pencil-square"></i> 
+          </a>
+        </td>
+        <td class="d-none d-lg-table-cell">
+          {{ cuota.montoMensual }}
+        </td>
+        <td class="d-none d-md-table-cell">
+          {{ cuota.fechaCreacion }}
+        </td>
+        <td class="d-none d-lg-table-cell">
+          <span *ngIf="cuota.fechaPago">
+            {{ cuota.fechaPago | date: 'dd/MM/yyyy' }}
+          </span>
+          <span *ngIf="!cuota.fechaPago">
+            -
+          </span>
+        </td>
+        <td>{{ cuota.estadoPago }}</td>
+        <td>
+          <span *ngIf="cuota.estadoPago=='APROBADO'">-</span>
+          <span *ngIf="cuota.estadoPago=='PENDIENTE'">
+            <button class="btn btn-outline-dark btn-sm mx-1">Pagar <i class="bi bi-wallet2"></i></button>
+            <button class="btn btn-outline-dark btn-sm mx-1">Renunciar <i class="bi bi-escape"></i></button>
+          </span>
+          <span *ngIf="cuota.estadoPago=='DESCONOCIDO'">
+            <button class="btn btn-outline-dark btn-sm mx-1">Validar Pago <i class="bi bi-wallet2"></i></button>
+            <button class="btn btn-outline-dark btn-sm mx-1">Renunciar <i class="bi bi-escape"></i></button>
+          </span>
+          <span *ngIf="cuota.estadoPago=='RECHAZADO'">
+            <button class="btn btn-outline-dark btn-sm mx-1">Pagar <i class="bi bi-wallet2"></i></button>
+            <button class="btn btn-outline-dark btn-sm mx-1">Renunciar <i class="bi bi-escape"></i></button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #sinDatos>
+    No existen datos para mostrar
+  </ng-template>
+  
