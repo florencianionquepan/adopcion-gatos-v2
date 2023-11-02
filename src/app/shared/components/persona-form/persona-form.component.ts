@@ -4,6 +4,7 @@ import { GeorefService } from '../../services/georef.service';
 import { fechaNacimientoValidator, matchValues } from 'src/app/backoffice/validators/validators';
 import { Persona } from 'src/app/models/Persona';
 import { debounceTime } from 'rxjs';
+import { SoapService } from '../../services/soap.service';
 
 @Component({
   selector: 'app-persona-form',
@@ -37,7 +38,9 @@ export class PersonaFormComponent implements ControlValueAccessor{
 	private onChanged: Function = (persona:Persona) => {};
 	private onTouch: Function = (persona:Persona) => {};
 
-  constructor(private geoser:GeorefService, private fb:FormBuilder){
+  constructor(private geoser:GeorefService, 
+    private fb:FormBuilder, 
+    private soapser:SoapService){
       this.personaForm.valueChanges.pipe(debounceTime(100)).subscribe(()=>{
         this.onChanged(this.personaForm.value);
         this.onTouch(this.personaForm.value);
@@ -67,7 +70,8 @@ export class PersonaFormComponent implements ControlValueAccessor{
 
   
   ngOnInit(){
-    this.obtenerProv();
+    //this.obtenerProv();
+    this.obtenerProvFromSoap();
      this.personaForm.get('provincia')?.valueChanges.subscribe(
       (v)=>{
         const localidad=this.personaForm.get('localidad');
@@ -88,6 +92,14 @@ export class PersonaFormComponent implements ControlValueAccessor{
       (prov:any[])=>{
         this.provincias=prov;
         this.personaForm.get('provincia')?.setValidators([Validators.required, matchValues(this.provincias)]);
+      }
+    )
+  }
+
+  obtenerProvFromSoap(){
+    this.soapser.obtenerProvincias().subscribe(
+      (prov:any[])=>{
+        this.provincias=prov;
       }
     )
   }
