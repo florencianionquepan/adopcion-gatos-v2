@@ -96,10 +96,13 @@ export class PersonaFormComponent implements ControlValueAccessor{
     )
   }
 
+  //Para llamarlas con soap local
   obtenerProvFromSoap(){
     this.soapser.obtenerProvincias().subscribe(
       (prov:any[])=>{
         this.provincias=prov;
+        console.log(this.provincias);
+        this.personaForm.get('provincia')?.setValidators([Validators.required, matchValues(this.provincias)]);
       }
     )
   }
@@ -109,7 +112,10 @@ export class PersonaFormComponent implements ControlValueAccessor{
     const selectedProvincia = this.provincias.find(prov => prov.nombre === selectedProvinciaValue);
     if (selectedProvincia) {
         const provId = selectedProvincia.id;
-        this.obtenerLocalidades(provId);
+        const nombre= selectedProvincia.nombre;
+        //console.log(provId,nombre);
+        this.obtenerLocalidadesFromSoap(provId,nombre);
+        //this.obtenerLocalidades(provId);
     } 
   }
 
@@ -117,6 +123,16 @@ export class PersonaFormComponent implements ControlValueAccessor{
     this.geoser.obtenerLocalidadesByProvinciaId(id).subscribe(
       (loc)=>{
         this.localidades=loc;
+      }
+    )
+  }
+
+  //Para llamarlas con soap local
+  obtenerLocalidadesFromSoap(id:number, nombre:string){
+    this.soapser.obtenerLocalidades(id, nombre).subscribe(
+      (loc)=>{
+        this.localidades=loc;
+        console.log(this.localidades);
       }
     )
   }
