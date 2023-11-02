@@ -36,7 +36,7 @@ export class CatDetailComponent {
   getCat():void{
     const id= this.ruta.snapshot.params['id'];
     this.catSvc.getGatoById(id).subscribe(resp=>{
-      //console.log(resp);
+      console.log(resp);
       this.gato=resp.data;
     })
   }

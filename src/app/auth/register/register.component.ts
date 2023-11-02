@@ -94,7 +94,7 @@ export class RegisterComponent {
         }
       ,error:(e)=>{
         let errorDetail='';
-        if(e.detalle){
+        if(e?.detalle){
           errorDetail = Object.keys(e.detalle).map((key) => {
             return `${key}: ${e.detalle[key]}`;
           }).join('\n')

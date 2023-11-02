@@ -45,14 +45,16 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(xhr).pipe(
         tap({
           error:(e) => {
-            //console.log(error);
+            console.log(e);
             if (e instanceof HttpErrorResponse) {
               if (e.status !== 401) {
                 return;
               }
-              this.alertError(e);
-              sessionStorage.clear();
-              this.router.navigate(['/login']);
+              // if(e.error?.message.contains('token')){
+              //   this.alertError(e);
+              //   sessionStorage.clear();
+              //   this.router.navigate(['/login']);
+              // }
             }
           }
         }));
@@ -64,7 +66,7 @@ export class AuthInterceptor implements HttpInterceptor {
   alertError(error:any):void{
     Swal.fire({
       icon:'error',
-      title:'Error '+error.status+': '+error.error.message,
+      title:'Error '+error.status+': '+error.error?.message,
       text:'Vuelve a iniciar sesión'
     });
   }

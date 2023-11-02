@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Transito } from 'src/app/models/Transito';
 import { GatosService } from 'src/app/services/gatos.service';
@@ -14,6 +14,7 @@ export class AsignacionTransitoPageComponent {
   public nombreGatito:string='';
   public transitoActual:Transito=new Transito();
   filtroTransitos: string = '';
+  //@ViewChild('transitoInput') transitoInput!: ElementRef;
 
   constructor(private actiRoute:ActivatedRoute,
     private gatoservice:GatosService){
@@ -48,7 +49,8 @@ export class AsignacionTransitoPageComponent {
         this.gatoservice.asignarTransito(transito,this.idGato)
         .subscribe({
           next:(response)=>{
-            console.log(response.data);
+            //console.log(response.data);
+            //this.transitoInput.nativeElement.value = transito.nombre + ' ' + transito.apellido;
             Swal.fire(
               'Genial!',
               `El gatito ${gatito} está a cargo de ${transito.nombre}`,

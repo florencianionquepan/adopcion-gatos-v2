@@ -14,8 +14,7 @@
       <tr *ngFor="let cuota of cuotas">
         <td>        
           <a role="button" class="colorw"
-          routerLinkActive="active" routerLink="{{cuota.gato?.id}}">{{ cuota.gato?.nombre }}
-          <i class="bi bi-pencil-square"></i> 
+          routerLinkActive="active" routerLink="../../gatos/{{cuota.gato.id}}">{{ cuota.gato.nombre }}
           </a>
         </td>
         <td class="d-none d-lg-table-cell">
@@ -35,18 +34,15 @@
         <td>{{ cuota.estadoPago }}</td>
         <td>
           <span *ngIf="cuota.estadoPago=='APROBADO'">-</span>
-          <span *ngIf="cuota.estadoPago=='PENDIENTE'">
-            <button class="btn btn-outline-dark btn-sm mx-1">Pagar <i class="bi bi-wallet2"></i></button>
-            <button class="btn btn-outline-dark btn-sm mx-1">Renunciar <i class="bi bi-escape"></i></button>
+          <span *ngIf="cuota.estadoPago=='PENDIENTE' || 'DESCONOCIDO' || 'RECHAZADO'">
+            <button class="btn btn-outline-dark btn-sm mx-1" (click)="pagar(cuota.preferencia_id)">
+              Pagar <i class="bi bi-wallet2"></i>
+            </button>
+            <button class="btn btn-outline-dark btn-sm mx-1" (click)="renunciarApadrinamiento(cuota.gato)">
+              Renunciar <i class="bi bi-escape"></i>
+            </button>
           </span>
-          <span *ngIf="cuota.estadoPago=='DESCONOCIDO'">
-            <button class="btn btn-outline-dark btn-sm mx-1">Validar Pago <i class="bi bi-wallet2"></i></button>
-            <button class="btn btn-outline-dark btn-sm mx-1">Renunciar <i class="bi bi-escape"></i></button>
-          </span>
-          <span *ngIf="cuota.estadoPago=='RECHAZADO'">
-            <button class="btn btn-outline-dark btn-sm mx-1">Pagar <i class="bi bi-wallet2"></i></button>
-            <button class="btn btn-outline-dark btn-sm mx-1">Renunciar <i class="bi bi-escape"></i></button>
-          </span>
+          
         </td>
       </tr>
     </tbody>

@@ -20,3 +20,14 @@
   animation-name: fade-in;
   transition: background-color 0.4s ease-in-out; 
 }
+
+.custom-dropdown-menu{
+    max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+    overflow-y: auto;
+}
+
+.custom-dp-item{
+    white-space: normal; /* Permite que las palabras largas se dividan y el texto fluya automáticamente */
+    display: block; /* Hace que los elementos de la lista fluyan uno debajo del otro */
+    padding: 10px; 
+}

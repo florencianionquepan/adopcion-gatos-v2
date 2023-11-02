@@ -8,10 +8,12 @@ import {
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { LoaderService } from './../shared/services/loader.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
   private totalRequests = 0;
+  private apiGatitos=environment.url;
 
   constructor(
     private loadingService: LoaderService
