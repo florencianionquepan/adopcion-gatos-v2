@@ -54,8 +54,24 @@ export class CuotasService {
     )
   }
 
-  pagarCuotaPendiente(preferencia_id:string):Observable<any>{
+  pagarCuotaRechazadaoDesconocida(preferencia_id:string):Observable<any>{
     return this.http.get(`${this.apiCuotas}/preferencia/${preferencia_id}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          window.open(response.data,'_blank');
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
+
+  pagarCuotaPendiente(id:number):Observable<any>{
+    return this.http.get(`${this.apiCuotas}/pendiente/${id}`).pipe(
       map((response:any) => {
         if (response.success) {
           //console.log(response.data);
