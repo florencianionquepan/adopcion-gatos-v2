@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Cuota } from 'src/app/models/Cuota';
 import { User } from 'src/app/models/user';
-import { PadrinoService } from 'src/app/services/padrino.service';
+import { CuotasService } from 'src/app/services/cuotas.service';
 
 @Component({
   selector: 'app-cuotas-page',
@@ -12,7 +12,7 @@ export class CuotasPageComponent {
   cuotas:Cuota[]=[];
   user:User=new User();
 
-  constructor(private service:PadrinoService){
+  constructor(private service:CuotasService){
 
   }
 
@@ -26,6 +26,9 @@ export class CuotasPageComponent {
   getCuotas(email:string){
     this.service.getCuotasByEmail(email).subscribe((data)=>{
       this.cuotas=data;
+      this.cuotas.sort((a, b) => {
+        return new Date(b.fechaCreacion!).getTime() - new Date(a.fechaCreacion!).getTime();
+    });
     })
   }
 }
