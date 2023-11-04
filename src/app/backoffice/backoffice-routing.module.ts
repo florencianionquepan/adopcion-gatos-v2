@@ -11,6 +11,7 @@ import { MiPerfilPageComponent } from "./pages/mi-perfil-page/mi-perfil-page.com
 import { TransitoPageComponent } from "./pages/transito-page/transito-page.component";
 import { CuotaSuccessComponent } from "./pages/cuota-success/cuota-success.component";
 import { CuotasPageComponent } from "./pages/cuotas-page/cuotas-page.component";
+import { CuotaFailureComponent } from "./pages/cuota-failure/cuota-failure.component";
 
 const routes: Routes=[
 {
@@ -48,6 +49,10 @@ const routes: Routes=[
 {
     path:'cuotas/success',
     component:CuotaSuccessComponent
+},
+{
+    path:'cuotas/failure',
+    component:CuotaFailureComponent
 },
 {
     path:'miscuotas',

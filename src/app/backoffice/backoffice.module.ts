@@ -28,6 +28,7 @@ import { TransitoPageComponent } from './pages/transito-page/transito-page.compo
 import { CuotaSuccessComponent } from './pages/cuota-success/cuota-success.component';
 import { CuotasPageComponent } from './pages/cuotas-page/cuotas-page.component';
 import { TablaCuotasComponent } from './components/tabla-cuotas/tabla-cuotas.component';
+import { CuotaFailureComponent } from './pages/cuota-failure/cuota-failure.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { TablaCuotasComponent } from './components/tabla-cuotas/tabla-cuotas.com
     TransitoPageComponent,
     CuotaSuccessComponent,
     CuotasPageComponent,
-    TablaCuotasComponent
+    TablaCuotasComponent,
+    CuotaFailureComponent
   ],
   imports: [
     CommonModule,
