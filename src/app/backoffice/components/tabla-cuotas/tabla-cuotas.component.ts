@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Cuota, EstadoPago } from 'src/app/models/Cuota';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { User } from 'src/app/models/user';
+import { CuotasService } from 'src/app/services/cuotas.service';
 import { PadrinoService } from 'src/app/services/padrino.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class TablaCuotasComponent {
   EstadoPago: EstadoPago=EstadoPago.DESCONOCIDO;
   user:User=new User();
 
-  constructor(private service:PadrinoService){}
+  constructor(private service:CuotasService, 
+            private padrinoser:PadrinoService){}
 
   ngOnInit(){
     if(sessionStorage.getItem('userdetails')){
@@ -32,7 +34,7 @@ export class TablaCuotasComponent {
 
   renunciarApadrinamiento(gato:GatoDetalle){
     //mensaje de advertenciaa!!!
-    this.service.renunciarApadrinamiento(gato, this.user.email).subscribe(
+    this.padrinoser.renunciarApadrinamiento(gato, this.user.email).subscribe(
       (data)=>{
         console.log(data);
         //este gatito ya no forma parte de tu listado

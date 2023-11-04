@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { AdopcionService } from 'src/app/services/adopcion.service';
-import { PadrinoService } from 'src/app/services/padrino.service';
+import { CuotasService } from 'src/app/services/cuotas.service';
 registerLocaleData(localeEs);
 
 @Component({
@@ -24,7 +24,7 @@ export class CatDetailComponent {
             private catSvc: GatosService,
             private authSvc:AuthService,
             private adopcionSvc:AdopcionService,
-            private padrinoSvc:PadrinoService){
+            private cuotaser:CuotasService){
     this.getCat();
   }
 
@@ -111,7 +111,7 @@ export class CatDetailComponent {
       showCancelButton:true,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.padrinoSvc.pagarCuota(this.user.email,this.gato).subscribe(
+        this.cuotaser.pagarCuota(this.user.email,this.gato).subscribe(
           data=>{
             console.log(data);
           }
