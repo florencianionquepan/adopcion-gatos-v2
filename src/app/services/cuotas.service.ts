@@ -38,6 +38,22 @@ export class CuotasService {
     )
   }
 
+  getCuotasByEmail(email:string):Observable<any>{
+    return this.http.get(`${this.apiCuotas}/padrino/${email}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          return response.data;
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
+
   pagarCuotaPendiente(preferencia_id:string):Observable<any>{
     return this.http.get(`${this.apiCuotas}/preferencia/${preferencia_id}`).pipe(
       map((response:any) => {
