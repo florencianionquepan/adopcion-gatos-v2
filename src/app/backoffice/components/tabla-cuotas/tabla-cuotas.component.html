@@ -34,7 +34,15 @@
         <td>{{ cuota.estadoPago }}</td>
         <td>
           <span *ngIf="cuota.estadoPago=='APROBADO' || cuota.estadoPago=='CERRADO'">-</span>
-          <span *ngIf="cuota.estadoPago=='PENDIENTE' || cuota.estadoPago=='DESCONOCIDO' || cuota.estadoPago=='RECHAZADO'">
+          <span *ngIf="cuota.estadoPago=='PENDIENTE'">
+            <button class="btn btn-outline-dark btn-sm mx-1" (click)="pagarPendiente(cuota.id)">
+              Pagar <i class="bi bi-wallet2"></i>
+            </button>
+            <button class="btn btn-outline-dark btn-sm mx-1" (click)="renunciarApadrinamiento(cuota.gato)">
+              Renunciar <i class="bi bi-escape"></i>
+            </button>
+          </span>
+          <span *ngIf="cuota.estadoPago=='DESCONOCIDO' || cuota.estadoPago=='RECHAZADO'">
             <button class="btn btn-outline-dark btn-sm mx-1" (click)="pagar(cuota.preferencia_id)">
               Pagar <i class="bi bi-wallet2"></i>
             </button>
