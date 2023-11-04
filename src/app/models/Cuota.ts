@@ -2,11 +2,11 @@ import { GatoDetalle } from "./GatoDetalle";
 import { Padrino } from "./Padrino";
 
 export class Cuota{
-    public id?: number;
-    public fechaCreacion?: Date;
+    public id: number;
+    public fechaCreacion: Date;
     public fechaPago?: Date;
-    public montoMensual?:number;
-    public preferencia_id!:string;
+    public montoMensual:number;
+    public preferencia_id:string;
     public estadoPago?:EstadoPago;
     public padrino?:Padrino;
     public gato!:GatoDetalle;
