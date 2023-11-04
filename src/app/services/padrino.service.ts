@@ -15,21 +15,7 @@ export class PadrinoService {
   constructor(private http:HttpClient) {}
 
 
-  getCuotasByEmail(email:string):Observable<any>{
-    return this.http.get(`${this.apiPadrinos}/padrino/${email}`).pipe(
-      map((response:any) => {
-        if (response.success) {
-          //console.log(response.data);
-          return response.data;
-        } else {
-          throw new Error(response);
-        }
-      }),
-      catchError((error: any) => {
-        throw error;
-      })
-    )
-  }
+
 
   renunciarApadrinamiento(gato:GatoDetalle,email:string):Observable<any>{
     return this.http.put(`${this.apiPadrinos}/${email}`,gato).pipe(
