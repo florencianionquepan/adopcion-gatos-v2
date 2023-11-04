@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { PadrinoService } from 'src/app/services/padrino.service';
 import Swal from 'sweetalert2';
 import { CuotasPageComponent } from '../cuotas-page/cuotas-page.component';
 
 @Component({
-  selector: 'app-cuota-success',
-  templateUrl: './cuota-success.component.html',
-  styleUrls: ['./cuota-success.component.css']
+  selector: 'app-cuota-failure',
+  templateUrl: './cuota-failure.component.html',
+  styleUrls: ['./cuota-failure.component.css']
 })
-export class CuotaSuccessComponent {
+export class CuotaFailureComponent {
   user:User=new User();
 
   constructor(private router:Router){
@@ -26,8 +25,8 @@ export class CuotaSuccessComponent {
 
   ngOnInit(){
     Swal.fire({
-      icon:'success',
-      title:'Tu pago se registro correctamente!',
+      icon:'info',
+      title:'Tu pago se registro como rechazado!',
       text:'Seras redirigido a tus cuotas...',
       timer:2000
     });
@@ -36,4 +35,5 @@ export class CuotaSuccessComponent {
       this.router.navigate(['backoffice/miscuotas']);
     }, 2000);
   }
+
 }
