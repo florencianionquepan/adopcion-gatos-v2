@@ -15,10 +15,26 @@ export class PadrinoService {
   constructor(private http:HttpClient) {}
 
 
-
-
   renunciarApadrinamiento(gato:GatoDetalle,email:string):Observable<any>{
     return this.http.put(`${this.apiPadrinos}/${email}`,gato).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          return response.data;
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
+
+  //cuando el padrino no pago, se lo renuncia automaticamente
+  renunciaAutomatica(gato:GatoDetalle):Observable<any>{
+    let idPadrino=gato.padrino?.id;
+    return this.http.get(`${this.apiPadrinos}/${idPadrino}/cuotas`).pipe(
       map((response:any) => {
         if (response.success) {
           //console.log(response.data);
