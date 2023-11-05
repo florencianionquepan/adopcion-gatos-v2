@@ -1,7 +1,9 @@
-<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="gatos.length>0; else sinDatos">
+<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="asignaciones.length>0; else sinDatos">
   <thead>
     <tr>
       <th scope="col-1">Nombre</th>
+      <th scope="col-1">Fecha asignación</th>
+      <th scope="col-1">Fecha fin</th>
       <th scope="col-1" class="d-none d-md-table-cell">Solicitudes</th>
       <th scope="col-1" class="d-none d-md-table-cell">Adoptado</th>
       <th scope="col-1" class="d-none d-md-table-cell">Monto Mensual</th>
@@ -10,32 +12,38 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let gato of gatos">
+    <tr *ngFor="let asignacion of asignaciones">
       <td>
         <a role="button" class="colorw"
           routerLinkActive="active"
-          [routerLink]="['/gatos', gato.id]"
+          [routerLink]="['/gatos', asignacion.gato.id]"
           target="_blank">
-          {{ gato.nombre }}
+          {{ asignacion.gato.nombre }}
         </a>
       </td>
-      <td class="d-none d-md-table-cell">
-        {{ gato.solicitudes.length }}
-      </td>
-      <td class="d-none d-md-table-cell">
-        {{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'A mi cargo' }}
-      </td>
-      <td class="d-none d-md-table-cell">$ {{ gato.montoMensual }}</td>
+      <td>{{asignacion.fechaAsignacion | date: 'dd/MM/yyyy'}}</td>
       <td>
-        {{ gato.padrino?.dni || "No posee" }}
+        <span *ngIf="asignacion.fechaFin">{{asignacion.fechaFin | date: 'dd/MM/yyyy'}}</span>
+        <span *ngIf="!asignacion.fechaFin">A mi cargo</span>
+      </td>
+      <td class="d-none d-md-table-cell">
+        {{ asignacion.gato.solicitudes.length }}
+      </td>
+      <td class="d-none d-md-table-cell">
+        {{ asignacion.gato.adoptado ? (asignacion.gato.adoptado | date: 'dd/MM/yyyy') : 'En transito' }}
+      </td>
+      <td class="d-none d-md-table-cell">$ {{ asignacion.gato.montoMensual }}</td>
+      <td>
+        {{ asignacion.gato.padrino?.dni || "No posee" }}
       </td>
       <td>
         <a
           role="button"
           class="btn btn-outline-dark btn-sm mx-1"
-          (click)="verFicha(gato.ficha!)" *ngIf="gato.ficha?.pdf">
+          (click)="verFicha(asignacion.gato.ficha!)" *ngIf="asignacion.gato.ficha?.pdf">
           Descargar pdf <i class="bi bi-clipboard2-heart"></i>
         </a>
+        <span *ngIf="!asignacion.gato.ficha">No Posee</span>
       </td>
     </tr>
   </tbody>
