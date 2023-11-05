@@ -9,6 +9,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { AdopcionService } from 'src/app/services/adopcion.service';
 import { CuotasService } from 'src/app/services/cuotas.service';
+import { PadrinoService } from 'src/app/services/padrino.service';
 registerLocaleData(localeEs);
 
 @Component({
@@ -24,7 +25,8 @@ export class CatDetailComponent {
             private catSvc: GatosService,
             private authSvc:AuthService,
             private adopcionSvc:AdopcionService,
-            private cuotaser:CuotasService){
+            private cuotaser:CuotasService,
+            private padrinosser:PadrinoService){
     this.getCat();
   }
 
@@ -36,8 +38,17 @@ export class CatDetailComponent {
   getCat():void{
     const id= this.ruta.snapshot.params['id'];
     this.catSvc.getGatoById(id).subscribe(resp=>{
-      console.log(resp);
+      //console.log(resp);
       this.gato=resp.data;
+      if(this.gato.padrino){
+        this.padrinosser.renunciaAutomatica(this.gato).subscribe(
+          (data)=>{
+            console.log(data);
+            //actualizar ese dato si corresponde
+            //si el gato no existe en el listado de padrinos: this.gato.padrino=null; y actualizar vista
+          }
+        )
+      }
     })
   }
 
