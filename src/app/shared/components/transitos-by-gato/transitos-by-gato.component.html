@@ -1,0 +1,31 @@
+<div class="mx-5">
+  <h1 class="titulo1 mb-2 border-bottom border-secondary">
+    Transitos
+  </h1>
+<table class="table table-sm bg-transparent rounded" id="cute" 
+*ngIf="transitos.length>0; else sinDatos">
+    <thead>
+      <tr>
+        <th class="ps-3">Fecha asociacion</th>
+        <th>Fecha Fin</th>
+        <th class="d-none d-lg-table-cell">Transito</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let asignacion of transitos">
+        <td class="ps-2">        
+          {{asignacion.fechaAsignacion}}
+        </td>
+        <td>
+          {{asignacion.fechaFin}}
+        </td>
+        <td class="d-none d-lg-table-cell">
+          {{asignacion.transito.nombre}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #sinDatos>
+    No existen datos para mostrar
+  </ng-template>
+</div>
