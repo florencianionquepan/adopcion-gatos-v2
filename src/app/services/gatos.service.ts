@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { GatoDetalle } from '../models/GatoDetalle';
@@ -88,6 +88,22 @@ export class GatosService {
       catchError(err=>{
         //console.log(err);
         return throwError(()=>err.error)
+      })
+    )
+  }
+
+  public listarTransitos(id:number):Observable<any>{
+    return this.http.get(`${this.apiGatos}/${id}/transitos`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          return response.data;
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
       })
     )
   }
