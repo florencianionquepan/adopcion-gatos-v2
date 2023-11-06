@@ -1,23 +1,29 @@
 <table class="table table-sm bg-transparent rounded" id="cute" *ngIf="gatos.length>0; else sinDatos">
   <thead>
     <tr>
-      <th scope="col-1">Nombre</th>
-      <th scope="col-1" class="d-none d-lg-table-cell">Sexo</th>
-      <th scope="col-1" class="d-none d-md-table-cell">Edad</th>
-      <th scope="col-2" class="d-none d-lg-table-cell">Ubicacion</th>
-      <th scope="col-1">Adoptado</th>
-      <th scope="col-1">Transito</th>
-      <th scope="col-1" class="d-none d-lg-table-cell">Monto Mensual</th>
-      <th scope="col-1">Padrino</th>
-      <th scope="col-2">Solicitudes</th>
-      <th scope="col-1">Ficha Vete</th>
+      <th class="ps-3">Nombre</th>
+      <th></th>
+      <th class="d-none d-lg-table-cell">Sexo</th>
+      <th class="d-none d-md-table-cell">Edad</th>
+      <th class="d-none d-lg-table-cell">Ubicacion</th>
+      <th class="d-none d-md-table-cell">Adoptado</th>
+      <th>Transito</th>
+      <th>Padrino</th>
+      <th>Solicitudes</th>
+      <th>Ficha Vete</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let gato of gatos">
-      <td>        
+      <td class="ps-2">        
         <a role="button" class="colorw"
-        routerLinkActive="active" routerLink="{{gato.id}}">{{ gato.nombre }}
+        routerLinkActive="active" [routerLink]="['/../gatos', gato.id]">
+        <img [src]="gato.fotos[0]" class="border rounded-circle" alt="gatito" style="width: 30px; height: 30px;">
+        {{ gato.nombre }}
+        </a> 
+      </td>
+      <td><a role="button" class="colorw"
+        routerLinkActive="active" routerLink="{{gato.id}}">
         <i class="bi bi-pencil-square"></i> 
         </a>
       </td>
@@ -35,7 +41,9 @@
           Con adoptante <i class="bi bi-suit-heart"></i>
         </span>
       </td>
-      <td>{{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'Aun no' }}</td>
+      <td class="d-none d-md-table-cell">
+        {{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'Aun no' }}
+      </td>
       <td *ngIf="!gato.adoptado">
         <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
         [state]="{ nombre: gato.nombre, transito:gato.transito}">
@@ -48,9 +56,6 @@
           <app-detalle-persona [persona]="gato.transito"></app-detalle-persona>
         </span>
         <span *ngIf="!gato.transito"> No tenia </span>
-      </td>
-      <td class="d-none d-lg-table-cell">
-        $ {{ gato.montoMensual }}
       </td>
       <td>
         {{ gato.padrino?.dni || "No posee" }}
