@@ -12,35 +12,58 @@ import { TransitoPageComponent } from "./pages/transito-page/transito-page.compo
 import { CuotaSuccessComponent } from "./pages/cuota-success/cuota-success.component";
 import { CuotasPageComponent } from "./pages/cuotas-page/cuotas-page.component";
 import { CuotaFailureComponent } from "./pages/cuota-failure/cuota-failure.component";
+import { RoleGuard } from "./guards/role.guard";
 
 const routes: Routes=[
 {
     path:'misgatos',
-    component:GatosByVoluntarioComponent
+    component:GatosByVoluntarioComponent,
+    canActivate:[RoleGuard],
+    data:{
+        allowedRoles:['ROLE_VOLUNTARIO']
+    }
 },
 {
     path:'misgatos/:id',
-    component:GatosEdicionComponent
+    component:GatosEdicionComponent,
+    data:{
+        allowedRoles:['ROLE_VOLUNTARIO']
+    }
 },
 {
     path:'misgatos/:id/ficha',
-    component:FichaPageComponent
+    component:FichaPageComponent,
+    data:{
+        allowedRoles:['ROLE_VOLUNTARIO']
+    }
 },
 {
     path:'misgatos/:id/transito',
-    component:AsignacionTransitoPageComponent
+    component:AsignacionTransitoPageComponent,
+    data:{
+        allowedRoles:['ROLE_VOLUNTARIO']
+    }
 },
 {
     path:'misgatos/:id/solicitudes',
-    component:SolicitudesByGatoComponent
+    component:SolicitudesByGatoComponent,
+    data:{
+        allowedRoles:['ROLE_VOLUNTARIO']
+    }
 },
 {
     path:'missolicitudes',
-    component:MissolicitudesPageComponent
+    component:MissolicitudesPageComponent,
+    data:{
+        allowedRoles:['ROLE_USER']
+    }
 },
 {
     path:'perfil',
-    component:MiPerfilPageComponent
+    component:MiPerfilPageComponent,
+    data:{
+        allowedRoles:['ROLE_USER']
+    }
 },
 {
     path:'gatosentransito',
