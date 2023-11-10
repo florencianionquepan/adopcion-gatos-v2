@@ -45,7 +45,8 @@ import { DetallePersonaComponent } from './components/detalle-persona/detalle-pe
     SpinnerComponent,
     NotificationComponent,
     PersonaFormComponent,
-    DetallePersonaComponent
+    DetallePersonaComponent,
+    NoDataComponent
   ]
 })
 export class SharedModule { }
