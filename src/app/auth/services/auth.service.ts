@@ -42,4 +42,10 @@ export class AuthService {
     const urlPrevia=localStorage.getItem("urlActual") || '/';
     return urlPrevia;
   }
+
+  eliminarUrlPrevia():void{
+    if(localStorage.getItem("urlActual")){
+      localStorage.removeItem("urlActual");
+    }
+  }
 }
