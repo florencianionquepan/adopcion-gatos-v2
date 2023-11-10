@@ -1,31 +1,31 @@
-<div class="mx-5">
+<div class="mx-5 mt-5">
   <h1 class="titulo1 mb-2 border-bottom border-secondary">
-    Transitos
+    Historial de transitos
   </h1>
-<table class="table table-sm bg-transparent rounded" id="cute" 
+<table class="table table-sm bg-transparent border rounded w-75 mx-auto" id="cute" 
 *ngIf="transitos.length>0; else sinDatos">
     <thead>
       <tr>
-        <th class="ps-3">Fecha asociacion</th>
+        <th class="ps-3">Fecha de asociación</th>
         <th>Fecha Fin</th>
         <th class="d-none d-lg-table-cell">Transito</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let asignacion of transitos">
-        <td class="ps-2">        
-          {{asignacion.fechaAsignacion}}
+        <td class="ps-3">        
+          {{asignacion.fechaAsignacion | date:'dd-MM-yyyy'}}
         </td>
         <td>
-          {{asignacion.fechaFin}}
+          <span *ngIf="!asignacion.fechaFin">~</span>{{asignacion.fechaFin}}
         </td>
         <td class="d-none d-lg-table-cell">
-          {{asignacion.transito.nombre}}
+          <app-detalle-persona [persona]="asignacion.transito"></app-detalle-persona>
         </td>
       </tr>
     </tbody>
   </table>
   <ng-template #sinDatos>
-    No existen datos para mostrar
+    <app-no-data></app-no-data>
   </ng-template>
 </div>

@@ -17,8 +17,8 @@
     <div
       *ngFor="let foto of fotos; let i = index"
       class="carousel-item"
-      [class.active]="i === 0" style="height: 320px;">
-      <img [src]="foto" class="d-block w-75 mx-auto" alt="Foto de gatito" />
+      [class.active]="i === 0">
+      <img [src]="foto" class="d-block w-75 m-auto" alt="Foto de gatito" />
     </div>
   </div>
   <button

@@ -17,8 +17,10 @@
     <tr *ngFor="let gato of gatos">
       <td class="ps-2">        
         <a role="button" class="colorw"
-        routerLinkActive="active" [routerLink]="['/../gatos', gato.id]">
-        <img [src]="gato.fotos[0]" class="border rounded-circle" alt="gatito" style="width: 30px; height: 30px;">
+        routerLinkActive="active" [routerLink]="['/../gatos', gato.id]"
+        target="_blank">
+        <img [src]="gato.fotos[0]" class="border rounded-circle" 
+        alt="gatito" style="width: 30px; height: 30px;">
         {{ gato.nombre }}
         </a> 
       </td>

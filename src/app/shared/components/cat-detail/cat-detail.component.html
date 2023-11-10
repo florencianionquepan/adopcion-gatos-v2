@@ -1,12 +1,12 @@
 <app-header></app-header>
-<div id="detalles" class="container-fluid">
-    <div class="row justify-content-center my-5">
+<div id="detalles" class="container-md">
+    <div class="row justify-content-center mt-5 mb-2">
         <div class="col-8 order-2 order-md-1 col-md-4 col-lg-4 pt-3">
           <h1 class="titulo1 text-center mb-0 border-bottom border-secondary">
             {{gato.nombre}}
           </h1>
           <div class="rounded p-2">
-            <h5>Edad: {{gato.edad}} </h5>
+            <h5>Edad: {{gato.edad}}</h5>
             <h5>Sexo: {{gato.sexo}}</h5>
             <h5 class="d-flex align-items-center">Color: <input type="color" value="{{gato.color}}" disabled class="ms-1"></h5>
             <h5>Tipo de pelo: {{gato.tipoPelo}}</h5>
@@ -21,21 +21,21 @@
               </h5>
               
             </div>
-            <div *ngIf="gato.ficha" class="my-2">
+            <div *ngIf="gato.ficha" class="my-3">
               <h4 class="border-bottom border-secondary">Ficha Veterinaria</h4>
-              <h5>Antirrabica: 
+              <h5>Antirrábica: 
                 <ng-container *ngIf="gato.ficha.ultimaAntirrabica; else noPosee">
-                  {{gato.ficha.ultimaAntirrabica | date:'longDate':'d MMMM, y'}} 
+                 {{gato.ficha.ultimaAntirrabica | date:'dd-MM-yyyy'}}
                 </ng-container>
               </h5>
-              <h5>Desparasitacion:
+              <h5>Desparasitación:
                 <ng-container *ngIf="gato.ficha.ultimaDesparasitacion; else noPosee">
-                  {{gato.ficha.ultimaDesparasitacion | date:'d MMMM, y'}}
+                  {{gato.ficha.ultimaDesparasitacion | date:'dd-MM-yyyy'}}
                 </ng-container>
               </h5>
               <h5>Triple felina: 
                 <ng-container *ngIf="gato.ficha.ultimaTripleFelina; else noPosee">
-                  {{gato.ficha.ultimaTripleFelina | date:'longDate':'d MMMM, y'}} 
+                  {{gato.ficha.ultimaTripleFelina | date:'dd-MM-yyyy'}} 
                 </ng-container>
               </h5>
               <ng-template #noPosee>-</ng-template>
@@ -58,5 +58,6 @@
             <app-carousel [fotos]="gato.fotos"></app-carousel>
     </div>
     </div>
+    <app-transitos-by-gato [id]="gato.id" *ngIf="esVoluntario"></app-transitos-by-gato>
 </div>
 <app-footer></app-footer>

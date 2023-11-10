@@ -19,7 +19,7 @@ export class TransitosByGatoComponent {
     if(changes['id'] && !changes['id'].firstChange){
       this.service.listarTransitos(this.id).subscribe(
         (data)=>{
-          console.log(data);
+          //console.log(data);
           this.transitos=data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
         }
       )
