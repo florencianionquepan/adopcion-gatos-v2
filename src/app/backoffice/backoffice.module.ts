@@ -20,7 +20,6 @@ import { SolicitudesByGatoComponent } from './pages/solicitudes-by-gato/solicitu
 import { TablaSolicitudesAdopcionComponent } from './components/tabla-solicitudes-adopcion/tabla-solicitudes-adopcion.component';
 import { MiPerfilPageComponent } from './pages/mi-perfil-page/mi-perfil-page.component';
 import { FilterPipe } from '../pipes/filter.pipe';
-import { DetallePersonaComponent } from './components/detalle-persona/detalle-persona.component';
 import { TituloPageComponent } from './components/titulo-page/titulo-page.component';
 import { TablaEstadosComponent } from './components/tabla-estados/tabla-estados.component';
 import { GatosByTransitoComponent } from './components/gatos-by-transito/gatos-by-transito.component';
@@ -47,7 +46,6 @@ import { CuotaFailureComponent } from './pages/cuota-failure/cuota-failure.compo
     TablaSolicitudesAdopcionComponent,
     MiPerfilPageComponent,
     FilterPipe,
-    DetallePersonaComponent,
     TituloPageComponent,
     TablaEstadosComponent,
     GatosByTransitoComponent,

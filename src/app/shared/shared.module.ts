@@ -12,6 +12,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { PersonaFormComponent } from './components/persona-form/persona-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TransitosByGatoComponent } from './components/transitos-by-gato/transitos-by-gato.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
+import { DetallePersonaComponent } from './components/detalle-persona/detalle-persona.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ErrorValidationComponent,
     SpinnerComponent,
     NotificationComponent,
-    PersonaFormComponent
+    PersonaFormComponent,
+    TransitosByGatoComponent,
+    NoDataComponent,
+    DetallePersonaComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ErrorValidationComponent,
     SpinnerComponent,
     NotificationComponent,
-    PersonaFormComponent
+    PersonaFormComponent,
+    DetallePersonaComponent
   ]
 })
 export class SharedModule { }
