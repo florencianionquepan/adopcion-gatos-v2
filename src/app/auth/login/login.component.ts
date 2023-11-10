@@ -43,15 +43,15 @@ export class LoginComponent {
     .subscribe({
       next:(response:HttpResponse<any>)=>{
         if(response.headers){
-          window.sessionStorage.setItem("Authorization",response.headers.get("Authorization")!);
+          window.localStorage.setItem("Authorization",response.headers.get("Authorization")!);
         }
         //console.log(response);
         let body=<any> response.body;
         this.user=body.data;
         this.user.authStatus="AUTH";
-        window.sessionStorage.setItem('userdetails',JSON.stringify(this.user));
+        window.localStorage.setItem('userdetails',JSON.stringify(this.user));
         let xsrf= getCookie('XSRF-TOKEN')!;
-        window.sessionStorage.setItem("XSRF-TOKEN",xsrf);
+        window.localStorage.setItem("XSRF-TOKEN",xsrf);
         this.loginSuccess(this.user);
       },
       error:(e)=>{

@@ -22,19 +22,19 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler){
     if(req.url.startsWith(environment.url)){
       let httpHeaders=new HttpHeaders();
-      if(sessionStorage.getItem('userdetails')){
-        this.user=JSON.parse(sessionStorage.getItem('userdetails')!);
+      if(localStorage.getItem('userdetails')){
+        this.user=JSON.parse(localStorage.getItem('userdetails')!);
       }
       if(this.user && this.user.password && this.user.email){
         httpHeaders = httpHeaders.append('Authorization', 'Basic ' + window.btoa(this.user.email + ':' + this.user.password));
-        sessionStorage.setItem('userdetails','');
+        localStorage.setItem('userdetails','');
       }else{
-        let authorization=sessionStorage.getItem('Authorization');
+        let authorization=localStorage.getItem('Authorization');
         if(authorization){
           httpHeaders = httpHeaders.append('Authorization', authorization); 
         }
       }
-      let xsrf = sessionStorage.getItem('XSRF-TOKEN');
+      let xsrf = localStorage.getItem('XSRF-TOKEN');
       if(xsrf){
         httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);  
       }
@@ -52,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
               }
               // if(e.error?.message.contains('token')){
               //   this.alertError(e);
-              //   sessionStorage.clear();
+              //   localStorage.clear();
               //   this.router.navigate(['/login']);
               // }
             }

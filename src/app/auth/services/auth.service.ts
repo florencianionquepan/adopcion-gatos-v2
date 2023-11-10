@@ -11,9 +11,13 @@ export class AuthService {
   urlPrevia:string|null=null;
 
   constructor(private router:Router) { 
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
+    if(localStorage.getItem('userdetails')){
+      this.user = JSON.parse(localStorage.getItem('userdetails')!);
     }
+  }
+
+  getUser(): User {
+    return this.user; // o puedes devolver null o cualquier valor predeterminado si el usuario no está definido
   }
 
   alertLogin():void{

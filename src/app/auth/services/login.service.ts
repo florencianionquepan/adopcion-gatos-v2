@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   validateLoginDetails(user:User):Observable<any>{
-    window.sessionStorage.setItem("userdetails",JSON.stringify(user));
+    window.localStorage.setItem("userdetails",JSON.stringify(user));
     return this.http.get(`${environment.url}/auth`,{observe:'response',withCredentials:true})
     .pipe(
       catchError(err=>{

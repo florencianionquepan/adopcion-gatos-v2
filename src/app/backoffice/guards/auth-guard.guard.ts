@@ -11,7 +11,7 @@ export class AuthGuardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      let userdetails = sessionStorage.getItem('userdetails');
+      let userdetails = localStorage.getItem('userdetails');
       //console.log(authStatus);
       if(userdetails) {
         //const userDetails = JSON.parse(userdetails);

@@ -14,7 +14,7 @@ export class RoleGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      let userdetails = sessionStorage.getItem('userdetails');
+      let userdetails = localStorage.getItem('userdetails');
       let user:User = JSON.parse(userdetails!);
 
       const allowedRoles = route.data['allowedRoles'];
