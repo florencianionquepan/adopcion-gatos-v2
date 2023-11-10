@@ -39,38 +39,11 @@ export class LoginComponent {
       return;
     }
 
-    this.loginService.validateLoginDetails(this.user)
-    .subscribe({
-      next:(response:HttpResponse<any>)=>{
-        if(response.headers){
-          window.localStorage.setItem("Authorization",response.headers.get("Authorization")!);
-        }
-        //console.log(response);
-        let body=<any> response.body;
-        this.user=body.data;
-        this.user.authStatus="AUTH";
-        window.localStorage.setItem('userdetails',JSON.stringify(this.user));
-        let xsrf= getCookie('XSRF-TOKEN')!;
-        window.localStorage.setItem("XSRF-TOKEN",xsrf);
-        this.loginSuccess(this.user);
-      },
-      error:(e)=>{
-        if(e.error!=null){
-          Swal.fire({
-            'title':e.error.message,
-            'icon':'error',
-            timer:1500,
-            didClose:()=>{
-              if (e.error.key == 'bloqueado') {
-                this.router.navigate(['/']);
-              }
-            }
-            });
-        }else{
-          Swal.fire({'title':'Credenciales invalidas','icon':'error'});
-        }
+    this.loginService.validateLoginDetails(this.user).subscribe(
+      (user)=>{
+        this.loginSuccess(user);
       }
-    })
+    )
   }
 
   loginSuccess(user:User):void{
@@ -80,6 +53,7 @@ export class LoginComponent {
       timer:1200,
     })
     this.router.navigate([urlPrevia]);
+    this.authSvc.eliminarUrlPrevia();
   }
 
 }
