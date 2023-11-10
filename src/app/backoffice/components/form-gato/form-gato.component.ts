@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { Voluntario } from 'src/app/models/Voluntario';
 import { User } from 'src/app/models/user';
@@ -29,13 +30,12 @@ export class FormGatoComponent {
   constructor(private fb:FormBuilder, 
     private service:GatosService, 
     private router: Router,
-    private ruta: ActivatedRoute) {
+    private ruta: ActivatedRoute,
+    private authService:AuthService) {
   }
 
   ngOnInit(){
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+    this.user=this.authService.getUser();
   }
 
   ngOnChanges(changes:SimpleChanges){

@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Persona } from 'src/app/models/Persona';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-mi-perfil-page',
@@ -14,10 +15,10 @@ export class MiPerfilPageComponent {
   user:User=new User();
   persona:Persona=new Persona();
 
-  constructor(private fb:FormBuilder, private service:PersonaService){
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+  constructor(private fb:FormBuilder, 
+    private service:PersonaService,
+    private authService:AuthService){
+    this.user=this.authService.getUser();
   }
 
   ngOnInit(){

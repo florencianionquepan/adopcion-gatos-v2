@@ -21,8 +21,8 @@ export class HeaderComponent {
   constructor(private service:NotificacionService,
      private crd:ChangeDetectorRef,
      private renderer:Renderer2) { 
-       if(sessionStorage.getItem('userdetails')){
-        this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
+       if(localStorage.getItem('userdetails')){
+        this.user = JSON.parse(localStorage.getItem('userdetails')!);
         let email=this.user.email;
         this.service.actualizarNotificaciones(email).subscribe((notificaciones) => {
           this.notificaciones = notificaciones;
@@ -34,15 +34,15 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
+    if(localStorage.getItem('userdetails')){
+      this.user = JSON.parse(localStorage.getItem('userdetails')!);
       this.crearLinks();
     }
   }
 
   //esto debe ir en componente notificaciones
   ngAfterViewInit():void{
-    if(sessionStorage.getItem('userdetails')){
+    if(localStorage.getItem('userdetails')){
     //esto te dara undefined pq hasta que recibe la rta es undefined!!console.log(this.contadorNoLeidas);
     if(this.contadorNoLeidas!=0){
       this.renderer.listen(this.notiComp.botonNoti.nativeElement,'click',()=>{
@@ -75,7 +75,6 @@ export class HeaderComponent {
   }
 
   logout():void{
-    sessionStorage.clear();
     localStorage.clear();
     window.location.reload();
   }

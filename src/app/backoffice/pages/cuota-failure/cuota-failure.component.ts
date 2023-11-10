@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import Swal from 'sweetalert2';
 import { CuotasPageComponent } from '../cuotas-page/cuotas-page.component';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-cuota-failure',
@@ -12,13 +13,14 @@ import { CuotasPageComponent } from '../cuotas-page/cuotas-page.component';
 export class CuotaFailureComponent {
   user:User=new User();
 
-  constructor(private router:Router){
+  constructor(private router:Router,
+    private authService:AuthService){
     //esto es para cuando no era padrino y lo es por primera vez
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
+    if(this.authService.getUser().authStatus){
+      this.user = this.authService.getUser();
       if(!this.user.esPadrino){
         this.user.esPadrino=true;
-        sessionStorage.setItem('userdetails', JSON.stringify(this.user));
+        localStorage.setItem('userdetails', JSON.stringify(this.user));
       }
     }
   }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Solicitud } from 'src/app/models/Solicitud';
 import { User } from 'src/app/models/user';
 import { AdopcionService } from 'src/app/services/adopcion.service';
@@ -12,10 +13,9 @@ export class MissolicitudesComponent {
   solicitudes:Solicitud[]=[];
   user:User=new User();
 
-  constructor(private service:AdopcionService){
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+  constructor(private service:AdopcionService, 
+    private authService:AuthService){
+    this.user=this.authService.getUser();
   }
 
   ngOnInit(){

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Cuota, EstadoPago } from 'src/app/models/Cuota';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { User } from 'src/app/models/user';
@@ -17,12 +18,11 @@ export class TablaCuotasComponent {
   user:User=new User();
 
   constructor(private service:CuotasService, 
-            private padrinoser:PadrinoService){}
+            private padrinoser:PadrinoService, 
+            private authService:AuthService){}
 
   ngOnInit(){
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+    this.user=this.authService.getUser();
   }
 
   pagar(idpref:string){

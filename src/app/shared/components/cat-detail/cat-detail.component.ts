@@ -20,6 +20,7 @@ registerLocaleData(localeEs);
 export class CatDetailComponent {
   gato=new GatoDetalle();
   user=new User();
+  esVoluntario=false;
 
   constructor(private ruta: ActivatedRoute,
             private catSvc: GatosService,
@@ -31,7 +32,10 @@ export class CatDetailComponent {
   }
 
   ngOnInit(){
-    this.user=this.authSvc.user;
+    this.user=this.authSvc.getUser();
+    if(this.user.authStatus){
+      this.esVoluntario=this.user.roles.some(role=>role.nombre=='ROLE_VOLUNTARIO');
+    }
   }
 
   //agregar manejo errores
@@ -43,9 +47,12 @@ export class CatDetailComponent {
       if(this.gato.padrino){
         this.padrinosser.renunciaAutomatica(this.gato).subscribe(
           (data)=>{
-            console.log(data);
-            //actualizar ese dato si corresponde
             //si el gato no existe en el listado de padrinos: this.gato.padrino=null; y actualizar vista
+            let existeEsteGato=data.listaGatos.some((gat: { id: any; })=>gat.id==id)
+            //console.log(existeEsteGato)
+            if(!existeEsteGato){
+              this.gato.padrino=null;
+            }
           }
         )
       }
@@ -53,9 +60,7 @@ export class CatDetailComponent {
   }
 
   adoptar():void{
-    if(sessionStorage.getItem('userdetails')){
-      this.user=JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+    this.user=this.authSvc.getUser();
     if(this.user.authStatus){
       this.alertAdopcion();
     }else{
@@ -101,9 +106,7 @@ export class CatDetailComponent {
   }
 
   apadrinar():void{
-    if(sessionStorage.getItem('userdetails')){
-      this.user=JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+    this.user=this.authSvc.getUser();
     if(this.user.authStatus){
       this.alertApadrinar();
     }else{

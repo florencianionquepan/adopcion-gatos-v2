@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { User } from 'src/app/models/user';
 import { GatosService } from 'src/app/services/gatos.service';
@@ -13,14 +14,13 @@ export class GatosByVoluntarioComponent {
   public gatos:GatoDetalle[]=[];
   mostrarForm:boolean=false;
 
-  constructor(private gatoSer:GatosService){
+  constructor(private gatoSer:GatosService,
+    private authService:AuthService){
 
   }
 
   ngOnInit(){
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+    this.user=this.authService.getUser();
     this.getGatos();
   }
 

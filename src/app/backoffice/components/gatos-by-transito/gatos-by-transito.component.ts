@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { AsignGato } from 'src/app/models/AsignGatos';
 import { FichaVeterinaria } from 'src/app/models/FichaVeterinaria';
 import { User } from 'src/app/models/user';
@@ -14,17 +15,15 @@ export class GatosByTransitoComponent {
   asignaciones:AsignGato[]=[];
   user:User=new User();
 
-  constructor(private service:TransitoService){
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+  constructor(private service:TransitoService, private authService:AuthService){
+    this.user=this.authService.getUser();
     this.getGatos();
   }
 
   getGatos():void{
     this.service.gatosByTransito(this.user.email).subscribe(
       data=>{
-        console.log(data);
+        //console.log(data);
         this.asignaciones=data;
       }
     )

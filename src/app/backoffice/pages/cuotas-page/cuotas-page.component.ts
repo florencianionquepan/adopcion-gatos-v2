@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Cuota } from 'src/app/models/Cuota';
 import { User } from 'src/app/models/user';
 import { CuotasService } from 'src/app/services/cuotas.service';
@@ -12,14 +13,13 @@ export class CuotasPageComponent {
   cuotas:Cuota[]=[];
   user:User=new User();
 
-  constructor(private service:CuotasService){
+  constructor(private service:CuotasService,
+    private authService:AuthService){
 
   }
 
   ngOnInit(){
-    if(sessionStorage.getItem('userdetails')){
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
+    this.user=this.authService.getUser();
     this.getCuotas(this.user.email);
   }
 
