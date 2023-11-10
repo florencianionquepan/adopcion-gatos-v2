@@ -19,15 +19,15 @@
         <a role="button" class="colorw"
         routerLinkActive="active" [routerLink]="['/../gatos', gato.id]"
         target="_blank">
-        <img [src]="gato.fotos[0]" class="border rounded-circle" 
+        <img [src]="gato.fotos[0]" class="rounded-circle" 
         alt="gatito" style="width: 30px; height: 30px;">
         {{ gato.nombre }}
         </a> 
       </td>
-      <td><a role="button" class="colorw"
+      <td><button role="button" class="btn btn-outline-dark btn-sm"
         routerLinkActive="active" routerLink="{{gato.id}}">
         <i class="bi bi-pencil-square"></i> 
-        </a>
+      </button>
       </td>
       <td class="d-none d-lg-table-cell">
         {{ gato.sexo }}
@@ -48,7 +48,7 @@
       </td>
       <td *ngIf="!gato.adoptado">
         <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
-        [state]="{ nombre: gato.nombre, transito:gato.transito}">
+        [state]="{ nombre: gato.nombre, transito:gato.transito,icono:gato.fotos[0]}">
         {{ gato.transito? gato.transito.nombre  : 'Buscar'}}
         <i class="bi bi-search-heart"></i>
         </button>
@@ -60,17 +60,20 @@
         <span *ngIf="!gato.transito"> No tenia </span>
       </td>
       <td>
-        {{ gato.padrino?.dni || "No posee" }}
+        <span *ngIf="gato.padrino">
+          <app-detalle-persona [persona]="gato.padrino"></app-detalle-persona>
+        </span>
+        <span *ngIf="!gato.padrino"> No posee </span>
       </td>
       <td>{{ gato.solicitudes.length==0? 'No posee' : '' }}
         <button *ngIf="gato.solicitudes.length>0" class="btn btn-outline-dark btn-sm"
-          routerLink="{{gato.id}}/solicitudes" [state]="{nombre: gato.nombre}">
+          routerLink="{{gato.id}}/solicitudes" [state]="{nombre: gato.nombre, icono:gato.fotos[0]}">
           Ver {{gato.solicitudes.length}} 
         </button>
       </td>
       <td>
         <a role="button" class="btn btn-outline-dark btn-sm mx-1"
-        routerLinkActive="active" routerLink="{{gato.id}}/ficha" [state]="{nombre: gato.nombre}">
+        routerLinkActive="active" routerLink="{{gato.id}}/ficha" [state]="{nombre: gato.nombre, icono:gato.fotos[0]}">
         <i class="bi bi-clipboard2-heart"></i>
         </a>
       </td>
@@ -78,5 +81,5 @@
   </tbody>
 </table>
 <ng-template #sinDatos>
-  No existen datos para mostrar
+  <app-no-data></app-no-data>
 </ng-template>

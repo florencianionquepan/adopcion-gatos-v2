@@ -1,15 +1,7 @@
 <app-header></app-header>
 <div class="container-md">
-    <div class="row m-5 border-bottom border-secondary">
-        <div class="col-9 col-md-11">
-            <h1 class="titulo1 mb-0">
-                Solicitudes de {{nombreGatito}} 
-            </h1>
-        </div>
-        <div class="col-1">
-            <button class="btn btn-outline-secondary" routerLink="../../">Volver</button>
-        </div>
-    </div>
+    <app-titulo-page [titulo]="'Solicitudes de '+nombreGatito"
+    [link]="'../../'" [icono]="icono"></app-titulo-page>
     <app-tabla-solicitudes-adopcion [solicitudes]="solicitudes"></app-tabla-solicitudes-adopcion>
 </div>
 <app-footer></app-footer>

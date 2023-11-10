@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class TituloPageComponent {
   @Input() titulo:string='';
   @Input() link:string='';
+  @Input() icono:string='';
 }

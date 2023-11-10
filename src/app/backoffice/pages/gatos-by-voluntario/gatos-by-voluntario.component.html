@@ -1,10 +1,19 @@
 <app-header></app-header>
-<div class="container-fluid my-4">
-    <div class="text-center">
-        <button class="btn btn-secondary my-4 mx-auto" 
-        (click)="cargarGato()" *ngIf="!this.mostrarForm">
-            Cargar nuevo gatito 
-        </button></div>
+<div class="container-lg my-4">
+        <div class="row m-5 border-bottom border-secondary 
+        align-items-center justify-content-center text-center text-md-start">
+            <div class="col-8 col-sm-6 col-md-8 col-lg-9 my-1">
+                <h1 class="titulo1 mb-0">
+                    Mis gatos
+                </h1>
+            </div>
+            <div class="col-8 col-sm-6 col-md-4 col-lg-3 my-1">
+                <button class="btn btn-secondary" 
+                (click)="cargarGato()" *ngIf="!this.mostrarForm">
+                Cargar nuevo gatito 
+                </button>
+            </div>
+        </div>
     <app-form-gato [(mostrarForm)]="mostrarForm"></app-form-gato>
     <app-tabla-gatos [gatos]="gatos"></app-tabla-gatos>
 </div>

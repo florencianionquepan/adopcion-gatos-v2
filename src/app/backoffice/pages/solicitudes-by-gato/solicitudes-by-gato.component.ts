@@ -11,6 +11,7 @@ import { AdopcionService } from 'src/app/services/adopcion.service';
 export class SolicitudesByGatoComponent {
   public nombreGatito:string='';
   public idGatito:number;
+  public icono:string='';
   solicitudes: Solicitud[]=[];
 
   constructor(private service:AdopcionService,

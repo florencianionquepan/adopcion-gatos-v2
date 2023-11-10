@@ -13,6 +13,7 @@ export class AsignacionTransitoPageComponent {
   public idGato:number;
   public nombreGatito:string='';
   public transitoActual:Transito=new Transito();
+  public icono:string='';
   filtroTransitos: string = '';
   //@ViewChild('transitoInput') transitoInput!: ElementRef;
 
@@ -24,6 +25,8 @@ export class AsignacionTransitoPageComponent {
       this.nombreGatito = state.nombre;
     } if(state && state.transito){
       this.transitoActual=state.transito;
+    } if(state && state.icono){
+      this.icono=state.icono;
     }
   }
 

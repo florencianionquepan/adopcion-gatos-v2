@@ -11,6 +11,7 @@ import { GatosService } from 'src/app/services/gatos.service';
 export class FichaPageComponent {
   ficha:FichaVeterinaria=new FichaVeterinaria();
   nombreGatito:string='';
+  icono:string='';
 
   constructor(private service:GatosService, 
     private ruta: ActivatedRoute){
@@ -20,6 +21,8 @@ export class FichaPageComponent {
     const state = history.state;
     if (state && state.nombre) {
       this.nombreGatito = state.nombre;
+    } if(state && state.icono){
+      this.icono= state.icono;
     }
     this.getFicha();
   }

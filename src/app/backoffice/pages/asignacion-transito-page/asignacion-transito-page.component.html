@@ -1,15 +1,7 @@
 <app-header></app-header>
 <div class="container-md">
-    <div class="row mt-5 border-bottom border-secondary">
-        <div class="col-9 col-md-11">
-            <h1 class="titulo1 mb-0">
-                {{nombreGatito}} 
-            </h1>
-        </div>
-        <div class="col-1">
-            <button class="btn btn-outline-secondary" routerLink="../../">Volver</button>
-        </div>
-    </div>
+    <app-titulo-page [titulo]="'Asignar transito a '+nombreGatito" 
+    [link]="'../../'" [icono]="icono"></app-titulo-page>
     <div class="row my-3 justify-content-between">
         <div class="col-10 col-lg-auto mb-3 mb-lg-0">
             <div class="input-group input-group">
