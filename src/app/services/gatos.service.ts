@@ -83,8 +83,15 @@ export class GatosService {
   }
 
   public asignarTransito(transito:Transito, idGato:number):Observable<any>{
-    return this.http.put<any>(`${this.apiGatos}/${idGato}/transito`, transito)
-    .pipe(
+    return this.http.put<any>(`${this.apiGatos}/${idGato}/transito`, transito).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          return response.data;
+        } else {
+          throw new Error(response);
+        }
+      }),
       catchError(err=>{
         //console.log(err);
         return throwError(()=>err.error)

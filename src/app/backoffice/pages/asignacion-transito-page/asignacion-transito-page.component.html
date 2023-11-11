@@ -8,7 +8,7 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Transito</span>
                 <input type="text" class="form-control" aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-default" disabled #transitoInput
-                [value]="transitoActual ? transitoActual.nombre+' '+transitoActual.apellido : 'No posee'">
+                [value]="transitoActual.nombre ? transitoActual.nombre+' '+transitoActual.apellido : 'No posee'">
             </div>
         </div>
         <form class="col-10 col-lg-auto mb-3 mb-lg-0" role="search">

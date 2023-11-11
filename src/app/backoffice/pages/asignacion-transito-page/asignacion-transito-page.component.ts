@@ -15,7 +15,6 @@ export class AsignacionTransitoPageComponent {
   public transitoActual:Transito=new Transito();
   public icono:string='';
   filtroTransitos: string = '';
-  //@ViewChild('transitoInput') transitoInput!: ElementRef;
 
   constructor(private actiRoute:ActivatedRoute,
     private gatoservice:GatosService){
@@ -51,9 +50,9 @@ export class AsignacionTransitoPageComponent {
       if (result.isConfirmed) {
         this.gatoservice.asignarTransito(transito,this.idGato)
         .subscribe({
-          next:(response)=>{
-            //console.log(response.data);
-            //this.transitoInput.nativeElement.value = transito.nombre + ' ' + transito.apellido;
+          next:(gatoactual)=>{
+            //console.log(gatoactual);
+            this.transitoActual=gatoactual.transito;
             Swal.fire(
               'Genial!',
               `El gatito ${gatito} está a cargo de ${transito.nombre}`,
