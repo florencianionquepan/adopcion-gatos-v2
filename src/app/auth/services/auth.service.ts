@@ -17,7 +17,10 @@ export class AuthService {
   }
 
   getUser(): User {
-    return this.user; // o puedes devolver null o cualquier valor predeterminado si el usuario no está definido
+    if(localStorage.getItem('userdetails')){
+      this.user = JSON.parse(localStorage.getItem('userdetails')!);
+    }
+    return this.user; 
   }
 
   alertLogin():void{

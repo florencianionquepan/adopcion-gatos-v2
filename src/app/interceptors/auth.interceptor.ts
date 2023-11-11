@@ -50,11 +50,11 @@ export class AuthInterceptor implements HttpInterceptor {
               if (e.status !== 401) {
                 return;
               }
-              // if(e.error?.message.contains('token')){
-              //   this.alertError(e);
-              //   localStorage.clear();
-              //   this.router.navigate(['/login']);
-              // }
+              if(e.error?.message.includes('token')){
+                this.alertError(e);
+                localStorage.clear();
+                this.router.navigate(['/login']);
+              }
             }
           }
         }));
