@@ -20,6 +20,8 @@ export class SolicitudesByGatoComponent {
     this.idGatito=this.actiRoute.snapshot.params['id'];
     if (state && state.nombre) {
       this.nombreGatito = state.nombre;
+    }if(state && state.icono){
+      this.icono=state.icono;
     }
   }
 

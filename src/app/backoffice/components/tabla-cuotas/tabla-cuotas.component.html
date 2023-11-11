@@ -33,7 +33,7 @@
         </td>
         <td>{{ cuota.estadoPago }}</td>
         <td>
-          <span *ngIf="cuota.estadoPago=='APROBADO' || cuota.estadoPago=='CERRADO'">-</span>
+          <span *ngIf="cuota.estadoPago=='APROBADO' || cuota.estadoPago=='CERRADO'">~</span>
           <span *ngIf="cuota.estadoPago=='PENDIENTE'">
             <button class="btn btn-outline-dark btn-sm mx-1" (click)="pagarPendiente(cuota.id)">
               Pagar <i class="bi bi-wallet2"></i>

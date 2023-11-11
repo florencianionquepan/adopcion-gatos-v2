@@ -2,6 +2,7 @@
 <div class="container-md">
     <app-titulo-page [titulo]="'Solicitudes de '+nombreGatito"
     [link]="'../../'" [icono]="icono"></app-titulo-page>
-    <app-tabla-solicitudes-adopcion [solicitudes]="solicitudes"></app-tabla-solicitudes-adopcion>
+    <app-tabla-solicitudes-adopcion [solicitudes]="solicitudes" [idGato]="idGatito">
+    </app-tabla-solicitudes-adopcion>
 </div>
 <app-footer></app-footer>

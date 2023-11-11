@@ -20,9 +20,11 @@ const estados={
 
 export class TablaSolicitudesAdopcionComponent {
   @Input() solicitudes: Solicitud[] = [];
+  @Input() idGato:number=0;
   datosCargados:boolean=false;
   
-  constructor(private service:AdopcionService, private persoService:PersonaService){
+  constructor(private service:AdopcionService, 
+    private persoService:PersonaService){
   }
 
   aceptar(id:number){
@@ -63,19 +65,20 @@ export class TablaSolicitudesAdopcionComponent {
             //console.log(response);
             const solicitud=response;
             this.success(solicitud.solicitante.nombre);
-            this.actualizarTabla(solicitud); 
+            this.actualizarTabla(); 
           }
         )
       }
     })
   }
 
-  actualizarTabla(solicitudActualizada: Solicitud) {
-    // Buscar y reemplazar la solicitud actualizada en la lista
-    const index = this.solicitudes.findIndex((s) => s.id === solicitudActualizada.id);
-    if (index !== -1) {
-      this.solicitudes[index] = solicitudActualizada;
-    }
+  actualizarTabla() {
+    // Se vuelve a llamar al back para actualizar datos de tabla
+    this.service.listarByGato(this.idGato).subscribe(
+      (response)=>{
+        this.solicitudes=response;
+      }
+    );
   }
 
   success(nombre:string):void{
