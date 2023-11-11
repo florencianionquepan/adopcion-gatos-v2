@@ -19,7 +19,8 @@
     <div class="row my-3 border-bottom border-secondary justify-content-between px-2">
         Transitos existentes en Rescats
     </div>
-    <app-tabla-transitos (asignarTransitoEvent)="asignarTransito($event)" [filterTransitos]="filtroTransitos">
+    <app-tabla-transitos [transitos]="transitos"
+    (asignarTransitoEvent)="asignarTransito($event)" [filterTransitos]="filtroTransitos">
     </app-tabla-transitos>
 </div>
 <app-footer></app-footer>
