@@ -47,11 +47,23 @@
         {{ gato.adoptado ? (gato.adoptado | date: 'dd/MM/yyyy') : 'Aun no' }}
       </td>
       <td *ngIf="!gato.adoptado">
-        <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
-        [state]="{ nombre: gato.nombre, transito:gato.transito,icono:gato.fotos[0]}">
-        {{ gato.transito? gato.transito.nombre  : 'Buscar'}}
-        <i class="bi bi-search-heart"></i>
-        </button>
+        <span *ngIf="!gato.adoptado">
+          <span *ngIf="gato.transito">
+              <app-detalle-persona [persona]="gato.transito"></app-detalle-persona>
+          </span>
+          <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
+          [state]="{ nombre: gato.nombre, transito:gato.transito,icono:gato.fotos[0]}">
+          <ng-container *ngIf="gato.transito; else buscar">
+            <i class="bi bi-pencil-fill"></i>
+          </ng-container>
+          <ng-template #buscar>
+            Buscar <i class="bi bi-search-heart"></i>
+          </ng-template>
+          </button>
+        </span>
+        <span *ngIf="gato.adoptado">
+          ~
+        </span>
       </td>
       <td *ngIf="gato.adoptado">
         <span *ngIf="gato.transito">
