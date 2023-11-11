@@ -1,4 +1,4 @@
-<div class="row justify-content-start align-items-start mt-4">
+<div class="row justify-content-start align-items-start mt-4" *ngIf="cats.length>0;">
   <div class="col-10 col-md-4 col-lg-3 my-2" *ngFor="let cat of cats">
     <div class="card my-auto" style="background-color: #f8e0db;">
       <div class="text-center d-flex align-items-center my-auto" 
@@ -25,5 +25,10 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="row align-items-center mt-5" *ngIf="cats.length==0">
+  <div class="col-12 mt-5">
+      <app-no-data></app-no-data>
   </div>
 </div>
