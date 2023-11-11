@@ -22,8 +22,14 @@
       <td class="d-none d-lg-table-cell">
         {{ transito.email }}
       </td>
-      <td>
-        {{ gatosSinAdoptar(transito.gatos) }}
+      <td class="ps-3">
+        {{transito.gatos.length}}
+        <span *ngIf="transito.gatos.length>0">
+          <button class="btn btn-outline-dark btn-sm" 
+          (click)="verGatos(transito.nombre,transito.gatos)">
+            <i class="bi bi-eye"></i>
+          </button>
+        </span>
       </td>
       <button class="btn btn-secondary btn-sm" 
       (click)="asignarTransito(transito.id, transito.nombre)">Asignar</button>

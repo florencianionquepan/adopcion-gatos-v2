@@ -30,8 +30,16 @@ transitos: Transito[]=[];
     )
   }
 
-  gatosSinAdoptar(gatos:Gato[]){
-    return gatos.filter((gato) => gato.adoptado==null).length;
+  verGatos(transito:string,gatos:Gato[]){
+    let html='';
+    gatos.forEach(gato=>{
+      html+=`<a href="/gatos/${gato.id}" class="colorw" target="_blank">
+      <i class="bi bi-suit-heart"></i>${gato.nombre}</a><br>`
+    })
+    Swal.fire({
+      title:'Transitos de '+transito,
+      html:html
+    })
   }
 
   asignarTransito(id: number, nombre: string) {
