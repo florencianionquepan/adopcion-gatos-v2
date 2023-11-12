@@ -8,8 +8,8 @@
     top: 10px; /* Ajusta la distancia desde la parte superior según tus preferencias */
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(96, 105, 223, 0.9); /* Fondo naranja con opacidad */
-    color: #fff;
+    background-color: rgba(90, 103, 218, 0.959); /* Fondo naranja con opacidad */
+    color: #ffffff;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 18px;

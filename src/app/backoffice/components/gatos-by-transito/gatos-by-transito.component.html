@@ -1,13 +1,14 @@
-<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="asignaciones.length>0; else sinDatos">
+<table class="table table-sm bg-transparent rounded" id="cute" 
+*ngIf="asignaciones.length>0; else sinDatos">
   <thead>
     <tr>
       <th scope="col-1">Nombre</th>
-      <th scope="col-1">Fecha asignación</th>
+      <th scope="col-1">Fecha de asignación</th>
       <th scope="col-1">Fecha fin</th>
-      <th scope="col-1" class="d-none d-md-table-cell">Solicitudes</th>
+      <th scope="col-1" class="d-none d-lg-table-cell">Solicitudes</th>
       <th scope="col-1" class="d-none d-md-table-cell">Adoptado</th>
       <th scope="col-1" class="d-none d-md-table-cell">Monto Mensual</th>
-      <th scope="col-1">Padrino</th>
+      <th scope="col-1" class="d-none d-md-table-cell">Padrino</th>
       <th scope="col-1">Ficha Vete</th>
     </tr>
   </thead>
@@ -26,15 +27,18 @@
         <span *ngIf="asignacion.fechaFin">{{asignacion.fechaFin | date: 'dd/MM/yyyy'}}</span>
         <span *ngIf="!asignacion.fechaFin">A mi cargo</span>
       </td>
-      <td class="d-none d-md-table-cell">
+      <td class="d-none d-lg-table-cell">
         {{ asignacion.gato.solicitudes.length }}
       </td>
       <td class="d-none d-md-table-cell">
         {{ asignacion.gato.adoptado ? (asignacion.gato.adoptado | date: 'dd/MM/yyyy') : 'En transito' }}
       </td>
       <td class="d-none d-md-table-cell">$ {{ asignacion.gato.montoMensual }}</td>
-      <td>
-        {{ asignacion.gato.padrino?.dni || "No posee" }}
+      <td class="d-none d-md-table-cell">
+        <span *ngIf="asignacion.gato.padrino">
+          <app-detalle-persona [persona]="asignacion.gato.padrino"></app-detalle-persona>
+        </span>
+        <span *ngIf="!asignacion.gato.padrino">No Posee</span>
       </td>
       <td>
         <a
@@ -43,7 +47,7 @@
           (click)="verFicha(asignacion.gato.ficha!)" *ngIf="asignacion.gato.ficha?.pdf">
           Descargar pdf <i class="bi bi-clipboard2-heart"></i>
         </a>
-        <span *ngIf="!asignacion.gato.ficha">No Posee</span>
+        <span *ngIf="!asignacion.gato.ficha" class="ms-2">No Posee</span>
       </td>
     </tr>
   </tbody>

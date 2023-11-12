@@ -24,7 +24,9 @@ export class GatosByTransitoComponent {
     this.service.gatosByTransito(this.user.email).subscribe(
       data=>{
         //console.log(data);
-        this.asignaciones=data;
+        this.asignaciones=data.sort((a:any, b:any) => {
+          return new Date(b.fechaAsignacion).getTime() - new Date(a.fechaAsignacion).getTime();
+        });
       }
     )
   }
