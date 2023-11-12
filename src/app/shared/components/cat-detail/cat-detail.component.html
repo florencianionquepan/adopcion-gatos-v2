@@ -12,14 +12,16 @@
             <h5>Tipo de pelo: {{gato.tipoPelo}}</h5>
             <div *ngIf="!gato.padrino && gato.montoMensual" 
             class="d-flex flex-row align-items-center">
-              <h5> Apadrinamiento:
+              <h5 *ngIf="!gato.adoptado"> Apadrinamiento:
                 <button type="button" class="btn btn-secondary btn-sm mx-2 mb-2"
                 (click)="apadrinar()" [ngClass]="{'disabled': gato.adoptado || gato.padrino}"> 
                 <i class="bi bi-box2-heart"> </i> <span> </span>
                 <i class="bi bi-currency-dollar"></i>{{gato.montoMensual}}
                 </button>
               </h5>
-              
+            <h5 *ngIf="gato.adoptado && esVoluntario">Adoptado por
+              <app-detalle-persona [persona]="adoptante"></app-detalle-persona>  
+            </h5>
             </div>
             <div *ngIf="gato.ficha" class="my-3">
               <h4 class="border-bottom border-secondary">Ficha Veterinaria</h4>

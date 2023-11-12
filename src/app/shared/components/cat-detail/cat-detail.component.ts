@@ -10,6 +10,7 @@ import localeEs from '@angular/common/locales/es';
 import { AdopcionService } from 'src/app/services/adopcion.service';
 import { CuotasService } from 'src/app/services/cuotas.service';
 import { PadrinoService } from 'src/app/services/padrino.service';
+import { Persona } from 'src/app/models/Persona';
 registerLocaleData(localeEs);
 
 @Component({
@@ -21,6 +22,7 @@ export class CatDetailComponent {
   gato=new GatoDetalle();
   user=new User();
   esVoluntario=false;
+  adoptante:Persona=new Persona();
 
   constructor(private ruta: ActivatedRoute,
             private catSvc: GatosService,
@@ -44,6 +46,7 @@ export class CatDetailComponent {
     this.catSvc.getGatoById(id).subscribe(resp=>{
       //console.log(resp);
       this.gato=resp.data;
+      this.adoptante=resp.data.adoptante;
       if(this.gato.padrino){
         this.padrinosser.renunciaAutomatica(this.gato).subscribe(
           (data)=>{

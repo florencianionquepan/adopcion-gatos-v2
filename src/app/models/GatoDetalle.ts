@@ -1,5 +1,6 @@
 import { FichaVeterinaria } from "./FichaVeterinaria";
 import { Padrino } from "./Padrino";
+import { Persona } from "./Persona";
 import { Solicitud } from "./Solicitud";
 import { Transito } from "./Transito";
 import { Voluntario } from "./Voluntario";
@@ -20,6 +21,7 @@ export class GatoDetalle{
     "ficha":FichaVeterinaria | null;
     "montoMensual":number;
     "solicitudes":Solicitud[];
+    "adoptante":Persona|null;
 
     constructor(
         id?: number,
@@ -36,7 +38,8 @@ export class GatoDetalle{
         voluntario?:Voluntario | null,
         ficha?: FichaVeterinaria | null,
         montoMensual?: number,
-        solicitudes?: Solicitud[]
+        solicitudes?: Solicitud[],
+        adoptante?:Persona
     ) {
         this.id = id || 0;
         this.nombre = nombre || '';
@@ -53,5 +56,6 @@ export class GatoDetalle{
         this.ficha = ficha || null;
         this.montoMensual = montoMensual || 0;
         this.solicitudes = solicitudes || [];
+        this.adoptante=adoptante|| null;
     }
 }

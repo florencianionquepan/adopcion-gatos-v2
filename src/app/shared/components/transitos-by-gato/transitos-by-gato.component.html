@@ -14,10 +14,11 @@
     <tbody>
       <tr *ngFor="let asignacion of transitos">
         <td class="ps-3">        
-          {{asignacion.fechaAsignacion | date:'dd-MM-yyyy'}}
+          {{asignacion.fechaAsignacion | date:'dd/MM/yyyy'}}
         </td>
         <td>
-          <span *ngIf="!asignacion.fechaFin">~</span>{{asignacion.fechaFin}}
+          <span *ngIf="!asignacion.fechaFin">~</span>
+          {{asignacion.fechaFin  | date:'dd/MM/yyyy'}}
         </td>
         <td class="d-none d-lg-table-cell">
           <app-detalle-persona [persona]="asignacion.transito"></app-detalle-persona>

@@ -14,7 +14,9 @@
       <tr *ngFor="let cuota of cuotas">
         <td>        
           <a role="button" class="colorw"
-          routerLinkActive="active" routerLink="../../gatos/{{cuota.gato.id}}">{{ cuota.gato.nombre }}
+          routerLinkActive="active" 
+          routerLink="../../gatos/{{cuota.gato.id}}"
+          target="_blank">{{ cuota.gato.nombre }}
           </a>
         </td>
         <td class="d-none d-lg-table-cell">
