@@ -22,6 +22,7 @@ export class CatDetailComponent {
   gato=new GatoDetalle();
   user=new User();
   esVoluntario=false;
+  esPadrino=false;
   adoptante:Persona=new Persona();
 
   constructor(private ruta: ActivatedRoute,
@@ -37,6 +38,7 @@ export class CatDetailComponent {
     this.user=this.authSvc.getUser();
     if(this.user.authStatus){
       this.esVoluntario=this.user.roles.some(role=>role.nombre=='ROLE_VOLUNTARIO');
+      this.esPadrino=this.user.esPadrino;
     }
   }
 

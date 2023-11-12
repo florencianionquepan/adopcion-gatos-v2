@@ -60,6 +60,6 @@
             <app-carousel [fotos]="gato.fotos"></app-carousel>
     </div>
     </div>
-    <app-transitos-by-gato [id]="gato.id" *ngIf="esVoluntario"></app-transitos-by-gato>
+    <app-transitos-by-gato [id]="gato.id" *ngIf="esVoluntario || esPadrino"></app-transitos-by-gato>
 </div>
 <app-footer></app-footer>
