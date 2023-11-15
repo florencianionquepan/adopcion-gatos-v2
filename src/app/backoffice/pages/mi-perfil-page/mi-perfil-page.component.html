@@ -1,16 +1,31 @@
 <app-header></app-header>
 <div class="container-sm">
-    <div class="row m-5 border-bottom border-secondary">
+    <div class="row mt-5 border-bottom border-secondary">
         <div class="col-9 col-md-11">
             <h1 class="titulo1 mb-0">
                 Mi perfil
             </h1>
         </div>
     </div>
-
-    
+    <div class="row mx-5 my-3 border-bottom border-secondary justify-content-between px-2">
+        Mis voluntariados
+    </div>
+    <div class="row mx-5 justify-content-center">
+        <div class="col-2 border rounded p-3 mx-3 color4 p-4" *ngIf="esTransito">
+            <h3 class="fs-6 mb-0"> <i class="bi bi-house-heart-fill me-2"></i> Transito</h3>
+        </div>
+        <div class="col-2 border rounded p-3 mx-3 color4 p-4" *ngIf="esPadrino">
+            <h3 class="fs-6 mb-0"> <i class="bi bi-wallet2"></i> Padrino</h3>
+        </div>
+        <div class="col-2 border rounded p-3 mx-3 color4 p-4" *ngIf="esVoluntario">
+            <h3 class="fs-6 mb-0"> <i class="bi bi-star-fill"></i> Voluntario</h3>
+        </div>
+    </div>
+    <div class="row mx-5 my-3 border-bottom border-secondary justify-content-between px-2">
+        Datos Personales
+    </div>
     <form [formGroup]="perfilForm" (ngSubmit)="perfilForm.valid && actualizar()" 
-    class="py-2 mx-auto color1 border rounded">
+    class="py-2 mx-auto color4 border rounded w-75">
         <app-persona-form formControlName="personaData"></app-persona-form>
         <div class="col-4 g-2 my-2 mx-auto mb-4 text-center">
             <button class="btn btn-lg btn-outline-secondary mt-4"

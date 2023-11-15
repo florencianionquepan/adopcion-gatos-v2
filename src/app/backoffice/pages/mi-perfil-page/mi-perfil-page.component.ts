@@ -14,11 +14,17 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class MiPerfilPageComponent {
   user:User=new User();
   persona:Persona=new Persona();
+  esTransito:boolean=false;
+  esPadrino:boolean=false;
+  esVoluntario:boolean=false;
 
   constructor(private fb:FormBuilder, 
     private service:PersonaService,
     private authService:AuthService){
     this.user=this.authService.getUser();
+    this.esPadrino=this.user.esPadrino;
+    this.esTransito=this.user.esTransito;
+    this.esVoluntario=this.user.roles.some(rol=>rol.nombre='ROLE_VOLUNTARIO');
   }
 
   ngOnInit(){
