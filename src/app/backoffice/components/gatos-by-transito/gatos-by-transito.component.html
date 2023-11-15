@@ -19,6 +19,10 @@
           routerLinkActive="active"
           [routerLink]="['/gatos', asignacion.gato.id]"
           target="_blank">
+          <img *ngIf="asignacion.gato.fotos" [src]="asignacion.gato.fotos[0]" class="rounded-circle" 
+          alt="gatito" style="width: 30px; height: 30px;">
+          <img *ngIf="!asignacion.gato.fotos" src="../../../../assets/img/figura.png" class="rounded-circle" 
+          alt="gatito" style="width: 30px; height: 30px;">
           {{ asignacion.gato.nombre }}
         </a>
       </td>

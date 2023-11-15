@@ -19,7 +19,11 @@
         <a role="button" class="colorw"
         routerLinkActive="active" [routerLink]="['/../gatos', gato.id]"
         target="_blank">
-        <img [src]="gato.fotos[0]" class="rounded-circle" 
+        <img *ngIf="gato.fotos" [src]="gato.fotos[0]" 
+        class="rounded-circle" 
+        alt="gatito" style="width: 30px; height: 30px;">
+        <img *ngIf="!gato.fotos" src="../../../../assets/img/figura.png"
+        class="rounded-circle" 
         alt="gatito" style="width: 30px; height: 30px;">
         {{ gato.nombre }}
         </a> 
@@ -52,7 +56,7 @@
               <app-detalle-persona [persona]="gato.transito"></app-detalle-persona>
           </span>
           <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
-          [state]="{ nombre: gato.nombre, transito:gato.transito,icono:gato.fotos[0]}">
+          [state]="{ nombre: gato.nombre, transito:gato.transito,icono:gato.fotos? gato.fotos[0]:''}">
           <ng-container *ngIf="gato.transito; else buscar">
             <i class="bi bi-pencil-fill"></i>
           </ng-container>
@@ -79,13 +83,13 @@
       </td>
       <td>{{ gato.solicitudes.length==0? 'No posee' : '' }}
         <button *ngIf="gato.solicitudes.length>0" class="btn btn-outline-dark btn-sm"
-          routerLink="{{gato.id}}/solicitudes" [state]="{nombre: gato.nombre, icono:gato.fotos[0]}">
+          routerLink="{{gato.id}}/solicitudes" [state]="{nombre: gato.nombre, icono:gato.fotos? gato.fotos[0]:''}">
           Ver {{gato.solicitudes.length}} 
         </button>
       </td>
       <td>
         <a role="button" class="btn btn-outline-dark btn-sm mx-1"
-        routerLinkActive="active" routerLink="{{gato.id}}/ficha" [state]="{nombre: gato.nombre, icono:gato.fotos[0]}">
+        routerLinkActive="active" routerLink="{{gato.id}}/ficha" [state]="{nombre: gato.nombre, icono:gato.fotos? gato.fotos[0]:''}">
         <i class="bi bi-clipboard2-heart"></i>
         </a>
       </td>

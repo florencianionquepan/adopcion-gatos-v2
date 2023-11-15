@@ -2,7 +2,7 @@
   id="carouselExampleDark"
   class="carousel carousel-dark slide"
   data-bs-ride="carousel">
-  <div class="carousel-indicators" *ngIf="fotos.length > 0">
+  <div class="carousel-indicators" *ngIf="fotos && fotos.length > 0">
     <div *ngFor="let foto of fotos; let i = index">
       <button
         type="button"
@@ -26,7 +26,7 @@
     type="button"
     data-bs-target="#carouselExampleDark"
     data-bs-slide="prev"
-    *ngIf="fotos.length > 0">
+    *ngIf="fotos && fotos.length > 0">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
@@ -35,7 +35,7 @@
     type="button"
     data-bs-target="#carouselExampleDark"
     data-bs-slide="next"
-    *ngIf="fotos.length > 0">
+    *ngIf="fotos && fotos.length > 0">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
