@@ -24,7 +24,7 @@ export class MiPerfilPageComponent {
     this.user=this.authService.getUser();
     this.esPadrino=this.user.esPadrino;
     this.esTransito=this.user.esTransito;
-    this.esVoluntario=this.user.roles.some(rol=>rol.nombre='ROLE_VOLUNTARIO');
+    this.esVoluntario=this.user.roles.some(rol=>rol.nombre=='ROLE_VOLUNTARIO');
   }
 
   ngOnInit(){
