@@ -7,6 +7,7 @@ import { CatDetailComponent } from './shared/components/cat-detail/cat-detail.co
 import { RegisterComponent } from './auth/register/register.component';
 import { ValidationComponent } from './auth/validation/validation.component';
 import { AuthGuardGuard } from './backoffice/guards/auth-guard.guard';
+import { BePartOfComponent } from './shared/pages/be-part-of/be-part-of.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'usuarios/:id/validacion/:token', component: ValidationComponent },
   { path: 'gatos/:id', component: CatDetailComponent },
+  { path:'join', component:BePartOfComponent},
   {path:'backoffice',
     loadChildren: ()=>import('./backoffice/backoffice.module').then(m=>m.BackofficeModule),
     canActivate:[AuthGuardGuard]

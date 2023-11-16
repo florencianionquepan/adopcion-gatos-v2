@@ -1,0 +1,91 @@
+<app-header></app-header>
+<div class="container-md">
+
+    <div class="row m-5 border-bottom border-dark align-items-center">
+        <div class="col-9 col-md-11">
+            <h1 class="titulo1 mb-0">
+                Como ser parte
+            </h1>
+        </div>
+    </div>
+    
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active fs-5" id="voluntario" data-bs-toggle="tab" 
+              data-bs-target="#voluntario-pane" type="button" role="tab" 
+              aria-controls="voluntario-pane" aria-selected="true">
+              <i class="bi bi-star-fill"></i> Voluntario</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fs-5" id="transito" data-bs-toggle="tab" 
+              data-bs-target="#transito-pane" type="button" role="tab" 
+              aria-controls="transito-pane" aria-selected="false">
+              <i class="bi bi-house-heart-fill"></i> Transito</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fs-5" id="padrino" data-bs-toggle="tab" 
+              data-bs-target="#padrino-pane" type="button" role="tab" 
+              aria-controls="padrino-pane" aria-selected="false">
+              <i class="bi bi-wallet2"></i> Padrino</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active color4 p-3 border rounded border-0 mt-3" id="voluntario-pane" role="tabpanel" 
+            aria-labelledby="voluntario" tabindex="0">
+            <p><i class="bi bi-suit-heart"></i>
+                Un voluntario es la persona que quiere dedicar una parte de su tiempo a la asociacion Rescats, 
+                haciendo un trabajo y una acción solidaria y altruista.
+            </p>
+            <p><i class="bi bi-suit-heart"></i>
+                Las tareas de voluntariado incluyen:</p>
+                <ul>
+                    <li>Cargar los gatitos a cargo en el sitio</li>
+                    <li>Revisar las solicitudes de adopcion de sus gatitos a cargo, 
+                        entrevistando a las personas interesadas</li>
+                    <li>Buscarle un hogar temporal a sus gatitos a cargo con los transitos existentes en el sitio</li>
+                </ul>
+                <div class="text-center">
+                    <button class="btn btn-outline-dark">
+                        Enviar mi solicitud <i class="bi bi-envelope-paper-heart"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="tab-pane fade color4 p-3 border rounded border-0 mt-3" id="transito-pane" 
+            role="tabpanel" aria-labelledby="transito" tabindex="0">
+                <p><i class="bi bi-suit-heart"></i>
+                    Siendo casa de acogida nos ayudarás a seguir rescatando gatos de la calle, 
+                    con tu ayuda el animal abandonado conocerá la vida en un hogar y 
+                    cuando lo adopten se adaptará con mayor facilidad.
+                </p>
+                <p><i class="bi bi-suit-heart"></i>
+                    Deberás darle de comer, administrarle su medicación (en caso de que la requiera) 
+                    y colmarlo de muchos, muchos mimos.
+                </p>
+                <p> <i class="bi bi-suit-heart"></i>
+                    En caso de que el gatito disponga de un padrino, deberás coordinar con el 
+                    las visitas
+                </p>
+                <div class="text-center">
+                    <button class="btn btn-outline-dark">
+                        Enviar mi solicitud <i class="bi bi-envelope-paper-heart"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="tab-pane fade color4 p-3 border rounded border-0 mt-3" id="padrino-pane" role="tabpanel" 
+            aria-labelledby="padrino" tabindex="0">
+                <p><i class="bi bi-suit-heart"></i>
+                    Crea un vínculo sentimental con uno de nuestros protegidos y hazle sentir 
+                    tu amor estés donde estés, 
+                    te enviaremos fotos e información de su estado hasta que encuentra adopción.
+                </p>
+                <p><i class="bi bi-suit-heart"></i>
+                    Podrás visitarlo ocasionalmente si lo deseas coordinando con su voluntario o su transito a cargo.
+                </p>
+                <p> <i class="bi bi-suit-heart"></i>
+                    Para esto no necesitas enviar ninguna solicitud, solo dirigete al 
+                    <a [routerLink]="'/'" class="colorw">home</a> 
+                     y elige cual gatito apadrinar en Ver mas!</p>
+            </div>
+    </div>
+</div>
+<app-footer></app-footer>

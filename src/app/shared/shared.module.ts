@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TransitosByGatoComponent } from './components/transitos-by-gato/transitos-by-gato.component';
 import { NoDataComponent } from './components/no-data/no-data.component';
 import { DetallePersonaComponent } from './components/detalle-persona/detalle-persona.component';
+import { BePartOfComponent } from './pages/be-part-of/be-part-of.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DetallePersonaComponent } from './components/detalle-persona/detalle-pe
     PersonaFormComponent,
     TransitosByGatoComponent,
     NoDataComponent,
-    DetallePersonaComponent
+    DetallePersonaComponent,
+    BePartOfComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,19 @@
+.nav-link{
+    background-color: transparent !important;
+    color:#26094B;
+}
+
+.nav-link.active{
+    background-color: #F5CDFF !important;
+    color:#26094B;
+    border: 1px solid #26094B;
+}
+
+.nav-link:hover{
+    color:#26094B;
+    border: 1px solid #26094B;
+}
+
+ul.nav{
+    border-bottom: 1px solid #26094B;
+}
