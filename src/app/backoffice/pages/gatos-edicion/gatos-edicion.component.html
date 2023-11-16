@@ -1,5 +1,5 @@
 <app-header></app-header>
 <app-titulo-page [titulo]="'Edicion de '+ gato.nombre"  [link]="'../'" 
-    [icono]="gato.fotos[0]"></app-titulo-page>
+    [icono]="gato.fotos ? gato.fotos[0]:''"></app-titulo-page>
 <app-form-gato [mostrarForm]="true" [gato]="gato"></app-form-gato>
 <app-footer></app-footer>
