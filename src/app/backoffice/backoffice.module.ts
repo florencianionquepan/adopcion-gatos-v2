@@ -31,6 +31,7 @@ import { CuotaFailureComponent } from './pages/cuota-failure/cuota-failure.compo
 import { MissolicitudesVoluntariadosComponent } from './components/missolicitudes-voluntariados/missolicitudes-voluntariados.component';
 import { SolicitudesVoluntariadosComponent } from './pages/solicitudes-voluntariados/solicitudes-voluntariados.component';
 import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuarios.component';
+import { TablaSolicitudesVoluntariadosComponent } from './components/tabla-solicitudes-voluntariados/tabla-solicitudes-voluntariados.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuar
     CuotaFailureComponent,
     MissolicitudesVoluntariadosComponent,
     SolicitudesVoluntariadosComponent,
-    GestionUsuariosComponent
+    GestionUsuariosComponent,
+    TablaSolicitudesVoluntariadosComponent
   ],
   imports: [
     CommonModule,
