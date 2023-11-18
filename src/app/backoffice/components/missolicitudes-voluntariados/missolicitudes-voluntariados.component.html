@@ -1,0 +1,24 @@
+<!--SOLICITUDES DE VOLUNTARIADOS-->
+<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="solicitudes.length>0; else sinDatos">
+    <thead>
+      <tr>
+        <th scope="col-auto">Tipo Voluntariado</th>
+        <th scope="col-auto">Estados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let solicitud of solicitudes">
+        <td>
+            <span class="ms-2" *ngIf="solicitud.voluntariado=='VOLUNTARIO'">VOLU</span>
+            <span class="ms-2" *ngIf="solicitud.voluntariado=='TRANSITO'"><i class="bi bi-wallet2"></i> Transito</span>
+        </td>
+        <td>
+           <app-tabla-estados [estados]="solicitud.estados"></app-tabla-estados>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #sinDatos>
+    <app-no-data></app-no-data>
+  </ng-template>
