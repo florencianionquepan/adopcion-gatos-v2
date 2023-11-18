@@ -26,6 +26,7 @@ const routes: Routes=[
 {
     path:'misgatos/:id',
     component:GatosEdicionComponent,
+    canActivate:[RoleGuard],
     data:{
         allowedRoles:['ROLE_VOLUNTARIO']
     }
@@ -33,6 +34,7 @@ const routes: Routes=[
 {
     path:'misgatos/:id/ficha',
     component:FichaPageComponent,
+    canActivate:[RoleGuard],
     data:{
         allowedRoles:['ROLE_VOLUNTARIO']
     }
@@ -40,6 +42,7 @@ const routes: Routes=[
 {
     path:'misgatos/:id/transito',
     component:AsignacionTransitoPageComponent,
+    canActivate:[RoleGuard],
     data:{
         allowedRoles:['ROLE_VOLUNTARIO']
     }
@@ -47,6 +50,7 @@ const routes: Routes=[
 {
     path:'misgatos/:id/solicitudes',
     component:SolicitudesByGatoComponent,
+    canActivate:[RoleGuard],
     data:{
         allowedRoles:['ROLE_VOLUNTARIO']
     }
@@ -54,6 +58,7 @@ const routes: Routes=[
 {
     path:'missolicitudes',
     component:MissolicitudesPageComponent,
+    canActivate:[RoleGuard],
     data:{
         allowedRoles:['ROLE_USER']
     }
@@ -61,25 +66,42 @@ const routes: Routes=[
 {
     path:'perfil',
     component:MiPerfilPageComponent,
+    canActivate:[RoleGuard],
     data:{
         allowedRoles:['ROLE_USER']
     }
 },
 {
     path:'gatosentransito',
-    component:TransitoPageComponent
+    component:TransitoPageComponent,
+    canActivate:[RoleGuard],
+    data:{
+        requiredAttributes:['esTransito']
+    }
 },
 {
     path:'cuotas/success',
-    component:CuotaSuccessComponent
+    component:CuotaSuccessComponent,
+    canActivate:[RoleGuard],
+    data:{
+        requiredAttributes:['esPadrino']
+    }
 },
 {
     path:'cuotas/failure',
-    component:CuotaFailureComponent
+    component:CuotaFailureComponent,
+    canActivate:[RoleGuard],
+    data:{
+        requiredAttributes:['esPadrino']
+    }
 },
 {
     path:'miscuotas',
-    component:CuotasPageComponent
+    component:CuotasPageComponent,
+    canActivate:[RoleGuard],
+    data:{
+        requiredAttributes:['esPadrino']
+    }
 }]
 
 @NgModule({

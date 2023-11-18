@@ -18,11 +18,19 @@ export class RoleGuard implements CanActivate {
       let user:User = JSON.parse(userdetails!);
 
       const allowedRoles = route.data['allowedRoles'];
-      if(user && user.roles){
-        if (user.roles.some(role=>allowedRoles.includes(role.nombre))) {
-          return true; 
+      const requiredAttributes = route.data['requiredAttributes'];
+      if (user) {
+        // Verificar roles
+        if (allowedRoles && allowedRoles.length > 0 && user.roles.some(role => allowedRoles.includes(role.nombre))) {
+          return true;
+        }
+  
+        // Verificar atributos
+        if (requiredAttributes && requiredAttributes.length > 0 && this.hasRequiredAttributes(user, requiredAttributes)) {
+          return true;
         }
       }
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -33,6 +41,10 @@ export class RoleGuard implements CanActivate {
           this.router.navigate(['/']);
       },2000)
       return false;
+  }
+
+  private hasRequiredAttributes(user: User, requiredAttributes: string[]): boolean {
+    return requiredAttributes && requiredAttributes.length > 0 && requiredAttributes.every(attr => (user as any)[attr] === true);
   }
   
 }

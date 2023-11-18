@@ -28,6 +28,7 @@ import { CuotaSuccessComponent } from './pages/cuota-success/cuota-success.compo
 import { CuotasPageComponent } from './pages/cuotas-page/cuotas-page.component';
 import { TablaCuotasComponent } from './components/tabla-cuotas/tabla-cuotas.component';
 import { CuotaFailureComponent } from './pages/cuota-failure/cuota-failure.component';
+import { MissolicitudesVoluntariadosComponent } from './components/missolicitudes-voluntariados/missolicitudes-voluntariados.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { CuotaFailureComponent } from './pages/cuota-failure/cuota-failure.compo
     CuotaSuccessComponent,
     CuotasPageComponent,
     TablaCuotasComponent,
-    CuotaFailureComponent
+    CuotaFailureComponent,
+    MissolicitudesVoluntariadosComponent
   ],
   imports: [
     CommonModule,
