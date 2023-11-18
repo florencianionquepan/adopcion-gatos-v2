@@ -14,7 +14,7 @@
               data-bs-toggle="collapse" data-bs-target="#collapseOne" 
               aria-expanded="true" aria-controls="collapseOne" 
               style="background-color:  #F5CDFF !important; border:0px !important;">
-                <span class="fs-4">Mis voluntariados</span>
+                <span class="fs-5 colorw">Mis voluntariados</span>
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show border-0">
@@ -35,16 +35,16 @@
           </div>
 
           <div class="accordion-item" style="background-color: transparent !important;">
-            <h2 class="accordion-header">
+            <h2 class="accordion-header border-0">
               <button class="accordion-button collapsed border rounded border-0" type="button" 
               data-bs-toggle="collapse" data-bs-target="#collapseTwo" 
               aria-expanded="true" aria-controls="collapseTwo" 
               style="background-color: #F5CDFF !important;">
-                    <span class="fs-4">Datos Personales</span>
+                    <span class="fs-5 colorw">Datos Personales</span>
               </button>
             </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse">
-              <div class="accordion-body">
+            <div id="collapseTwo" class="accordion-collapse collapse border-0">
+              <div class="accordion-body border-0">
                 <form [formGroup]="perfilForm" (ngSubmit)="perfilForm.valid && actualizar()" 
                 class="py-2 mx-auto color4 border rounded border-0 w-75">
                     <app-persona-form formControlName="personaData"></app-persona-form>

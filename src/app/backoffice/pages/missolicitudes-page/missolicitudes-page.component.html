@@ -1,6 +1,38 @@
 <app-header></app-header>
 <div class="container-lg my-5">
     <app-titulo-page [titulo]="'Mis solicitudes'" [link]="'../../'"></app-titulo-page>
-    <app-missolicitudes></app-missolicitudes>
+    <div class="accordion accordion-flush" id="accordionExample">
+        <div class="accordion-item" style="background-color:  transparent !important;">
+            <h2 class="accordion-header border-0">
+              <button class="accordion-button border rounded border-0" type="button" 
+              data-bs-toggle="collapse" data-bs-target="#collapseOne" 
+              aria-expanded="true" aria-controls="collapseOne" 
+              style="background-color:  #F5CDFF !important; border:0px !important;">
+                <span class="fs-5 colorw">Adopción</span>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show border-0">
+              <div class="accordion-body border-0">
+                <app-missolicitudes></app-missolicitudes>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item" style="background-color: transparent !important;">
+            <h2 class="accordion-header border-0">
+              <button class="accordion-button collapsed border rounded border-0" type="button" 
+              data-bs-toggle="collapse" data-bs-target="#collapseTwo" 
+              aria-expanded="true" aria-controls="collapseTwo" 
+              style="background-color: #F5CDFF !important;">
+                    <span class="fs-5 colorw">Voluntariados</span>
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse border-0">
+              <div class="accordion-body border-0">
+                <app-missolicitudes-voluntariados></app-missolicitudes-voluntariados>
+              </div>
+            </div>
+          </div>
+    </div>
 </div>
 <app-footer></app-footer>
