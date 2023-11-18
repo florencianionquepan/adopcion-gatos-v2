@@ -57,4 +57,47 @@ export class VoluntariadoService {
       })
     )
   }
+
+  public listarTodas():Observable<any>{
+    return this.http.get(`${this.apiVoluntariados}`).pipe(
+      map((response:any) => {
+        //console.log(response);
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error) => {
+        throw error;
+      })
+    )
+  }
+
+  public actualizarSolicitud(id:number, estado:string,motivo:string, email:string):Observable<any>{
+    const soli=new SolicitudVoluntariado();
+    const socio=new Persona();
+    socio.email=email;
+    soli.motivo=motivo;
+    soli.socio=socio;
+    return this.http.put(`${this.apiVoluntariados}/${id}/estados/${estado}`,soli).pipe(
+      map((response:any) => {
+        //console.log(response);
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error) => {
+        Swal.fire({
+          title:'Error '+error.error.estado,
+          text:error.error.mensaje,
+          icon:'error'
+        });
+        throw error;
+      })
+    )
+  }
+
 }
