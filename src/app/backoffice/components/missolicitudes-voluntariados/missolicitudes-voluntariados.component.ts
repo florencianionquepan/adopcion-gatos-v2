@@ -27,7 +27,11 @@ export class MissolicitudesVoluntariadosComponent {
     this.service.listarByAspirante(this.user.email).subscribe(
       (data)=>{
         //console.log(data);
-        this.solicitudes=data;
+        this.solicitudes = data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
+
+        this.solicitudes.forEach(solicitud => {
+          solicitud.estados = solicitud.estados.sort((a, b) => b.id! - a.id!);
+        });
       }
     )
   }
