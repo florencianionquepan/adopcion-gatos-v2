@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class VoluntariadoService {
-  public apiTransitos=`${environment.url}/voluntariados`;
+  public apiVoluntariados=`${environment.url}/voluntariados`;
 
   constructor(private http:HttpClient) { }
 
@@ -21,11 +21,11 @@ export class VoluntariadoService {
     let solicitud=new SolicitudVoluntariado();
     solicitud.aspirante=aspirante;
     solicitud.voluntariado=tipo;
-    return this.http.post(this.apiTransitos,solicitud,{observe:'response',withCredentials:true}).pipe(
+    return this.http.post(this.apiVoluntariados,solicitud,{observe:'response',withCredentials:true}).pipe(
       map((response:any) => {
         //console.log(response);
-        if (response.success) {
-          return response.data; 
+        if (response.status==201) {
+          return response.body; 
         } else {
           throw new Error(response);
         }
@@ -37,6 +37,22 @@ export class VoluntariadoService {
           text:error.error.mensaje,
           icon:'error'
         })
+        throw error;
+      })
+    )
+  }
+
+  public listarByAspirante(email:string):Observable<any>{
+    return this.http.get(`${this.apiVoluntariados}/aspirante/${email}`).pipe(
+      map((response:any) => {
+        //console.log(response);
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error) => {
         throw error;
       })
     )
