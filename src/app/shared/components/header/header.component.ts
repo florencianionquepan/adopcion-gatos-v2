@@ -99,13 +99,18 @@ export class HeaderComponent {
       }],
       'ROLE_SOCIO': [
         {
-          text: 'Solicitudes',
+          text: 'Solicitudes voluntariados',
           link: 'backoffice/solicitudes',
           render: true
         },
         {
           text: 'Usuarios',
           link: 'backoffice/usuarios',
+          render: true
+        },
+        {
+          text: 'Actualizacion de cuotas',
+          link: 'backoffice/cuotas/actualizacion',
           render: true
         }
       ]

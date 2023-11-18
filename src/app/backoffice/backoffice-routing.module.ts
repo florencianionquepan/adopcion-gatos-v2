@@ -13,6 +13,8 @@ import { CuotaSuccessComponent } from "./pages/cuota-success/cuota-success.compo
 import { CuotasPageComponent } from "./pages/cuotas-page/cuotas-page.component";
 import { CuotaFailureComponent } from "./pages/cuota-failure/cuota-failure.component";
 import { RoleGuard } from "./guards/role.guard";
+import { SolicitudesVoluntariadosComponent } from "./pages/solicitudes-voluntariados/solicitudes-voluntariados.component";
+import { GestionUsuariosComponent } from "./pages/gestion-usuarios/gestion-usuarios.component";
 
 const routes: Routes=[
 {
@@ -101,6 +103,22 @@ const routes: Routes=[
     canActivate:[RoleGuard],
     data:{
         requiredAttributes:['esPadrino']
+    }
+},
+{
+    path:'solicitudes',
+    component:SolicitudesVoluntariadosComponent,
+    canActivate:[RoleGuard],
+    data:{
+        allowedRoles:['ROLE_SOCIO']
+    }
+},
+{
+    path:'usuarios',
+    component:GestionUsuariosComponent,
+    canActivate:[RoleGuard],
+    data:{
+        allowedRoles:['ROLE_SOCIO']
     }
 }]
 
