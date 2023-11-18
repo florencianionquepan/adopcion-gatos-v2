@@ -19,7 +19,7 @@
         {{ solicitud.estados[solicitud.estados.length - 1].estado }}
       </td>
       <td>
-        <button class="btn btn-outline-dark btn-sm" *ngIf="solicitud.estados[solicitud.estados.length - 1].motivo"
+        <button class="btn btn-outline-dark btn-sm" *ngIf="solicitud.estados[solicitud.estados.length - 1].motivo else fila"
         (click)="verMotivo(solicitud.estados[solicitud.estados.length - 1].motivo!)">VER</button>
       </td>
       <td>
@@ -44,7 +44,7 @@
         </button>
       </td>
       <ng-template #fila>
-        <span class="ms-2">-</span>
+        <span class="ms-2">~</span>
       </ng-template>
     </tr>
   </tbody>
