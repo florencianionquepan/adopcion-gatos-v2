@@ -32,6 +32,7 @@ import { MissolicitudesVoluntariadosComponent } from './components/missolicitude
 import { SolicitudesVoluntariadosComponent } from './pages/solicitudes-voluntariados/solicitudes-voluntariados.component';
 import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuarios.component';
 import { TablaSolicitudesVoluntariadosComponent } from './components/tabla-solicitudes-voluntariados/tabla-solicitudes-voluntariados.component';
+import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { TablaSolicitudesVoluntariadosComponent } from './components/tabla-solic
     MissolicitudesVoluntariadosComponent,
     SolicitudesVoluntariadosComponent,
     GestionUsuariosComponent,
-    TablaSolicitudesVoluntariadosComponent
+    TablaSolicitudesVoluntariadosComponent,
+    TablaUsuariosComponent
   ],
   imports: [
     CommonModule,

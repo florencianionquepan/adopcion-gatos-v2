@@ -65,13 +65,10 @@
           </ng-template>
           </button>
         </span>
-        <span *ngIf="gato.adoptado">
-          ~
-        </span>
       </td>
       <td *ngIf="gato.adoptado">
         <span *ngIf="gato.transito">
-          <app-detalle-persona [persona]="gato.transito"></app-detalle-persona>
+          ~
         </span>
         <span *ngIf="!gato.transito"> No tenia </span>
       </td>

@@ -36,11 +36,11 @@
         </button>
       </td>
       <td *ngIf="solicitud.estados[solicitud.estados.length - 1].estado?.toString() === 'PENDIENTE'; else fila">
-        <button class="btn btn-secondary mx-1" (click)="aceptar(solicitud.id)">
-          <span><small>Aceptar </small></span> <i class="bi bi-check-circle"></i>
+        <button class="btn btn-outline-dark mx-1" (click)="aceptar(solicitud.id)">
+          <i class="bi bi-check-circle"></i>
         </button>
-        <button class="btn btn-secondary mx-1" (click)="rechazar(solicitud.id)">
-          <span><small>Rechazar </small></span> <i class="bi bi-x-circle"></i>
+        <button class="btn btn-outline-dark mx-1" (click)="rechazar(solicitud.id)">
+          <i class="bi bi-x-circle"></i>
         </button>
       </td>
       <ng-template #fila>
