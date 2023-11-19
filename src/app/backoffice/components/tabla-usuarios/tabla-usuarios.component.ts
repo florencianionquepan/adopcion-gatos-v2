@@ -19,10 +19,12 @@ const estados={
 export class TablaUsuariosComponent {
   usuarios:Usuario[]=[];
 
-  constructor(private service:UsuariosService,
-    private persoService:PersonaService){
-
+  tieneRolSocio(user: any): boolean {
+    return user.roles.some((rol: any) => rol.nombre === 'ROLE_SOCIO');
   }
+
+  constructor(private service:UsuariosService,
+    private persoService:PersonaService){}
 
   ngOnInit(){
     this.getUsuarios();
@@ -112,7 +114,7 @@ export class TablaUsuariosComponent {
       icon: 'success',
       title: `El usuario con email ${email} ha sido ${estado} con exito!`,
       showConfirmButton: false,
-      timer: 1500
+      timer: 2000
     })
   }
 
@@ -132,7 +134,7 @@ export class TablaUsuariosComponent {
               icon: 'success',
               title: `El usuario con email ${data.email} ahora tiene permisos de administrador`,
               showConfirmButton: false,
-              timer: 1500
+              timer: 2000
             })
           }
         )

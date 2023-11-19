@@ -25,11 +25,11 @@
           </button>
         </td>
         <td class="ms-5">
-          <button class="btn btn-outline-danger mx-2 px-1 py-0 fs-4" *ngIf="user.habilitado"
+          <button class="btn btn-outline-danger ms-5 px-1 py-0 fs-4" *ngIf="user.habilitado"
           (click)="bloquear(user.id)">
             <i class="bi bi-person-x"></i>
           </button>
-          <button class="btn btn-outline-success mx-2 px-1 py-0 fs-4" *ngIf="!user.habilitado"
+          <button class="btn btn-outline-success ms-5 px-1 py-0 fs-4" *ngIf="!user.habilitado"
           (click)="desbloquear(user.id)">
             <i class="bi bi-person-check"></i>
           </button>
@@ -39,12 +39,15 @@
         (click)="verMotivo(user.motivo!)">VER</button>
         </td>
         <td class="d-none d-lg-table-cell ms-5">
-          <button class="btn btn-outline-dark mx-2 px-1 py-0 fs-4" (click)="darRolAdmin(user.id)">
+          <span *ngIf="tieneRolSocio(user)" class="ms-5">~</span>
+          <button *ngIf="!tieneRolSocio(user)" 
+          class="btn btn-outline-dark ms-5 mx-2 px-1 py-0 fs-4" 
+          (click)="darRolAdmin(user.id)">
             <i class="bi bi-person-gear"></i>
           </button>
         </td>
         <ng-template #fila>
-          ~
+          <span class="ms-3">~</span>
         </ng-template>
       </tr>
     </tbody>
