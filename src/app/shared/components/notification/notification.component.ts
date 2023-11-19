@@ -23,4 +23,9 @@ export class NotificationComponent {
     private renderer:Renderer2){
   }
 
+  replacePointsWithBreak(descripcion:string): string {
+    // Reemplaza todos los puntos con <br> en la descripción de la notificación
+    return descripcion.replace(/\./g, '.<br>');
+  }
+
 }

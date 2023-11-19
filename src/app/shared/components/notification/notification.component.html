@@ -9,13 +9,13 @@ data-bs-toggle="dropdown" aria-expanded="false" #botonNoti>
 <ul class="dropdown-menu color4 border-secondary custom-dropdown-menu"
 *ngIf="this.notificaciones.length>0; else noNotificaciones">
 <li *ngFor="let notificacion of notificaciones" class="border-bottom border-secondary custom-dp-item">
-    <a class="dropdown-item py-2" [ngClass]="{'noLeida': !notificacion.leida}" href="">
+    <a class="dropdown-item py-2" [ngClass]="{'noLeida': !notificacion.leida}">
         <div class="row">
             <div class="border-bottom">
                 <span *ngIf="!notificacion.leida"><i class="bi bi-chat-right-heart"></i></span>
                 <strong class="me-auto"> {{notificacion.fechaCreacion | date:'dd/MM/YY'}}</strong>
             </div>
-            <span>{{notificacion.descripcion}}</span>
+            <span [innerHTML]="replacePointsWithBreak(notificacion.descripcion)"></span>
         </div>
     </a>
 </li>

@@ -1,0 +1,17 @@
+.noLeida{
+    background-color:#e2cbf0!important;
+    color: black;
+    animation-name: fade-in;
+    transition: background-color 0.4s ease-in-out; 
+}
+
+.custom-dropdown-menu{
+    max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.dropdown-item:hover{
+    background-color: transparent;
+}
+  

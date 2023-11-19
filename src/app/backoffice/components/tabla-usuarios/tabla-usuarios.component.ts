@@ -136,6 +136,7 @@ export class TablaUsuariosComponent {
               showConfirmButton: false,
               timer: 2000
             })
+            this.getUsuarios();
           }
         )
       }
