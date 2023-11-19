@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { SolicitudVoluntariado } from 'src/app/models/SolicitudVoluntariado';
 import { User } from 'src/app/models/user';
 import { VoluntariadoService } from 'src/app/services/voluntariado.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-missolicitudes-voluntariados',
@@ -28,7 +29,6 @@ export class MissolicitudesVoluntariadosComponent {
       (data)=>{
         //console.log(data);
         this.solicitudes = data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
-
         this.solicitudes.forEach(solicitud => {
           solicitud.estados = solicitud.estados.sort((a, b) => b.id! - a.id!);
         });

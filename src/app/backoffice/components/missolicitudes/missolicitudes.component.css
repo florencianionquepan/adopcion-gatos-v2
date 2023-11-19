@@ -2,5 +2,7 @@
     --bs-table-bg: #F8E0DB !important;
     background-color: var(--bs-table-bg) !important;
     border-color: #0f0f0f;
+    border-radius: 10px; /* Ajusta según sea necesario */
+    overflow: hidden; /* Asegura que el borde redondeado sea visible */
 }
 

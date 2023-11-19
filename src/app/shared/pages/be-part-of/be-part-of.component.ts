@@ -27,7 +27,12 @@ export class BePartOfComponent {
     }
     this.service.enviarSolicitud(this.user.email,tipo).subscribe(
       data=>{
-        console.log(data);
+        Swal.fire({
+          title:'Gracias '+data.aspirante.nombre+'!',
+          text:'Estaremos evaluando la solicitud y pronto tendrás novedad de su estado!',
+          icon:'success'
+        })
+        //console.log(data);
       }
     )
   }
