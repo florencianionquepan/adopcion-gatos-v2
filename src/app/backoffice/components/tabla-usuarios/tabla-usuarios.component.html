@@ -1,0 +1,35 @@
+<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="usuarios.length>0; else sinDatos">
+    <thead>
+      <tr>
+        <th class="ps-3">Nombre</th>
+        <th>Email verificado?</th>
+        <th>Blqueado?</th>
+        <th class="d-none d-lg-table-cell">Voluntariados</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usuarios">
+        <td class="ps-2">        
+            <app-detalle-persona [persona]="user.persona"></app-detalle-persona>
+        </td>
+        <td>
+            {{user.verificado}}
+        </td>
+        <td>
+            {{user.bloqueado}}
+        </td>
+        <td class="d-none d-lg-table-cell">
+            Ver
+        </td>
+        <td>
+          Bloquear
+          Dar permisos de administrador
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #sinDatos>
+    <app-no-data></app-no-data>
+  </ng-template>
+  
