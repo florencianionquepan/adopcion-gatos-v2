@@ -50,4 +50,23 @@ export class UsuariosService {
       })
     )
   }
+
+  public crearAdmin(id:number):Observable<any>{
+    return this.http.get(`${this.apiUsuarios}/${id}/rol/socio`).pipe(
+      map((response:any) => {
+        //console.log(response);
+        if (response.success) {
+          return response.data; 
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error) => {
+        Swal.fire({title:'Error '+error.error.estado,
+                  text:error.error.mensaje,
+                  icon:'error'})
+        throw error;
+      })
+    )
+  }
 }

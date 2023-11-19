@@ -31,7 +31,7 @@ export class TablaUsuariosComponent {
   getUsuarios(){
     this.service.getUsuarios().subscribe(
       (data)=>{
-        console.log(data);
+        //console.log(data);
         this.usuarios=data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
       }
     )
@@ -113,6 +113,30 @@ export class TablaUsuariosComponent {
       title: `El usuario con email ${email} ha sido ${estado} con exito!`,
       showConfirmButton: false,
       timer: 1500
+    })
+  }
+
+  darRolAdmin(id:number){
+    Swal.fire({
+      title:`¿Esta seguro de darle permisos de administrador al usuario?`,
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'Cancelar',
+      icon:'warning',
+    }).then((result)=>{
+      if(result.isConfirmed){
+        this.service.crearAdmin(id).subscribe(
+          (data)=>{
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: `El usuario con email ${data.email} ahora tiene permisos de administrador`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        )
+      }
     })
   }
 }
