@@ -29,6 +29,7 @@ export class CuotasPageComponent {
       this.cuotas.sort((a, b) => {
         return new Date(b.fechaCreacion!).getTime() - new Date(a.fechaCreacion!).getTime();
     });
+    //console.log(this.cuotas);
     })
   }
 }

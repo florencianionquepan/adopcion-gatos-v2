@@ -2,6 +2,8 @@
     <thead>
       <tr>
         <th scope="col-1">Gato</th>
+        <th scope="col-1">Adoptado</th>
+        <th scope="col-1">Sigo apadrinando?</th>
         <th scope="col-1" class="d-none d-lg-table-cell">Monto</th>
         <th scope="col-1" class="d-none d-md-table-cell">Fecha Creación</th>
         <th scope="col-2" class="d-none d-lg-table-cell">Fecha Pago</th>
@@ -24,6 +26,20 @@
           {{ cuota.gato.nombre }}
           </a>
         </td>
+        <td>
+          {{cuota.gato.adoptado | date: 'dd/MM/yyyy'}}
+          <span *ngIf="!cuota.gato.adoptado">Aun no</span>
+        </td>
+        <td>
+          <span class="fs-5" *ngIf="cuota.estadoPago=='CANCELADO' || cuota.gato.adoptado; else not">
+            No <i class="bi bi-x-circle"></i>
+          </span>
+          <ng-template #not>
+            <span class="fs-5" >
+              Sí <i class="bi bi-check-circle"></i>
+            </span>
+          </ng-template>
+        </td>
         <td class="d-none d-lg-table-cell">
           $ {{ cuota.montoMensual }}
         </td>
@@ -38,9 +54,17 @@
             -
           </span>
         </td>
-        <td>{{ cuota.estadoPago }}</td>
         <td>
-          <span *ngIf="cuota.estadoPago=='APROBADO' || cuota.estadoPago=='CERRADO'">~</span>
+          <span *ngIf="cuota.estadoPago=='APROBADO'">Pagado</span>
+          <span *ngIf="cuota.estadoPago=='CANCELADO'">Anulado</span>
+          <span *ngIf="cuota.estadoPago=='PENDIENTE' || cuota.estadoPago=='DESCONOCIDO' 
+          || cuota.estadoPago=='RECHAZADO'">
+            {{ cuota.estadoPago.charAt(0).toLocaleUpperCase()+
+            cuota.estadoPago.slice(1).toLocaleLowerCase() }}
+          </span>
+        </td>
+        <td>
+          <span *ngIf="cuota.estadoPago=='APROBADO' || cuota.estadoPago=='CANCELADO'">~</span>
           <span *ngIf="cuota.estadoPago=='PENDIENTE'">
             <button class="btn btn-outline-dark btn-sm mx-1" (click)="pagarPendiente(cuota.id)">
               Pagar <i class="bi bi-wallet2"></i>
