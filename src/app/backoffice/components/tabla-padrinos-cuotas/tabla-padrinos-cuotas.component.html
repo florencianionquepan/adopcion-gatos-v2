@@ -54,7 +54,7 @@
         <td>
           <span *ngIf="cuota.estadoPago=='APROBADO' || cuota.estadoPago=='CANCELADO' else boton">~</span>
           <ng-template #boton>
-            <button class="btn btn-outline-dark btn-sm">
+            <button class="btn btn-outline-dark btn-sm" (click)="remover(cuota.padrino!.dni)">
               Remover Padrino
             </button>
           </ng-template>

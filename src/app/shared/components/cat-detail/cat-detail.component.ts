@@ -49,7 +49,7 @@ export class CatDetailComponent {
       //console.log(resp);
       this.gato=resp.data;
       this.adoptante=resp.data.adoptante;
-      if(this.gato.padrino){
+      /* if(this.gato.padrino){
         this.padrinosser.renunciaAutomatica(this.gato).subscribe(
           (data)=>{
             //si el gato no existe en el listado de padrinos: this.gato.padrino=null; y actualizar vista
@@ -60,7 +60,7 @@ export class CatDetailComponent {
             }
           }
         )
-      }
+      } */
     })
   }
 

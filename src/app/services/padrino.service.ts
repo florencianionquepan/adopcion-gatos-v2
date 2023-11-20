@@ -32,9 +32,9 @@ export class PadrinoService {
   }
 
   //cuando el padrino no pago, se lo renuncia automaticamente
-  renunciaAutomatica(gato:GatoDetalle):Observable<any>{
-    let idPadrino=gato.padrino?.id;
-    return this.http.get(`${this.apiPadrinos}/${idPadrino}/cuotas`).pipe(
+  renunciaAutomatica(dni:string):Observable<any>{
+    //let idPadrino=gato.padrino?.id;
+    return this.http.get(`${this.apiPadrinos}/${dni}/cuotas`).pipe(
       map((response:any) => {
         if (response.success) {
           //console.log(response.data);
