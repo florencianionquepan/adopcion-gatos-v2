@@ -85,4 +85,19 @@ export class CuotasService {
       })
     )
   }
+
+  actualizarCuotas():Observable<any>{
+    return this.http.get(`${this.apiCuotas}/actualizacion`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          console.log(response.data);
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
 }

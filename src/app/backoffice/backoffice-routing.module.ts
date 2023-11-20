@@ -15,6 +15,7 @@ import { CuotaFailureComponent } from "./pages/cuota-failure/cuota-failure.compo
 import { RoleGuard } from "./guards/role.guard";
 import { SolicitudesVoluntariadosComponent } from "./pages/solicitudes-voluntariados/solicitudes-voluntariados.component";
 import { GestionUsuariosComponent } from "./pages/gestion-usuarios/gestion-usuarios.component";
+import { ActualizacionCuotasComponent } from "./pages/actualizacion-cuotas/actualizacion-cuotas.component";
 
 const routes: Routes=[
 {
@@ -116,6 +117,14 @@ const routes: Routes=[
 {
     path:'usuarios',
     component:GestionUsuariosComponent,
+    canActivate:[RoleGuard],
+    data:{
+        allowedRoles:['ROLE_SOCIO']
+    }
+},
+{
+    path:'cuotas/actualizacion',
+    component:ActualizacionCuotasComponent,
     canActivate:[RoleGuard],
     data:{
         allowedRoles:['ROLE_SOCIO']

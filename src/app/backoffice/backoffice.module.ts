@@ -33,6 +33,7 @@ import { SolicitudesVoluntariadosComponent } from './pages/solicitudes-voluntari
 import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuarios.component';
 import { TablaSolicitudesVoluntariadosComponent } from './components/tabla-solicitudes-voluntariados/tabla-solicitudes-voluntariados.component';
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
+import { ActualizacionCuotasComponent } from './pages/actualizacion-cuotas/actualizacion-cuotas.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuari
     SolicitudesVoluntariadosComponent,
     GestionUsuariosComponent,
     TablaSolicitudesVoluntariadosComponent,
-    TablaUsuariosComponent
+    TablaUsuariosComponent,
+    ActualizacionCuotasComponent
   ],
   imports: [
     CommonModule,
