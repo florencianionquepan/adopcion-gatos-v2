@@ -1,0 +1,56 @@
+<table class="table table-sm bg-transparent rounded" id="cute">
+    <thead>
+      <tr>
+        <th scope="col-1">
+          Padrino
+        </th>
+        <th scope="col-1">Gato</th>
+        <th scope="col-1">Adoptado</th>
+        <th scope="col-1" class="d-none d-md-table-cell">Fecha Creación</th>
+        <th scope="col-2" class="d-none d-lg-table-cell">Fecha Pago</th>
+        <th scope="col-1">Acción</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cuota of cuotas">
+        <td>
+            <app-detalle-persona [persona]="cuota.padrino!"></app-detalle-persona>
+        </td>
+        <td>        
+          <a role="button" class="colorw"
+          routerLinkActive="active" 
+          routerLink="../../gatos/{{cuota.gato.id}}"
+          target="_blank">
+          <img *ngIf="cuota.gato.fotos" [src]="cuota.gato.fotos[0]" class="rounded-circle" 
+          alt="gatito" style="width: 30px; height: 30px;">
+          <img *ngIf="!cuota.gato.fotos" src="../../../../assets/img/figura.png" class="rounded-circle" 
+          alt="gatito" style="width: 30px; height: 30px;">
+          {{ cuota.gato.nombre }}
+          </a>
+        </td>
+        <td>
+          {{cuota.gato.adoptado | date: 'dd/MM/yyyy'}}
+          <span *ngIf="!cuota.gato.adoptado">Aun no</span>
+        </td>
+        <td class="d-none d-md-table-cell">
+          {{ cuota.fechaCreacion | date: 'dd/MM/yyyy' }}
+        </td>
+        <td class="d-none d-lg-table-cell">
+          <span *ngIf="cuota.fechaPago">
+            {{ cuota.fechaPago | date: 'dd/MM/yyyy' }}
+          </span>
+          <span *ngIf="!cuota.fechaPago">
+            -
+          </span>
+        </td>
+        <td>
+          Botones
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #sinDatos>
+    <app-no-data></app-no-data>
+  </ng-template>
+  
