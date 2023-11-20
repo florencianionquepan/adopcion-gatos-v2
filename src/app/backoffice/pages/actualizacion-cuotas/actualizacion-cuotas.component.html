@@ -3,23 +3,29 @@
     <app-titulo-page [titulo]="'Actualizacion de cuotas'"
     [link]="'/'"> </app-titulo-page>
     <div class="row m-5 align-items-center">
-        <div class="col-10">
+        <div class="col-6">
             <button class="btn btn-outline-dark" (click)="actualizarTodas()">
                 Crear Cuotas Nuevas
             </button>
         </div>
-        <div class="col-2">
-            <select class="form-select bg-transparent border-dark" aria-label="">
-                <option selected>Por estado</option>
-                <option value="PENDIENTE">Pendientes</option>
-                <option value="APROBADO">Pagas</option>
-                <option value="RECHAZADO">Rechazadas</option>
-                <option value="DESCONOCIDO">Desconocidas</option>
-                <option value="CANCELADO">Anuladas</option>
+        <div class="col-3">
+            <select class="form-select bg-transparent border-dark" aria-label=""
+            (change)="onPadrinoChange($event)">
+                <option selected [value]="'all'">Filtrar by padrinos</option>
+                <option *ngFor="let padrino of padrinos" 
+                [value]="padrino.dni">{{padrino.nombre}}~{{padrino.dni}}</option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="form-select bg-transparent border-dark" aria-label=""
+            (change)="onGatoChange($event)">
+                <option [value]="'all'" selected>Filtrar by gatos</option>
+                <option *ngFor="let gato of gatos" 
+                [value]="gato.id">{{gato.nombre}}</option>
             </select>
         </div>
         
     </div>
-    <app-tabla-padrinos-cuotas [cuotas]="cuotas"></app-tabla-padrinos-cuotas>
+    <app-tabla-padrinos-cuotas [cuotas]="cuotasFiltradas"></app-tabla-padrinos-cuotas>
 </div>
 <app-footer></app-footer>

@@ -120,4 +120,20 @@ export class CuotasService {
       })
     )
   }
+
+  getByEstado(estado:string):Observable<any>{
+    return this.http.get(`${this.apiCuotas}/estado/${estado}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          return response.data;
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
 }

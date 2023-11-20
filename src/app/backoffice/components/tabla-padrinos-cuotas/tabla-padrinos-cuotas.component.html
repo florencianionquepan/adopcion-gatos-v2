@@ -1,15 +1,13 @@
 <table class="table table-sm bg-transparent rounded" id="cute">
     <thead>
       <tr>
-        <th scope="col-1">
-          Padrino
-        </th>
+        <th scope="col-1">Padrino</th>
         <th scope="col-1">Gato</th>
         <th scope="col-1">Adoptado</th>
         <th scope="col-1" class="d-none d-md-table-cell">Fecha Creación</th>
         <th scope="col-2" class="d-none d-lg-table-cell">Fecha Pago</th>
+        <th scope="col-2" class="d-none d-lg-table-cell">Estado Pago</th>
         <th scope="col-1">Acción</th>
-       
       </tr>
     </thead>
     <tbody>
@@ -45,7 +43,21 @@
           </span>
         </td>
         <td>
-          Botones
+          <span *ngIf="cuota.estadoPago=='APROBADO'">Pagado</span>
+          <span *ngIf="cuota.estadoPago=='CANCELADO'">Anulado</span>
+          <span *ngIf="cuota.estadoPago=='PENDIENTE' || cuota.estadoPago=='DESCONOCIDO' 
+          || cuota.estadoPago=='RECHAZADO'">
+            {{ cuota.estadoPago.charAt(0).toLocaleUpperCase()+
+            cuota.estadoPago.slice(1).toLocaleLowerCase() }}
+          </span>
+        </td>
+        <td>
+          <span *ngIf="cuota.estadoPago=='APROBADO' || cuota.estadoPago=='CANCELADO' else boton">~</span>
+          <ng-template #boton>
+            <button class="btn btn-outline-dark btn-sm">
+              Remover Padrino
+            </button>
+          </ng-template>
         </td>
       </tr>
     </tbody>

@@ -9,17 +9,5 @@ import { Padrino } from 'src/app/models/Padrino';
 })
 export class TablaPadrinosCuotasComponent {
   @Input() cuotas:Cuota[]=[];
-  padrinosUnicos: string[] = [];
-
-  ngOnChanges(changes:SimpleChanges){
-    if(changes['cuotas']){
-      this.getPadrinosUnicos();
-    }
-  }
-
-  getPadrinosUnicos(): void {
-    const nombresPadrinos = this.cuotas.map(cuota => cuota.padrino!.nombre);
-    this.padrinosUnicos = [...new Set(nombresPadrinos)];
-  }
 
 }
