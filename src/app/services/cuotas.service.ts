@@ -5,6 +5,7 @@ import { GatoDetalle } from '../models/GatoDetalle';
 import { Cuota } from '../models/Cuota';
 import { Padrino } from '../models/Padrino';
 import { Observable, catchError, map } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -91,6 +92,25 @@ export class CuotasService {
       map((response:any) => {
         if (response.success) {
           console.log(response.data);
+          if(response.data.length==0){
+            Swal.fire({title:'No hay cuotas que actualizar'})
+          }
+        } else {
+          throw new Error(response);
+        }
+      }),
+      catchError((error: any) => {
+        throw error;
+      })
+    )
+  }
+
+  getAll():Observable<any>{
+    return this.http.get(`${this.apiCuotas}`).pipe(
+      map((response:any) => {
+        if (response.success) {
+          //console.log(response.data);
+          return response.data;
         } else {
           throw new Error(response);
         }
