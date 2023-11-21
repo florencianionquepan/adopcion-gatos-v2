@@ -12,10 +12,41 @@ import Swal from 'sweetalert2';
 })
 export class TablaPadrinosCuotasComponent {
   @Input() cuotas:Cuota[]=[];
+  currentPage = 1;
+  itemsPerPage = 5; // o el número que prefieras
+  totalPages = 1;
 
   constructor(private padriService:PadrinoService,
     private cuotasservice:CuotasService){
 
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['cuotas']){
+      this.calculatePages();
+    }
+  }
+
+  calculatePages() {
+    this.totalPages = Math.ceil(this.cuotas.length / this.itemsPerPage);
+    console.log(this.totalPages);
+  }
+
+  generatePagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  getDisplayedCuotas(): Cuota[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.cuotas.slice(startIndex, endIndex);
   }
 
   remover(dni:string){
