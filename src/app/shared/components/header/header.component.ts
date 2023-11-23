@@ -83,32 +83,38 @@ export class HeaderComponent {
     const roleToLinks:any = {
       'ROLE_USER': [
       {
+        parent:'Cuenta',
         text:'Mi perfil',
         link:'backoffice/perfil',
         render:true
       },
       {
+        parent:'Cuenta',
         text: 'Mis solicitudes',
         link: 'backoffice/missolicitudes',
         render: true
       }],
       'ROLE_VOLUNTARIO': [{
+        parent:'Voluntariados',
         text: 'Mis gatos',
         link: 'backoffice/misgatos',
         render: true
       }],
       'ROLE_SOCIO': [
         {
+          parent:'Admin',
           text: 'Solicitudes voluntariados',
           link: 'backoffice/solicitudes',
           render: true
         },
         {
+          parent:'Admin',
           text: 'Usuarios',
           link: 'backoffice/usuarios',
           render: true
         },
         {
+          parent:'Admin',
           text: 'Actualizacion de cuotas',
           link: 'backoffice/cuotas/actualizacion',
           render: true
@@ -118,6 +124,7 @@ export class HeaderComponent {
 
     if(this.user.esTransito){
       roleToLinks['ROLE_USER'].push({
+        parent:'Voluntariados',
         text: 'Gatos en transito',
         link: 'backoffice/gatosentransito',
         render: true,
@@ -126,6 +133,7 @@ export class HeaderComponent {
 
     if(this.user.esPadrino){
       roleToLinks['ROLE_USER'].push({
+        parent:'Voluntariados',
         text: 'Mis Cuotas',
         link: 'backoffice/miscuotas',
         render: true,
@@ -139,6 +147,34 @@ export class HeaderComponent {
         this.list.push(...roleToLinks[role]);
       }
     });
+    //console.log(this.list);
+
+    const menuHierarchy: any[] = [];
+    userRoles.forEach(role => {
+      if (roleToLinks[role]) {
+        roleToLinks[role].forEach((link: { parent: any; text: any; link: any; render: any; }) => {
+          const existingParent = menuHierarchy.find(item => item.parent === link.parent);
+  
+          if (existingParent) {
+            existingParent.list.push({
+              text: link.text,
+              link: link.link,
+              render: link.render
+            });
+          } else {
+            menuHierarchy.push({
+              parent: link.parent,
+              list: [{
+                text: link.text,
+                link: link.link,
+                render: link.render
+              }]
+            });
+          }
+        });
+      }
+    });
+    this.list = menuHierarchy;
     //console.log(this.list);
   }
 

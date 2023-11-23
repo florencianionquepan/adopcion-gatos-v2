@@ -32,12 +32,18 @@
                             {{user.nombre | uppercase }}
                         </a>
                         <ul class="dropdown-menu color5">
-                            <li *ngFor="let item of list">
-                                <a *ngIf="item.render" routerLinkActive="active" routerLink="/{{item.link}}" class="dropdown-item colorw">
-                                    {{item.text}}
-                                </a>
+                            <li *ngFor="let item of list" class="list-group-item">
+                                <dt class="px-2 pb-1 pt-0 border-bottom border-secondary colorw"> · {{item.parent}}</dt>
+                                <ul class="list-group color5 p-0 mb-1">
+                                    <li *ngFor="let i of item.list" class="list-group-item p-0 m-0 mili">
+                                        <a *ngIf="i.render" routerLinkActive="active" 
+                                        routerLink="/{{i.link}}" class="dropdown-item colorw milink">
+                                            {{i.text}}
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li><hr class="dropdown-divider"></li>
+                            <hr class="dropdown-divider my-0">
                             <li><a class="dropdown-item colorw" (click)="logout()" role="button">Logout</a></li>
                         </ul>
                     </li>
