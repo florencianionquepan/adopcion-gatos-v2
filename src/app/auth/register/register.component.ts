@@ -44,7 +44,7 @@ export class RegisterComponent {
 
   continuar():void{
     const personaData=this.registerForm.get('personaData');
-    console.log(personaData);
+    //console.log(personaData);
     if(personaData?.invalid){
       this.personaFormComponent.marcarCamposComoTouched();
       Swal.fire({ title: 'Por favor, complete los campos.' });
@@ -76,7 +76,7 @@ export class RegisterComponent {
       const usuario = new Usuario(email!, contraseña!, contraseñaConfirmada!);
       const registro=new Registro(dni,nombre,apellido,telefono,fechaDeNacimiento,direccion,
                                   localidad+","+provincia,usuario);
-    console.log(registro);
+    //console.log(registro);
     this.service.register(registro).subscribe({
       next:(response)=>{
         //console.log(response);

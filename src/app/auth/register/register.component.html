@@ -24,7 +24,8 @@
                 <div class="form-group col-10 col-md-6 px-5 mx-2">
                     <div class="form-floating">
                         <input type="password" formControlName="contraseña" class="form-control" id="contraseña"
-                        [ngClass]="{'is-invalid':registerForm.get('password')?.errors && registerForm.get('password')?.touched}">
+                        [ngClass]="{'is-invalid':registerForm.get('password')?.errors && registerForm.get('password')?.touched}"
+                        autocomplete="new-password">
                         <label for="contraseña">Contraseña *</label>
                         <app-error-validation [field]="'contraseña'" [form]="registerForm"></app-error-validation>
                     </div>
@@ -32,7 +33,8 @@
                 <div class="form-group col-10 col-md-6 px-5 mx-2">
                     <div class="form-floating">
                         <input type="password" formControlName="contraseñaConfirmada" class="form-control" id="contraseñaConfirmada"
-                        [ngClass]="{'is-invalid':registerForm.get('contraseñaConfirmada')?.errors && registerForm.get('contraseñaConfirmada')?.touched}">
+                        [ngClass]="{'is-invalid':registerForm.get('contraseñaConfirmada')?.errors && registerForm.get('contraseñaConfirmada')?.touched}"
+                        autocomplete="new-password">
                         <label for="contraseñaConfirmada">Confirme contraseña *</label>
                         <app-error-validation [field]="'contraseñaConfirmada'" [form]="registerForm"></app-error-validation>
                     </div>
