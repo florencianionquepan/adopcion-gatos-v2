@@ -6,12 +6,26 @@
 }
 
 .custom-dropdown-menu{
-    max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
+    max-width: 550px; /* Ajusta el ancho máximo según tus necesidades */
     overflow-y: auto;
     max-height: 80vh;
 }
 
+@media (max-width: 550px) {
+    .custom-dropdown-menu {
+        max-width: 100%; /* Haz que el menú ocupe el 100% del ancho de la pantalla */
+    }
+
+    .custom-dropdown-menu a {
+        font-size: 14px; /* Ajusta el tamaño de la letra según tus necesidades */
+    }
+}
+
 .dropdown-item:hover{
-    background-color: transparent;
+    background-color: rgb(255, 246, 246);
+}
+
+.dropdown-item:active{
+    color: black;
 }
   
