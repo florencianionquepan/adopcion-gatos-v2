@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let solicitud of solicitudes">
+      <tr *ngFor="let solicitud of getDisplayedSoli()">
         <td>
           <a role="button" class="colorw"
           routerLinkActive="active"
@@ -39,6 +39,12 @@
     </tbody>
   </table>
 
+  <div class="d-flex justify-content-end">
+    <app-pagination [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChange)="setPage($event)"></app-pagination>
+  </div>
+  
   <ng-template #sinDatos>
     <app-no-data></app-no-data>
   </ng-template>

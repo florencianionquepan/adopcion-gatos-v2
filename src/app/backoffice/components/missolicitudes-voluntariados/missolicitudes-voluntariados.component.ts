@@ -13,6 +13,9 @@ import Swal from 'sweetalert2';
 export class MissolicitudesVoluntariadosComponent {
   solicitudes:SolicitudVoluntariado[]=[];
   user:User=new User();
+  currentPage = 1;
+  itemsPerPage = 2; // o el número que prefieras
+  totalPages = 1;
 
   constructor(private authService:AuthService,
               private service:VoluntariadoService){
@@ -32,7 +35,27 @@ export class MissolicitudesVoluntariadosComponent {
         this.solicitudes.forEach(solicitud => {
           solicitud.estados = solicitud.estados.sort((a, b) => b.id! - a.id!);
         });
+        this.calculatePages();
       }
     )
+  }
+
+  //logica de paginado que debe ir en padre
+  calculatePages() {
+    this.totalPages = Math.ceil(this.solicitudes.length / this.itemsPerPage);
+    //console.log(this.totalPages);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  getDisplayedSoli(): SolicitudVoluntariado[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.solicitudes.slice(startIndex, endIndex);
   }
 }
