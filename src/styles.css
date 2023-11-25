@@ -33,6 +33,16 @@ html{
     color: #260951 !important;
 }
 
+.btn-misuccess{
+    border: 2px solid #DA7FDA !important;
+    color: #DA7FDA !important;
+}
+
+.btn-misuccess:hover{
+    color:#ffffff !important;
+    background-color: #DA7FDA !important;
+}
+
 @font-face {
     font-family: 'somatic';
     src: url('assets/fonts/somatic-rounded-webfont.woff2') format('woff2'),
