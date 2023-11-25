@@ -64,7 +64,7 @@ export class TablaPadrinosCuotasComponent {
             }else{
               this.cuotasservice.getAll().subscribe(
                 (data)=>{
-                  this.cuotas=data;
+                  this.cuotas=data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
                 }
               )
             }

@@ -27,6 +27,7 @@ export class ActualizacionCuotasComponent {
       (data)=>{
         //console.log(data);
         this.getCuotas();
+        
       }
     )
   }

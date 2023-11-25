@@ -94,6 +94,9 @@ export class CuotasService {
           console.log(response.data);
           if(response.data.length==0){
             Swal.fire({title:'No hay cuotas que actualizar'})
+          }else if(response.data.length>0){
+            let cant=response.data.length;
+            Swal.fire({title: cant+ ' cuota/s creadas correctamente!',icon:'success'});
           }
         } else {
           throw new Error(response);

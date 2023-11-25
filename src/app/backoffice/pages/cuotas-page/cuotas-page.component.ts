@@ -25,10 +25,7 @@ export class CuotasPageComponent {
 
   getCuotas(email:string){
     this.service.getCuotasByEmail(email).subscribe((data)=>{
-      this.cuotas=data;
-      this.cuotas.sort((a, b) => {
-        return new Date(b.fechaCreacion!).getTime() - new Date(a.fechaCreacion!).getTime();
-    });
+      this.cuotas=data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
     //console.log(this.cuotas);
     })
   }
