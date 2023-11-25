@@ -35,6 +35,7 @@ import { TablaSolicitudesVoluntariadosComponent } from './components/tabla-solic
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
 import { ActualizacionCuotasComponent } from './pages/actualizacion-cuotas/actualizacion-cuotas.component';
 import { TablaPadrinosCuotasComponent } from './components/tabla-padrinos-cuotas/tabla-padrinos-cuotas.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { TablaPadrinosCuotasComponent } from './components/tabla-padrinos-cuotas
     TablaSolicitudesVoluntariadosComponent,
     TablaUsuariosComponent,
     ActualizacionCuotasComponent,
-    TablaPadrinosCuotasComponent
+    TablaPadrinosCuotasComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
