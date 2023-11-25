@@ -53,8 +53,8 @@
         </div>
 
         </div>
-        <div class="col-10 order-1 order-md-2 col-md-6 col-lg-6 pt-3 pl-5 text-center">
-          <div class="adopted-text d-flex align-items-center" *ngIf="gato.adoptado">
+        <div class="col-10 order-1 order-md-2 col-md-6 col-lg-6 pt-3 pl-5 text-center position-relative">
+          <div class="d-flex justify-content-center adopted-text position-absolute top-0 start-50 translate-middle" *ngIf="gato.adoptado">
             <span class="ml-2">Adoptado!</span> <i class="bi bi-house-heart-fill"></i>
           </div>
             <app-carousel [fotos]="gato.fotos" *ngIf="gato.fotos"></app-carousel>

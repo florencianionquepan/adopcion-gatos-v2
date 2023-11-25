@@ -3,10 +3,7 @@ span{
 }
 
 .adopted-text {
-    position: absolute;
-    top: 160px; /* Ajusta la distancia desde la parte superior según tus preferencias */
-    left: 65%;
-    transform: translateX(-50%);
+    margin-top: 10%;
     background-color: rgba(96, 105, 223, 0.9); /* Fondo naranja con opacidad */
     color: #fff;
     padding: 10px 20px;

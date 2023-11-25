@@ -1,8 +1,8 @@
 <form [formGroup]="personaForm" class="py-2 mx-auto">
 <div class="row align-items-center justify-content-center">
-  <div class="col-10 col-lg-8 p-3">
-      <div class="row align-items-start justify-content-center g-2">
-          <div class="form-group col-8 col-md-6">
+  <div class="col-12 col-md-10 col-lg-8">
+      <div class="row align-items-start justify-content-center g-3">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input type="text" formControlName="nombre" class="form-control" id="nombre"
                   [ngClass]="{'is-invalid':personaForm.get('nombre')?.errors && personaForm.get('nombre')?.touched}">
@@ -10,7 +10,7 @@
                   <app-error-validation [field]="'nombre'" [form]="personaForm"></app-error-validation>
               </div>
           </div>
-          <div class="form-group col-8 col-md-6">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input type="text" formControlName="apellido" class="form-control" id="apellido"
                   [ngClass]="{'is-invalid':personaForm.get('apellido')?.errors && personaForm.get('apellido')?.touched}">
@@ -19,8 +19,8 @@
               </div>
           </div>
       </div>
-      <div class="row align-items-start justify-content-center g-2 my-2">
-          <div class="form-group col-8 col-md-6">
+      <div class="row align-items-start justify-content-center g-3 my-1">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input type="date" formControlName="fechaDeNacimiento" class="form-control" id="fechaDeNacimiento"
                   [ngClass]="{'is-invalid':personaForm.get('fechaDeNacimiento')?.errors && personaForm.get('fechaDeNacimiento')?.touched}">
@@ -28,7 +28,7 @@
                   <app-error-validation [field]="'fechaDeNacimiento'" [form]="personaForm"></app-error-validation>
               </div>
           </div>
-          <div class="form-group col-8 col-md-6">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input type="text" formControlName="dni" class="form-control" id="dni"
                   [ngClass]="{'is-invalid':personaForm.get('dni')?.errors && personaForm.get('dni')?.touched}">
@@ -37,8 +37,8 @@
               </div>
           </div>
       </div>
-      <div class="row align-items-start justify-content-center g-2 my-2">
-          <div class="form-group col-8 col-md-6">
+      <div class="row align-items-start justify-content-center g-3 my-1">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input formControlName="provincia" class="form-control" id="provincia" list="provincias"
                   (change)="onProvinciaChange()"
@@ -51,7 +51,7 @@
                   <app-error-validation [field]="'provincia'" [form]="personaForm"></app-error-validation>
               </div>
           </div>
-          <div class="form-group col-8 col-md-6">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input formControlName="localidad" class="form-control" id="localidad" list="localidades"
                   [ngClass]="{'is-invalid':personaForm.get('localidad')?.errors && personaForm.get('localidad')?.touched}">
@@ -64,8 +64,8 @@
               </div>
           </div>
       </div>
-      <div class="row align-items-start justify-content-center g-2 my-2">
-          <div class="form-group col-8 col-md-6">
+      <div class="row align-items-start justify-content-center g-3 mt-1">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input type="text" formControlName="direccion" class="form-control" id="direccion"
                   [ngClass]="{'is-invalid':personaForm.get('direccion')?.errors && personaForm.get('direccion')?.touched}">
@@ -73,7 +73,7 @@
                   <app-error-validation [field]="'direccion'" [form]="personaForm"></app-error-validation>
               </div>
           </div>
-          <div class="form-group col-8 col-md-6">
+          <div class="form-group col-10 col-sm-8 col-md-6">
               <div class="form-floating">
                   <input type="text" formControlName="telefono" class="form-control" id="telefono"
                   [ngClass]="{'is-invalid':personaForm.get('telefono')?.errors && personaForm.get('telefono')?.touched}">
