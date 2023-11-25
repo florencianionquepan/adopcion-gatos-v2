@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cuota of cuotas">
+      <tr *ngFor="let cuota of getDisplayedCuotas()">
         <td>        
           <a role="button" class="colorw"
           routerLinkActive="active" 
@@ -86,6 +86,13 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="d-flex justify-content-end">
+    <app-pagination [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChange)="setPage($event)"></app-pagination>
+  </div>
+
   <ng-template #sinDatos>
     <app-no-data></app-no-data>
   </ng-template>

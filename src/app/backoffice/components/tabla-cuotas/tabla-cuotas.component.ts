@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Cuota, EstadoPago } from 'src/app/models/Cuota';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
@@ -16,6 +16,9 @@ export class TablaCuotasComponent {
   @Input() cuotas:Cuota[]=[];
   EstadoPago: EstadoPago=EstadoPago.DESCONOCIDO;
   user:User=new User();
+  currentPage = 1;
+  itemsPerPage = 5; // o el número que prefieras
+  totalPages = 1;
 
   constructor(private service:CuotasService, 
             private padrinoser:PadrinoService, 
@@ -69,5 +72,30 @@ export class TablaCuotasComponent {
       timer:2000,
       showConfirmButton:false
     })
+  }
+
+  //logica de paginacion que debe ir en padre
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['cuotas']){
+      this.calculatePages();
+    }
+  }
+
+  calculatePages() {
+    this.totalPages = Math.ceil(this.cuotas.length / this.itemsPerPage);
+    //console.log(this.totalPages);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  getDisplayedCuotas(): Cuota[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.cuotas.slice(startIndex, endIndex);
   }
 }
