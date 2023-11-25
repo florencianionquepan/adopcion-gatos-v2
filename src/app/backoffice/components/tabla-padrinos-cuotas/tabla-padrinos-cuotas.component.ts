@@ -29,15 +29,11 @@ export class TablaPadrinosCuotasComponent {
 
   calculatePages() {
     this.totalPages = Math.ceil(this.cuotas.length / this.itemsPerPage);
-    console.log(this.totalPages);
-  }
-
-  generatePagesArray(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    //console.log(this.totalPages);
   }
 
   setPage(page: number) {
-    if (page < 1 || page > this.totalPages) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) {
       return;
     }
     this.currentPage = page;

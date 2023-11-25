@@ -4,18 +4,3 @@
     border-radius: 10px; /* Ajusta según sea necesario */
     overflow: hidden; /* Asegura que el borde redondeado sea visible */
 }
-
-/* Personalizar la paginación */
-.pagination .page-link {
-    color:#16061a;
-    background-color: transparent; 
-    border-color: black 
-}
-  
-.pagination .page-link:hover {
-    background-color: rgb(218, 127, 218);
-}
-  
-.pagination .page-item.active .page-link {
-    background-color: rgb(218, 127, 218);
-}
