@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Solicitud } from 'src/app/models/Solicitud';
 import { SolicitudVoluntariado } from 'src/app/models/SolicitudVoluntariado';
@@ -21,6 +21,9 @@ const estados={
 export class TablaSolicitudesVoluntariadosComponent {
   solicitudes:SolicitudVoluntariado[]=[];
   user:User=new User();
+  currentPage = 1;
+  itemsPerPage = 5; // o el número que prefieras
+  totalPages = 1;
 
   constructor(private authService:AuthService,
     private service:VoluntariadoService,
@@ -151,5 +154,32 @@ export class TablaSolicitudesVoluntariadosComponent {
       }
     )
   }
+
+  //logica de paginacion
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['solicitudes']){
+      this.calculatePages();
+    }
+  }
+
+  calculatePages() {
+    this.totalPages = Math.ceil(this.solicitudes.length / this.itemsPerPage);
+    //console.log(this.totalPages);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  getDisplayedsolicitudes(): SolicitudVoluntariado[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.solicitudes.slice(startIndex, endIndex);
+  }
+
 
 }

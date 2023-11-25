@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let solicitud of solicitudes">
+    <tr *ngFor="let solicitud of getDisplayedsolicitudes()">
       <td class="d-none d-lg-table-cell">
         {{ solicitud.estados[0].fecha | date:'dd/MM/YYYY'}}
       </td>
@@ -49,3 +49,9 @@
     </tr>
   </tbody>
 </table>
+
+<div class="d-flex justify-content-end">
+  <app-pagination [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  (pageChange)="setPage($event)"></app-pagination>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Observable, Subject, catchError, from, map, of, switchMap, takeUntil } from 'rxjs';
 import { Solicitud } from 'src/app/models/Solicitud';
 import { AgePipe } from 'src/app/pipes/age.pipe';
@@ -22,6 +22,9 @@ export class TablaSolicitudesAdopcionComponent {
   @Input() solicitudes: Solicitud[] = [];
   @Input() idGato:number=0;
   datosCargados:boolean=false;
+  currentPage = 1;
+  itemsPerPage = 5; // o el número que prefieras
+  totalPages = 1;
   
   constructor(private service:AdopcionService, 
     private persoService:PersonaService){
@@ -76,7 +79,7 @@ export class TablaSolicitudesAdopcionComponent {
     // Se vuelve a llamar al back para actualizar datos de tabla
     this.service.listarByGato(this.idGato).subscribe(
       (response)=>{
-        this.solicitudes=response;
+        this.solicitudes=response.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
       }
     );
   }
@@ -137,5 +140,30 @@ export class TablaSolicitudesAdopcionComponent {
 
   verMotivo(motivo:string){
     Swal.fire({text:motivo});
+  }
+
+  //logica de paginacion
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['solicitudes']){
+      this.calculatePages();
+    }
+  }
+
+  calculatePages() {
+    this.totalPages = Math.ceil(this.solicitudes.length / this.itemsPerPage);
+    //console.log(this.totalPages);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  getDisplayedsolicitudes(): Solicitud[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.solicitudes.slice(startIndex, endIndex);
   }
 }
