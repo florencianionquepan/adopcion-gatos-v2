@@ -33,7 +33,7 @@ export class GatosByVoluntarioComponent {
     .subscribe({
       next:(response)=>{
         //console.log(response.data);
-        this.gatos=response.data;
+        this.gatos=response.data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
       },
       error:(e)=>{
         console.error("Error al obtener los datos", e);

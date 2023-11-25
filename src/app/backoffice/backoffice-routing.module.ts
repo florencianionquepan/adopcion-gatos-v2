@@ -87,7 +87,7 @@ const routes: Routes=[
     component:CuotaSuccessComponent,
     canActivate:[RoleGuard],
     data:{
-        requiredAttributes:['esPadrino']
+        allowedRoles:['ROLE_USER']
     }
 },
 {
@@ -95,7 +95,7 @@ const routes: Routes=[
     component:CuotaFailureComponent,
     canActivate:[RoleGuard],
     data:{
-        requiredAttributes:['esPadrino']
+        allowedRoles:['ROLE_USER']
     }
 },
 {
