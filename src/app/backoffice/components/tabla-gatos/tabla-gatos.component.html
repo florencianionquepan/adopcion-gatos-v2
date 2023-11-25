@@ -1,14 +1,14 @@
-<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="gatos.length>0; else sinDatos">
+<table class="table table-responsive table-sm bg-transparent rounded" id="cute" *ngIf="gatos.length>0; else sinDatos">
   <thead>
     <tr>
-      <th class="ps-3">Nombre</th>
+      <th class="ps-sm-3">Nombre</th>
       <th></th>
       <th class="d-none d-lg-table-cell">Sexo</th>
       <th class="d-none d-md-table-cell">Edad</th>
       <th class="d-none d-lg-table-cell">Ubicacion</th>
       <th class="d-none d-md-table-cell">Adoptado</th>
       <th>Transito</th>
-      <th>Padrino</th>
+      <th class="d-none d-sm-table-cell">Padrino</th>
       <th>Solicitudes</th>
       <th>Ficha Vete</th>
     </tr>
@@ -20,17 +20,17 @@
         routerLinkActive="active" [routerLink]="['/../gatos', gato.id]"
         target="_blank">
         <img *ngIf="gato.fotos" [src]="gato.fotos[0]" 
-        class="rounded-circle" 
+        class="rounded-circle d-none d-sm-inline" 
         alt="gatito" style="width: 30px; height: 30px;">
         <img *ngIf="!gato.fotos" src="../../../../assets/img/figura.png"
-        class="rounded-circle" 
+        class="rounded-circle img-fluid d-none d-sm-inline" 
         alt="gatito" style="width: 30px; height: 30px;">
         {{ gato.nombre }}
         </a> 
       </td>
-      <td><button role="button" class="btn btn-outline-dark btn-sm"
+      <td><button role="button" class="btn btn-outline-dark btn-sm border-dark rounded-circle"
         routerLinkActive="active" routerLink="{{gato.id}}">
-        <i class="bi bi-pencil-square"></i> 
+        <i class="bi bi-pencil-fill"></i>
       </button>
       </td>
       <td class="d-none d-lg-table-cell">
@@ -52,10 +52,12 @@
       </td>
       <td *ngIf="!gato.adoptado">
         <span *ngIf="!gato.adoptado">
-          <span *ngIf="gato.transito">
+          <span *ngIf="gato.transito" class="d-none d-sm-table-cell">
               <app-detalle-persona [persona]="gato.transito"></app-detalle-persona>
           </span>
-          <button class="btn btn-outline-dark btn-sm" routerLink="{{gato.id}}/transito"
+          <button class="btn btn-outline-dark btn-sm" 
+          [ngClass]="{'rounded-circle': gato.transito}" 
+          routerLink="{{gato.id}}/transito"
           [state]="{ nombre: gato.nombre, transito:gato.transito,icono:gato.fotos? gato.fotos[0]:''}">
           <ng-container *ngIf="gato.transito; else buscar">
             <i class="bi bi-pencil-fill"></i>
@@ -67,12 +69,12 @@
         </span>
       </td>
       <td *ngIf="gato.adoptado">
-        <span *ngIf="gato.transito">
+        <span *ngIf="gato.transito" class="ps-3">
           ~
         </span>
         <span *ngIf="!gato.transito"> No tenia </span>
       </td>
-      <td>
+      <td class="d-none d-sm-block">
         <span *ngIf="gato.padrino">
           <app-detalle-persona [persona]="gato.padrino"></app-detalle-persona>
         </span>

@@ -14,13 +14,13 @@
           routerLinkActive="active"
           [routerLink]="['/gatos', solicitud.gato.id]"
           target="_blank">
-          {{ solicitud.gato.nombre }}
           <img *ngIf="solicitud.gato.fotos" [src]="solicitud.gato.fotos[0]" 
           class="rounded-circle" 
           alt="gatito" style="width: 30px; height: 30px;">
           <img *ngIf="!solicitud.gato.fotos" src="../../../../assets/img/figura.png"
           class="rounded-circle" 
           alt="gatito" style="width: 30px; height: 30px;">
+          {{ solicitud.gato.nombre }}
         </a>
         </td>
         <td class="d-none d-md-table-cell">

@@ -2,13 +2,13 @@
   <h1 class="titulo1 mb-2 border-bottom border-secondary">
     Historial de transitos
   </h1>
-<table class="table table-sm bg-transparent border rounded w-75 mx-auto" id="cute" 
+<table class="table table-sm bg-transparent border rounded mx-auto" id="cute" 
 *ngIf="transitos.length>0; else sinDatos">
     <thead>
       <tr>
         <th class="ps-3">Fecha de asociación</th>
-        <th>Fecha Fin</th>
-        <th class="d-none d-lg-table-cell">Transito</th>
+        <th class="align-middle">Fecha Fin</th>
+        <th class="align-middle">Transito</th>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
           <span *ngIf="!asignacion.fechaFin">~</span>
           {{asignacion.fechaFin  | date:'dd/MM/yyyy'}}
         </td>
-        <td class="d-none d-lg-table-cell">
+        <td>
           <app-detalle-persona [persona]="asignacion.transito"></app-detalle-persona>
         </td>
       </tr>

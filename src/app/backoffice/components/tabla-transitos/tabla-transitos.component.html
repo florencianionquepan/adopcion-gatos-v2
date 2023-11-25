@@ -2,8 +2,8 @@
   <thead>
     <tr>
       <th scope="col-1">Nombre</th>
-      <th scope="col-1">Apellido</th>
-      <th scope="col-1">Telefono</th>
+      <th scope="col-1" class="d-none d-sm-table-cell">Apellido</th>
+      <th scope="col-1" class="d-none d-sm-table-cell">Telefono</th>
       <th scope="col-1" class="d-none d-lg-table-cell">Email</th>
       <th scope="col-1">Gatos en transito</th>
     </tr>
@@ -13,10 +13,10 @@
       <td>
         <app-detalle-persona [persona]="transito"></app-detalle-persona>
       </td>
-      <td>
+      <td class="d-none d-sm-table-cell">
         {{ transito.apellido }}
       </td>
-      <td>
+      <td class="d-none d-sm-table-cell">
         {{ transito.tel }}
       </td>
       <td class="d-none d-lg-table-cell">

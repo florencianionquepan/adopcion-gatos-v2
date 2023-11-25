@@ -2,11 +2,11 @@
     <thead>
       <tr>
         <th scope="col-1">Gato</th>
-        <th scope="col-1">Adoptado</th>
+        <th scope="col-1" class="d-none d-md-table-cell">Adoptado</th>
         <th scope="col-1">Sigo apadrinando?</th>
         <th scope="col-1" class="d-none d-lg-table-cell">Monto</th>
-        <th scope="col-1" class="d-none d-md-table-cell">Fecha Creación</th>
-        <th scope="col-2" class="d-none d-lg-table-cell">Fecha Pago</th>
+        <th scope="col-1" class="d-none d-lg-table-cell">Fecha Creación</th>
+        <th scope="col-2" class="d-none d-md-table-cell">Fecha Pago</th>
         <th scope="col-1">Estado</th>
         <th scope="col-1">Acción</th>
        
@@ -26,16 +26,16 @@
           {{ cuota.gato.nombre }}
           </a>
         </td>
-        <td>
+        <td class="d-none d-md-table-cell">
           {{cuota.gato.adoptado | date: 'dd/MM/yyyy'}}
           <span *ngIf="!cuota.gato.adoptado">Aun no</span>
         </td>
         <td>
-          <span class="fs-5" *ngIf="cuota.estadoPago=='CANCELADO' || cuota.gato.adoptado; else not">
+          <span class="fs-6" *ngIf="cuota.estadoPago=='CANCELADO' || cuota.gato.adoptado; else not">
             No <i class="bi bi-x-circle"></i>
           </span>
           <ng-template #not>
-            <span class="fs-5" >
+            <span class="fs-6" >
               Sí <i class="bi bi-check-circle"></i>
             </span>
           </ng-template>
@@ -43,10 +43,10 @@
         <td class="d-none d-lg-table-cell">
           $ {{ cuota.montoMensual }}
         </td>
-        <td class="d-none d-md-table-cell">
+        <td class="d-none d-lg-table-cell">
           {{ cuota.fechaCreacion | date: 'dd/MM/yyyy' }}
         </td>
-        <td class="d-none d-lg-table-cell">
+        <td class="d-none d-md-table-cell">
           <span *ngIf="cuota.fechaPago">
             {{ cuota.fechaPago | date: 'dd/MM/yyyy' }}
           </span>

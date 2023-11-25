@@ -40,7 +40,7 @@
                 <div class="form-floating">
                     <input type="number" formControlName="montoMensual" class="form-control" id="montoMensual"
                     [ngClass]="{'is-invalid':gatoForm.get('montoMensual')?.errors && gatoForm.get('montoMensual')?.touched}">
-                    <label for="montoMensual">Cuota Mensual Apadrinamiento</label>
+                    <label for="montoMensual">Cuota Mensual</label>
                     <app-error-validation [field]="'montoMensual'" [form]="gatoForm"></app-error-validation>
                 </div>
             </div>
@@ -84,7 +84,8 @@
                         for="inputFile" role="button">Seleccionar
                         <i class="bi bi-images"></i>
                         </label>
-                    <span class="ps-2" style="color:#6E7174">{{this.urls.length}} archivos</span>
+                    <span class="ps-2" style="color:#6E7174">{{this.urls.length}} 
+                        <span class="d-none d-sm-inline">archivos</span></span>
                     <input class="form-control py-3 d-none" type="file" #inputFiles
                     (change)="onFileChange($event)" id="inputFile" formControlName="files"
                     accept="image/png, image/jpeg, image/gif"
