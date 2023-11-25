@@ -17,3 +17,10 @@
 ul.nav{
     border-bottom: 1px solid #26094B;
 }
+
+@media (max-width: 560px) {
+    .title{
+        width: 10px;
+        font-size: 15px;
+    }
+}
