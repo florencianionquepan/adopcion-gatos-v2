@@ -1,5 +1,23 @@
 <app-header></app-header>
 <div class="container-lg">
-    <app-cards></app-cards>
+    <app-cards [cats]="gatos"></app-cards>
+    <div class="d-flex justify-content-end mt-2">
+        <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" (click)="setPage(currentPage - 1)" aria-label="Previous" role="button">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item" *ngFor="let page of generatePagesArray()" 
+            [ngClass]="{ 'active': page === currentPage+1 }">
+              <a class="page-link" (click)="setPage(page-1)" role="button">{{ page }}</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" (click)="setPage(currentPage + 1)" aria-label="Next" role="button">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>
+          </ul>
+    </div>
 </div>
 <app-footer></app-footer>

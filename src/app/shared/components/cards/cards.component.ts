@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Gato } from 'src/app/models/gato';
 import { GatosService } from 'src/app/services/gatos.service';
@@ -9,27 +9,10 @@ import { GatosService } from 'src/app/services/gatos.service';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent {
-  public cats:Gato[]=[];
+  @Input() cats:Gato[]=[];
 
-  constructor(private gatoSvc:GatosService, private router:Router){
+  constructor(private router:Router){
 
-  }
-
-  ngOnInit(): void {
-    // Hacer la solicitud y suscribirse al observable
-    this.gatoSvc.verGatos().subscribe(response => {
-      if (response.success) {
-        this.cats = response.data.reverse(); // Asignamos los datos al arreglo de gatos
-        this.cats.forEach(gato=>{
-          if(gato.fotos){
-            gato.fotos= gato.fotos.map(foto=>{
-              return foto.replace('/upload/','/upload/q_auto,f_auto,fl_lossy/');
-            }
-            )
-          }
-        })
-      }
-    });
   }
 
   public verGato(cat: Gato){

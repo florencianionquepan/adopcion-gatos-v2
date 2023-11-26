@@ -19,6 +19,20 @@ export class GatosService {
     return this.http.get<any>(this.apiGatos);
   }
 
+  public verPaginados(page:number):Observable<any>{
+    return this.http.get<any>(`${this.apiGatos}/paginated?size=8&page=${page}`).pipe(
+      map((res)=>{
+        if(res.success==true){
+          return res.data;
+        }
+      }),
+      catchError(err=>{
+        console.log(err);
+        return throwError(()=>err.error)
+      })
+    );
+  }
+
   public getGatoById(id:number): Observable<any>{
     return this.http.get<any>(`${this.apiGatos}/${id}`);
   }
