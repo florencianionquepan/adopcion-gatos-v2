@@ -20,6 +20,14 @@ export class CardsComponent {
     this.gatoSvc.verGatos().subscribe(response => {
       if (response.success) {
         this.cats = response.data.reverse(); // Asignamos los datos al arreglo de gatos
+        this.cats.forEach(gato=>{
+          if(gato.fotos){
+            gato.fotos= gato.fotos.map(foto=>{
+              return foto.replace('/upload/','/upload/q_auto,f_auto,fl_lossy/');
+            }
+            )
+          }
+        })
       }
     });
   }
