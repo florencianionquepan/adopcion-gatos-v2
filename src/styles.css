@@ -18,7 +18,6 @@ html{
 .color1 {background-color: #F5CDFF; }
 /* Para icono de notificaciones */
 .color2 {background-color: #260951 !important;}
-.color3 {background-color: #ffb1ca;}
 /* Para fondo de formulario nuevo gato, */
 .color4 {background-color: #ffedda;}
 /* Para fondo de tabla y de dropdown*/
@@ -26,6 +25,10 @@ html{
 
 .colorw{
     color:#260951 !important;
+}
+
+.colornew{
+    color:#DA7FDA !important;
 }
 
 .btncute{

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { Usuario } from 'src/app/models/Usuario';
 import { PersonaService } from 'src/app/services/persona.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -18,6 +18,9 @@ const estados={
 
 export class TablaUsuariosComponent {
   usuarios:Usuario[]=[];
+  currentPage = 1;
+  itemsPerPage = 5; // o el número que prefieras
+  totalPages = 1;
 
   tieneRolSocio(user: any): boolean {
     return user.roles.some((rol: any) => rol.nombre === 'ROLE_SOCIO');
@@ -35,6 +38,7 @@ export class TablaUsuariosComponent {
       (data)=>{
         //console.log(data);
         this.usuarios=data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
+        this.calculatePages();
       }
     )
   }
@@ -86,7 +90,7 @@ export class TablaUsuariosComponent {
       },
       showCancelButton: true,
       confirmButtonText: `${accion}`.charAt(0).toUpperCase()+`${accion}`.slice(1),
-      confirmButtonColor:'#F27474',
+      confirmButtonColor:':#DA7FDA',
       cancelButtonText: 'Cancelar',
       icon:'warning',
       preConfirm: (motivo) => {
@@ -123,6 +127,7 @@ export class TablaUsuariosComponent {
       title:`¿Esta seguro de darle permisos de administrador al usuario?`,
       showCancelButton: true,
       confirmButtonText: 'Si',
+      confirmButtonColor:':#DA7FDA',
       cancelButtonText: 'Cancelar',
       icon:'warning',
     }).then((result)=>{
@@ -141,5 +146,30 @@ export class TablaUsuariosComponent {
         )
       }
     })
+  }
+
+  //logica paginado que debe ir en padre
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['usuarios']){
+      this.calculatePages();
+    }
+  }
+
+  calculatePages() {
+    this.totalPages = Math.ceil(this.usuarios.length / this.itemsPerPage);
+    //console.log(this.totalPages);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  getDisplayedusuarios(): Usuario[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.usuarios.slice(startIndex, endIndex);
   }
 }
