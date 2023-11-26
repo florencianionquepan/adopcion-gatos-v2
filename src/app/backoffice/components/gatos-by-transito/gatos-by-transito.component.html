@@ -1,5 +1,16 @@
+<div class="row m-5 align-items-center justify-content-between">
+  <div class="col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+    <select class="form-select bg-transparent border-dark" aria-label=""
+    (change)="onAsignChange($event)">
+        <option selected [value]="'all'">Todos</option>
+        <option [value]="false">Finalizados </option>
+        <option [value]="true">A mi cargo </option>
+    </select>
+</div>
+</div>
+
 <table class="table table-sm bg-transparent rounded" id="cute" 
-*ngIf="asignaciones.length>0; else sinDatos">
+*ngIf="getDisplayedasignaciones().length>0; else sinDatos">
   <thead>
     <tr>
       <th scope="col-1">Nombre</th>

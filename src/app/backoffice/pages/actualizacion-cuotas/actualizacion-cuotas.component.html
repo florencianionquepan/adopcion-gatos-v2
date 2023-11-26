@@ -2,13 +2,13 @@
 <div class="container-lg mx-auto">
     <app-titulo-page [titulo]="'Actualizacion de cuotas'"
     [link]="'/'"> </app-titulo-page>
-    <div class="row m-5 align-items-center">
-        <div class="col-6">
+    <div class="row m-5 align-items-center justify-content-between">
+        <div class="col-10 col-sm-7 col-md-6 me-5 mx-lg-0">
             <button class="btn btn-outline-dark" (click)="actualizarTodas()">
                 Crear Cuotas Nuevas
             </button>
         </div>
-        <div class="col-3">
+        <div class="col-10 col-sm-7 col-md-6 col-lg-3 my-1 my-lg-0">
             <select class="form-select bg-transparent border-dark" aria-label=""
             (change)="onPadrinoChange($event)">
                 <option selected [value]="'all'">Filtrar by padrinos</option>
@@ -16,7 +16,7 @@
                 [value]="padrino.dni">{{padrino.nombre}}~{{padrino.dni}}</option>
             </select>
         </div>
-        <div class="col-3">
+        <div class="col-10 col-sm-7 col-md-6 col-lg-3">
             <select class="form-select bg-transparent border-dark" aria-label=""
             (change)="onGatoChange($event)">
                 <option [value]="'all'" selected>Filtrar by gatos</option>

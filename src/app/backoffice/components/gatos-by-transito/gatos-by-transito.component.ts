@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class GatosByTransitoComponent {
   asignaciones:AsignGato[]=[];
+  gatosFiltrados:AsignGato[]=[];
   user:User=new User();
   currentPage = 1;
   itemsPerPage = 5; // o el número que prefieras
@@ -30,6 +31,7 @@ export class GatosByTransitoComponent {
         this.asignaciones=data.sort((a:any, b:any) => {
           return new Date(b.fechaAsignacion).getTime() - new Date(a.fechaAsignacion).getTime();
         });
+        this.gatosFiltrados=this.asignaciones;
         this.calculatePages();
       }
     )
@@ -49,7 +51,7 @@ export class GatosByTransitoComponent {
   }
 
   calculatePages() {
-    this.totalPages = Math.ceil(this.asignaciones.length / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.gatosFiltrados.length / this.itemsPerPage);
     //console.log(this.totalPages);
   }
 
@@ -63,7 +65,22 @@ export class GatosByTransitoComponent {
   getDisplayedasignaciones(): AsignGato[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.asignaciones.slice(startIndex, endIndex);
+    return this.gatosFiltrados.slice(startIndex, endIndex);
+  }
+
+  //filtrado
+  onAsignChange(event: any) {
+    const gatosmios=event.target.value;
+    if(gatosmios=='all'){
+      this.gatosFiltrados=this.asignaciones;
+      this.calculatePages();
+    }else if(gatosmios=='false'){
+      this.gatosFiltrados=this.asignaciones.filter(asign=>asign.fechaFin!=null);
+      this.calculatePages();
+    }else if(gatosmios=='true'){
+      this.gatosFiltrados=this.asignaciones.filter(asign=>asign.fechaFin==null);
+      this.calculatePages();
+    }
   }
 
 }

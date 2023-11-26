@@ -8,19 +8,24 @@ import { GatoDetalle } from 'src/app/models/GatoDetalle';
 })
 export class TablaGatosComponent {
   @Input() gatos:GatoDetalle[]=[];
+  gatosFiltrados:GatoDetalle[]=[];
   currentPage = 1;
   itemsPerPage = 5; // o el número que prefieras
   totalPages = 1;
 
+  ngOnInit(){
+    this.gatosFiltrados=this.gatos;
+  }
 
   ngOnChanges(changes:SimpleChanges){
     if(changes['gatos']){
+      this.gatosFiltrados=this.gatos;
       this.calculatePages();
     }
   }
 
   calculatePages() {
-    this.totalPages = Math.ceil(this.gatos.length / this.itemsPerPage);
+    this.totalPages = Math.ceil(this.gatosFiltrados.length / this.itemsPerPage);
     //console.log(this.totalPages);
   }
 
@@ -34,6 +39,21 @@ export class TablaGatosComponent {
   getDisplayedgatos(): GatoDetalle[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.gatos.slice(startIndex, endIndex);
+    return this.gatosFiltrados.slice(startIndex, endIndex);
+  }
+
+  //filtrado
+  onGatosChange(event: any) {
+    const gatosadoptado=event.target.value;
+    if(gatosadoptado=='true'){
+      this.gatosFiltrados=this.gatos.filter(gato=>gato.adoptado!=null);
+      this.calculatePages();
+    }else if(gatosadoptado=='false'){
+      this.gatosFiltrados=this.gatos.filter(gato=>gato.adoptado==null);
+      this.calculatePages();
+    }else{
+      this.gatosFiltrados=this.gatos;
+      this.calculatePages();
+    }
   }
 }
