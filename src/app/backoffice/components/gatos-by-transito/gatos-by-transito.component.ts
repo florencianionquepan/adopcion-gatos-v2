@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AsignGato } from 'src/app/models/AsignGatos';
 import { FichaVeterinaria } from 'src/app/models/FichaVeterinaria';
@@ -14,6 +14,9 @@ import { environment } from 'src/environments/environment';
 export class GatosByTransitoComponent {
   asignaciones:AsignGato[]=[];
   user:User=new User();
+  currentPage = 1;
+  itemsPerPage = 5; // o el número que prefieras
+  totalPages = 1;
 
   constructor(private service:TransitoService, private authService:AuthService){
     this.user=this.authService.getUser();
@@ -27,6 +30,7 @@ export class GatosByTransitoComponent {
         this.asignaciones=data.sort((a:any, b:any) => {
           return new Date(b.fechaAsignacion).getTime() - new Date(a.fechaAsignacion).getTime();
         });
+        this.calculatePages();
       }
     )
   }
@@ -34,6 +38,32 @@ export class GatosByTransitoComponent {
   verFicha(ficha:FichaVeterinaria):void{
     let apiStorage=`${environment.url}/ficha`;
     window.open(`${apiStorage}/file/${ficha.pdf}`,'_blank');
+  }
+
+  //logica de paginacion qe debe ir en padre
+
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['asignaciones']){
+      this.calculatePages();
+    }
+  }
+
+  calculatePages() {
+    this.totalPages = Math.ceil(this.asignaciones.length / this.itemsPerPage);
+    //console.log(this.totalPages);
+  }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  getDisplayedasignaciones(): AsignGato[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.asignaciones.slice(startIndex, endIndex);
   }
 
 }

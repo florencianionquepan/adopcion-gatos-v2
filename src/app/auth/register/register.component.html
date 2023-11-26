@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container-lg w-75 my-5 color1 py-3 px-4 border rounded">
+<div class="container-lg w-75 my-5 color1 py-3 px-4 border-0 rounded">
     <h5 class="py-3 text-center colorw">Crea una cuenta en Rescats</h5>
     <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" class="py-2">
         <div *ngIf="vistaActual==1">
