@@ -1,9 +1,18 @@
+@font-face {
+    font-family: 'ubuntu';
+    src: url('assets/fonts/Ubuntu-Regular.woff2') format('woff2'),
+         url('assets/fonts/Ubuntu-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body{
     background: linear-gradient(135deg, rgb(186, 153, 237) 0%, rgb(242, 215, 186) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'ubuntu', sans-serif;
 }
 
 html{
@@ -11,7 +20,7 @@ html{
 }
 
 *{
-    font-family: 'Ubuntu',sans-serif;
+    font-family: 'ubuntu',sans-serif;
 }
 
 /* Para fondo del header footer login registro y colapsables */
