@@ -31,12 +31,12 @@
           <span *ngIf="!cuota.gato.adoptado">Aun no</span>
         </td>
         <td>
-          <span class="fs-6" *ngIf="cuota.estadoPago=='CANCELADO' || cuota.gato.adoptado; else not">
-            No <i class="bi bi-x-circle"></i>
+          <span class="fs-6" *ngIf="cuota.padrino?.email==cuota.gato.padrino?.email; else not">
+            Si <i class="bi bi-check-circle"></i>
           </span>
           <ng-template #not>
             <span class="fs-6" >
-              Sí <i class="bi bi-check-circle"></i>
+              No <i class="bi bi-x-circle"></i>
             </span>
           </ng-template>
         </td>

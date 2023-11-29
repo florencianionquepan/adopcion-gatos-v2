@@ -61,6 +61,15 @@ export class TablaCuotasComponent {
           text:'Este gatito ya no forma parte de tu listado',
           timer:1500,
         })
+        this.getCuotas();
+      }
+    )
+  }
+
+  getCuotas():void{
+    this.service.getCuotasByEmail(this.user.email).subscribe(
+      (data)=>{
+        this.cuotas=data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
       }
     )
   }

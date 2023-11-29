@@ -1,6 +1,14 @@
 <app-header></app-header>
     <div class="container-md">
         <app-titulo-page [titulo]="'Mis Cuotas'" [link]="'/'"></app-titulo-page>
-        <app-tabla-cuotas [cuotas]="cuotas"></app-tabla-cuotas>
+        <div class="col-10 col-sm-7 col-md-6 col-lg-3 mb-3">
+            <select class="form-select bg-transparent border-dark" aria-label=""
+            (change)="onGatoChange($event)">
+                <option [value]="'all'" selected>Todos los gatos</option>
+                <option *ngFor="let gato of gatos" 
+                [value]="gato.id">{{gato.nombre}}</option>
+            </select>
+        </div>
+        <app-tabla-cuotas [cuotas]="cuotasFiltradas"></app-tabla-cuotas>
     </div>
 <app-footer></app-footer>
