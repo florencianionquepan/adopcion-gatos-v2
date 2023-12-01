@@ -37,15 +37,23 @@ export class LoginService {
       catchError((response)=>{
           if(response.error!=null){
             let error=response.error;
-            Swal.fire({
-              'title':error.message,
-              'icon':'error',
-              didClose:()=>{
-                if (error.key == 'bloqueado') {
-                  this.router.navigate(['/']);
-                }
-              }
-            });
+            console.log(error);
+            if(error.key=='bloqueado'){
+              Swal.fire({
+                'title':error.message,
+                'icon':'error',
+                timer:1500
+              });
+              localStorage.clear();
+              setTimeout(()=>{
+                location.reload()
+              },1500);
+            }else{
+              Swal.fire({
+                'title':error.message,
+                'icon':'error',
+              });
+            }
         }else{
           Swal.fire({'title':'Credenciales invalidas','icon':'error'});
         } 
