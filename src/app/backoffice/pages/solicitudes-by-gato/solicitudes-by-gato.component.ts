@@ -28,7 +28,7 @@ export class SolicitudesByGatoComponent {
   ngOnInit(){
     this.service.listarByGato(this.idGatito).subscribe(
       (response)=>{
-        this.solicitudes=response;
+        this.solicitudes=response.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
       }
     );
   }
