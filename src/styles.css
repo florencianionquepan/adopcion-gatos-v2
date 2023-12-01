@@ -24,11 +24,11 @@ html{
 }
 
 /* Para fondo del header footer login registro y colapsables */
-.color1 {background-color: #F5CDFF; }
+.color1 {background-color: #F5CDFF;}
 /* Para icono de notificaciones */
 .color2 {background-color: #260951 !important;}
 /* Para fondo de formulario nuevo gato, cards y formar-parte, form de mi perfil, */
-.color4 {background-color: #ffedda;}
+.color4 {background-color: whitesmoke}
 /* Para fondo de tabla y de dropdown*/
 .color5 {background-color: #F8E0DB}
 
