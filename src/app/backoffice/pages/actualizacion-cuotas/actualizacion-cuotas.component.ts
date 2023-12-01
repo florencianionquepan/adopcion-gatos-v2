@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cuota } from 'src/app/models/Cuota';
+import { Cuota, EstadoPago } from 'src/app/models/Cuota';
 import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { Padrino } from 'src/app/models/Padrino';
 import { CuotasService } from 'src/app/services/cuotas.service';
@@ -15,6 +15,7 @@ export class ActualizacionCuotasComponent {
   cuotasFiltradas:Cuota[]=[];
   padrinos:Padrino[]=[];
   gatos:GatoDetalle[]=[];
+  estados:EstadoPago[]=[];
   
   constructor(private service:CuotasService){}
 
@@ -35,13 +36,23 @@ export class ActualizacionCuotasComponent {
   getCuotas(){
     this.service.getAll().subscribe(
       (data)=>{
-        //console.log(data);
+        console.log(data);
         this.cuotas=data.sort((a: { id: number; }, b: { id: number; }) => b.id - a.id);
         this.cuotasFiltradas=this.cuotas;
+        this.obtenerOptionsEstadoPago();
         this.obtenerOptionsPadrino();
         this.obtenerOptionsGatos();
       }
     )
+  }
+
+  obtenerOptionsEstadoPago(){
+    this.estados=[];
+    this.cuotasFiltradas.forEach((cuota:any)=>{
+      if(cuota.estadoPago && !this.estados.some((e:EstadoPago)=>e==cuota.estadoPago)){
+        this.estados.push(cuota.estadoPago);
+      }
+    })
   }
 
   obtenerOptionsPadrino(){
@@ -62,6 +73,16 @@ export class ActualizacionCuotasComponent {
     })
   }
 
+  onEstadoChange(event:any){
+    const estadoSeleccionado = event.target.value;
+    console.log(estadoSeleccionado);
+    if(estadoSeleccionado=='Todas'){
+      this.cuotasFiltradas=this.cuotas;
+    }else{
+      this.cuotasFiltradas=this.cuotas.filter(cuota=>cuota.estadoPago && cuota.estadoPago==estadoSeleccionado);
+    }
+  }
+
   onPadrinoChange(event: any) {
     const padrinodni = event.target.value;
     if(padrinodni=='all'){
@@ -69,6 +90,7 @@ export class ActualizacionCuotasComponent {
     }else{
       this.cuotasFiltradas=this.cuotas.filter(cuota => cuota.padrino && cuota.padrino.dni === padrinodni);
     }
+    this.obtenerOptionsEstadoPago();
     this.obtenerOptionsGatos();
   }
 
@@ -79,6 +101,7 @@ export class ActualizacionCuotasComponent {
     }else{
       this.cuotasFiltradas=this.cuotas.filter(cuota=>cuota.gato && cuota.gato.id==gatoid);
     }
+    this.obtenerOptionsEstadoPago();
     this.obtenerOptionsPadrino();
   }
 
