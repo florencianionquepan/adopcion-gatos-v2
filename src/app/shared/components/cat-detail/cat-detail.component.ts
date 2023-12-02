@@ -45,13 +45,14 @@ export class CatDetailComponent {
   getCat():void{
     const id= this.ruta.snapshot.params['id'];
     this.catSvc.getGatoById(id).subscribe(resp=>{
-      //console.log(resp);
+      console.log(resp);
       this.gato=resp.data;
       if(this.user.authStatus){
         this.esVoluntario=(this.gato.voluntario!.email==this.user.email);
-        console.log(this.esVoluntario);
         if(this.gato.padrino){
           this.esPadrino=(this.gato.padrino.email==this.user.email);
+        }else{
+          this.esPadrino=false;
         }
       }
       this.adoptante=resp.data.adoptante;

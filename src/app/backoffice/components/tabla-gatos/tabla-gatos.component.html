@@ -28,8 +28,7 @@
     <tr *ngFor="let gato of getDisplayedgatos()">
       <td class="ps-2">        
         <a role="button" class="colorw"
-        routerLinkActive="active" [routerLink]="['/../gatos', gato.id]"
-        target="_blank">
+        routerLinkActive="active" [routerLink]="['/../gatos', gato.id]">
         <img *ngIf="gato.fotos" [src]="gato.fotos[0]" 
         class="rounded-circle d-none d-sm-inline" 
         alt="gatito" style="width: 30px; height: 30px;">

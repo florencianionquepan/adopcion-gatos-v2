@@ -17,8 +17,7 @@
         <td>        
           <a role="button" class="colorw"
           routerLinkActive="active" 
-          routerLink="../../gatos/{{cuota.gato.id}}"
-          target="_blank">
+          routerLink="../../gatos/{{cuota.gato.id}}">
           <img *ngIf="cuota.gato.fotos" [src]="cuota.gato.fotos[0]" class="rounded-circle" 
           alt="gatito" style="width: 30px; height: 30px;">
           <img *ngIf="!cuota.gato.fotos" src="../../../../assets/img/figura.png" class="rounded-circle" 
