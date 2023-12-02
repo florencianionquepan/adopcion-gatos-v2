@@ -8,7 +8,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let estado of estados">
-            <td class="pt-2">{{estado.fecha}}</td>
+            <td class="pt-2">{{estado.fecha | date: 'dd/MM/yyyy'}}</td>
             <td class="pt-2">{{estado.estado}}</td>
             <td><a class="btn btn-outline-dark btn-sm" *ngIf="estado.motivo"
                 (click)="verMotivo(estado.motivo!)">VER</a>

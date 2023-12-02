@@ -23,7 +23,7 @@ export class HomeComponent {
   getGatos(){
     this.gatoSvc.verPaginados(this.currentPage).subscribe(
       (data)=>{
-        console.log(data);
+        //console.log(data);
         this.gatos = data.content; 
         this.gatos.forEach(gato=>{
           if(gato.fotos){

@@ -29,8 +29,7 @@ export class CatDetailComponent {
             private catSvc: GatosService,
             private authSvc:AuthService,
             private adopcionSvc:AdopcionService,
-            private cuotaser:CuotasService,
-            private padrinosser:PadrinoService){
+            private cuotaser:CuotasService){
     this.getCat();
   }
 
@@ -48,6 +47,13 @@ export class CatDetailComponent {
     this.catSvc.getGatoById(id).subscribe(resp=>{
       //console.log(resp);
       this.gato=resp.data;
+      if(this.user.authStatus){
+        this.esVoluntario=(this.gato.voluntario!.email==this.user.email);
+        console.log(this.esVoluntario);
+        if(this.gato.padrino){
+          this.esPadrino=(this.gato.padrino.email==this.user.email);
+        }
+      }
       this.adoptante=resp.data.adoptante;
       /* if(this.gato.padrino){
         this.padrinosser.renunciaAutomatica(this.gato).subscribe(
