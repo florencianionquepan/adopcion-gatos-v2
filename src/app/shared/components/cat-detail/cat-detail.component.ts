@@ -45,7 +45,7 @@ export class CatDetailComponent {
   getCat():void{
     const id= this.ruta.snapshot.params['id'];
     this.catSvc.getGatoById(id).subscribe(resp=>{
-      console.log(resp);
+      //console.log(resp);
       this.gato=resp.data;
       if(this.user.authStatus){
         this.esVoluntario=(this.gato.voluntario!.email==this.user.email);
@@ -108,7 +108,7 @@ export class CatDetailComponent {
         }
       }
       ,error:(e)=>{
-        //onsole.log(e);
+        //console.log(e);
         Swal.fire({
           title:e.mensaje,
           icon:'error'
@@ -139,7 +139,7 @@ export class CatDetailComponent {
       if (result.isConfirmed) {
         this.cuotaser.pagarCuota(this.user.email,this.gato).subscribe(
           data=>{
-            console.log(data);
+            //console.log(data);
           }
         )
       }
