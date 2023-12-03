@@ -1,68 +1,88 @@
 @font-face {
-    font-family: 'ubuntu';
-    src: url('assets/fonts/Ubuntu-Regular.woff2') format('woff2'),
-         url('assets/fonts/Ubuntu-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "ubuntu";
+  src: url("assets/fonts/Ubuntu-Regular.woff2") format("woff2"),
+    url("assets/fonts/Ubuntu-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
-
-body{
-    background: linear-gradient(135deg, rgb(186, 153, 237) 0%, rgb(242, 215, 186) 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    font-family: 'ubuntu', sans-serif;
+body {
+  background: linear-gradient(
+    135deg,
+    rgb(186, 153, 237) 0%,
+    rgb(242, 215, 186) 100%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "ubuntu", sans-serif;
+  position: relative;
+  padding-bottom: 6em;
+  min-height: 100vh;
 }
 
-html{
-    height: 100%;
+html {
+  height: 100% !important;
 }
 
-*{
-    font-family: 'ubuntu',sans-serif;
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+* {
+  font-family: "ubuntu", sans-serif;
 }
 
 /* Para fondo del header footer login registro y colapsables */
-.color1 {background-color: #F5CDFF;}
+.color1 {
+  background-color: #f5cdff;
+}
 /* Para icono de notificaciones */
-.color2 {background-color: #260951 !important;}
+.color2 {
+  background-color: #260951 !important;
+}
 /* Para fondo de formulario nuevo gato, cards y formar-parte, form de mi perfil, */
-.color4 {background-color: whitesmoke}
+.color4 {
+  background-color: whitesmoke;
+}
 /* Para fondo de tabla y de dropdown*/
-.color5 {background-color: #F8E0DB}
-
-.colorw{
-    color:#260951 !important;
+.color5 {
+  background-color: #f8e0db;
 }
 
-.colornew{
-    color:#DA7FDA !important;
+.colorw {
+  color: #260951 !important;
 }
 
-.btncute{
-    border: 1px solid #260951 !important;
-    color: #260951 !important;
+.colornew {
+  color: #da7fda !important;
 }
 
-.btn-misuccess{
-    border: 2px solid #DA7FDA !important;
-    color: #DA7FDA !important;
+.btncute {
+  border: 1px solid #260951 !important;
+  color: #260951 !important;
 }
 
-.btn-misuccess:hover{
-    color:#ffffff !important;
-    background-color: #DA7FDA !important;
+.btn-misuccess {
+  border: 2px solid #da7fda !important;
+  color: #da7fda !important;
+}
+
+.btn-misuccess:hover {
+  color: #ffffff !important;
+  background-color: #da7fda !important;
 }
 
 @font-face {
-    font-family: 'somatic';
-    src: url('assets/fonts/somatic-rounded-webfont.woff2') format('woff2'),
-         url('assets/fonts/somatic-rounded-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "somatic";
+  src: url("assets/fonts/somatic-rounded-webfont.woff2") format("woff2"),
+    url("assets/fonts/somatic-rounded-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.titulo1{
-    font-family: 'somatic', sans-serif;
+.titulo1 {
+  font-family: "somatic", sans-serif;
 }
