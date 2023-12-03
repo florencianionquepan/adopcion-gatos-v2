@@ -25,16 +25,26 @@ export class BePartOfComponent {
     if(!this.user.authStatus){
       this.authService.alertLogin();
     }
-    this.service.enviarSolicitud(this.user.email,tipo).subscribe(
-      data=>{
-        Swal.fire({
-          title:'Gracias '+data.aspirante.nombre+'!',
-          text:'Estaremos evaluando la solicitud y pronto tendrás novedad de su estado!',
-          icon:'success'
-        })
-        //console.log(data);
+    Swal.fire({
+      title: "Esta seguro de enviar la solicitud?",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Si!",
+      cancelButtonText:"Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.enviarSolicitud(this.user.email,tipo).subscribe(
+          data=>{
+            Swal.fire({
+              title:'Gracias '+data.aspirante.nombre+'!',
+              text:'Estaremos evaluando la solicitud y pronto tendrás novedad de su estado!',
+              icon:'success'
+            })
+            //console.log(data);
+          }
+        )
       }
-    )
+    });
   }
 
 }
