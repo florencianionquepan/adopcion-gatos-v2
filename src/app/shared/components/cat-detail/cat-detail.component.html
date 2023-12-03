@@ -6,6 +6,11 @@
             {{gato.nombre}}
           </h1>
           <div class="rounded p-2">
+            <h5 class="mb-3"><i class="bi bi-geo-alt-fill"></i>
+              Ubicación: 
+              <ng-container *ngIf="gato.transito">{{gato.transito.localidad}}</ng-container>
+              <ng-container *ngIf="!gato.transito">{{gato.voluntario?.localidad}}</ng-container>
+            </h5>
             <h5>Edad: {{gato.edad}}</h5>
             <h5>Sexo: {{gato.sexo}}</h5>
             <h5 class="d-flex align-items-center">Color: <input type="color" value="{{gato.color}}" disabled class="ms-1"></h5>

@@ -1,6 +1,6 @@
 <div class="row justify-content-center justify-content-md-start align-items-start mt-4" *ngIf="cats.length>0;">
   <div class="col-10 col-sm-6 col-md-4 col-lg-3 my-2" *ngFor="let cat of cats">
-    <div class="card my-auto color4" (click)="verGato(cat)">
+    <div class="card my-auto color4" (click)="verGato(cat.id)">
       <div class="text-center d-flex align-items-center my-auto" 
       style="min-height: 200px;">
       <div class="adopted-text d-flex align-items-center" *ngIf="cat.adoptado">
@@ -13,7 +13,14 @@
           <img [src]="'assets/img/figura.png'" *ngIf="!cat.fotos" 
           class="img-fluid mx-auto mt-2 rounded">
       </div>
-      <div class="card-body justify-content-center align-items-center">
+      <div class="text-center">
+        <i class="bi bi-geo-alt-fill colorw"></i>
+        <span class="fw-light" *ngIf="cat.transito" style="font-size: 12px !important;">
+          {{cat.transito.localidad}}</span>
+        <span class="fw-light" *ngIf="!cat.transito" style="font-size: 12px !important;">
+          {{cat.voluntario?.localidad}}</span>
+      </div>
+      <div class="card-body justify-content-center align-items-center pt-1">
         <h3>{{ cat.nombre }}</h3>
         <p class="card-text mb-1">{{ cat.descripcion }}</p>
         <p class="lead fs-6 fw-light mb-2" *ngIf="cat.solicitudes.length>0">
@@ -21,7 +28,7 @@
           Solicitudes: {{cat.solicitudes.length}} </p>
         <div class="d-flex justify-content-end align-items-center mt-auto">
           <div class="btn-group">
-            <button class="btn btn-outline-dark" (click)="verGato(cat)">Ver más</button>
+            <button class="btn btn-outline-dark" (click)="verGato(cat.id)">Ver más</button>
           </div>
         </div>
       </div>

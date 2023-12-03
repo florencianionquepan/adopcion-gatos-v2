@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { Gato } from 'src/app/models/gato';
 import { GatosService } from 'src/app/services/gatos.service';
 
@@ -9,14 +10,14 @@ import { GatosService } from 'src/app/services/gatos.service';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent {
-  @Input() cats:Gato[]=[];
+  @Input() cats:GatoDetalle[]=[];
 
   constructor(private router:Router){
 
   }
 
-  public verGato(cat: Gato){
-    this.router.navigate([`/gatos/${cat.id}`]);
+  public verGato(id:number){
+    this.router.navigate([`/gatos/${id}`]);
   }
 
   /* 
