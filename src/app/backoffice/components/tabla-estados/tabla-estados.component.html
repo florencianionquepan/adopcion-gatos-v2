@@ -1,4 +1,4 @@
-<table class="table table-sm bg-transparent rounded" id="cute">
+<table class="table table-sm bg-transparent rounded" id="cute" *ngIf="this.estados.length>0;else sinDatos">
     <thead>
         <tr>
             <th scope="col-auto">Fecha</th>
@@ -16,3 +16,7 @@
         </tr>
     </tbody>    
    </table>
+
+<ng-template #sinDatos>
+    <app-no-data></app-no-data>
+</ng-template>

@@ -10,7 +10,8 @@ export class FilterPipe implements PipeTransform {
     if(arg==='' || arg.length<3) return value;
     const resultTransitos=[];
     for(const transito of value){
-      if(transito.localidad.toLowerCase().indexOf(arg.toLowerCase())>-1){
+      const normalizedLocalidad = transito.localidad.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      if(normalizedLocalidad.indexOf(arg.toLowerCase())>-1){
         resultTransitos.push(transito);
       }
     }
