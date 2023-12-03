@@ -76,7 +76,7 @@ export class ActualizacionCuotasComponent {
   onEstadoChange(event:any){
     const estadoSeleccionado = event.target.value;
     console.log(estadoSeleccionado);
-    if(estadoSeleccionado=='Todas'){
+    if(estadoSeleccionado=='all'){
       this.cuotasFiltradas=this.cuotas;
     }else{
       this.cuotasFiltradas=this.cuotas.filter(cuota=>cuota.estadoPago && cuota.estadoPago==estadoSeleccionado);

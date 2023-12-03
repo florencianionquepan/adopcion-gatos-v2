@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Gato } from 'src/app/models/gato';
+import { GatoDetalle } from 'src/app/models/GatoDetalle';
 import { GatosService } from 'src/app/services/gatos.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { GatosService } from 'src/app/services/gatos.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  gatos:Gato[]=[];
+  gatos:GatoDetalle[]=[];
   currentPage:number = 0;
   totalPages:number=1;
 
@@ -23,7 +23,7 @@ export class HomeComponent {
   getGatos(){
     this.gatoSvc.verPaginados(this.currentPage).subscribe(
       (data)=>{
-        //console.log(data);
+        console.log(data);
         this.gatos = data.content; 
         this.gatos.forEach(gato=>{
           if(gato.fotos){
