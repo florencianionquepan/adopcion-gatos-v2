@@ -33,7 +33,7 @@ export class VoluntariadoService {
       catchError((error) => {
         //console.error('Error en la solicitud:', error);
         Swal.fire({
-          title:'Error '+error.error.estado,
+          title:'Error ',
           text:error.error.mensaje,
           icon:'error'
         })
@@ -91,7 +91,7 @@ export class VoluntariadoService {
       }),
       catchError((error) => {
         Swal.fire({
-          title:'Error '+error.error.estado,
+          title:'Error ',
           text:error.error.mensaje,
           icon:'error'
         });

@@ -62,7 +62,7 @@ export class UsuariosService {
         }
       }),
       catchError((error) => {
-        Swal.fire({title:'Error '+error.error.estado,
+        Swal.fire({title:'Error ',
                   text:error.error.mensaje,
                   icon:'error'})
         throw error;

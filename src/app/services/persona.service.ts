@@ -52,7 +52,7 @@ export class PersonaService {
         }
       }),
       catchError((error: any) => {
-        Swal.fire({icon:'error',title:`Error ${error.error.estado}`,text:error.error.mensaje})
+        Swal.fire({icon:'error',title:`Error`,text:error.error.mensaje})
         throw error;
       })
     )
