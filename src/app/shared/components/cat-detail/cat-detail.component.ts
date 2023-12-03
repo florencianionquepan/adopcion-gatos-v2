@@ -108,7 +108,7 @@ export class CatDetailComponent {
         }
       }
       ,error:(e)=>{
-        console.log(e);
+        //onsole.log(e);
         Swal.fire({
           title:e.mensaje,
           icon:'error'
